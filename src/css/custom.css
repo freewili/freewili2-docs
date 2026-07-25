@@ -1,1 +1,120 @@
-/* Brand theme. Filled in by Task 2. */
+@import './fonts.css';
+
+/* ---------- brand tokens, verbatim from freewili.com/style.css ---------- */
+:root {
+  --fw-bg: #0a0a0b;
+  --fw-bg-2: #0d0d0f;
+  --fw-surface: #141417;
+  --fw-surface-2: #1a1a1e;
+  --fw-line: rgba(255, 255, 255, .09);
+  --fw-line-strong: rgba(255, 255, 255, .16);
+  --fw-text: #ecedf1;
+  --fw-muted: #9295a0;
+  --fw-faint: #62656f;
+  --fw-red: #ff2e43;
+  --fw-red-deep: #d6172a;
+  --fw-green: #5dff7b;
+  --fw-amber: #ffb340;
+
+  --fw-display: 'Chakra Petch', sans-serif;
+  --fw-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --fw-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ---------- light: derived, since the main site has no light mode ---------- */
+:root {
+  --ifm-color-primary: var(--fw-red-deep);
+  --ifm-color-primary-dark: #c11526;
+  --ifm-color-primary-darker: #b61423;
+  --ifm-color-primary-darkest: #96101d;
+  --ifm-color-primary-light: #eb1c30;
+  --ifm-color-primary-lighter: #ef2a3d;
+  --ifm-color-primary-lightest: #f4515f;
+
+  --ifm-font-family-base: var(--fw-body);
+  --ifm-font-family-monospace: var(--fw-mono);
+  --ifm-heading-font-family: var(--fw-display);
+  --ifm-heading-font-weight: 700;
+  --ifm-code-font-size: 92%;
+}
+
+/* ---------- dark: the real thing ---------- */
+[data-theme='dark'] {
+  --ifm-color-primary: var(--fw-red);
+  --ifm-color-primary-dark: #ff1730;
+  --ifm-color-primary-darker: #f70a25;
+  --ifm-color-primary-darkest: #d1061c;
+  --ifm-color-primary-light: #ff4556;
+  --ifm-color-primary-lighter: #ff5263;
+  --ifm-color-primary-lightest: #ff7d8a;
+
+  --ifm-background-color: var(--fw-bg);
+  --ifm-background-surface-color: var(--fw-surface);
+  --ifm-navbar-background-color: var(--fw-bg);
+  --ifm-footer-background-color: var(--fw-bg-2);
+  --ifm-font-color-base: var(--fw-text);
+  --ifm-toc-border-color: var(--fw-line);
+  --ifm-hr-border-color: var(--fw-line);
+  --ifm-code-background: var(--fw-surface-2);
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, .07);
+}
+
+/* ambient glow + PCB grid, matching freewili.com. Non-fixed on purpose: a
+   fixed layer forces Firefox to recomposite on every scroll frame. */
+[data-theme='dark'] body {
+  background-color: var(--fw-bg);
+  background-image:
+    radial-gradient(900px 520px at 80% -40px, rgba(255, 46, 67, .13), transparent 60%),
+    radial-gradient(700px 420px at 8% 160px, rgba(255, 46, 67, .08), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, .02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .02) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+  background-repeat: no-repeat, no-repeat, repeat, repeat;
+  background-attachment: scroll;
+}
+
+[data-theme='dark'] .main-wrapper,
+[data-theme='dark'] .navbar,
+[data-theme='dark'] .theme-doc-sidebar-container {
+  background: transparent;
+}
+
+[data-theme='dark'] .navbar {
+  border-bottom: 1px solid var(--fw-line);
+  backdrop-filter: blur(10px);
+}
+
+/* headings: the display face, tight, matching the main site */
+h1, h2, h3, h4 {
+  font-family: var(--fw-display);
+  letter-spacing: -.01em;
+  line-height: 1.08;
+}
+
+.navbar__title {
+  font-family: var(--fw-display);
+  letter-spacing: .02em;
+}
+
+.navbar__logo img {
+  height: 34px;
+  width: auto;
+}
+
+/* the shop button, styled as the main site's primary CTA */
+.navbar__item.navbar-cta {
+  font-family: var(--fw-mono);
+  font-weight: 700;
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: var(--fw-red);
+  color: #fff !important;
+  padding: .5rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(255, 46, 67, .4), 0 8px 30px -8px rgba(255, 46, 67, .65);
+}
+
+.navbar__item.navbar-cta:hover {
+  transform: translateY(-1px);
+}

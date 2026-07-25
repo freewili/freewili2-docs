@@ -44,15 +44,59 @@ const config = {
   ],
 
   themeConfig: {
+    image: 'img/social-card.png',
     colorMode: { defaultMode: 'dark', respectPrefersColorScheme: false },
     navbar: {
-      title: 'FREE-WILi 2',
-      items: [],
+      title: '',
+      logo: {
+        alt: 'FREE-WILi',
+        src: 'img/logo-light.svg',
+        srcDark: 'img/logo-dark.svg',
+        href: 'https://www.freewili.com',
+        target: '_self',
+      },
+      items: [
+        { type: 'docSidebar', sidebarId: 'docs', position: 'left', label: 'Docs' },
+        { href: 'https://www.freewili.com', label: 'freewili.com', position: 'right' },
+        { href: 'https://freewili.com/onewili/', label: 'Developer API', position: 'right' },
+        { href: 'https://discord.com/invite/XJRBUCX62z', label: 'Discord', position: 'right' },
+        {
+          href: 'https://shop.freewili.com/products/free-wili-2',
+          label: 'Buy',
+          position: 'right',
+          className: 'navbar-cta',
+        },
+      ],
     },
-    // copyright omitted (not set to ''): Docusaurus 3.10.x validates
-    // footer.copyright with Joi.string(), which rejects an empty string but
-    // allows the key to be absent. Task 2 adds real copyright text.
-    footer: { style: 'dark', links: [] },
+    footer: {
+      style: 'dark',
+      links: [
+        {
+          title: 'Product',
+          items: [
+            { label: 'freewili.com', href: 'https://www.freewili.com' },
+            { label: 'Shop', href: 'https://shop.freewili.com/products/free-wili-2' },
+            { label: 'Orca Modules', href: 'https://www.freewili.com/explore-orcas.html' },
+          ],
+        },
+        {
+          title: 'Developers',
+          items: [
+            { label: 'OneWili API', href: 'https://freewili.com/onewili/' },
+            { label: 'Python Library', href: 'https://freewili.github.io/freewili-python/index.html' },
+            { label: 'GitHub', href: 'https://github.com/freewili' },
+          ],
+        },
+        {
+          title: 'Community',
+          items: [
+            { label: 'Discord', href: 'https://discord.com/invite/XJRBUCX62z' },
+            { label: 'YouTube', href: 'https://www.youtube.com/@FREE-WiLi' },
+          ],
+        },
+      ],
+      copyright: '© 2026 FREE-WILi LLC · Open hardware',
+    },
   },
 };
 
