@@ -9,18 +9,27 @@ sidebar_position: 2
 
 Plug the device into USB and it powers on — a USB connection powers FREE-WILi
 2 regardless of any button state.
+
+Holding **red** while the device is already running puts it to sleep — the
+closest thing to powering off, and the everyday way to power it down. That's
+a different action from holding red *at* power-up, which instead forces the
+main processor into its recovery bootloader rather than affecting power
+state at all — see [Recovery mode](../help/recovery-mode.md) if that's what
+you're after. Gray, yellow, and blue have their own separate long-press
+shortcuts too (audio mode, setup, and the display bootloader), gated to the
+main screen — see [Screen and buttons](screen-and-buttons.md#button-map) and
+[Connectors](../hardware/connectors.md#sleep-and-mode-buttons) for what
+those do.
 <!-- VERIFY: whether there is also a dedicated power-on button (and if so
      which physical button it is) is unconfirmed. FreeWili 1's docs describe
      a gray-button-on / hold-red-5-seconds-off scheme, but FreeWili 2 has a
      different power architecture (a dedicated PIC sequencer managing 17
      power zones), and no power-on button has been identified in the
-     FREE-WILi 2 firmware source. What IS confirmed from firmware
-     (rmpLib/rpPanelManager.cpp): from the main screen, long-pressing red
-     triggers deep sleep — the closest thing to powering off — while gray,
-     yellow, and blue are long-press shortcuts for other modes, not power
-     control. See [Screen and buttons](screen-and-buttons.md#button-map) and
-     [Connectors](../hardware/connectors.md#sleep-and-mode-buttons) for what
-     those four buttons do. -->
+     FREE-WILi 2 firmware source. What IS confirmed: red's held-while-running
+     sleep action is driven by the PIC's own button poll
+     (fw2_pic16/full-firmware.X/main.c:163-170), independent of the GUI;
+     whether that "deep sleep" is a full power-off or something lighter is
+     not confirmed. -->
 
 ## The main menu
 

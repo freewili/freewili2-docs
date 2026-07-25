@@ -65,6 +65,11 @@ afterward:
 - If the display processor doesn't come back after an update, see
   [Recovery mode](recovery-mode.md) for how to force it back into its own
   bootloader.
+- If the main processor doesn't come back either — the automatic fallback
+  above didn't kick in, or the unit won't start at all — hold the **red**
+  button at power-up. That forces the main processor into its recovery
+  bootloader regardless of what firmware state it's in; see
+  [Recovery mode](recovery-mode.md#last-resort-hold-red-at-power-up).
 
 ## GPIO not responding
 

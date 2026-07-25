@@ -99,24 +99,30 @@ GPIO header's former SWD pins (see [Pinout](pinout.md)) for CAN FD instead.
 
 ## Sleep and mode buttons
 
-Long-pressing **red** puts the device into deep sleep — the closest thing to
-powering off — and this works from anywhere, not just the main screen.
-Long-pressing **gray** (from the main screen) switches to an audio-only
-mode, and long-pressing **yellow** (also from the main screen) enters a
-setup mode; both are confirmed from the firmware's button-handling code but
-not otherwise documented here. Long-pressing **blue** from the main screen
-has its own separate function — see
-[Recovery mode](../help/recovery-mode.md) for that one.
-<!-- VERIFY: which action actually powers the device ON, and whether "deep
-     sleep" via long-pressing red is equivalent to a full power-off or
-     something lighter, is unconfirmed — see the same open question on the
-     Quick start page in Start Here. Confirmed from
-     rmpLib/rpPanelManager.cpp's long-press button switch: gray, yellow, and
-     blue's long-press actions (audio mode, setup mode, and display
-     bootloader entry respectively) are only handled while
-     m_iCurrentViewType == mainscreen; red's long-press (deep sleep) has no
-     such guard and fires from any screen. The power-on action and the
-     practical meaning of "deep sleep" are not confirmed. See
-     [Recovery mode](../help/recovery-mode.md) for the separate
-     bootloader-entry button combination (blue, long-press, while USB
-     charging). -->
+Three of the five context buttons have a long-press shortcut in the GUI, and
+all three only fire from the main screen: long-pressing **gray** switches to
+an audio-only mode, long-pressing **yellow** enters a setup mode, and
+long-pressing **blue** enters the display processor's own bootloader (see
+[Recovery mode](../help/recovery-mode.md)) — that last one also needs USB
+connected with the charger actively charging or finished charging. All three
+are confirmed from the firmware's button-handling code, gated on
+`m_iCurrentViewType == mainscreen`, but audio mode and setup mode aren't
+otherwise documented here beyond their names.
+
+**Red** doesn't have a GUI long-press action. It does two other things,
+depending on when you hold it, and they're easy to conflate:
+
+- **Held while the device is already running**, red puts the device to
+  sleep — this is the PIC's own button poll acting independently of the GUI
+  or display processor, and it's how you actually power the device down day
+  to day.
+- **Held at power-up**, red instead forces the main processor into its
+  recovery bootloader — a hardware path, unrelated to sleep. See
+  [Recovery mode](../help/recovery-mode.md#last-resort-hold-red-at-power-up).
+<!-- VERIFY: gray and yellow's long-press actions (audio mode, setup mode)
+     are confirmed only by name from rmpLib/rpPanelManager.cpp's long-press
+     switch — what each mode actually looks or behaves like on screen isn't
+     confirmed here. Red's held-while-running sleep timing (~556 poll
+     ticks) is confirmed from fw2_pic16/full-firmware.X/main.c:163-170; the
+     real-world duration that maps to, and whether this "deep sleep" is a
+     full power-off or something lighter, are not independently confirmed. -->

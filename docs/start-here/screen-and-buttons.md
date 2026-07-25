@@ -65,6 +65,15 @@ labels rather than assuming Ok always does it (see the button map below).
      AI-agent button instead of a page button. Whichever it is, its
      specific function on-device is unconfirmed here. -->
 
+Beyond these short-press, per-app meanings, three of the five context
+buttons also have a long-press shortcut in the GUI that's the same
+everywhere rather than app-specific — see
+[Connectors](../hardware/connectors.md#sleep-and-mode-buttons) for what
+gray, yellow, and blue's long-presses do. Red doesn't have a GUI long-press;
+instead it does two different things depending on *when* you hold it — see
+[Recovery mode](../help/recovery-mode.md) for holding it at power-up versus
+while the device is already running.
+
 ## Built-in help
 
 The device has its own on-screen help viewer.

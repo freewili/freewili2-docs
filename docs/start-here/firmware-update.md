@@ -19,3 +19,7 @@ You can check which firmware version is currently running from the
 Beyond the updater tool, current stable, beta, and archived UF2 builds are
 published from the [firmware repository](https://github.com/freewili/freewili-firmware)
 if you need a specific version.
+
+If an update doesn't take, or the device won't start normally afterward, see
+[Recovery mode](../help/recovery-mode.md) — including the hardware fallback
+that works even if the main processor's firmware is completely broken.
