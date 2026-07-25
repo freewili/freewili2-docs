@@ -16,6 +16,36 @@ const sidebars = {
         'start-here/firmware-update',
       ],
     },
+    {
+      type: 'category',
+      label: 'Files & Apps',
+      items: [
+        'files-and-apps/index',
+        'files-and-apps/transferring-files',
+        'files-and-apps/running-apps',
+        'files-and-apps/app-marketplace',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Hardware',
+      items: [
+        'hardware/index',
+        'hardware/pinout',
+        'hardware/connectors',
+        'hardware/orca-modules',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Help',
+      items: [
+        'help/index',
+        'help/troubleshooting',
+        'help/recovery-mode',
+        'help/faq',
+      ],
+    },
   ],
 };
 
