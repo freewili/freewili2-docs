@@ -31,7 +31,7 @@ Four: rTHON (a Python-like on-device language), WASM (sandboxed guest
 programs via the on-device WiliWasm engine), ZoomIO (nanosecond-precision
 RISC-V bit-banging on the main processor's second core), and WiliBLOCKS
 (point-and-click block automation). See
-[Running apps](../files-and-apps/running-apps.md).
+[Running apps](../files-and-apps/running-apps.md#scripts-a-different-mechanism-again).
 
 **Is FreeWili 1 software/firmware compatible with FREE-WILi 2?**
 Not directly — FREE-WILi 2 moves from a single RP2040 to two RP2350

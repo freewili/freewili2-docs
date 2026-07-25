@@ -20,11 +20,11 @@ the other.
      doesn't touch that card at all, so its physical slot, removability, and
      exact contents aren't confirmed here. -->
 
-## The on-device Files app
+## The on-device Files panel
 
 **System > Files** is the on-device file browser — see
-[Running apps](running-apps.md#the-top-level-items-in-plain-terms) for what
-it does and how finished it is.
+[Screen and buttons](../start-here/screen-and-buttons.md#the-top-level-panels)
+for what it does and how finished it is.
 
 ## Getting files on and off
 
@@ -44,10 +44,10 @@ it and read back its capacity — but as of this writing that plumbing doesn't
 yet reach an on-device file browser, so there isn't currently a way to copy
 files to or from a thumb drive through the device's own screen. The **IO**
 folder's **USB Sim** entry looks like it's meant to be the front end for this
-eventually, but it's currently an empty menu item with no app wired up behind
-it.
+eventually, but it's currently an empty menu item with no panel wired up
+behind it.
 <!-- VERIFY: whether thumb-drive file browsing has since been wired up to
-     an on-device app — confirmed at the time this page was written that
+     an on-device panel — confirmed at the time this page was written that
      USB-host mass-storage device detection exists
      (usb-host/fwUSBHostMSC.cpp) but isn't connected to a file system mount
      or a UI, and that the on-screen "USB Sim" item (fwPanelLibDisplay.h /
@@ -56,9 +56,11 @@ it.
 
 **Drop a UF2 straight on the card to boot it.** The device's SD-card UF2
 bootloader can load and run a UF2 file placed on the card directly — no
-cables needed. See [Firmware update](../start-here/firmware-update.md) for
-using this to flash new firmware, and
-[Recovery mode](../help/recovery-mode.md) if a firmware update goes wrong.
+cables needed. This is also how a real app launches, not only a firmware
+update — see [Running apps](running-apps.md) for the app case, and
+[Firmware update](../start-here/firmware-update.md) plus
+[Recovery mode](../help/recovery-mode.md) for flashing the device's own
+firmware and what to do if that goes wrong.
 
 ## FREE-WILi GUI, from the card
 

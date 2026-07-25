@@ -28,8 +28,8 @@ power when something actually needs it.
 The front of the device is dominated by a 3.5" capacitive touchscreen at
 480×320. Around it: a 5-way D-pad, four backlit A/B/X/Y buttons labeled
 **home**, **ok**, **cancel**, and a fourth button, and five backlit context
-keys under the screen whose function changes with whatever app is on
-screen. There's also a two-press-per-letter keyboard for text entry.
+keys under the screen whose function changes with whatever's on screen.
+There's also a two-press-per-letter keyboard for text entry.
 <!-- VERIFY: the fourth A/B/X/Y button's label — the site's spec copy calls it "page," while the firmware's button-event table (fwGUIEvents.h) defines an AI-agent button instead of a page button in that same slot (and a separate "page" control event is wired to the same AI handler in rpControl.cpp). These likely name the same button mid-rename for the new AI-agent feature, but the current on-device label/behavior is unconfirmed. -->
 
 Full-color LEDs are visible from multiple sides for status, and some buttons

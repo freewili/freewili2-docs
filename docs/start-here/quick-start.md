@@ -33,19 +33,21 @@ those do.
 
 ## The main menu
 
-Once it's up, you land on the main menu: a scrolling list of on-device apps,
-some grouped into folders (IO, Wireless, GUI, System, and others — see
-[Screen and buttons](screen-and-buttons.md) for the full layout). Use **up**
-and **down** on the D-pad to move through the list, and **center** (or
-**ok**) to open whatever's highlighted — including opening a folder to reveal
-the apps inside it. **Cancel** backs out one level.
+Once it's up, you land on the main menu: a scrolling list of **panels** —
+the screens the firmware itself draws and hands the buttons and touchscreen
+to (see [Screen and buttons](screen-and-buttons.md) for the full layout and
+how this differs from a real, SD-card-launched app). Some panels are grouped
+into folders (IO, Wireless, GUI, System, and others). Use **up** and
+**down** on the D-pad to move through the list, and **center** (or **ok**)
+to open whatever's highlighted — including opening a folder to reveal the
+panels inside it. **Cancel** backs out one level.
 
 ## Something to try right now
 
 No wiring, no setup: open the **GUI** folder and select **Sensors**. It
 reads the onboard IMU, magnetometer, ambient light, and temperature/humidity
 sensors directly — nothing to connect, nothing to configure.
-<!-- VERIFY: the Sensors app's on-screen layout and interaction (whether readings appear immediately on open, or need a button press to start) has not been confirmed from source; only the underlying sensor hardware (BMI323, BMM350, OPT4001, SHT40) and the app's presence in the GUI folder are confirmed -->
+<!-- VERIFY: the Sensors panel's on-screen layout and interaction (whether readings appear immediately on open, or need a button press to start) has not been confirmed from source; only the underlying sensor hardware (BMI323, BMM350, OPT4001, SHT40) and the panel's presence in the GUI folder are confirmed -->
 
 From there, [Screen and buttons](screen-and-buttons.md) covers the rest of
 the navigation model, and [Connecting](connecting.md) covers the other two

@@ -5,7 +5,7 @@ sidebar_position: 4
 
 # App marketplace
 
-FREE-WILi 2 is built to run more than the apps it ships with. Because the
+FREE-WILi 2 is built to run more than the firmware it ships with. Because the
 device's UF2 bootloader will load any RP2350 binary dropped onto its SD
 card — no special tooling required — third-party and community apps can be
 distributed as a UF2 file and run the same way the built-in firmware does.
