@@ -34,9 +34,12 @@ FREE-WILi 2 has multiple USB roles in play at once:
 Two microSD cards: one for the device's own file system, one dedicated to
 the Raspberry Pi CM0's Linux install. The device-side card sits behind an
 I/O-expander mux that toggles it between the main processor and an
-integrated high-speed USB card reader — the **gray** button drives that mux.
-Handed to the reader, the card presents to a connected computer as an
-ordinary USB mass-storage drive, and the reader is Raspberry Pi
+integrated high-speed USB card reader — pressing **gray** drives that mux.
+This is a distinct action from **long-pressing gray**, which instead enters
+audio-only mode (see [Sleep and mode buttons](#sleep-and-mode-buttons)
+below) — the two are gated on different press lengths, not the same
+gesture. Handed to the reader, the card presents to a connected computer as
+an ordinary USB mass-storage drive, and the reader is Raspberry Pi
 Imager-compatible for flashing a fresh image straight onto the card. See
 [Transferring files](../files-and-apps/transferring-files.md) for how this
 is actually used.
@@ -44,9 +47,11 @@ is actually used.
      case (e.g. whether either requires opening the case). Also: the
      gray-button/mux mechanism is confirmed from
      targets/fw2mainsbl/stage3.cpp in the firmware source, but that's
-     bootloader-stage code — whether the same gray-button behavior applies
-     during normal runtime, and whether it's a short press or a hold, is not
-     confirmed. -->
+     bootloader-stage code — whether the mux toggle is a short tap or has
+     its own hold requirement during normal runtime is not confirmed; what
+     is confirmed (from rmpLib/rpPanelManager.cpp) is that gray's
+     long-press action is the separate audio-mode switch described below,
+     so the two are not triggered by the same press length. -->
 
 ## Audio
 
@@ -92,19 +97,26 @@ GPIO header's former SWD pins (see [Pinout](pinout.md)) for CAN FD instead.
      connector (for probing other boards) or is purely internal/self-only —
      not confirmed from source material available here. -->
 
-## Power button
+## Sleep and mode buttons
 
 Long-pressing **red** puts the device into deep sleep — the closest thing to
-powering off. Long-pressing **gray** switches to an audio-only mode, and
-long-pressing **yellow** enters a setup mode; both are confirmed from the
-firmware's button-handling code but not otherwise documented here.
-<!-- VERIFY: this repeats the same open question noted on the Quick start
-     page in Start Here — which action actually powers the device ON, and
-     whether "deep sleep" via long-pressing red is equivalent to a full
-     power-off or something lighter. Confirmed from rmpLib/rpPanelManager.cpp's
-     long-press button switch (gray→audio mode, yellow→setup mode,
-     blue→display bootloader, red→deep sleep) but the power-on action and
-     the practical meaning of "deep sleep" are not confirmed. See
+powering off — and this works from anywhere, not just the main screen.
+Long-pressing **gray** (from the main screen) switches to an audio-only
+mode, and long-pressing **yellow** (also from the main screen) enters a
+setup mode; both are confirmed from the firmware's button-handling code but
+not otherwise documented here. Long-pressing **blue** from the main screen
+has its own separate function — see
+[Recovery mode](../help/recovery-mode.md) for that one.
+<!-- VERIFY: which action actually powers the device ON, and whether "deep
+     sleep" via long-pressing red is equivalent to a full power-off or
+     something lighter, is unconfirmed — see the same open question on the
+     Quick start page in Start Here. Confirmed from
+     rmpLib/rpPanelManager.cpp's long-press button switch: gray, yellow, and
+     blue's long-press actions (audio mode, setup mode, and display
+     bootloader entry respectively) are only handled while
+     m_iCurrentViewType == mainscreen; red's long-press (deep sleep) has no
+     such guard and fires from any screen. The power-on action and the
+     practical meaning of "deep sleep" are not confirmed. See
      [Recovery mode](../help/recovery-mode.md) for the separate
      bootloader-entry button combination (blue, long-press, while USB
      charging). -->

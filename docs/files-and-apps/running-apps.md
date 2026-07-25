@@ -10,9 +10,12 @@ sidebar_position: 3
 Everything in the on-device menu — from **GPIO** to **Doom** to **Sound
 Board** — is an "app" in the same sense: a screen (or a few connected
 screens) that the display processor loads and hands the buttons, touchscreen,
-and D-pad to until you back out or press **Home**. See
+and D-pad to until you back out or press **Home**. Four menu entries — GPS,
+USB Sim, RFID, and LORA — are the exception: they show up in the menu but
+have no app behind them yet, so selecting one does nothing. See
 [Screen and buttons](../start-here/screen-and-buttons.md) for the full
-current list and how the folders and sub-panels work.
+current list, which entries those are, and how the folders and sub-panels
+work.
 
 ## Launching an app
 

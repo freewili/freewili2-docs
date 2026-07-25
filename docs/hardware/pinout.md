@@ -36,20 +36,24 @@ Two pins changed function, called out below.
 | 14 | GPIO26 | GPIO26 | Input | General purpose |
 | 15 | SPI1 SCLK | GPIO14 | Output | |
 | 16 | CAN FD (was SWD clock on FreeWili 1) | — | — | See note below |
-| 17 | GPIO25 | GPIO25 | Output | Also the board status LED on FreeWili 1; unconfirmed for FREE-WILi 2 |
+| 17 | GPIO25 | GPIO25 | Output | Also the board status LED |
 | 18 | CAN FD (was SWD data on FreeWili 1) | — | — | See note below |
 | 19 | GND | — | — | |
 | 20 | GND | — | — | |
 
-<!-- VERIFY: pins 1, 3, 5, 7-15, 26 GPIO numbers are confirmed by comparing
+<!-- VERIFY: header pins 1, 3, 5, 7-15 GPIO numbers are confirmed by comparing
      FW2Main_pin_definitions.h's IO_UART1_*, IO_SPI1_*, IO_I2C0_*, and
      IO_GPIO26/27 defines against FreeWili 1's published pinout — every
      signal name maps to the identical RP2350 GPIO number FreeWili 1 used on
-     its RP2040, which is why this table treats them as solid. What is NOT
-     independently confirmed from a schematic: the physical pin-1 orientation
-     / keying of the connector, and pin 17's claim as the status LED
-     (carried over from the FreeWili 1 doc, not re-verified against FREE-WILi
-     2 firmware). -->
+     its RP2040, which is why this table treats them as solid. Pin 17's
+     status-LED claim is independently confirmed from
+     FW2Main_pin_definitions.h itself, which defines GPIO25 as `LED_PIN` —
+     that's the one row in this table not backed by an IO_* header define
+     (contrast IO_GPIO26_DEFIN and IO_OUT_GPIO27_DEFOUT for the neighboring
+     rows), so what's genuinely unconfirmed is whether GPIO25 actually
+     reaches header pin 17 at all, rather than being routed only to the
+     onboard LED. What is NOT independently confirmed from a schematic: the
+     physical pin-1 orientation / keying of the connector. -->
 
 **Pins 16 and 18 changed function.** FreeWili 1 used these as the SWD debug
 clock and data lines for an external debug probe. FREE-WILi 2 has its own

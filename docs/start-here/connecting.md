@@ -28,9 +28,12 @@ Windows, `/dev/tty*` on Linux/macOS). Open it in any serial terminal.
 
 The console presents a menu of single letters, each opening a sub-menu of
 more single letters — `i` for IO, `w` for wireless, `l` for Linux, `a` for
-apps, `g` for GUI, `s` for scripting, `h` for hardware — mirroring the same
-grouping you see in the on-device app list. You don't type commands and
-press enter for navigation; each keypress acts immediately.
+apps, `g` for GUI, `s` for scripting, `h` for hardware — broadly mirroring
+the grouping you see in the on-device app list, though the two aren't a
+perfect one-to-one match: console `s` (scripting) and `h` (hardware) have
+no folder counterpart in the app list, and the app list's System folder has
+no matching top-level console letter. You don't type commands and press
+enter for navigation; each keypress acts immediately.
 <!-- VERIFY: whether every one of these top-level menu keys is present/enabled on a retail unit, and what a fresh boot's console banner/prompt looks like — confirmed from firmware source (fwMenuMain.cpp's stMenus table) but not from a live device session -->
 
 ## 3. On the device itself

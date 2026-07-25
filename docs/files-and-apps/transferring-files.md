@@ -22,25 +22,20 @@ the other.
 
 ## The on-device Files app
 
-**System > Files** is a working two-pane file browser on the device's own
-screen: browse both panes, rename, remove, copy, and paste. It also
-recognizes an ESP32 flashing job — if it finds a `flasher_args.json` file
-next to a binary, it offers to run the flash directly from the browser.
+**System > Files** is the on-device file browser — see
+[Running apps](running-apps.md#the-top-level-items-in-plain-terms) for what
+it does and how finished it is.
 
 ## Getting files on and off
 
-**Swap the device's card to the built-in USB reader.** The device-side
-microSD card sits behind a mux that toggles it between the main processor
-and an integrated high-speed USB card reader, driven by the **gray** button.
-Handed to the reader, the card shows up on a connected host computer as an
-ordinary USB mass-storage drive — drag files back and forth like any USB
-drive, no special software required. The same reader is Raspberry Pi
-Imager-compatible, so re-flashing the card with a fresh image doesn't need a
-separate card reader either.
-<!-- VERIFY: the gray-button/mux mechanism is confirmed from firmware
-     source (targets/fw2mainsbl/stage3.cpp), but that's bootloader-stage
-     code — whether the same button action swaps the card during normal
-     runtime, and whether it needs a hold versus a tap, is not confirmed. -->
+**Swap the device's card to the built-in USB reader.** Pressing **gray**
+swaps the device-side microSD card onto the built-in high-speed USB reader,
+where it shows up on a connected host computer as an ordinary USB
+mass-storage drive — drag files back and forth like any USB drive, no
+special software required, and the reader is Raspberry Pi Imager-compatible
+too. See [Connectors](../hardware/connectors.md#storage) for the mux
+mechanism this relies on and how this differs from gray's separate
+long-press action.
 
 **A USB thumb drive, the other direction — with a caveat.** FREE-WILi 2's USB
 host ports (see [Connectors](../hardware/connectors.md)) can recognize a

@@ -5,15 +5,30 @@ sidebar_position: 4
 
 # Orca modules
 
-**Orca** is FREE-WILi's name for its expansion boards. They plug into the
-20-pin GPIO connector — the same connector layout FreeWili 1 used, kept on
-FREE-WILi 2 specifically so the existing library of Orcas keeps working — and
-a rigid mounting system with off-the-shelf case options holds them in place
-without flex or intermittent connections.
+**Orca** is FREE-WILi's name for its expansion boards — see
+[What FREE-WILi 2 is](../start-here/what-is-freewili2.md#ports-and-expansion)
+for the short version. This page goes deeper, into the connector, mounting,
+and auto-detect mechanics.
+
+Orcas plug into the 20-pin GPIO connector — the same pin layout FreeWili 1
+used, kept on FREE-WILi 2 specifically so the existing library of Orcas
+keeps working, and covered pin by pin on [Pinout](pinout.md). A rigid
+mounting system with off-the-shelf case options holds an Orca in place
+without flex or intermittent connections, unlike a header connection resting
+on friction alone.
 
 An EEPROM on each Orca lets FREE-WILi 2 auto-detect what's plugged in and
 configure itself accordingly, rather than requiring manual setup every time
-you swap modules.
+you swap modules. Practically, this is also why Orcas built for FreeWili 1
+generally keep working here unmodified: the connector kept its pin mapping,
+and the auto-detect step accounts for the rest.
+<!-- VERIFY: the EEPROM auto-detect mechanism is freewili.com's own
+     description of how Orca identification works; the specific protocol
+     (which bus it uses, when the read happens, and exactly what
+     "configure itself accordingly" changes in firmware) is not confirmed
+     against firmware source for this page — no EEPROM-reading /
+     Orca-identification code was found in the fwOrcaSetup* sources
+     examined. -->
 
 ## Available Orcas
 

@@ -81,7 +81,10 @@ for FREE-WILi 2's software-selected IO voltage (see
 3. **Isolate the protocol.** Test one protocol (SPI, I2C, UART) or one pin at
    a time rather than a full setup.
 4. **Use the Logic Analyzer** to look at the actual signal if a protocol
-   still won't come up — it's built in and can trigger on any GPIO.
+   still won't come up — it's built in and can trigger on any GPIO. It's a
+   serial-console feature rather than an on-device app: reach it from the
+   IO menu over a serial terminal — see [Connecting](../start-here/connecting.md)
+   for how to open the console.
 5. **Check grounds.** A shared, short ground connection between FREE-WILi 2
    and whatever it's talking to fixes a surprising number of "random"
    protocol failures.

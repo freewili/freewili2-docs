@@ -7,9 +7,20 @@ sidebar_position: 2
 
 ## Power on
 
-Press the power button to turn the device on, or just plug it into USB — a
-USB connection powers the device regardless of the button state.
-<!-- VERIFY: which physical button (color/position) is the power button on FREE-WILi 2, and the press-and-hold duration to power off. FreeWili 1's docs describe a gray-button-on / hold-red-5-seconds-off scheme, but FreeWili 2 has a different power architecture (a dedicated PIC sequencer managing 17 power zones) and this has not been confirmed against FreeWili 2 specifically. -->
+Plug the device into USB and it powers on — a USB connection powers FREE-WILi
+2 regardless of any button state.
+<!-- VERIFY: whether there is also a dedicated power-on button (and if so
+     which physical button it is) is unconfirmed. FreeWili 1's docs describe
+     a gray-button-on / hold-red-5-seconds-off scheme, but FreeWili 2 has a
+     different power architecture (a dedicated PIC sequencer managing 17
+     power zones), and no power-on button has been identified in the
+     FREE-WILi 2 firmware source. What IS confirmed from firmware
+     (rmpLib/rpPanelManager.cpp): from the main screen, long-pressing red
+     triggers deep sleep — the closest thing to powering off — while gray,
+     yellow, and blue are long-press shortcuts for other modes, not power
+     control. See [Screen and buttons](screen-and-buttons.md#button-map) and
+     [Connectors](../hardware/connectors.md#sleep-and-mode-buttons) for what
+     those four buttons do. -->
 
 ## The main menu
 
