@@ -1,4 +1,6 @@
-@import './fonts.css';
+/* Fonts (Chakra Petch / IBM Plex Sans / JetBrains Mono) load via non-blocking
+   <link> tags emitted from docusaurus.config.js's headTags, matching the
+   main site's loading strategy — not via @import here. */
 
 /* ---------- brand tokens, verbatim from freewili.com/style.css ---------- */
 :root {

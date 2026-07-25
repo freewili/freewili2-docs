@@ -21,6 +21,34 @@ const config = {
 
   i18n: { defaultLocale: 'en', locales: ['en'] },
 
+  // Non-blocking Google Fonts load, matching freewili.com's own <head>:
+  // preconnect early, then load the stylesheet with the
+  // media="print" / onload="this.media='all'" trick so the CSSOM doesn't
+  // block on Google's CSS + woff2 round trip.
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        media: 'print',
+        onload: "this.media='all'",
+        href: 'https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap',
+      },
+    },
+  ],
+
   presets: [
     [
       'classic',
