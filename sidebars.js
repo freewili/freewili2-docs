@@ -4,6 +4,18 @@
 const sidebars = {
   docs: [
     'index',
+    {
+      type: 'category',
+      label: 'Start Here',
+      collapsed: false,
+      items: [
+        'start-here/what-is-freewili2',
+        'start-here/quick-start',
+        'start-here/screen-and-buttons',
+        'start-here/connecting',
+        'start-here/firmware-update',
+      ],
+    },
   ],
 };
 
