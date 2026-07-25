@@ -49,7 +49,7 @@ by selecting something on it.
 | Left / Right | Change the selected value (in a control that has one) |
 | Center | Open / activate whatever's selected |
 | Ok | Confirm, or leave a sub-panel |
-| Cancel | Back out one level |
+| Cancel | Back out one level — opens that screen's help instead, on the few screens that have one (see below) |
 | Home | Return to the main menu |
 | Fourth A/B/X/Y button | Unconfirmed — see note below |
 | Gray / Yellow / Green / Blue / Red | Five context buttons under the screen; each app assigns its own meaning to them (for example, on the Analog IO waveform screen, Green starts the waveform and Red stops it) |
@@ -62,11 +62,12 @@ by selecting something on it.
 ## Built-in help
 
 The device has its own on-screen help viewer, built from the same Markdown
-files this site's help section is generated from — press **Green** on the
-main menu to open it. The firmware also has a wire command that can point
-the viewer at a specific topic (for example, the Analog IO waveform screen
-has a dedicated help page compiled in), so a future firmware update can wire
-individual screens' **Cancel** button straight to their own topic instead of
-just backing out.
-<!-- VERIFY: as read from the current firmware source, only the main-menu Green button is confirmed to open the help viewer (loading "main.md"); no individual app's Cancel handler was found calling showHelp() with a per-screen topic yet, even though the per-screen topic (e.g. "analog-waveform.md") is already compiled into the help-topic table. Confirm current vs. planned behavior with the firmware team before publishing this as present-tense. -->
+files this site's help section is generated from — so the device's help and
+this website never disagree; they're the same source.
 
+Pressing **Green** on the main menu opens the general help topic. On a
+panel that declares its own help topic, **Cancel** opens that topic instead
+of backing out. Today, the Analog IO waveform screen is the one screen that
+does this — pressing Cancel there opens its dedicated help page directly on
+the device. More screens will pick up their own topic as help pages get
+written for them — the mechanism is generic, only one screen uses it today.
