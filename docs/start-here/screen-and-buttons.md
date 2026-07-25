@@ -84,3 +84,15 @@ of backing out. Today, the Analog IO waveform screen is the one screen that
 does this — pressing Cancel there opens its dedicated help page directly on
 the device. More screens will pick up their own topic as help pages get
 written for them — the mechanism is generic, only one screen uses it today.
+
+<!-- VERIFY: the on-screen help viewer is implemented and traced in source
+     (fwPanelAppPanel.cpp's base Cancel handler + fwAnalogPanelWave.cpp's
+     m_szHelpTopic), but has NOT been confirmed on real hardware. It already
+     shipped non-functional once, when the linker garbage-collected the
+     viewer because nothing called it - so source-tracing alone is not
+     sufficient evidence for this claim. Drop this marker once a hardware
+     pass confirms Cancel actually opens help on the waveform screen. -->
+<!-- VERIFY: this describes the launch firmware (branch `plotex`), not what
+     is on `main` today - the waveform screen and this help wiring are both
+     plotex-only. Confirm both are present in whatever firmware ships. -->
+
