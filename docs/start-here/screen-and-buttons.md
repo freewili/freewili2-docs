@@ -104,7 +104,7 @@ below).
 | Left / Right | Change the selected value (in a control that has one) |
 | Center | Open / activate whatever's selected. On the main menu, this is the same action as Ok. |
 | Ok | On the main menu, the same as Center — opens whatever's highlighted. Inside a panel, what Ok does is up to that screen: some use it to confirm an edit or leave a sub-panel (the Analog IO waveform screen leaves that way), others don't use it at all. Check the screen's own button labels if you're not sure. |
-| Cancel | Back out one level — opens that screen's help instead, on the one screen that has one today (see below) |
+| Cancel | Back out one level — or, on a screen that has a help page, opens that help instead (see below) |
 | Home | Return to the main menu |
 | Fourth A/B/X/Y button | Unconfirmed — see note below |
 | Gray / Yellow / Green / Blue / Red | Five context buttons under the screen; each panel assigns its own meaning to them (for example, on the Analog IO waveform screen, Green starts the waveform and Red stops it) |
@@ -129,10 +129,14 @@ The device has its own on-screen help viewer.
 
 Pressing **Green** on the main menu opens the general help topic. On a
 panel that declares its own help topic, **Cancel** opens that topic instead
-of backing out. Today, the Analog IO waveform screen is the one screen that
-does this — pressing Cancel there opens its dedicated help page directly on
-the device. More screens will pick up their own topic as help pages get
-written for them — the mechanism is generic, only one screen uses it today.
+of backing out — pressing Cancel there brings up that screen's help page
+directly on the device.
+
+Not every panel has one yet. The mechanism is generic and panels opt in one
+at a time as their help pages get written, so the set grows between firmware
+releases; **Analog IO** and its waveform sub-panel are among the screens
+that have one. If Cancel backs you out instead of opening help, that screen
+simply doesn't have a page written for it yet.
 
 <!-- VERIFY: the on-screen help viewer is implemented and traced in source
      (fwPanelAppPanel.cpp's base Cancel handler + fwAnalogPanelWave.cpp's
