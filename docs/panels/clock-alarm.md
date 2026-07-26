@@ -6,4 +6,70 @@ sidebar_position: 20
 
 Found under **GUI** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Clock & Alarm
+
+Shows and sets the device's clock, and lets you arm a wakeup alarm.
+This is a different screen from the RTC page inside About, which only
+shows and sets the clock and has no alarm.
+
+### The screen
+
+Two pages, switched with Blue: Clock and Alarm.
+
+On the Clock page: the current time as hh:mm:ss, the date as
+dd/mm/yyyy, and the day of the week, each refreshed from the clock
+about once a second.
+
+On the Alarm page: the alarm time, its repeat interval written out
+(Once, Every hour, Every day, Every week, Every month, Every year -
+with the weekday, day, or day and month shown alongside when the
+interval needs one), and whether the alarm is Armed or Disarmed.
+
+A status line below reports the result of the last action, such as
+"Time set: 08:30:00" or "Alarm set".
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Yellow | On the Clock page, set the time. On the Alarm page, set the alarm |
+| Green | On the Clock page, zero the seconds. On the Alarm page, arm or disarm the alarm |
+| Blue | Switch between the Clock and Alarm pages |
+| Red | Cancel the entry in progress, or return to the main menu |
+| Cancel | This help page |
+
+### Setting the clock
+
+Yellow walks through six entries in order: weekday (0=Sunday to
+6=Saturday), day (1-31), month (1-12), year (last two digits, 0-99),
+hour (0-23), then minute (0-59). Seconds are always set to zero. The
+new time is sent to the clock only after the minute entry, so leaving
+the sequence partway through with Red leaves the clock unchanged.
+
+Green, on the Clock page, sets the seconds to zero and sends the
+current time again right away - a quick way to align the clock to the
+top of a minute without going through the full set sequence.
+
+### Setting the alarm
+
+Yellow first shows a pick list of six repeat choices: Once, Every hour,
+Every day, Every week, Every month, Every year. What it asks next
+depends on that choice - every choice asks for a time, "Every week"
+also asks for a weekday, "Every month" also asks for a day of the
+month, and "Every year" asks for both a day and a month. "Every hour"
+only asks for a minute, since the hour does not apply. The alarm is
+sent to the clock as soon as the last entry in the sequence is
+answered.
+
+Green arms or disarms the alarm using whatever it is currently set to;
+it does not open the set sequence. Disarming does not clear the
+alarm's time or repeat choice - arming again later reuses them.
+
+### What persists and how it refreshes
+
+The clock and alarm both live on the keyboard controller, not the
+display; this screen mirrors them and refreshes about once a second
+while it is open. Alarm-armed state is re-read whenever it changes, so
+it stays in sync even with changes made outside this screen. If a
+set-time or set-alarm entry is in progress, that page stops refreshing
+so your typing is not overwritten mid-edit.

@@ -6,4 +6,78 @@ sidebar_position: 20
 
 > **Note:** This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. It's a guided setup wizard for pairing with an Orca accessory over UART. It configures the same underlying setting as **Orca Settings** in the console Settings menu, with presets for known Orca variants (including flashing companion firmware for the Bottlenose variant).
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Choose your ORCA!
+
+Chooses which device is connected to the wireless co-processor's UART port,
+including the Bottlenose wireless module.
+
+### The screen
+
+A pick list of the available UART devices. The currently chosen one is
+marked and shown in yellow; the rest are white.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Blue | Save your selection |
+| Red | Return to main menu (asks to save first if you have unsaved changes) |
+| Cancel | This help page |
+
+Gray, Yellow and Green carry no label here and do nothing.
+
+### Choosing a device
+
+Selecting an entry applies it right away and marks it as unsaved until you
+press Blue. Choosing Bottlenose specifically also asks whether to flash it;
+answering yes opens the Bottlenose flasher screen (see its own help page).
+
+### Not reachable from the device's own menus
+
+This screen's own menu entry has been removed in favor of "Setup & Actions"
+(Menu Xplorer), which exposes the same UART device choice alongside every
+other setting. This screen's code still exists and still works, but nothing
+in the current menus opens it - it can only be reached by a script or
+console command that launches it directly. Other help pages that mention
+"Settings -> Orca Setup" for choosing Bottlenose are describing the setting
+itself, which "Setup & Actions" now provides in place of this screen.
+
+## Bottlenose Default App Flasher
+
+Flashes the Bottlenose wireless module's default application.
+
+### The screen
+
+Opens on a setup guide, in red text, explaining how to put Bottlenose into
+flash mode: hold its BOOT button, press and release its RESET button, then
+release BOOT. Pressing Green starts the flash and switches the screen to a
+progress view: a running-state label, a bar showing which partition is
+currently being written, a separate percentage complete, and status text
+lines.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Green (setup view) | Start flashing |
+| Green (after flashing finishes) | Go back to the setup view |
+| Red | Go back to the previous screen |
+| Cancel | This help page |
+
+Gray, Yellow and Blue carry no label here and do nothing. Green has no
+label, and does nothing, while a flash is actively in progress.
+
+### Progress
+
+While flashing, the running-state label reads "Flashing!"; the bar tracks
+which of the partitions is currently being written, not a percentage - the
+separate percentage text next to it is the actual completion figure. When
+the flash finishes, the status lines change to "Finished! Press 'Reset' btn
+on Bottlenose to run app." and Green is relabeled "Back", returning you to
+the setup guide to flash again if you want to.
+
+### Reached only from Choose your ORCA!
+
+This screen has no menu entry of its own. It opens automatically from the
+"Choose your ORCA!" screen after you select Bottlenose and confirm you want
+to flash it, and Red returns you there.

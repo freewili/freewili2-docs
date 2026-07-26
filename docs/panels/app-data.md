@@ -6,4 +6,25 @@ sidebar_position: 50
 
 > **Note:** This is a planned two-pane data browser. As of this writing, most of its implementation is stubbed out - the grid never populates and most of the button actions are placeholder code that doesn't do anything yet.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## App Data
+
+Meant to list the named values ("app signals") a running function-block
+program is tracking, each with its current value.
+
+### The screen
+
+A two-column grid, headed "name" and "value". As shipped, the grid never
+actually fills in - it always stays empty, showing only its column headers.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Red | Return to main menu |
+| Cancel | This help page |
+
+Gray shows the same icon used for "return to main menu" on other screens,
+but does nothing here. Yellow, Green and Blue are labeled Rename, Remove and
+Copy, but none of them do anything either. Red is the only button that
+actually works on this screen, even though it is labeled "paste" - pressing
+it exits to the main menu, not a paste action.

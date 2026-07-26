@@ -6,4 +6,50 @@ sidebar_position: 20
 
 Found under **System** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Files
+
+Browses the SD card, and creates, renames, removes or flashes what it finds
+there.
+
+### The screen
+
+Two lists side by side. The left list browses folders and files, starting
+at the card's root; a folder shows ".." at the top once you have moved into
+it, to step back out. The right list holds three fixed actions for whatever
+folder is showing on the left: New Directory, New File, and Flash ESP32.
+Folders are marked with a "[D]" prefix and shown in green; files are white.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Left / Right | Switch focus between the browse list and the action list |
+| Up / Down | Move the highlighted item in whichever list has focus |
+| Center | Open a folder, or run the highlighted action |
+| Gray | Rename the highlighted file or folder |
+| Yellow | Remove the highlighted file or folder (asks to confirm) |
+| Red | Return to main menu |
+| Cancel | This help page |
+
+Green and Blue are labeled Copy and Paste but neither does anything on this
+screen.
+
+### Browsing
+
+The left list shows up to 20 files and folders at a time. Center on a folder
+moves into it; Center on ".." moves back up one level. Gray and Yellow only
+act on the left list - pressing them while the right list has focus does
+nothing.
+
+### The action list
+
+The right list always offers the same three choices, regardless of what is
+in the current folder:
+
+- New Directory - asks for a name and creates it in the current folder
+- New File - asks for a name and creates an empty file in the current folder
+- Flash ESP32 - sends the current folder to the ESP32 flasher
+
+Flash ESP32 is always present here, whether or not the current folder
+actually holds anything flashable - selecting it always attempts a flash of
+the current folder's contents.

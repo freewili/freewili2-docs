@@ -6,4 +6,32 @@ sidebar_position: 10
 
 Found under **GUI** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Sound Board
+
+A list of sounds to play, across four pages: your own files, built-in
+sound effects, simple tones, and spoken phrases.
+
+### The screen
+
+A single scrolling list fills the screen, captioned in character:
+"Sounds like a bad idea, I'm in". It shows one page of content at a
+time. Selecting an item plays it right away.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Center (or tap) | Play the highlighted sound |
+| Blue | Next page: User, ROM, Tones, SAM |
+| Hold Green | On the ROM page, start or stop auto-cycling through every ROM sound about every 3 seconds; does nothing on the other pages |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+Gray and Yellow carry no label here and do nothing.
+
+### The four pages
+
+- **User** - your own sound files: whatever `.wav` files are in the `/sounds/` folder on the SD card. If that folder is empty, the screen opens on the ROM page instead.
+- **ROM** - 20 sound effects built into the firmware, with names like "Dominating", "GoodJob" and "WickedSick".
+- **Tones** - 12 short synthesized tones: three notes (low C, E, G) in four waveforms (sine, square, triangle, sawtooth).
+- **SAM** - five short phrases read aloud by the built-in text-to-speech voice.

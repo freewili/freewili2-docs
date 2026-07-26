@@ -47,6 +47,40 @@ part of the system - also prints its Tx/Rx lines here. The log only fills in
 while this screen is on the display; leaving it stops new lines from being
 recorded.
 
+## Scripts Log
+
+Shows the text a running WASM or RTHON script prints while this screen is
+open.
+
+### The screen
+
+A scrolling log fills the screen, oldest at the top and newest at the
+bottom.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Blue | Clear the log |
+| Red | Return to main menu |
+| Cancel | This help page |
+
+Gray is labeled here but does nothing. Green is labeled "input" but also
+does nothing on this screen. Yellow carries no label and does nothing.
+
+### Reading the log
+
+This view only fills in while it is on the display - a script's print
+output while some other screen is showing is not captured here. Blue clears
+what has accumulated so far without stopping the script itself.
+
+### Reached from more than one place
+
+This same log view is built into two different tools: the Scripts app and
+the SPI tool. Today the SPI screen is the one that actually opens it - press
+Gray on the SPI Log screen to get here. However you arrived, it always shows
+script print output, never SPI bus activity.
+
 ## Logic Analyzer
 
 Captures a burst of digital pins over time and draws them as waveforms, so
@@ -103,7 +137,5 @@ This screen appears inside several different tools - GPIO, I2C, SPI, UART
 and MDIO all open it with their own AI button, each showing that tool's
 own pins or bus signals as the channels here. AI on this screen returns
 you to whichever one opened it.
-
-The rest of this panel's on-screen help hasn't been written yet.
 
 **See also:** [SPI](../features/spi.md) — the console/GUI commands for this panel.

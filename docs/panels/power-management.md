@@ -6,4 +6,188 @@ sidebar_position: 40
 
 Found under **System** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Power Devices
+
+Chooses which of the device's 17 power zones stay switched on while the
+device is awake and running normally.
+
+### The screen
+
+Two columns of numbered zone buttons - Zone 1 through Zone 9 on the left,
+Zone 10 through Zone 17 on the right. A zone lit green is switched on;
+grey is off. The highlighted zone (its label prefixed with ">") is the
+one the d-pad is currently pointing at.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Left / Right | Switch between the two columns |
+| Up / Down | Move the highlight to the next zone in the column |
+| Center / Green | Turn the highlighted zone on or off |
+| Gray | Previous tab (Wakeup Conditions) |
+| Yellow | Next tab (Sleep Config) |
+| Blue | Send this configuration |
+| Red | Back |
+| Hold Cancel | This help page |
+
+Tapping a zone button directly also toggles it and moves the highlight
+there.
+
+### Sending the configuration
+
+Power Devices, Sleep Config and Wakeup Conditions are three tabs of one
+screen with a single Send action. Blue sends the zones and conditions
+set across all three tabs to the power controller - there is no
+confirmation prompt. If any wakeup condition is checked on the Wakeup
+Conditions tab, Red (Back) sends that same configuration on the way out
+instead of just leaving the screen - once a condition is checked, Back
+is not a safe way to cancel out of this app. With no wakeup condition
+checked, Back leaves without sending. Cancel does not send or leave
+either way - hold it, do not tap it, to reach this page.
+
+Sending this configuration hands it off to the power controller - the
+screen itself does not ask for confirmation.
+
+Sending with none of the six wakeup conditions checked leaves nothing
+selected to wake the device back up. See Wakeup Conditions before
+sending to make sure at least one condition is checked.
+
+### Zones
+
+There are 17 zones, numbered only - the screen does not say what each
+one powers. All 17 are on by default. Turning a zone off here only
+changes what stays powered while the device is awake; it has no effect
+on what stays powered during sleep - that is set separately on the Sleep
+Config tab.
+
+## Sleep Config
+
+Chooses which power zones stay switched on if the device goes to sleep.
+
+### The screen
+
+The same layout as Power Devices: two columns of the same 17 numbered
+zones, Zone 1 through Zone 9 on the left and Zone 10 through Zone 17 on
+the right. A zone lit blue stays powered during sleep; grey is powered
+off. The highlighted zone is prefixed with ">".
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Left / Right | Switch between the two columns |
+| Up / Down | Move the highlight to the next zone in the column |
+| Center / Green | Turn the highlighted zone on or off |
+| Gray | Previous tab (Power Devices) |
+| Yellow | Next tab (Wakeup Conditions) |
+| Blue | Send this configuration |
+| Red | Back |
+| Hold Cancel | This help page |
+
+Tapping a zone button directly also toggles it and moves the highlight
+there.
+
+### Sending the configuration
+
+Power Devices, Sleep Config and Wakeup Conditions are three tabs of one
+screen with a single Send action. Blue sends the zones and conditions
+set across all three tabs to the power controller - there is no
+confirmation prompt. If any wakeup condition is checked on the Wakeup
+Conditions tab, Red (Back) sends that same configuration on the way out
+instead of just leaving the screen - once a condition is checked, Back
+is not a safe way to cancel out of this app. With no wakeup condition
+checked, Back leaves without sending. Cancel does not send or leave
+either way - hold it, do not tap it, to reach this page.
+
+Sending this configuration hands it off to the power controller - the
+screen itself does not ask for confirmation.
+
+Sending with none of the six wakeup conditions checked leaves nothing
+selected to wake the device back up. See Wakeup Conditions before
+sending to make sure at least one condition is checked.
+
+### Sleep zones
+
+All 17 zones are off by default, so sleep cuts power to everything
+unless a zone is turned on here. Some of that is done for you: checking
+ESP on the Wakeup Conditions tab forces Zone 5 on, checking IMU or Light
+forces Zone 1 on, and checking WIO GPIO forces Zone 4 on, overriding
+whatever this screen shows for that zone. This is applied the moment a
+condition is checked and again right before Send, so a sensor a wakeup
+condition depends on cannot end up unpowered by accident. Zones forced
+on this way still show their normal color here; the screen does not mark
+them as locked.
+
+## Wakeup Conditions
+
+Chooses what can wake the device from sleep, and how long the device can
+sit idle before it puts itself to sleep on its own.
+
+### The screen
+
+A list of six wakeup conditions - ESP, IO Change, IMU, Light, WIO GPIO,
+Buttons - each lit orange when checked, grey when not. Below the list, an
+Idle Timeout strip of five buttons: 30s, 1min, 5min, 10min, Never. The
+selected timeout is lit blue. The highlighted condition is prefixed with
+">".
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Up / Down | Move between conditions; Down from the last condition enters the Idle Timeout strip, Up from the strip returns to the conditions |
+| Left / Right | In the Idle Timeout strip, choose the timeout; otherwise does nothing |
+| Center | Toggle the highlighted condition on or off; inside the Idle Timeout strip, leaves the strip instead |
+| Green | Toggle the highlighted condition on or off, including the last one highlighted if the cursor is currently in the Idle Timeout strip |
+| Gray | Previous tab (Sleep Config) |
+| Yellow | Next tab (Power Devices) |
+| Blue | Send this configuration |
+| Red | Back |
+| Hold Cancel | This help page |
+
+Green always toggles whichever condition was last highlighted, even
+while the cursor has moved down into the Idle Timeout strip and no
+condition is shown selected.
+
+### Sending the configuration
+
+Power Devices, Sleep Config and Wakeup Conditions are three tabs of one
+screen with a single Send action. Blue sends the zones and conditions
+set across all three tabs to the power controller - there is no
+confirmation prompt. Checking any condition here means Red (Back) sends
+that same configuration on the way out instead of just leaving the
+screen - once a condition is checked, Back is not a safe way to cancel
+out of this app. With no condition checked, Back leaves without sending.
+Cancel does not send or leave either way - hold it, do not tap it, to
+reach this page.
+
+Sending this configuration hands it off to the power controller - the
+screen itself does not ask for confirmation.
+
+If Send goes out with none of the six conditions checked, there is
+nothing selected to wake the device back up. Make sure at least one
+condition is checked before sending.
+
+### Conditions and idle timeout
+
+None of the six conditions are checked by default:
+
+- ESP - the wireless co-processor requests a wakeup
+- IO Change - a change on the general-purpose IO lines
+- IMU - motion sensed by the onboard motion sensor
+- Light - the onboard light sensor
+- WIO GPIO - a signal on the WIO connector's GPIO pin
+- Buttons - any physical button press
+
+Checking ESP, IMU, Light or WIO GPIO also forces the zone that condition
+needs to stay powered during sleep - see Sleep Config.
+
+The Idle Timeout strip sets how long the device can sit untouched before
+it puts itself to sleep on its own, without pressing Send: 30 seconds,
+1 minute, 5 minutes, 10 minutes, or Never (the default). With Never
+selected, the inactivity timer is not armed at all, so the device does
+not idle-sleep on its own. A timeout other than Never can only be chosen
+once at least one condition above is checked; with nothing checked, the
+strip is locked to Never and left and right are ignored while it is
+highlighted.

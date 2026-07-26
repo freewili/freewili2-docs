@@ -6,4 +6,45 @@ sidebar_position: 30
 
 Found under **GUI** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Light Show
+
+Picks one of the device's built-in LED patterns, or cycles through all
+of them automatically.
+
+### The screen
+
+A single list fills the screen, captioned "Let's get Lit", of 14
+built-in patterns. Selecting one applies it right away.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Center (or tap) | Apply the highlighted pattern |
+| Blue | Start or stop auto-cycling; label changes to "stop" while cycling |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+Gray, Yellow and Green carry no label here and do nothing.
+
+### The patterns
+
+14 built-in patterns, fixed in the firmware rather than loaded from the
+SD card: manual, rainbow, snowstorm, redchase, rainbowchase, bluechase,
+greendot, palebluedot, bluesin, whitefade, bargraph, zylon, audio,
+accelerometer. Selecting palebluedot also plays a short built-in sound
+of the same name.
+
+### Auto-cycling
+
+While cycling, each pattern runs for 5 seconds before moving to the
+next. Starting the cycle skips manual - if manual is selected when you
+start, it jumps to rainbow first - and wraps from the last pattern back
+to rainbow, never landing on manual again until you stop and pick it
+yourself.
+
+### Set from elsewhere
+
+If a received infrared code changes the active pattern while this
+screen is open, the highlighted selection here jumps to match it
+automatically.

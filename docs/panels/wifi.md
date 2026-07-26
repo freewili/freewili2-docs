@@ -6,6 +6,123 @@ sidebar_position: 20
 
 Found under **Wireless** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Station Info
+
+Shows this device's Wi-Fi client connection to your network, and lets you
+set the network name, password and on/off switch it uses to join it.
+
+### The screen
+
+This screen needs the Bottlenose wireless co-processor selected in
+Setup & Actions (Menu Xplorer). If it is not selected, the screen shows
+only a short notice telling you to enable it there, and nothing below
+applies.
+
+With it selected, top to bottom:
+
+- **SSID** - the Wi-Fi network name this device tries to join
+- **Password** - shown and typed in plain text, not masked
+- A status line, coloured to match the state below, with the device's Wi-Fi MAC address to its right once the co-processor answers
+- **IP address**, **gateway** and **subnet mask** - each the usual four dot-separated numbers, blank unless the state below is "Connected"
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Blue | Turn station mode on or off |
+| Yellow | Set the SSID |
+| Green | Set the password |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+Gray is labeled on this screen but does nothing.
+
+### Status colours
+
+- Green "Connected" - joined the network and has an IP address
+- Yellow "Waiting for IP" - joined the network, still requesting an address
+- Red "Disconnected" - station mode is on but not joined to a network
+- Red "Disabled" - station mode is off
+- Red "WIFI CPU DISCONNECTED" - the co-processor has not answered in the last 2 seconds; the MAC address is hidden, the IP, gateway and mask fields are blanked, and nothing on the screen is being refreshed
+
+This status line, the MAC address and the IP fields refresh about once a
+second while the screen is open, so a change may take a moment to show
+up.
+
+### SSID and password
+
+Yellow and Green each open a text entry. SSID accepts up to 30
+characters and password up to 62; type more and the extra is silently
+discarded rather than shown as an error. Both, and whether station mode
+is on, are saved and survive a restart.
+
+You can change any of these, or turn station mode on or off, even while
+the status shows WIFI CPU DISCONNECTED - the change is saved right away
+and sent to the co-processor automatically the moment it reconnects.
+
+There is nothing else to set for station mode - security type is
+negotiated automatically with the network you join. The device's own
+access point has separate settings, covered by the AP Info screen and
+the Wifi Settings menu found elsewhere in the device.
+
+## AP Info
+
+Shows this device's own Wi-Fi access point, and lets you set its network
+name, password and on/off switch.
+
+### The screen
+
+This screen needs the Bottlenose wireless co-processor selected in
+Setup & Actions (Menu Xplorer). If it is not selected, the screen shows
+only a short notice telling you to enable it there, and nothing below
+applies.
+
+With it selected, top to bottom:
+
+- **Num of Devices** - always reads 0; it is not wired up to a live count
+- **SSID** - the network name this device broadcasts
+- **Password** - shown and typed in plain text, not masked
+- A status line, coloured to match the state below, with the device's Wi-Fi MAC address to its right once the co-processor answers
+- **IP address**, **gateway** and **subnet mask** of the access point - each the usual four dot-separated numbers, blank unless the access point is running
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Blue | Turn the access point on or off |
+| Yellow | Set the SSID |
+| Green | Set the password |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+Gray is labeled on this screen but does nothing.
+
+### Status colours
+
+- Green "Running" - the access point is broadcasting
+- Red "Disabled" - the access point is off
+- Red "WIFI CPU DISCONNECTED" - the co-processor has not answered in the last 2 seconds; the MAC address and IP fields are hidden and nothing on the screen is being refreshed
+
+Unlike Station Info, there is no in-between "connecting" colour here -
+the access point is either running or it is not. This status line, the
+MAC address and the IP fields refresh about once a second while the
+screen is open, so a change may take a moment to show up.
+
+### SSID and password
+
+Yellow and Green each open a text entry. SSID accepts up to 30
+characters and password up to 62; type more and the extra is silently
+discarded rather than shown as an error. Both, and whether the access
+point is on, are saved and survive a restart.
+
+You can change any of these, or turn the access point on or off, even
+while the status shows WIFI CPU DISCONNECTED - the change is saved right
+away and sent to the co-processor automatically the moment it reconnects.
+
+### What is not on this screen
+
+The access point's security type and whether its SSID is hidden from
+scans are set in the Wifi Settings menu found elsewhere in the device,
+not here. This screen only shows and sets SSID, password and on/off.
 
 **See also:** [Wifi](../features/wifi.md) — the console/GUI commands for this panel.

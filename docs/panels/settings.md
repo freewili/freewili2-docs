@@ -6,4 +6,48 @@ sidebar_position: 10
 
 > **Note:** This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. The device's on-screen Settings home - pick a category to jump straight to its settings. It's a hand-maintained subset of what's in the console's Settings menu; RTC, Analog In, and Orca settings aren't listed here yet (Orca has its own **Orca Setup** panel).
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Main CPU Setup
+
+Picks and edits every setting the main-CPU firmware exposes as its own
+category - communication buses, both onboard radios, GPIO directions,
+the NeoPixel light show, Wifi, Bluetooth, the websocket server, Neptune
+CAN/LIN/SENT, and a general category.
+
+### The screen
+
+A list titled "Setup" with fourteen categories: SPI, I2C, UART, FPGA
+Clock, Radio 1, Radio 2, Radio Frequency Analyzer, GPIO Directions,
+NeoPixel Light Show, Wifi, BT, Websocket Server, Neptune CAN LIN SENT,
+General. Opening one replaces the list with that category's own fields,
+each shown as "Name [value]".
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Center (or tap) | Open the highlighted category, or edit the highlighted field |
+| Red | Back: from a field list to the categories, then out of Setup entirely |
+| Hold Blue | Reset every setting on this screen to its factory default |
+| Cancel | This help page |
+
+Blue is labeled Save, but a short press does nothing - see below.
+
+### Editing a field
+
+Opening a field shows whatever dialog fits its type: a number pad, a
+hex entry, a text box, or a pick list. A plain on/off field has no
+dialog at all - selecting it just flips the value in place. Confirming
+a dialog saves that one field immediately and returns you to the field
+list; nothing is left unsaved afterward, which is why tapping Blue does
+nothing. Holding Blue instead resets every field in every category on
+this screen back to its factory default, right away and without asking
+to confirm.
+
+### Where this fits
+
+This screen is not on the on-device main menu; it is reached from the
+console, since Setup & Actions (Menu Xplorer) on the main menu now
+covers the same ground from inside the ordinary menu system. The
+Display Setup screen is a separate set of categories that belongs to
+the display side of the device instead of the main CPU - see Display
+Setup.

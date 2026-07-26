@@ -6,4 +6,46 @@ sidebar_position: 30
 
 > **Note:** This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. It's a settings home on the display CPU, with its own categories (Power, Sound, LEDs, Infrared, Interface, Sensors) - a separate, display-side counterpart to the console's **Settings** panel, not the same data.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Display Setup
+
+Picks and edits the display's own settings - sensors, power, sound,
+LEDs, infrared, and the button/touch interface - separately from the
+main-CPU categories on the Main CPU Setup screen.
+
+### The screen
+
+A list titled "Setup" with six categories: Sensors, Power, Sound, LEDs,
+Infrared, Interface. Opening one replaces the list with that category's
+own fields, each shown as "Name [value]".
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Center (or tap) | Open the highlighted category, or edit the highlighted field |
+| Red | Back: from a field list to the categories; from the categories, out of Setup - asking to save first if anything changed |
+| Blue | Save all changes made on this screen |
+| Hold Blue | Reset every setting on this screen to its factory default |
+| Cancel | This help page |
+
+### Editing a field
+
+Opening a field shows whatever dialog fits its type - a number pad, a
+pick list, or a plain on/off toggle. Unlike Main CPU Setup, a change
+here is not written to storage as soon as you confirm it - it only
+marks the screen as having unsaved changes. Press Blue to write
+everything you have changed; leaving with Red while something is
+unsaved instead shows a "Save Changes?" prompt first, so you get one
+more chance to save or discard before you go. Holding Blue skips both of
+those - it resets every field in every category back to its factory
+default immediately, but still leaves the screen marked as having
+unsaved changes, so press Blue again afterward if you want the reset to
+stick.
+
+### Where this fits
+
+This screen is not on the on-device main menu; it is reached from the
+console, since Setup & Actions (Menu Xplorer) on the main menu now
+covers the same ground from inside the ordinary menu system. The Main
+CPU Setup screen is a separate set of categories that belongs to the
+main CPU instead of the display - see Main CPU Setup.

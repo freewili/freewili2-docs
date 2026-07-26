@@ -6,4 +6,216 @@ sidebar_position: 50
 
 Found under **System** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## About
+
+Version and diagnostic information for the device, plus a shortcut to the
+online documentation.
+
+### The screen
+
+Top left shows the label "About". Next to it is the main processor's own
+firmware version text, and below that the display firmware's version. Top
+right shows a "Docs" label and a QR code that links to the online product
+documentation. Lower on the screen, under "Max CPU Loop Times", are three
+rows - Main, GUI Main and GUI Disp - each the longest time that part of the
+firmware has taken to run through one processing pass since the numbers
+were last cleared.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Gray | Move to the next About screen (RTC) |
+| Green | Clear the three Max CPU Loop Times numbers |
+| Blue | Reboot the device |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+### The five About screens
+
+This is the first of five About screens, always reached in the same order:
+About, RTC, Battery, GPIO Voltage, Peripheral Detect. Gray steps forward
+through that list; Red leaves to the main menu from any of them.
+
+### Diagnostics and reboot
+
+The version lines and the Max CPU Loop Times numbers are aimed at firmware
+developers more than everyday use, but they are on screen so they are
+documented here. The three loop-time numbers update continuously while this
+screen is open; Green resets all three back to zero.
+
+Blue is labeled "reset" and always performs a full device reboot. It does
+not selectively reset just the display or just the statistics - whatever
+the button is asked to do internally, the device reboots completely every
+time it is pressed.
+
+## RTC
+
+Shows the device's current time and date, and lets you set the clock. It
+also has a spot meant to show when the device started up, though on this
+firmware that spot is never filled in.
+
+### The screen
+
+Top: the current time as hh:mm:ss, the date written out in full, and the
+day of the week. Lower: a startup time and date, meant to be captured once
+at boot. On this firmware that capture never happens, so this always reads
+as zeros and is not currently useful.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Gray | Move to the next About screen (Battery) |
+| Yellow | Set the clock |
+| Green | Zero the seconds |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+### Setting the clock
+
+Yellow walks through six entries in order: hour (0-23), minute (0-59),
+second (0-59), month (1-12), day, and year (2020-2300), followed by a
+seventh entry for the day of the week (1 = Monday through 7 = Sunday). The
+day entry's own prompt says "0-31" but it actually accepts anything from 0
+to 59 - nothing stops you entering a day that does not exist in the chosen
+month. The new time and date are sent to the clock only once, after the
+day-of-week entry, so leaving the sequence partway through leaves the clock
+unchanged.
+
+Green sets the seconds to zero right away and sends the updated time
+immediately - a quick way to align the clock to the top of a minute
+without going through the full set sequence.
+
+### What persists and how it refreshes
+
+The clock lives on the keyboard controller, not the display; this screen
+mirrors it. The current time, date and day of week refresh about once a
+second while this screen is open, except while a set-clock entry is in
+progress, when they hold still so your typing isn't overwritten mid-edit.
+If the clock has not reported a valid reading yet, the current time shows
+dashes instead of numbers. The startup time and date are meant to be
+captured once when the device powers up, but on this firmware that never
+happens, so those fields stay at zero for the whole session.
+
+## Battery
+
+Full readout of the battery charger and fuel gauge: voltage, current,
+temperature, charge state and USB-C power detection.
+
+### The screen
+
+Top row: the battery voltage in large text, and the charge state next to
+it. Below the state, a smaller number shows the fuel gauge's own average
+current. Nine more lines follow, top to bottom:
+
+- VBUS and VSYS - the incoming USB supply voltage and the regulated system voltage
+- ICHG and TEMP - the charge current, and the charger's own temperature reading
+- FLT and RANK - the charger's fault state, and its temperature-sensor rank
+- SRC and CC - where the USB power is coming from, and the negotiated current tier
+- CC1 and CC2 - the two USB-C CC line voltages, used for cable and orientation detection
+- ATT, VREG, TREG - three status flags, shown as text when set and blank when not
+- DET AUD HPD USB - three more connection flags, shown as plain text (not colour-coded; see the Peripheral Detect screen for the colour-coded version of the same three flags)
+- SOC and FG - the fuel gauge's own charge percentage and average current (the same current shown at the top of the screen)
+- CAP - remaining and full charge capacity, in mAh (milliamp-hours)
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Gray | Move to the next About screen (GPIO Voltage) |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+### Charge state, fault and rank
+
+STATE is one of four values: Not Charging, Pre-charge, Charging, Done. FLT
+is one of: Normal, InputFault, Thermal, TimerExp. RANK is one of: Normal,
+Warm, Cool, Cold, Hot. SRC is one of: NoInput, UsbHost, Adapter, OTG. CC is
+one of: None, 500mA, 1.5A, 3A. If the hardware ever reports a value outside
+these lists, the screen falls back to showing the word "code" and the raw
+number rather than leaving the field blank.
+
+VREG means the system voltage is being held up because the battery has
+dropped below the minimum the system needs; TREG means the charger is
+reducing current because it is running hot; ATT means a power source is
+attached to VBUS.
+
+### Ranges and units
+
+VBUS covers 2.6 V to 15.3 V; VSYS and VBAT cover 2.304 V to 4.844 V; ICHG
+covers 0 to 6.35 A. These are the charger's own working ranges, not
+adjustable from this screen. TEMP is computed from the charger's raw sensor
+reading; outside the sensor's usable range it shows "---C" instead of a
+number rather than a misleading value.
+
+### Refresh
+
+VBAT, STATE, VBUS/VSYS, ICHG/TEMP, FLT/RANK, SRC/CC, CC1/CC2, ATT/VREG/TREG
+and the DET flags all come from the same status message from the keyboard
+controller and update as often as that arrives. SOC, FG and CAP come from
+the fuel gauge separately and refresh at most once a second.
+
+## GPIO Voltage
+
+Shows two live voltage readings related to the GPIO pins, and chooses what
+feeds their reference rail.
+
+### The screen
+
+"Vout" is shown large near the top - the voltage measured on the
+programmable output test point. "Vio" is shown large lower down - the
+voltage currently feeding the GPIO pins' reference rail. Both are in volts
+and update continuously.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Gray | Move to the next About screen (Peripheral Detect) |
+| Yellow | Feed the GPIO reference from the 5.0 V rail |
+| Green | Feed the GPIO reference from Prog Vout |
+| Blue | Feed the GPIO reference from the external reference pin |
+| Red | Feed the GPIO reference from the 3.3 V rail |
+| Cancel | This help page |
+
+### Where this actually takes effect
+
+Pressing Yellow, Green, Blue or Red switches the GPIO reference
+immediately - this is the one place in the device where that choice
+actually happens in hardware. The GPIO view has a similar-looking list of
+source options under its Green button, but choosing an item there has no
+effect; use this screen instead.
+
+## Peripheral Detect
+
+Shows whether a hotplug device, an audio jack, and a USB connection are
+currently detected.
+
+### The screen
+
+Three lines, top to bottom: Hotplug, Audio Jack and USB, each reading
+Connected or Disconnected. Connected is shown in green, Disconnected in
+red - the colour is a status signal, not a selection.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+Gray carries the same next-screen label as the other About screens, but on
+this screen it does nothing - this is the last screen in the About
+sequence and pressing Gray does not move anywhere.
+
+### Same flags as the Battery screen
+
+These are the same three connection detects shown as plain, uncoloured
+text on the Battery screen (DET AUD HPD USB); here each one gets its own
+line and its own status colour.
+
+### Refresh
+
+All three lines update continuously while this screen is open, straight
+from the keyboard controller's status message.

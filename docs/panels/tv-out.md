@@ -6,4 +6,47 @@ sidebar_position: 60
 
 Found under **GUI** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## TV Out
+
+Switches the board's own screen buffer into a live video signal, sent out
+over its DVI pins. Selecting it from the main menu does not turn video on
+right away - it opens a diagnostic list first, and Green is what actually
+starts video.
+
+### The screen
+
+An empty log box fills most of the screen, with four labelled buttons
+underneath: Poll, Read, TV Out and RMW. This layout is carried over from
+the MDIO tool found elsewhere in the IO menu, but most of what made that
+tool work was left out when this screen was built from it - the log stays
+empty, and only two of the four buttons do anything.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Gray | Labeled Poll; pressed does nothing |
+| Hold Gray | Clear the log |
+| Yellow | Read - open a list of read settings: protocol, PHY and device address, register address, poll rate |
+| Blue | Labeled RMW; does nothing, here or inside the Read list |
+| Green | TV Out - start sending live video (see below - there is no way back) |
+| Red | Does nothing, here or inside the Read list |
+| Cancel | This help page (until Green is pressed - see below) |
+
+### Starting video
+
+Green stops the normal menu firmware and begins sending the current screen
+image out continuously as a video signal. This cannot be undone from the
+screen: every button stops responding the instant you press it, including
+Cancel. The only way back is to power the device off and on again.
+
+### Getting back without pressing Green
+
+Even before Green, this screen has no working way back to the main menu.
+Red is meant to close it, both on the main log view and inside the Read
+list Yellow opens, but its handler does nothing in either place. Editing
+the Read list's fields does work - selecting an entry lets you change its
+protocol, address, register or poll rate, and the list redraws with the
+new value - but nothing sends those values anywhere, and there is no
+button that runs a read. As shipped, opening this screen at all means
+restarting the device to leave it.

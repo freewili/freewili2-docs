@@ -8,4 +8,42 @@ Found under **Wi-Li-nux** on the device's panel list.
 
 This panel is also listed as **Skelltris**, **Wili8**, and **Doom** under **Apps** on the device's panel list. Those are placeholder entries for real SD-card apps whose launch wiring isn't finished yet, so today they fall back to opening this panel instead.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Terminal
+
+A text console into the device: type a line, press enter, and see the
+response.
+
+### The screen
+
+A scrolling log fills most of the screen, oldest at the top and newest at
+the bottom. Below it, a ">" prompt marks a text entry field where whatever
+you type appears before you send it.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Cancel | This help page |
+
+None of Gray, Yellow, Green, Blue or Red do anything on this screen. Text is
+entered with the device's on-screen or attached keyboard input, not the
+button bar.
+
+### Typing a command
+
+Type into the field after the ">" prompt and submit it to send the line to
+the device's command interpreter - the same one the console understands over
+USB. The field then clears itself and is ready for the next line. Anything
+the interpreter prints back appears in the scrolling log above.
+
+### No way back
+
+None of the button-bar buttons do anything on this screen, and Cancel only
+reopens this help page - it does not close it. As shipped, nothing on this
+screen returns you to the main menu; leaving requires restarting the
+device.
+
+### Reached from more than one menu entry
+
+The main menu's Skelltris, Wili8 and Doom entries currently all open this
+same Terminal screen too, as placeholders for those games.

@@ -6,4 +6,78 @@ sidebar_position: 40
 
 Found under **Wireless** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## IR Hacker
+
+Shows every infrared code the device receives as it arrives, and can
+resend, replay or fuzz them.
+
+### The screen
+
+"IR hacker" is shown top left; to its right, the most recently received
+code in hex, labeled "nec" - this screen assumes the NEC infrared
+protocol and does not decode others. Below that, a scrolling log fills
+the rest of the screen, oldest at the top and newest at the bottom. Each
+line reads "ir" followed by the code in hex. A line is yellow when it is
+the first code of a new signal - more than half a second since the last
+one, or none received yet - and the regular log color for a repeat code
+within that half second.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Gray | Switch to the IR Remote screen |
+| Yellow | Enter a code by hand (hex), pre-filled with the last one received; any value is accepted, nothing is enforced |
+| Green | Replay the received codes still in the buffer (up to the last 32), sending them back out about 100 ms apart |
+| Blue | Resend the last received code |
+| Hold Blue | Start or stop fuzzing: repeatedly transmits variations of the last received code - its low 16 bits kept, the rest cycled - about every 100 ms |
+| Red | Clear the log and the received-code buffer |
+| Cancel | This help page |
+
+Unlike most other screens, Red here clears rather than returning to the
+main menu.
+
+### Fuzzing
+
+Fuzzing is a way to probe what codes a receiver responds to: it keeps
+the low 16 bits of the last code you received and steps through the
+remaining bits, sending a new variant about every 100 ms, until you
+press and hold Blue again to stop it.
+
+## IR Remote
+
+Sends saved infrared codes as a virtual remote, organized into named
+databases kept on the SD card.
+
+### The screen
+
+Opens on a list of databases, captioned "Pick Remote IRL": every
+`.fwir` file in the `/ir/` folder on the SD card, plus a built-in "roku"
+entry that is always present even with an empty folder. Selecting one
+loads it and switches to a list of that database's saved commands,
+captioned "Blast Away!". Selecting a command there sends it right away.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Center (or tap) | On the database list, open it; on a command list, send that code |
+| Blue | On the database list: create a new, empty database (asks for a name). On a command list: save the most recently received code into the open database (asks for a name); does nothing if no code has been received yet |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+Gray, Yellow and Green carry no label here and do nothing.
+
+### Databases
+
+A database is a plain text file in `/ir/` on the SD card, one command
+per line as `name=code`. The built-in "roku" database is not a file - it
+is 17 fixed commands built into the firmware.
+
+### Working with IR Hacker
+
+Blue on a command list saves whatever code was most recently received
+on the IR Hacker screen. The two screens are meant to be used together:
+receive a code there, then come here to name and save it. There is no
+button on this screen that returns you to IR Hacker directly; Red leaves
+the app entirely, back to the main menu.

@@ -6,4 +6,31 @@ sidebar_position: 60
 
 > **Note:** This panel opens a fixed file (`text.txt`) rather than one you choose - the file picker that would let it open an arbitrary file isn't wired up yet, and the firmware source marks the fixed file as temporary.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Editor
+
+A text editor screen, opened from the main menu.
+
+### The screen
+
+A text-editing view showing the contents of a file, with a caption reading
+"edit: text.txt" at the top.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Cancel | This help page |
+
+Gray, Yellow, Green, Blue and Red carry no label here and do nothing.
+
+### What this screen edits
+
+As shipped, this screen always opens the same fixed file, text.txt, rather
+than a file you choose - there is no file picker feeding it yet.
+
+### No way back
+
+None of the button-bar buttons do anything on this screen, and Cancel only
+reopens this help page - it does not close it. As shipped, nothing on this
+screen returns you to the main menu; leaving requires restarting the
+device.

@@ -6,6 +6,55 @@ sidebar_position: 50
 
 Found under **GUI** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Camera
+
+Take pictures and video with the WILEye camera module, and adjust its
+image settings.
+
+### The screen
+
+This screen needs WILEye selected in Setup & Actions (Menu Xplorer). If
+it is not selected, the screen shows a short notice telling you to
+enable it there, and nothing below applies.
+
+With it selected, a list fills the screen: Take Picture SD, Take Picture
+FW, Start Video (or Stop Video while recording), Set Zoom, Set Contrast,
+Set Brightness, Set Saturation, Set Hue, a Flash entry, and Set
+Resolution.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+Gray, Yellow, Blue and Green carry no label here and do nothing.
+
+### Taking pictures and video
+
+Take Picture SD and Take Picture FW save a photo to the SD card or the
+device's own flash; both always save it under the same file name, so a
+new picture replaces whichever one was saved there before. Take Picture
+FW's label changes while the image is being transferred back from the
+camera. Start Video begins recording to the SD card, also always under
+the same file name; the entry becomes Stop Video while recording, and
+selecting it again ends the recording.
+
+### Image settings
+
+Zoom, Contrast, Brightness, Saturation, Hue and Resolution each open a
+number entry: Zoom from 1 to 4, Contrast, Brightness, Saturation and Hue
+from 0 to 100, and Resolution from 0 to 2 (640x480, 1280x720, 1920x1080).
+Each of these dialogs always opens showing the same starting number, not
+whatever you last set - so pressing OK without changing it resets that
+setting back to its starting value: Zoom 1; Contrast, Brightness or
+Saturation 50; Hue 2; or Resolution 640x480.
+
+### Flash
+
+The Flash entry's label follows the camera's state, but selecting it
+always turns the flash off, regardless of what the label says at the
+time.
 
 **See also:** [WilEye Camera](../features/wil-eye.md) — the console/GUI commands for this panel.

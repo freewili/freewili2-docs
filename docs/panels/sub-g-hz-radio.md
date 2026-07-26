@@ -30,12 +30,9 @@ The highlighted row is what Centre will open.
 
 ### What each item opens
 
-- **Read** opens the Radio Receive Log - a live view of packets coming in on
-  either radio.
-- **Read Raw** opens the Radio Raw Capture screen, which records a signal
-  straight to a file on the SD card.
-- **Transmit** opens the Sub Files list first, so you can choose a saved
-  file, then the Transmit screen to send it.
+- **Read** opens the Radio Receive Log - a live view of packets coming in on either radio.
+- **Read Raw** opens the Radio Raw Capture screen, which records a signal straight to a file on the SD card.
+- **Transmit** opens the Sub Files list first, so you can choose a saved file, then the Transmit screen to send it.
 - **Frequency Analyzer** opens a live RSSI scan across both radios.
 
 ### The two radios
@@ -129,16 +126,11 @@ setup list of six fields for the next capture.
 Yellow opens a list of six fields. Centre opens the highlighted one:
 
 - **Name** - the file name the capture is saved as (default `cap1.sub`).
-- **Preset** - a list of four radio configurations: Ook 270 Async,
-  Ook 650 Async, Two FSK Dev 238 Async, Two FSK Dev 476 Async.
-- **Preset Data** - a raw hex value. It only takes effect with a custom
-  preset, and this screen's own Preset list does not offer one, so right
-  now this field has no way to take effect.
+- **Preset** - a list of four radio configurations: Ook 270 Async, Ook 650 Async, Two FSK Dev 238 Async, Two FSK Dev 476 Async.
+- **Preset Data** - a raw hex value. It only takes effect with a custom preset, and this screen's own Preset list does not offer one, so right now this field has no way to take effect.
 - **Freq** - the frequency to capture at, in Hz.
 - **Protocol** - a list of three: Raw, BinRaw, Princeton.
-- **Duration** - how long the capture runs, in milliseconds, 0 to 5000.
-  Left at its default of 0, a capture stops almost as soon as it starts -
-  set this before pressing Green.
+- **Duration** - how long the capture runs, in milliseconds, 0 to 5000. Left at its default of 0, a capture stops almost as soon as it starts - set this before pressing Green.
 
 Blue or Red on this list both cancel back to the main view without
 starting anything.

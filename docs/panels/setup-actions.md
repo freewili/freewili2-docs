@@ -6,4 +6,51 @@ sidebar_position: 10
 
 Found under **System** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Setup & Actions
+
+Browses every setting and command the device exposes, as a single
+drill-down list, and lets you view or change any of them from one place.
+
+### The screen
+
+A list fills the screen, one entry per row: rows ending in ">" are
+categories - select one to drill into it. Rows followed by a value in
+brackets are settings, showing the value currently stored; selecting one
+opens a dialog to change it. Plain rows are commands; selecting one runs
+it, after first asking for any values it needs.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Red | Go back one level, or return to the main menu from the top level |
+| Cancel | This help page |
+
+Gray, Yellow, Green and Blue carry no label here and do nothing.
+
+### Where this list comes from
+
+This screen has no hand-written pages of its own. Every category, setting
+and command it shows, and the order they appear in, is built automatically
+from the same menu definitions the rest of the firmware uses, by a tool
+that runs when the firmware is built. Every category behaves the same way
+(drill in, edit, or run) because this screen is walking one generated
+table, not because each one was written by hand.
+
+### Running a command
+
+A command may ask for one or more values first, one dialog at a time -
+a number, a piece of text, or a choice from a list. Cancelling any of
+these dialogs abandons the command without running it. Once every value
+is collected, the command runs immediately, the same as if it had been
+typed at a console - this is not a preview. The result then appears in
+place of the list: the command's name in yellow if it ran successfully or
+red if it did not, followed by its response, one line at a time. If the
+response looks like it was cut off, an extra red line says so. Selecting
+anything, or pressing Red, returns you to the list you came from.
+
+### A very large category
+
+If a category ever holds more than sixty-four entries - categories,
+settings and commands combined - only the first sixty-four are shown,
+with no indication that more exist beyond that.

@@ -6,6 +6,91 @@ sidebar_position: 30
 
 Found under **Wireless** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## BT Info
+
+Shows this device's Bluetooth Low Energy identity and whether it is
+advertising, and lets you turn BLE on or off and set the name it advertises.
+
+### The screen
+
+This screen needs the Bottlenose wireless co-processor selected in
+Setup & Actions (Menu Xplorer). If it is not selected, the screen shows
+only a short notice telling you to enable it there, and nothing below
+applies.
+
+With it selected, top to bottom:
+
+- **Advert Name** - the name this device advertises over Bluetooth LE
+- A status line, coloured to match the state below, with the device's Bluetooth MAC address to its right once the co-processor answers
+- **Terminal Enabled** - Enabled or Disabled (see below - it looks live but is not)
+- **Num of Devices** - always reads 0; it is not wired up to a live count
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Blue | Turn Bluetooth LE on or off |
+| Green | Set the advertised name |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+Gray and Yellow have no label on this screen and do nothing.
+
+### Status colours
+
+- Green "Running" - BLE is on and advertising
+- Yellow "Starting" - BLE is turning on
+- Red "Disabled" - the co-processor is reachable but BLE is off
+- Red "BT CPU DISCONNECTED" - the co-processor has not answered in the last 2 seconds; the MAC address, Terminal Enabled and Num of Devices are all hidden and nothing else on the screen is being refreshed
+
+This status line updates continuously while the screen is open, not on a
+timer - whatever it shows is current as of right now.
+
+### Advertised name
+
+Green opens a text entry for the name. It accepts up to 30 characters;
+type more and the extra is silently discarded rather than shown as an
+error. The name and whether BLE is on are saved and survive a restart.
+
+You can turn BLE on or off, or change the name, even while the status
+shows CPU DISCONNECTED - the change is saved right away and sent to the
+co-processor automatically the moment it reconnects.
+
+### Terminal Enabled
+
+This field shows a separate setting from the BLE Settings menu found
+elsewhere in the device, but that setting is not currently used: this
+device's actual Bluetooth terminal access always follows the Blue
+button's on/off state instead, regardless of what Terminal Enabled says.
+
+## BT Control
+
+A second Bluetooth LE screen, alongside BT Info.
+
+### The screen
+
+The screen shows only a "BT Control" title. Nothing else is drawn here.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+Gray, Green and Yellow carry labels - "sel", "mode" and a third one - but
+none of them are wired to anything on this screen: pressing them does
+nothing. Blue has no label here and also does nothing.
+
+### What this screen is for
+
+Right now, this screen exists but is not implemented: none of its
+buttons other than Red and Cancel do anything, and it shows no BLE
+information of its own. For live Bluetooth status, advertised name and
+the on/off switch, use the BT Info screen instead.
+
+Nothing on the BT Info screen leads here, so this screen is not
+reachable through the device's own menus; it is normally opened only by
+a script.
 
 **See also:** [Bluetooth LE](../features/bluetooth-le.md) — the console/GUI commands for this panel.
