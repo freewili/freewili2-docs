@@ -12,7 +12,7 @@ terminal, and on the device itself. See
 
 Writes data to a specific I2C Address
 
-**How to use it** — press `w`, then hex: Address, Register, Data Byte(s) Seperated By Spaces when prompted.
+**How to use it** — press `w`. At the prompt, enter: Hex: Address, Register, Data Byte(s) Separated By Spaces.
 
 **What you enter** — `address`, `register`, `data_bytes`.
 
@@ -20,10 +20,12 @@ Writes data to a specific I2C Address
 
 Reads the number from the address
 
-**How to use it** — press `r`, then hex: Address, Hex Register, Dec Data Length to read Seperated By Spaces when prompted.
+**How to use it** — press `r`. At the prompt, enter: Hex: Address, Hex Register, Dec Data Length to read Separated By Spaces.
 
 ## Poll
 
 Tests all addresses for I2C Response
 
 **How to use it** — press `p`.
+
+**See also:** [I2C panel](../panels/i2c.md) — the on-screen panel for this.

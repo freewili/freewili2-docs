@@ -8,6 +8,4 @@ Found under **Wi-Li-nux** on the device's panel list.
 
 This panel is also listed as **Skelltris**, **Wili8**, and **Doom** under **Apps** on the device's panel list. Those are placeholder entries for real SD-card apps whose launch wiring isn't finished yet, so today they fall back to opening this panel instead.
 
-## Terminal Log
-
-Help for this view (`fwTerminalPanelLog`) has not been written yet.
+This panel exists on the device, but its documentation hasn't been written yet.

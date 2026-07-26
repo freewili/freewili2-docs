@@ -8,26 +8,4 @@ sidebar_position: 10
 
 Found under **Wireless** on the device's panel list.
 
-## Radios Intro
-
-Help for this view (`fwRadiosPanelIntro`) has not been written yet.
-
-## Radios Log
-
-Help for this view (`fwRadiosPanelLog`) has not been written yet.
-
-## Radios Read Raw
-
-Help for this view (`fwRadiosPanelReadRaw`) has not been written yet.
-
-## Radios Sub List
-
-Help for this view (`fwRadiosPanelSubList`) has not been written yet.
-
-## Radios Transmit Sub
-
-Help for this view (`fwRadiosPanelTransmitSub`) has not been written yet.
-
-## Radios Freq Analyzer
-
-Help for this view (`fwRadiosPanelFreqAnalyzer`) has not been written yet.
+This panel exists on the device, but its documentation hasn't been written yet.

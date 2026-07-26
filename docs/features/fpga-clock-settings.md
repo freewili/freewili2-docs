@@ -10,7 +10,7 @@ terminal, and on the device itself. See
 
 ## Clk Source
 
-
+Choose the clock source that drives the FPGA (CPU clock, oscillator, USB, or RTC)
 
 **How to use it** — press `c`.
 
@@ -18,7 +18,7 @@ terminal, and on the device itself. See
 
 ## Clk Divider (int)
 
-
+Set the integer part of the clock divider used to derive the FPGA clock frequency
 
 **How to use it** — press `i`.
 
@@ -26,7 +26,7 @@ terminal, and on the device itself. See
 
 ## Clk Divider (Frac)
 
-
+Set the fractional part of the clock divider used to fine-tune the FPGA clock frequency
 
 **How to use it** — press `f`.
 
@@ -34,7 +34,7 @@ terminal, and on the device itself. See
 
 ## Comms Mode
 
-
+Choose whether the CPU talks to the FPGA configuration registers over SPI or I2C
 
 **How to use it** — press `m`.
 

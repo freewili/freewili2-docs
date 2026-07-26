@@ -6,10 +6,6 @@ sidebar_position: 20
 
 Found under **IO** on the device's panel list.
 
-## GPIOPicker
+This panel exists on the device, but its documentation hasn't been written yet.
 
-Help for this view (`fwGPIOPanelPicker`) has not been written yet.
-
-## LA
-
-Help for this view (`fwPanelLA`) has not been written yet.
+**See also:** [GPIO](../features/gpio.md) — the console/GUI commands for this panel.

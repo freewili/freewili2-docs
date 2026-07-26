@@ -12,14 +12,14 @@ terminal, and on the device itself. See
 
 Configures a digital logic capture on a contiguous range of GPIO pins, with an optional edge trigger and auto-rearm.
 
-##### Trigger Types
+### Trigger Types
 
 - `0` — Falling edge on `triggerPin`
 - `1` — Rising edge on `triggerPin`
 - `2` — None (one-shot, fires immediately on `start`)
 - `3` — Continuous (free-running capture)
 
-##### Example
+### Example
 
 Capture 4096 samples on GPIO 0–7 at 1 µs/sample, triggering on a rising edge of GPIO 2, with auto-rearm enabled:
 
@@ -27,12 +27,12 @@ Capture 4096 samples on GPIO 0–7 at 1 µs/sample, triggering on a rising edge 
 c 1000 4096 0 7 2 1 1
 ```
 
-##### Notes
+### Notes
 
 - Issue `s` (start) after configuring to begin capture, and `e` (stop) to halt.
 - For analog capture, configure separately with `a`.
 
-**How to use it** — press `c`, then enter SampleRate (ns) SampleCount PinStart PinStop TriggerPin TriggerType (0=falling,1-rising,2-none,3-Continuous) Rearm (0/1) when prompted.
+**How to use it** — press `c`. At the prompt, enter: Enter SampleRate (ns) SampleCount PinStart PinStop TriggerPin TriggerType (0=falling,1-rising,2-none,3-Continuous) Rearm (0/1).
 
 **What you enter** — `sample_rate_ns`, `sample_count`, `pin_start`, `pin_stop`, `trigger_pin`, `trigger_type`, `rearm`.
 
@@ -40,7 +40,7 @@ c 1000 4096 0 7 2 1 1
 
 Configures the analog capture inputs.
 
-**How to use it** — press `a`, then enter AnalogMask (bit0=GPIO43..bit3=GPIO46, 0=off) AnalogRateNs AnalogRes(8/16) when prompted.
+**How to use it** — press `a`. At the prompt, enter: Enter AnalogMask (bit0=GPIO43..bit3=GPIO46, 0=off) AnalogRateNs AnalogRes(8/16).
 
 **What you enter** — `analog_mask`, `analog_rate_ns`, `analog_res`.
 
@@ -60,6 +60,6 @@ Stops logic analyzer capture.
 
 Manually triggers the logic analyzer.
 
-**How to use it** — press `t`, then enter trigger type (0=falling, 1=rising, 2=none, 3=continuous) when prompted.
+**How to use it** — press `t`. At the prompt, enter: Enter trigger type (0=falling, 1=rising, 2=none, 3=continuous).
 
 **What you enter** — `trigger_type`.

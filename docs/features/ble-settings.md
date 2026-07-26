@@ -10,19 +10,19 @@ terminal, and on the device itself. See
 
 ## Enable BT
 
-
+Turn Bluetooth LE on or off
 
 **How to use it** — press `s`.
 
 ## BT <-> Terminal
 
-
+Allow the console terminal to be used over a Bluetooth LE connection
 
 **How to use it** — press `t`.
 
 ## BT Advert Name
 
-
+Set the name the device advertises over Bluetooth LE
 
 **How to use it** — press `a`.
 

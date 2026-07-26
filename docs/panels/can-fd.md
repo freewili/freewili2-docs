@@ -6,6 +6,6 @@ sidebar_position: 70
 
 Found under **IO** on the device's panel list.
 
-## Neptune Log
+This panel exists on the device, but its documentation hasn't been written yet.
 
-Help for this view (`fwNeptunePanelLog`) has not been written yet.
+**See also:** [CAN FD](../features/canfd.md) — the console/GUI commands for this panel.

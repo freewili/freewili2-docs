@@ -6,6 +6,4 @@ sidebar_position: 20
 
 Found under **System** on the device's panel list.
 
-## File Explorer List
-
-Help for this view (`fwPanelFileExplorerList`) has not been written yet.
+This panel exists on the device, but its documentation hasn't been written yet.

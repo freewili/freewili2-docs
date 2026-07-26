@@ -6,6 +6,6 @@ sidebar_position: 10
 
 Found under **GUI** on the device's panel list.
 
-## Camera Controls
+This panel exists on the device, but its documentation hasn't been written yet.
 
-Help for this view (`fwCameraPanelControls`) has not been written yet.
+**See also:** [WilEye Camera](../features/wil-eye.md) — the console/GUI commands for this panel.

@@ -12,7 +12,7 @@ terminal, and on the device itself. See
 
 Enables or disables streaming of received IR codes to the host.
 
-**How to use it** — press `o`, then enter 1 to enable 0 to disable when prompted.
+**How to use it** — press `o`. At the prompt, enter: Enter 1 to enable 0 to disable.
 
 **What you enter** — `enable`.
 
@@ -20,6 +20,6 @@ Enables or disables streaming of received IR codes to the host.
 
 Transmits a 4-byte IR code.
 
-**How to use it** — press `a`, then enter 4 byte IR code in hex when prompted.
+**How to use it** — press `a`. At the prompt, enter: Enter 4 byte IR code in hex.
 
 **What you enter** — `ir_code`.

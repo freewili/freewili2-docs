@@ -18,7 +18,7 @@ Toggle Wifi Event Streaming
 
 Starts up Access Point with provided SSID and Password
 
-**How to use it** — press `a`, then enter SSID, Password, Auth Mode [0-3], Hide SSID flag seperated by spaces when prompted.
+**How to use it** — press `a`. At the prompt, enter: Enter SSID, Password, Auth Mode [0-3], Hide SSID flag separated by spaces.
 
 **What you enter** — `ssid`, `password`, `authmode`, `hidessid`.
 
@@ -26,7 +26,7 @@ Starts up Access Point with provided SSID and Password
 
 Turns off Access Point
 
-**How to use it** — press `t`, then enter SSID and Password, seperetad by spaces when prompted.
+**How to use it** — press `t`. At the prompt, enter: Enter SSID and Password, seperetad by spaces.
 
 ## Get Stations connected to AP
 
@@ -38,7 +38,7 @@ Turns off Access Point
 
 Connect to a WAP with provided SSID and Password
 
-**How to use it** — press `c`, then string: SSID, Password when prompted.
+**How to use it** — press `c`. At the prompt, enter: String: SSID, Password.
 
 **What you enter** — `ssid`, `password`.
 
@@ -59,3 +59,5 @@ Scans for available WIFI networks
 Scans for available Wifi networks
 
 **How to use it** — press `p`.
+
+**See also:** [Wifi panel](../panels/wifi.md) — the on-screen panel for this.

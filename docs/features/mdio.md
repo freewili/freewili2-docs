@@ -12,13 +12,13 @@ terminal, and on the device itself. See
 
 Polls for SFP Modules on the I2C bus. If any are found, return the PHY's temperature in Celsius and Signal Quality Indicator (SQI)
 
-**How to use it** — press `a`, then checking for SFP Module when prompted.
+**How to use it** — press `a`. At the prompt, enter: Checking for SFP Module.
 
 ## SFP Read
 
 Reads a value from a register on the specified device address
 
-**How to use it** — press `b`, then hex: MDIO Device Address, Register Address Bytes to read Seperated by Spaces when prompted.
+**How to use it** — press `b`. At the prompt, enter: Hex: MDIO Device Address, Register Address Bytes to read Separated by Spaces.
 
 **What you enter** — `device_address`, `register_address`.
 
@@ -26,7 +26,7 @@ Reads a value from a register on the specified device address
 
 Writes a value to a register on the specified device address
 
-**How to use it** — press `c`, then hex: MDIO Device Address, Register Address Bytes, Data Bytes to write Seperated by Spaces when prompted.
+**How to use it** — press `c`. At the prompt, enter: Hex: MDIO Device Address, Register Address Bytes, Data Bytes to write Separated by Spaces.
 
 **What you enter** — `device_address`, `register_address`, `data_bytes`.
 
@@ -34,7 +34,7 @@ Writes a value to a register on the specified device address
 
 Read-Modify-Writes a value to a register on the specified device address. '1' bits in the mask indicate an overwrite
 
-**How to use it** — press `e`, then hex: MDIO Device Address, Register Address Bytes, Mask Bytes, Data Bytes to read-modify-write Seperated by Spaces when prompted.
+**How to use it** — press `e`. At the prompt, enter: Hex: MDIO Device Address, Register Address Bytes, Mask Bytes, Data Bytes to read-modify-write Separated by Spaces.
 
 **What you enter** — `device_address`, `register_address`, `mask_bytes`, `data_bytes`.
 
@@ -42,13 +42,13 @@ Read-Modify-Writes a value to a register on the specified device address. '1' bi
 
 Polls all 32 possible PHY addresses. Test for a response from status register. Returns PHY addresses and clause compatibility
 
-**How to use it** — press `y`, then checking for PHYs when prompted.
+**How to use it** — press `y`. At the prompt, enter: Checking for PHYs.
 
 ## Clause 22 Read
 
 Reads a value from a register belonging to a Clause-22-Compatible-PHY
 
-**How to use it** — press `g`, then hex: PHY Address, Register Address to read Seperated by Spaces when prompted.
+**How to use it** — press `g`. At the prompt, enter: Hex: PHY Address, Register Address to read Separated by Spaces.
 
 **What you enter** — `phy_address`, `register_address`.
 
@@ -56,7 +56,7 @@ Reads a value from a register belonging to a Clause-22-Compatible-PHY
 
 Writes a value to a register belonging to a Clause-22-Compatible-PHY
 
-**How to use it** — press `i`, then hex: PHY Address, Register Address, Data Bytes to write Seperated by Spaces when prompted.
+**How to use it** — press `i`. At the prompt, enter: Hex: PHY Address, Register Address, Data Bytes to write Separated by Spaces.
 
 **What you enter** — `phy_address`, `register_address`, `data_bytes`.
 
@@ -64,7 +64,7 @@ Writes a value to a register belonging to a Clause-22-Compatible-PHY
 
 Read-Modify-Writes a value to a register belonging to a Clause-45-Compatible-PHY. '1' bits in the mask indicate an overwrite
 
-**How to use it** — press `j`, then hex: PHY Address, Register Address, Mask Bytes, Data Bytes to read-modify-write Seperated by Spaces when prompted.
+**How to use it** — press `j`. At the prompt, enter: Hex: PHY Address, Register Address, Mask Bytes, Data Bytes to read-modify-write Separated by Spaces.
 
 **What you enter** — `phy_address`, `register_address`, `mask_bytes`, `data_bytes`.
 
@@ -72,7 +72,7 @@ Read-Modify-Writes a value to a register belonging to a Clause-45-Compatible-PHY
 
 Reads a value from a register belonging to a Clause-45-Compatible-PHY
 
-**How to use it** — press `k`, then hex: PHY Address, MMD Address, Register Address to read Seperated by Spaces when prompted.
+**How to use it** — press `k`. At the prompt, enter: Hex: PHY Address, MMD Address, Register Address to read Separated by Spaces.
 
 **What you enter** — `phy_address`, `mmd_address`, `register_address`.
 
@@ -80,7 +80,7 @@ Reads a value from a register belonging to a Clause-45-Compatible-PHY
 
 Writes a value to a register belonging to a Clause-45-Compatible-PHY
 
-**How to use it** — press `l`, then hex: PHY Address, MMD Address, Register Address, Data Bytes to write Seperated by Spaces when prompted.
+**How to use it** — press `l`. At the prompt, enter: Hex: PHY Address, MMD Address, Register Address, Data Bytes to write Separated by Spaces.
 
 **What you enter** — `phy_address`, `mmd_address`, `register_address`, `data_bytes`.
 
@@ -88,7 +88,7 @@ Writes a value to a register belonging to a Clause-45-Compatible-PHY
 
 Read-Modify-Writes a value to a register belonging to a Clause-45-Compatible-PHY. '1' bits in the mask indicate an overwrite
 
-**How to use it** — press `m`, then hex: PHY Address, MMD Address, Register Address, Mask Bytes, Data Bytes to read-modify-write Seperated by Spaces when prompted.
+**How to use it** — press `m`. At the prompt, enter: Hex: PHY Address, MMD Address, Register Address, Mask Bytes, Data Bytes to read-modify-write Separated by Spaces.
 
 **What you enter** — `phy_address`, `mmd_address`, `register_address`, `mask_bytes`, `data_bytes`.
 
@@ -96,7 +96,7 @@ Read-Modify-Writes a value to a register belonging to a Clause-45-Compatible-PHY
 
 Reads a value from a register belonging to a Clause-45-Emulation-Compatible-PHY
 
-**How to use it** — press `n`, then hex: PHY Address, MMD Address, Register Address to read Seperated by Spaces when prompted.
+**How to use it** — press `n`. At the prompt, enter: Hex: PHY Address, MMD Address, Register Address to read Separated by Spaces.
 
 **What you enter** — `phy_address`, `mmd_address`, `register_address`.
 
@@ -104,7 +104,7 @@ Reads a value from a register belonging to a Clause-45-Emulation-Compatible-PHY
 
 Writes a value to a register belonging to a Clause-45-Emulation-Compatible-PHY
 
-**How to use it** — press `o`, then hex: PHY Address, MMD Address, Register Address, Data Bytes to write Seperated by Spaces when prompted.
+**How to use it** — press `o`. At the prompt, enter: Hex: PHY Address, MMD Address, Register Address, Data Bytes to write Separated by Spaces.
 
 **What you enter** — `phy_address`, `mmd_address`, `register_address`, `data_bytes`.
 
@@ -112,6 +112,8 @@ Writes a value to a register belonging to a Clause-45-Emulation-Compatible-PHY
 
 Read-Modify-Writes a value to a register belonging to a Clause-45-Emulation-Compatible-PHY. '1' bits in the mask indicate an overwrite
 
-**How to use it** — press `p`, then hex: PHY Address, MMD Address, Register Address, Mask Bytes, Data Bytes to read-modify-write Seperated by Spaces when prompted.
+**How to use it** — press `p`. At the prompt, enter: Hex: PHY Address, MMD Address, Register Address, Mask Bytes, Data Bytes to read-modify-write Separated by Spaces.
 
 **What you enter** — `phy_address`, `mmd_address`, `register_address`, `mask_bytes`, `data_bytes`.
+
+**See also:** [MDIO panel](../panels/mdio.md) — the on-screen panel for this.

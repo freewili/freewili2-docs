@@ -6,14 +6,6 @@ sidebar_position: 50
 
 Found under **IO** on the device's panel list.
 
-## SPILog
+This panel exists on the device, but its documentation hasn't been written yet.
 
-Help for this view (`fwSPIPanelLog`) has not been written yet.
-
-## Scripts Log
-
-Help for this view (`fwScriptsPanelLog`) has not been written yet.
-
-## LA
-
-Help for this view (`fwPanelLA`) has not been written yet.
+**See also:** [SPI](../features/spi.md) — the console/GUI commands for this panel.

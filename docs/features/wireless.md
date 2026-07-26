@@ -7,3 +7,5 @@ sidebar_position: 10
 These commands are available three ways — in the FREE-WILi GUI app, in a serial
 terminal, and on the device itself. See
 [Connecting it to a computer](../start-here/connecting.md) for how to reach them.
+
+> **Note:** This section is a navigation hub with no commands of its own - use it to jump straight to NFC, ESP32 Flasher, Wifi, Bluetooth LE, or IR.

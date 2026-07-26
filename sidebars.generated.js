@@ -5,12 +5,12 @@ module.exports = {
     {
       type: 'category',
       label: 'IO',
-      items: ['features/io', 'features/gpio', 'features/uart', 'features/mdio', 'features/sensors', 'features/i2c', 'features/spi', 'features/canfd', 'features/analog_in', 'features/analog_out', 'features/logic_player', 'features/logic_analyzer', 'features/wil_eye', 'features/audio'],
+      items: ['features/io', 'features/gpio', 'features/uart', 'features/mdio', 'features/sensors', 'features/i2c', 'features/spi', 'features/canfd', 'features/analog-in', 'features/analog-out', 'features/logic-player', 'features/logic-analyzer', 'features/wil-eye', 'features/audio'],
     },
     {
       type: 'category',
       label: 'Wireless',
-      items: ['features/wireless', 'features/nfc', 'features/esp32_flasher', 'features/wifi', 'features/bluetooth_le', 'features/ir'],
+      items: ['features/wireless', 'features/nfc', 'features/esp32-flasher', 'features/wifi', 'features/bluetooth-le', 'features/ir'],
     },
     {
       type: 'category',
@@ -20,7 +20,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Apps',
-      items: ['features/apps', 'features/scripting', 'features/zoom_io'],
+      items: ['features/apps', 'features/scripting', 'features/zoom-io'],
     },
     {
       type: 'category',
@@ -30,7 +30,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Settings',
-      items: ['features/settings_home', 'features/general_settings', 'features/rtc_settings', 'features/wifi_settings', 'features/ble_settings', 'features/radio_settings', 'features/radio_fa_settings', 'features/i2c_settings', 'features/spi_settings', 'features/uart_settings', 'features/analog_in_settings', 'features/io_direction_settings', 'features/light_show_settings', 'features/neptune_settings', 'features/orca_settings', 'features/websocket_settings', 'features/fpga_clock_settings'],
+      items: ['features/settings-home', 'features/general-settings', 'features/rtc-settings', 'features/wifi-settings', 'features/ble-settings', 'features/radio-settings', 'features/radio-fa-settings', 'features/i2c-settings', 'features/spi-settings', 'features/uart-settings', 'features/analog-in-settings', 'features/io-direction-settings', 'features/light-show-settings', 'features/neptune-settings', 'features/orca-settings', 'features/websocket-settings', 'features/fpga-clock-settings'],
     }
   ],
   panels: [
@@ -51,7 +51,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Apps',
+      label: 'Tools & Scripting',
       items: ['panels/scripts', 'panels/wili-blocks', 'panels/command-panel', 'panels/script-monitor', 'panels/app-data'],
     },
     {

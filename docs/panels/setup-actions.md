@@ -6,6 +6,4 @@ sidebar_position: 10
 
 Found under **System** on the device's panel list.
 
-## Menu Xplorer List
-
-Help for this view (`fwMenuXplorerPanelList`) has not been written yet.
+This panel exists on the device, but its documentation hasn't been written yet.

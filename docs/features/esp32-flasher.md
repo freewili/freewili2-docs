@@ -12,7 +12,7 @@ terminal, and on the device itself. See
 
 Drives the ESP32's `BOOT` and `EN` pins to put the target into ROM bootloader (download) mode and establishes a serial-loader sync over the UART. Once synced, this command is a prerequisite for all other flash/memory/register operations in this menu.
 
-##### Typical Workflow
+### Typical Workflow
 
 ```text
 b <baud>     # Connect To Bootloader
@@ -23,13 +23,13 @@ o ...        # Write flash data
 p 1          # Finish flash, reboot
 ```
 
-##### Troubleshooting
+### Troubleshooting
 
 - **Timeout** — check wiring of `EN`, `BOOT`, `TX`, `RX`, `GND`.
 - **Invalid target** — chip or revision not supported by the loader build.
 - **Invalid response at high baud** — retry with `0` (stay at 115200) or shorter / better-quality wires.
 
-**How to use it** — press `b`, then enter Baudrate to updgrade to upon successful connection when prompted.
+**How to use it** — press `b`. At the prompt, enter: Enter Baudrate to updgrade to upon successful connection.
 
 **What you enter** — `upgrade_transmission_rate`.
 
@@ -67,7 +67,7 @@ Toggle ESP32's Enable Pin
 
 Prepares ESP32 to write flash at offset and expected size. Block size can be up to 128 bytes
 
-**How to use it** — press `f`, then enter offset (hex), followed by image size (int) and expected block size (int) when prompted.
+**How to use it** — press `f`. At the prompt, enter: Enter offset (hex), followed by image size (int) and expected block size (int).
 
 **What you enter** — `offset`, `size`, `block_size`.
 
@@ -75,7 +75,7 @@ Prepares ESP32 to write flash at offset and expected size. Block size can be up 
 
 Ends ESP32 Flashing Operations.
 
-**How to use it** — press `p`, then reboot esp32 after stopping flash operations (1 - yes, 0 - no:) when prompted.
+**How to use it** — press `p`. At the prompt, enter: Reboot esp32 after stopping flash operations (1 - yes, 0 - no:).
 
 **What you enter** — `reboot`.
 
@@ -83,7 +83,7 @@ Ends ESP32 Flashing Operations.
 
 Writes Binary Blob into flash
 
-**How to use it** — press `o`, then enter Byte seperated by spaces, up to 128 bytes: when prompted.
+**How to use it** — press `o`. At the prompt, enter: Enter Byte separated by spaces, up to 128 bytes:.
 
 **What you enter** — `flash_data`.
 
@@ -91,7 +91,7 @@ Writes Binary Blob into flash
 
 Reads binary blob from flash with given address and size.
 
-**How to use it** — press `j`, then enter offset (hex) followed by size to read when prompted.
+**How to use it** — press `j`. At the prompt, enter: Enter offset (hex) followed by size to read.
 
 **What you enter** — `offset`, `size`.
 
@@ -99,7 +99,7 @@ Reads binary blob from flash with given address and size.
 
 Perpares memeory write operations on the esp32. Max Block Size size is 128
 
-**How to use it** — press `y`, then enter offset (hex), followed by image size (int) and expected block size (int) when prompted.
+**How to use it** — press `y`. At the prompt, enter: Enter offset (hex), followed by image size (int) and expected block size (int).
 
 **What you enter** — `offset`, `memory_block`, `block_size`.
 
@@ -107,7 +107,7 @@ Perpares memeory write operations on the esp32. Max Block Size size is 128
 
 Perpares memeory write operations on the esp32. Max Block Size size is 128
 
-**How to use it** — press `0`, then enter offset (hex), followed by image size (int) and expected block size (int) when prompted.
+**How to use it** — press `0`. At the prompt, enter: Enter offset (hex), followed by image size (int) and expected block size (int).
 
 **What you enter** — `offset`, `memory_block`, `block_size`.
 
@@ -115,7 +115,7 @@ Perpares memeory write operations on the esp32. Max Block Size size is 128
 
 Disables memory write operations on esp32 and sets entry point in ram
 
-**How to use it** — press `t`, then enter entry offset (hex) that the esp32 will boot to in RAM: when prompted.
+**How to use it** — press `t`. At the prompt, enter: Enter entry offset (hex) that the esp32 will boot to in RAM:.
 
 **What you enter** — `entry_address`.
 
@@ -123,7 +123,7 @@ Disables memory write operations on esp32 and sets entry point in ram
 
 Writes a 4 byte value onto a register in the esp32
 
-**How to use it** — press `g`, then enter Regiser Address (hex) followed by value (hex): when prompted.
+**How to use it** — press `g`. At the prompt, enter: Enter Regiser Address (hex) followed by value (hex):.
 
 **What you enter** — `offset`, `value`.
 
@@ -131,7 +131,7 @@ Writes a 4 byte value onto a register in the esp32
 
 Reads a 4 byte value from a register in the esp32
 
-**How to use it** — press `c`, then enter Regiser Address (hex) to read from: when prompted.
+**How to use it** — press `c`. At the prompt, enter: Enter Regiser Address (hex) to read from:.
 
 **What you enter** — `offset`.
 

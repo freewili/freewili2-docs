@@ -12,7 +12,7 @@ terminal, and on the device itself. See
 
 Performs a full-duplex SPI transaction: writes the supplied bytes on MOSI while simultaneously capturing the bytes returned on MISO, then prints the received bytes.
 
-##### Usage
+### Usage
 
 Enter one or more data bytes as hexadecimal values separated by spaces.
 
@@ -22,7 +22,7 @@ w 03 00 00 00
 w AB CD EF
 ```
 
-##### Example
+### Example
 
 Reading a SPI flash JEDEC ID:
 ```
@@ -30,6 +30,8 @@ w 9F 00 00 00
 ```
 Response bytes 2–4 contain the manufacturer / device ID.
 
-**How to use it** — press `w`, then enter Data Byte(s) Seperated By Spaces when prompted.
+**How to use it** — press `w`. At the prompt, enter: Enter Data Byte(s) Separated By Spaces.
 
 **What you enter** — `data_bytes`.
+
+**See also:** [SPI panel](../panels/spi.md) — the on-screen panel for this.

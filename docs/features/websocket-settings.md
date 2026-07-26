@@ -10,13 +10,13 @@ terminal, and on the device itself. See
 
 ## Start WS Server
 
-
+Turn the websocket server on or off
 
 **How to use it** — press `r`.
 
 ## WS Server Port
 
-
+Set the TCP port the websocket server listens on
 
 **How to use it** — press `p`.
 
@@ -24,7 +24,7 @@ terminal, and on the device itself. See
 
 ## Auth Mode
 
-
+Choose whether the websocket server allows open access or requires a username and password
 
 **How to use it** — press `m`.
 
@@ -32,7 +32,7 @@ terminal, and on the device itself. See
 
 ## Auth Username
 
-
+Set the username required to connect to the websocket server when basic authentication is enabled
 
 **How to use it** — press `u`.
 
@@ -40,7 +40,7 @@ terminal, and on the device itself. See
 
 ## Auth Password
 
-
+Set the password required to connect to the websocket server when basic authentication is enabled
 
 **How to use it** — press `e`.
 

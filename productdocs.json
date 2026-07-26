@@ -4,36 +4,37 @@
     { "slug": "wireless", "title": "Wireless" },
     { "slug": "wilinux", "title": "Wi-Li-nux" },
     { "slug": "apps", "title": "Apps" },
+    { "slug": "tools", "title": "Tools & Scripting" },
     { "slug": "gui", "title": "GUI" },
     { "slug": "system", "title": "System" },
     { "slug": "settings", "title": "Settings" }
   ],
   "menus": {
-    "fwMenuIO": { "publish": true, "title": "IO", "section": "io", "order": 10 },
-    "fwMenuGPIO": { "publish": true, "title": "GPIO", "section": "io", "order": 20 },
-    "fwMenuUART": { "publish": true, "title": "UART", "section": "io", "order": 30 },
-    "fwMenuMDIO": { "publish": true, "title": "MDIO", "section": "io", "order": 40 },
+    "fwMenuIO": { "publish": true, "title": "IO", "section": "io", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to GPIO, UART, MDIO, Sensors, I2C, SPI, CAN FD, Analog In, Analog Out & Trigger, Logic Player, Logic Analyzer, WilEye Camera, or Audio." },
+    "fwMenuGPIO": { "publish": true, "title": "GPIO", "section": "io", "order": 20, "panelKey": "APP_SELECTED_GPIO" },
+    "fwMenuUART": { "publish": true, "title": "UART", "section": "io", "order": 30, "panelKey": "APP_SELECTED_UART" },
+    "fwMenuMDIO": { "publish": true, "title": "MDIO", "section": "io", "order": 40, "panelKey": "APP_SELECTED_MDIO" },
     "fwMenuSensors": { "publish": true, "title": "Sensors", "section": "io", "order": 50 },
-    "fwMenuI2C": { "publish": true, "title": "I2C", "section": "io", "order": 60 },
-    "fwMenuSPI": { "publish": true, "title": "SPI", "section": "io", "order": 70 },
-    "fwMenuCANFD": { "publish": true, "title": "CAN FD", "section": "io", "order": 80 },
-    "fwMenuAnalogIn": { "publish": true, "title": "Analog In", "section": "io", "order": 90 },
-    "fwMenuAnalogOut": { "publish": true, "title": "Analog Out & Trigger", "section": "io", "order": 100 },
+    "fwMenuI2C": { "publish": true, "title": "I2C", "section": "io", "order": 60, "panelKey": "APP_SELECTED_I2C" },
+    "fwMenuSPI": { "publish": true, "title": "SPI", "section": "io", "order": 70, "panelKey": "APP_SELECTED_SPI" },
+    "fwMenuCANFD": { "publish": true, "title": "CAN FD", "section": "io", "order": 80, "panelKey": "APP_SELECTED_NEPTUNE" },
+    "fwMenuAnalogIn": { "publish": true, "title": "Analog In", "section": "io", "order": 90, "panelKey": "APP_SELECTED_ANALOG" },
+    "fwMenuAnalogOut": { "publish": true, "title": "Analog Out & Trigger", "section": "io", "order": 100, "panelKey": "APP_SELECTED_ANALOG" },
     "fwMenuLogicPlayer": { "publish": true, "title": "Logic Player", "section": "io", "order": 110 },
     "fwMenuLogicAnalyzer": { "publish": true, "title": "Logic Analyzer", "section": "io", "order": 120 },
-    "fwMenuWILEye": { "publish": true, "title": "WilEye Camera", "section": "io", "order": 130 },
+    "fwMenuWILEye": { "publish": true, "title": "WilEye Camera", "section": "io", "order": 130, "panelKey": "APP_SELECTED_CAMERA" },
     "fwMenuAudio": { "publish": true, "title": "Audio", "section": "io", "order": 140 },
 
-    "fwMenuWireless": { "publish": true, "title": "Wireless", "section": "wireless", "order": 10 },
+    "fwMenuWireless": { "publish": true, "title": "Wireless", "section": "wireless", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to NFC, ESP32 Flasher, Wifi, Bluetooth LE, or IR." },
     "fwMenuNFC": { "publish": true, "title": "NFC", "section": "wireless", "order": 20 },
     "fwMenuESP32Flasher": { "publish": true, "title": "ESP32 Flasher", "section": "wireless", "order": 30 },
-    "fwMenuWifi": { "publish": true, "title": "Wifi", "section": "wireless", "order": 40 },
-    "fwMenuBluetoothLE": { "publish": true, "title": "Bluetooth LE", "section": "wireless", "order": 50 },
+    "fwMenuWifi": { "publish": true, "title": "Wifi", "section": "wireless", "order": 40, "panelKey": "APP_SELECTED_WIFI" },
+    "fwMenuBluetoothLE": { "publish": true, "title": "Bluetooth LE", "section": "wireless", "order": 50, "panelKey": "APP_SELECTED_BLE" },
     "fwMenuIR": { "publish": true, "title": "IR", "section": "wireless", "order": 60 },
 
     "fwMenuLinux": { "publish": true, "title": "Wi-Li-nux", "section": "wilinux", "order": 10 },
 
-    "fwMenuApps": { "publish": true, "title": "Apps", "section": "apps", "order": 10 },
+    "fwMenuApps": { "publish": true, "title": "Jump to Panel", "section": "apps", "order": 10, "note": "Despite this menu's name, it does not launch an SD-card app - it jumps straight to an on-screen panel by its numeric ID. The device's actual Apps folder (Skelltris, Wili8, Doom) is a separate part of the on-screen panel list; see the **Terminal** panel page for those." },
     "fwMenuScripting": { "publish": true, "title": "Scripting", "section": "apps", "order": 20 },
     "fwMenuZoomIO": { "publish": true, "title": "ZoomIO", "section": "apps", "order": 30 },
 
@@ -86,13 +87,13 @@
 
     "APP_SELECTED_TERMINAL": { "publish": true, "title": "Terminal", "section": "wilinux", "order": 10 },
 
-    "APP_SELECTED_SCRIPTS": { "publish": true, "title": "Scripts", "section": "apps", "order": 10 },
-    "APP_SELECTED_FBLOCKS": { "publish": true, "title": "Wili Blocks", "section": "apps", "order": 20 },
-    "APP_SELECTED_CMD_PANEL": { "publish": true, "title": "Command Panel", "section": "apps", "order": 30 },
-    "APP_SELECTED_CUSTOM": { "publish": true, "title": "Script Monitor", "section": "apps", "order": 40, "note": "This screen isn't picked from the on-screen panel list directly. It opens automatically when you run a script from **Scripts**, showing that script's log until it finishes or you stop it." },
-    "APP_SELECTED_APP_DATA": { "publish": true, "title": "App Data", "section": "apps", "order": 50, "note": "This is a planned two-pane data browser. As of this writing, most of its implementation is stubbed out - the grid never populates and most of the button actions are placeholder code that doesn't do anything yet." },
+    "APP_SELECTED_SCRIPTS": { "publish": true, "title": "Scripts", "section": "tools", "order": 10 },
+    "APP_SELECTED_FBLOCKS": { "publish": true, "title": "Wili Blocks", "section": "tools", "order": 20 },
+    "APP_SELECTED_CMD_PANEL": { "publish": true, "title": "Command Panel", "section": "tools", "order": 30 },
+    "APP_SELECTED_CUSTOM": { "publish": true, "title": "Script Monitor", "section": "tools", "order": 40, "note": "This screen isn't picked from the on-screen panel list directly. It opens automatically when you run a script from **Scripts**, showing that script's log until it finishes or you stop it." },
+    "APP_SELECTED_APP_DATA": { "publish": true, "title": "App Data", "section": "tools", "order": 50, "note": "This is a planned two-pane data browser. As of this writing, most of its implementation is stubbed out - the grid never populates and most of the button actions are placeholder code that doesn't do anything yet." },
 
-    "APP_SELECTED_MSETTINGS": { "publish": true, "title": "Settings", "section": "settings", "order": 10, "note": "The device's on-screen Settings home - pick a category to jump straight to its settings. It's a hand-maintained subset of what's in the console's Settings menu; RTC, Analog In, and Orca settings aren't listed here yet (Orca has its own **Orca Setup** panel)." },
-    "APP_SELECTED_ORCASETUP": { "publish": true, "title": "Orca Setup", "section": "settings", "order": 20, "note": "A guided setup wizard for pairing with an Orca accessory over UART. It configures the same underlying setting as **Orca Settings** in the console Settings menu, with presets for known Orca variants (including flashing companion firmware for the Bottlenose variant)." }
+    "APP_SELECTED_MSETTINGS": { "publish": true, "title": "Settings", "section": "settings", "order": 10, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. The device's on-screen Settings home - pick a category to jump straight to its settings. It's a hand-maintained subset of what's in the console's Settings menu; RTC, Analog In, and Orca settings aren't listed here yet (Orca has its own **Orca Setup** panel)." },
+    "APP_SELECTED_ORCASETUP": { "publish": true, "title": "Orca Setup", "section": "settings", "order": 20, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. It's a guided setup wizard for pairing with an Orca accessory over UART. It configures the same underlying setting as **Orca Settings** in the console Settings menu, with presets for known Orca variants (including flashing companion firmware for the Bottlenose variant)." }
   }
 }

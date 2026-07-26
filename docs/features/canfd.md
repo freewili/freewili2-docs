@@ -12,21 +12,21 @@ terminal, and on the device itself. See
 
 Enables or disables streaming of received CAN/CAN-FD frames and bus errors from the selected channel to the host.
 
-##### Example
+### Example
 
 ```
 o 0 1   # enable streaming on channel 0
 o 1 0   # disable streaming on channel 1
 ```
 
-##### Notes
+### Notes
 
 - Each channel streams independently; toggling one channel does not affect the other.
 - If only `channel` parses successfully but `enabled` does not, streaming on that channel is forced **off** as a safety fallback.
 - All frames will be received unless a receive filter is configured (see `Setup Filter`) so the controller actually accepts the frames you want to observe.
-- FreeWili2 only has one CAN channel (channel 2 is resevered for future orcas)
+- FreeWili2 only has one CAN channel (channel 2 is reserved for future orcas)
 
-**How to use it** — press `o`, then enter Channel and enable state when prompted.
+**How to use it** — press `o`. At the prompt, enter: Enter Channel and enable state.
 
 **What you enter** — `channel`, `enabled`.
 
@@ -34,14 +34,14 @@ o 1 0   # disable streaming on channel 1
 
 Transmits a single CAN 2.0 or CAN-FD frame on the selected channel. The frame is queued to the controller's transmit FIFO and sent as soon as the bus permits.
 
-##### Valid payload lengths (DLC)
+### Valid payload lengths (DLC)
 
 - Classic CAN (`canFd = 0`): `0`–`8` bytes.
 - CAN-FD (`canFd = 1`): `0`–`8`, `12`, `16`, `20`, `24`, `32`, `48`, or `64` bytes.
 
 Any other byte count is rejected and the command reports `Invalid`.
 
-##### Examples
+### Examples
 
 ```
 # Classic CAN, standard ID 0x123, 4 data bytes
@@ -54,13 +54,13 @@ w 0 0x01ABCDEF 0 1
 w 0 0x200 1 0 00 11 22 33 44 55 66 77 88 99 AA BB CC DD EE FF
 ```
 
-##### Notes
+### Notes
 
 - The frame is queued to the transmit FIFO; if the FIFO is full or the bus is unavailable the frame may be delayed.
 - Make sure the controller's bit timing (and FD data-phase timing) is configured before transmitting — see the Neptune/Orca setup commands.
 - For periodic / repeated transmission use `Transmit CAN(FD) Periodic` instead.
 
-**How to use it** — press `w`, then channel ArbID (hex) isCANFD isXtd Bytes (hex) when prompted.
+**How to use it** — press `w`. At the prompt, enter: Channel ArbID (hex) isCANFD isXtd Bytes (hex).
 
 **What you enter** — `channel`, `arb_id`, `can_fd`, `xtd_id`, `data_in`.
 
@@ -68,14 +68,14 @@ w 0 0x200 1 0 00 11 22 33 44 55 66 77 88 99 AA BB CC DD EE FF
 
 Configures one of the controller's periodic-transmit slots. Each slot holds a CAN/CAN-FD frame that is re-sent automatically at a fixed interval (or as fast as the bus permits) until it is disabled.
 
-##### Valid payload lengths (DLC)
+### Valid payload lengths (DLC)
 
 - Classic CAN (`canFd = 0`): `0`–`8` bytes.
 - CAN-FD (`canFd = 1`): `0`–`8`, `12`, `16`, `20`, `24`, `32`, `48`, or `64` bytes.
 
 Any other byte count is rejected and the command reports `Invalid`.
 
-##### Short form (toggle only)
+### Short form (toggle only)
 
 If only the first arguments parse — `index`, `enable`, and `channel` — the previously configured frame in that slot is simply enabled or disabled without being re-loaded:
 
@@ -89,7 +89,7 @@ In practice, to just turn a configured slot off, the simplest form is:
 p 0 0 0 0     # disable slot 0 on channel 0
 ```
 
-##### Examples
+### Examples
 
 ```
 # Slot 0 on channel 0: send classic standard-ID 0x123 with 4 data bytes every 10 ms
@@ -105,7 +105,7 @@ p 2 1 1000000 0 0x01ABCDEF 0 1
 p 0 0 0 0
 ```
 
-##### Notes
+### Notes
 
 - Frames are queued to the transmit FIFO; if the FIFO is full or the bus is unavailable the frame is delayed until room becomes available.
 - `period = 0` ("as fast as possible") fills any free TX FIFO slots every service tick and can saturate the bus — use with care.
@@ -113,7 +113,7 @@ p 0 0 0 0
 - Periodic slots are independent per channel; slot `0` on channel `0` is unrelated to slot `0` on channel `1`.
 - To send a single, one-shot frame instead of a periodic stream, use `Transmit CAN(FD)`.
 
-**How to use it** — press `p`, then index enable period (us) Channel (0-1) ArbID (hex) isCANFD isXtd Bytes (hex) when prompted.
+**How to use it** — press `p`. At the prompt, enter: index enable period (us) Channel (0-1) ArbID (hex) isCANFD isXtd Bytes (hex).
 
 **What you enter** — `index`, `enable`, `period`, `channel`, `arb_id`, `can_fd`, `xtd_id`, `data_in`.
 
@@ -121,7 +121,7 @@ p 0 0 0 0
 
 Configures one of the CAN controller's hardware receive filters. Frames that do not match an enabled filter are dropped before reaching the stream / FIFO. If there are no filters configure `Stream CAN(FD)` shows all messages.
 
-##### Examples
+### Examples
 
 ```
 # Enable filter 0 on channel 0, standard ID, accept only ID 0x123
@@ -137,7 +137,7 @@ f 0 1 1 0 0x7F0 0x100 0xFF 0xA5 0x00 0x00
 f 0 2 0
 ```
 
-##### Notes
+### Notes
 
 - Omitting `mask`/`accept` is only valid when `enable` is `0`; otherwise parsing fails and the command reports `Invalid`.
 - If the byte-filter arguments are omitted, all four byte mask/accept values are cleared to `0` (i.e., no byte filtering).
@@ -145,7 +145,7 @@ f 0 2 0
 - Filters are re-applied to the controller immediately (`setupFilters(false)`) after a successful update.
 - if no filters are configured all frames will be received.
 
-**How to use it** — press `f`, then channel (0-1), index (0-32), enable, isXTD, mskID, ID, [(optional) mskb0, b0, mskb1, b1] when prompted.
+**How to use it** — press `f`. At the prompt, enter: channel (0-1), index (0-32), enable, isXTD, mskID, ID, [(optional) mskb0, b0, mskb1, b1].
 
 **What you enter** — `channel`, `index`, `enable`, `xtd_id`, `mask`, `accept`, `maskb0`, `accept_b0`, `maskb1`, `accept_b1`.
 
@@ -153,21 +153,21 @@ f 0 2 0
 
 Reads one or more consecutive 32-bit Special Function Registers (SFRs) from the selected CAN controller and returns them to the host as name/value pairs.
 
-##### Example
+### Example
 
 ```
 # Read 4 words starting at SFR address 0x000 on channel 0
 r 0 0x000 4
 ```
 
-##### Notes
+### Notes
 
 - The command operates directly on the CAN controller's SFR space — be careful when reading registers that have read-side-effects (e.g. interrupt/error status clears).
 - Use `Set CAN Register` (`s`) to write a register, and the Neptune/Orca setup commands for normal bit-timing and configuration changes.
 - Returns `Invalid` if `channel` is out of range or any argument fails to parse.
 - FreeWili GUI decodes these values for helpful debugging
 
-**How to use it** — press `r`, then channel (0-1) address (hex) wordcount when prompted.
+**How to use it** — press `r`. At the prompt, enter: channel (0-1) address (hex) wordcount.
 
 **What you enter** — `channel`, `start_address`, `word_count`.
 
@@ -175,7 +175,7 @@ r 0 0x000 4
 
 Writes a single 32-bit (or 8-bit) Special Function Register (SFR) on the selected CAN controller. This is a direct register write — bypassing the normal setup commands — and should be used only when you know exactly what the controller expects.
 
-##### Examples
+### Examples
 
 ```
 # Write the 32-bit value 0x00000004 to SFR 0x000 on channel 0
@@ -185,13 +185,15 @@ s 0 0x000 4 0x00000004
 s 0 0x010 1 0xA5
 ```
 
-##### Notes
+### Notes
 
 - This is a raw register write — be careful with registers that have write-side-effects (mode changes, FIFO control, interrupt clears, etc.).
 - For normal bit-timing and configuration changes, prefer the Neptune/Orca setup commands instead of writing SFRs directly.
 - Use `Read CAN Register(s)` (`r`) to verify the value after writing.
 - Returns `Invalid` if `channel` is out of range or any argument fails to parse.
 
-**How to use it** — press `s`, then channel (0-1) address (hex) bytesize (1,4) word (hex) when prompted.
+**How to use it** — press `s`. At the prompt, enter: channel (0-1) address (hex) bytesize (1,4) word (hex).
 
 **What you enter** — `channel`, `start_address`, `byte_count`, `word_to_write`.
+
+**See also:** [CAN (FD) panel](../panels/can-fd.md) — the on-screen panel for this.

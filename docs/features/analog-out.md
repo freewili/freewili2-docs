@@ -10,26 +10,24 @@ terminal, and on the device itself. See
 
 ## Set Analog Output
 
-Set Analog Output
-
 Sets the voltage on an analog output channel.
 
-Usage:
-  s <channel> <value>
+### Usage
 
-Arguments:
-  channel   Output channel number (0-3)
-              0, 1 : analog output voltages
-              2, 3 : window comparator thresholds (low, high)
-  value     Output voltage in volts (0.0 to 4.84, the 4x internal-reference full scale; higher values clamp)
+```
+s <channel> <value>
+```
 
-Example:
-  s 0 3.3     Set analog output 0 to 3.3 V
-  s 0 0       Stop any waveform on channel 0 and hold 0 V
-  s 2 1.0     Set window comparator low threshold to 1.0 V
-  s 3 4.0     Set window comparator high threshold to 4.0 V
+### Examples
 
-**How to use it** — press `s`, then enter channel (0-3) and float voltage (0.0-4.84) when prompted.
+```
+s 0 3.3     # Set analog output 0 to 3.3 V
+s 0 0       # Stop any waveform on channel 0 and hold 0 V
+s 2 1.0     # Set window comparator low threshold to 1.0 V
+s 3 4.0     # Set window comparator high threshold to 4.0 V
+```
+
+**How to use it** — press `s`. At the prompt, enter: Enter channel (0-3) and float voltage (0.0-4.84).
 
 **What you enter** — `channel`, `value`.
 
@@ -37,16 +35,14 @@ Example:
 
 Configures a **window comparator** on the `Trig IN/VREF` input (pin 4 of the FreeWili 2 20-pin connector). The comparator drives an internal digital signal that can be used as a trigger source for the **Logic Analyzer** and **Logic Player**.
 
-##### ⚠️ Pin Sharing Warning
+### ⚠️ Pin Sharing Warning
 
 The `Trig IN/VREF` pin is **shared** with the CANFD special-function pins:
 
 - Software **CAN Rx**
 - **CANFD Int**
 
-D
-
-**How to use it** — press `t`, then enter Trigger voltages for V- and V+ (0-5.0) when prompted.
+**How to use it** — press `t`. At the prompt, enter: Enter Trigger voltages for V- and V+ (0-5.0).
 
 **What you enter** — `value_low`, `value_high`.
 
@@ -56,7 +52,7 @@ Routes the **window comparator** output from the `Trig IN/VREF` pin (pin 4 of th
 
 Once enabled, the comparator signal configured by `t` (Set Trigger Window) becomes available to the **Logic Analyzer** and **Logic Player** as a trigger source.
 
-##### Usage
+### Usage
 
 ```
 e
@@ -64,12 +60,12 @@ e
 
 No arguments.
 
-##### Prerequisites
+### Prerequisites
 
 1. Set the comparator thresholds first with `t <valueLow> <valueHigh>`.
 2. Apply the analog signal to monitor on the `Trig IN/VREF` pin.
 
-##### ⚠️ Pin Sharing Warning
+### ⚠️ Pin Sharing Warning
 
 GPIO40 and the `Trig IN/VREF` pin are **shared** with CANFD special-function pins (**Software CAN Rx**, **CANFD Int**). Enabling the trigger will override those features on this pin.
 
@@ -79,13 +75,13 @@ GPIO40 and the `Trig IN/VREF` pin are **shared** with CANFD special-function pin
 
 Controls the on-board **programmable output supply** (`VOut`) on the FreeWili 2. This rail can source up to **1.5 A** at a software-selected voltage between **1.0 V and 5.5 V**, and is also the source used by the `g` (Glitch Programmable VOut) command.
 
-##### Usage
+### Usage
 
 ```
 u <enable> [setVoltage]
 ```
 
-##### Examples
+### Examples
 
 ```
 u 0           # turn VOut off
@@ -93,17 +89,17 @@ u 1 3.3       # enable VOut and set it to 3.3 V
 u 1 5.0       # enable VOut and set it to 5.0 V
 ```
 
-##### Related Commands
+### Related Commands
 
 - `g <nanoSeconds>` — Briefly glitches `VOut` low (for fault-injection experiments).
 - `p` (menu state) — Shows the current `VOut` enable state and the most recently programmed voltage.
 
-##### ⚠️ Notes
+### ⚠️ Notes
 
 - Make sure the load connected to `VOut` is rated for the selected voltage **before** enabling.
 - Switching `VOut` on or changing voltage can briefly perturb attached devices; power-cycle-sensitive targets should be designed accordingly.
 
-**How to use it** — press `u`, then enter Enable (0/1) Voltage (1.0 to 5.5V) when prompted.
+**How to use it** — press `u`. At the prompt, enter: Enter Enable (0/1) Voltage (1.0 to 5.5V).
 
 **What you enter** — `enable`, `set_voltage`.
 
@@ -111,18 +107,18 @@ u 1 5.0       # enable VOut and set it to 5.0 V
 
 Triggers a brief **voltage glitch** on the on-board programmable `VOut` rail by activating the MOSFET crowbar that pulls the rail toward ground for approximately the requested number of nanoseconds. Intended for **fault-injection / voltage-glitching** experiments on a target powered from `VOut`.
 
-##### Usage
+### Usage
 
 ```
 g <nanoSeconds>
 ```
 
-##### Prerequisites
+### Prerequisites
 
 1. Enable and program `VOut` first with `u 1 <setVoltage>` (1.0 – 5.5 V).
 2. Connect the target device to `VOut`.
 
-##### Examples
+### Examples
 
 ```
 g 50      # ~50 ns glitch pulse on VOut
@@ -130,18 +126,18 @@ g 250     # ~250 ns glitch pulse on VOut
 g 2000    # ~2 µs glitch pulse on VOut
 ```
 
-##### Related Commands
+### Related Commands
 
 - `u <enable> [setVoltage]` — Enable / set the programmable `VOut` voltage.
 - `p` (menu state) — Shows the current `VOut` enable state and programmed voltage.
 
-##### ⚠️ Warnings
+### ⚠️ Warnings
 
 - Voltage glitching can **reset, corrupt, or permanently damage** the connected target. Only glitch devices you are willing to risk.
 - The crowbar briefly shorts `VOut` low — ensure the load and any series/decoupling components can tolerate the transient.
 - Avoid long or repeated pulses near the upper end of the range, especially at higher `VOut` voltages and currents.
 
-**How to use it** — press `g`, then enter approx nanoseconds of glitch (10 to 2000) when prompted.
+**How to use it** — press `g`. At the prompt, enter: Enter approx nanoseconds of glitch (10 to 2000).
 
 **What you enter** — `nano_seconds`.
 
@@ -149,13 +145,13 @@ g 2000    # ~2 µs glitch pulse on VOut
 
 Configures the **DAC63204 function generator** on analog output `0` or `1` and starts it. Channels 2 and 3 are the trigger-window comparator thresholds and are rejected.
 
-##### Usage
+### Usage
 
 ```
 w <channel> <waveform> <frequencyHz> <lowVoltage> <highVoltage> <phase>
 ```
 
-##### Frequency
+### Frequency
 
 The hardware generates waveforms by stepping the output at one of 15 slew rates in one of 8 code-step sizes, so only a discrete set of frequencies exists. The firmware picks the closest and prints both the requested and the actual value.
 
@@ -165,19 +161,19 @@ The hardware generates waveforms by stepping the output at one of 15 slew rates 
 
 A precise high frequency costs amplitude: near the top of the range the slew rate is already at its 4 us minimum and only the code step can move, in 2x jumps.
 
-##### Notes
+### Notes
 
 - Writing a DC voltage to the channel with `s` stops the waveform (last writer wins).
 - `phase` is documented by the datasheet for the sine wave only; for the ramp shapes the value is written to the register but its effect is unspecified.
 - There is no square wave - the hardware does not generate one.
 
-##### Related Commands
+### Related Commands
 
 - `x <mask>` - start or stop both channels in one write, edge-aligned.
 - `s <channel> <value>` - set a static DC voltage (stops any waveform).
 - `p` - shows the current waveform state for both channels.
 
-**How to use it** — press `w`, then enter channel (0-1) shape (0=off 1=tri 2=saw 3=invsaw 4=sine) freq (Hz) low (V) high (V) phase (0-3) when prompted.
+**How to use it** — press `w`. At the prompt, enter: Enter channel (0-1) shape (0=off 1=tri 2=saw 3=invsaw 4=sine) freq (Hz) low (V) high (V) phase (0-3).
 
 **What you enter** — `channel`, `waveform`, `frequency_hz`, `low_voltage`, `high_voltage`, `phase`.
 
@@ -185,16 +181,18 @@ A precise high frequency costs amplitude: near the top of the range the slew rat
 
 Sets the run state of the DAC63204 function generator on analog outputs `0` and `1` with **one** `COMMON-DAC-TRIG` register write, so channels started together start on the same edge.
 
-##### Usage
+### Usage
 
 ```
 x <mask>
 ```
 
-##### Prerequisites
+### Prerequisites
 
 Configure each channel first with `w <channel> <waveform> <frequencyHz> <lowVoltage> <highVoltage> <phase>`. `w` also starts the channel it configures; use `x` when you need the two channels to start together.
 
-**How to use it** — press `x`, then enter run mask (bit0 = ch0, bit1 = ch1; 0 stops both, 3 runs both) when prompted.
+**How to use it** — press `x`. At the prompt, enter: Enter run mask (bit0 = ch0, bit1 = ch1; 0 stops both, 3 runs both).
 
 **What you enter** — `mask`.
+
+**See also:** [Analog IO panel](../panels/analog-io.md) — the on-screen panel for this.

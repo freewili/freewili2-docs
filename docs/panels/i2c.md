@@ -6,10 +6,6 @@ sidebar_position: 10
 
 Found under **IO** on the device's panel list.
 
-## I2CLog
+This panel exists on the device, but its documentation hasn't been written yet.
 
-Help for this view (`fwI2CPanelLog`) has not been written yet.
-
-## LA
-
-Help for this view (`fwPanelLA`) has not been written yet.
+**See also:** [I2C](../features/i2c.md) — the console/GUI commands for this panel.

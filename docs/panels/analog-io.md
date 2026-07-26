@@ -11,7 +11,7 @@ Found under **IO** on the device's panel list.
 Live view of the four analog inputs, with control over the two analog outputs,
 the trigger window and the programmable supply.
 
-## The screen
+### The screen
 
 The plot at the top traces all four input channels in millivolts, each in its
 own colour. Under it, the numbers are the present reading for each channel.
@@ -24,7 +24,7 @@ Below those sits the trigger indicator, then a row of five controls:
 
 The selected control is drawn in yellow.
 
-## Controls
+### Controls
 
 | Button | Action |
 |---|---|
@@ -38,7 +38,7 @@ The selected control is drawn in yellow.
 | Blue | Route the trigger comparator to the CPU, or release it |
 | Cancel | This help page |
 
-## Outputs
+### Outputs
 
 `o0` and `o1` go straight to the AOUT pins. Full scale is 4.84 V — the 1.21 V
 internal reference at 4x gain — so asking for more simply holds at 4.84 V.
@@ -48,7 +48,7 @@ Press Centre on the row to set one up. While a waveform is configured, that row
 shows the shape and frequency rather than a voltage, and nudging the row with
 Up, Down or the slider hands the channel back to DC at the voltage shown.
 
-## The trigger window
+### The trigger window
 
 `tg-` and `tg+` set a window on the Trig IN pin. The comparator output is high
 while the input sits between them, and that signal can drive the Logic Analyzer
@@ -57,13 +57,13 @@ and Logic Player. The blue button decides whether it actually reaches the CPU.
 Set the low threshold below the high one. If they cross, the output stops
 changing rather than triggering.
 
-## The programmable supply
+### The programmable supply
 
 `Vo` is a separate rail, adjustable from 1.0 V to 5.5 V and good for about 1.5 A.
 The yellow button switches it on and off; the row sets the voltage. Check what
 you have connected before enabling it.
 
-## Input source
+### Input source
 
 The green button chooses what the plot and the readouts show. TLA2024 is the
 external ADC, RP2350 is the processor's own. Both shows the external reading
@@ -77,7 +77,7 @@ Reached from the **Analog IO** screen: select the `o0` or `o1` row and press
 **center**. Only those two channels have a generator — `tg-` and `tg+` are the
 trigger-window comparator thresholds and `Vo` is the programmable supply.
 
-## Controls
+### Controls
 
 | Button | Action |
 |---|---|
@@ -93,7 +93,7 @@ it to make an edit take effect — edits reach the hardware as you make them whi
 the channel is running. It is there to restart the waveform from the beginning,
 which is the only way to reset a sine's phase.
 
-## Parameters
+### Parameters
 
 **Type** — `triangle`, `sawtooth`, `invsawtooth`, `sine`, or `off`. Setting it to
 `off` stops the channel and hands the pin back to DC mode. There is no square
@@ -112,7 +112,7 @@ output gain instead, giving four possible amplitudes — roughly 1.45, 1.94, 2.9
 or 3.87 V peak-to-peak, always centred on mid-scale. The `act` line reports what
 you actually got.
 
-## The detail line
+### The detail line
 
 Under the rows, the resolved hardware settings:
 
@@ -126,7 +126,7 @@ same back down, at `SR` per step. If a channel is in DC mode the line reads
 `channel in DC mode`, and if the settings cannot be realised it says so instead
 of showing numbers.
 
-## Why act differs from Freq
+### Why act differs from Freq
 
 There are only 15 slew rates and 8 code steps, so for triangle and sawtooth the
 achievable frequencies are a discrete set that depends on your amplitude. The
@@ -141,7 +141,7 @@ frequencies available above 340 Hz are 453, 676, 679 and 1359 Hz — so asking f
 whole achievable set upward and packs it more densely. Sine is exempt: it is
 `1/(24 × SR)`, fifteen evenly spread steps, and amplitude does not affect it.
 
-## Ranges
+### Ranges
 
 | | Lowest | Highest |
 |---|---|---|
@@ -154,7 +154,7 @@ Requests outside the range are clamped to the nearest achievable value, not
 rejected. Sine cannot go below about 8 Hz at any amplitude — use a triangle or
 sawtooth if you need sub-Hz.
 
-## Sharing the channel with DC
+### Sharing the channel with DC
 
 A channel is either generating a waveform or holding a DC voltage, never both.
 The last thing you touch wins: setting a DC voltage on the Analog IO screen, or
@@ -162,7 +162,7 @@ with the `s` console command, stops any waveform on that channel. While a
 waveform is configured, that screen's row shows the shape and frequency instead
 of a voltage.
 
-## Console equivalents
+### Console equivalents
 
 ```
 w <channel> <waveform> <freqHz> <lowV> <highV> <phase>
@@ -173,3 +173,5 @@ x <mask>
 a single write, so `x 3` starts them on the same edge — use it when two channels
 need to start together. The console also exposes **phase** (0, 120, 240, or 90
 degrees), which this screen always leaves at 0 degrees.
+
+**See also:** [Analog In](../features/analog-in.md), and [Analog Out & Trigger](../features/analog-out.md) — the console/GUI commands for this panel.

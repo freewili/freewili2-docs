@@ -6,10 +6,6 @@ sidebar_position: 40
 
 Found under **IO** on the device's panel list.
 
-## UARTLog
+This panel exists on the device, but its documentation hasn't been written yet.
 
-Help for this view (`fwUARTPanelLog`) has not been written yet.
-
-## LA
-
-Help for this view (`fwPanelLA`) has not been written yet.
+**See also:** [UART](../features/uart.md) — the console/GUI commands for this panel.

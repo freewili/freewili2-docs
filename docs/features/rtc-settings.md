@@ -10,7 +10,7 @@ terminal, and on the device itself. See
 
 ## Year
 
-
+Set the year on the real-time clock
 
 **How to use it** — press `y`.
 
@@ -18,7 +18,7 @@ terminal, and on the device itself. See
 
 ## Month
 
-
+Set the month on the real-time clock
 
 **How to use it** — press `n`.
 
@@ -26,7 +26,7 @@ terminal, and on the device itself. See
 
 ## Day
 
-
+Set the day of the month on the real-time clock
 
 **How to use it** — press `e`.
 
@@ -34,7 +34,7 @@ terminal, and on the device itself. See
 
 ## Day Of Week
 
-
+Set the day of the week on the real-time clock
 
 **How to use it** — press `w`.
 
@@ -42,7 +42,7 @@ terminal, and on the device itself. See
 
 ## Hours
 
-
+Set the hour on the real-time clock (24-hour format)
 
 **How to use it** — press `o`.
 
@@ -50,7 +50,7 @@ terminal, and on the device itself. See
 
 ## Minutes
 
-
+Set the minutes on the real-time clock
 
 **How to use it** — press `m`.
 
@@ -58,7 +58,7 @@ terminal, and on the device itself. See
 
 ## Seconds
 
-
+Set the seconds on the real-time clock
 
 **How to use it** — press `s`.
 

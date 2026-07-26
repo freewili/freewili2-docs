@@ -12,19 +12,19 @@ terminal, and on the device itself. See
 
 Starts BT LE advertising on the FreeWili's ESP32-C5 wireless co-processor using the supplied **advertising (host) name**. Once advertising, the FreeWili is discoverable by BLE central devices (phones, laptops, scanners, etc.).
 
-##### Failure Cases
+### Failure Cases
 
 - ESP32-C5 is not connected.
 - `hostname` is empty.
 - `hostname` exceeds the maximum allowed length.
 
-##### Related
+### Related
 
 - `Stop BT Advertising` — stops the BLE advertisement.
 - `Enable Terminal API Mode` — exposes the FreeWili Terminal API over BLE.
 - `Scan for BT Devices` — scans for nearby BLE peripherals.
 
-##### Example
+### Example
 
 ```
 a
@@ -33,7 +33,7 @@ MyFreeWili
 
 Advertises the device as **MyFreeWili**.
 
-**How to use it** — press `a`, then string: Advertising Name when prompted.
+**How to use it** — press `a`. At the prompt, enter: String: Advertising Name.
 
 **What you enter** — `hostname`.
 
@@ -41,17 +41,17 @@ Advertises the device as **MyFreeWili**.
 
 Stops BLE advertising on the FreeWili's ESP32-C5 wireless co-processor. After this command, the FreeWili is no longer discoverable by BLE central devices (phones, laptops, scanners, etc.).
 
-##### Failure Cases
+### Failure Cases
 
 - ESP32-C5 is not connected.
 
-##### Related
+### Related
 
 - `Start BT Advertising` — begins BLE advertising with a chosen host name.
 - `Enable Terminal API Mode` — exposes the FreeWili Terminal API over BLE.
 - `Scan for BT Devices` — scans for nearby BLE peripherals.
 
-##### Example
+### Example
 
 ```
 t
@@ -65,18 +65,18 @@ Stops BLE advertising on the device.
 
 Performs a Bluetooth LE scan on the FreeWili's ESP32-C5 wireless co-processor for the specified duration. Discovered peripherals are reported asynchronously as `btscan` events containing the advertised name, MAC address, and RSSI.
 
-##### Failure Cases
+### Failure Cases
 
 - ESP32-C5 is not connected.
 - `durationms` is missing or not a valid unsigned integer.
 
-##### Related
+### Related
 
 - `Start BT Advertising` — begins BLE advertising with a chosen host name.
 - `Stop BT Advertising` — stops the BLE advertisement.
 - `Enable Terminal API Mode` — exposes the FreeWili Terminal API over BLE.
 
-##### Example
+### Example
 
 ```
 s
@@ -85,7 +85,7 @@ s
 
 Scans for nearby BLE devices for 5 seconds, streaming each discovery as a `btscan` event.
 
-**How to use it** — press `s`, then enter scan duration in milliseconds: when prompted.
+**How to use it** — press `s`. At the prompt, enter: Enter scan duration in milliseconds:.
 
 **What you enter** — `durationms`.
 
@@ -95,23 +95,23 @@ Toggles the FreeWili **Terminal API** exposure over BT LE on the ESP32-C5 wirele
 
 This is a **toggle**: each invocation flips the current state.
 
-##### Notes
+### Notes
 
 - BLE advertising must be running (see `Start BT Advertising`) for central devices to discover and connect to the Terminal API.
 - Because this is a toggle, run it twice to return to the original state.
 - The new state is persisted in menu settings and survives subsequent setting updates.
 
-##### Failure Cases
+### Failure Cases
 
 - ESP32-C5 is not connected.
 
-##### Related
+### Related
 
 - `Start BT Advertising` — begins BLE advertising with a chosen host name.
 - `Stop BT Advertising` — stops the BLE advertisement.
 - `Scan for BT Devices` — scans for nearby BLE peripherals.
 
-##### Example
+### Example
 
 ```
 e
@@ -120,3 +120,5 @@ e
 Toggles Terminal API over BLE. Run once to enable, again to disable.
 
 **How to use it** — press `e`.
+
+**See also:** [Bluetooth panel](../panels/bluetooth.md) — the on-screen panel for this.

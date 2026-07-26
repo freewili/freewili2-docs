@@ -12,7 +12,7 @@ terminal, and on the device itself. See
 
 Take a picture from WILEye and save its SD card or FREE-WILi's Files system by file name.
 
-**How to use it** — press `t`, then enter Destination as a Dec (0=SDCard, 1=FreeWili) and String for file name, seperated by space when prompted.
+**How to use it** — press `t`. At the prompt, enter: Enter Destination as a Dec (0=SDCard, 1=FreeWili) and String for file name, separated by space.
 
 **What you enter** — `destination`, `filename`.
 
@@ -20,7 +20,7 @@ Take a picture from WILEye and save its SD card or FREE-WILi's Files system by f
 
 Start recording video from WILEye and save it to SD card by file name
 
-**How to use it** — press `v`, then enter file name for video (Will be saved on WILEye's SD card) when prompted.
+**How to use it** — press `v`. At the prompt, enter: Enter file name for video (Will be saved on WILEye's SD card).
 
 **What you enter** — `filename`.
 
@@ -34,7 +34,7 @@ Stop recording video from WILEye
 
 Stream AI Detection Events from WILEye
 
-**How to use it** — press `a`, then enter AI Stream Mode (0=Off, 1=Pedestrian, 2=Face) when prompted.
+**How to use it** — press `a`. At the prompt, enter: Enter AI Stream Mode (0=Off, 1=Pedestrian, 2=Face).
 
 **What you enter** — `ai_stream_mode`.
 
@@ -42,7 +42,7 @@ Stream AI Detection Events from WILEye
 
 Set the zoom level of WILEye
 
-**How to use it** — press `m`, then enter Zoom Level 1-4 when prompted.
+**How to use it** — press `m`. At the prompt, enter: Enter Zoom Level 1-4.
 
 **What you enter** — `zoom`.
 
@@ -50,7 +50,7 @@ Set the zoom level of WILEye
 
 Set the contrast level of WILEye
 
-**How to use it** — press `c`, then enter Contrast percentages 0-100 when prompted.
+**How to use it** — press `c`. At the prompt, enter: Enter Contrast percentages 0-100.
 
 **What you enter** — `contrast`.
 
@@ -58,7 +58,7 @@ Set the contrast level of WILEye
 
 Set the saturation level of WILEye
 
-**How to use it** — press `i`, then enter Saturation percentages 0-100 when prompted.
+**How to use it** — press `i`. At the prompt, enter: Enter Saturation percentages 0-100.
 
 **What you enter** — `saturation`.
 
@@ -66,7 +66,7 @@ Set the saturation level of WILEye
 
 Set the brightness level of WILEye
 
-**How to use it** — press `b`, then enter Brightness percentages 0-100 when prompted.
+**How to use it** — press `b`. At the prompt, enter: Enter Brightness percentages 0-100.
 
 **What you enter** — `brightness`.
 
@@ -74,7 +74,7 @@ Set the brightness level of WILEye
 
 Set the hue level of WILEye
 
-**How to use it** — press `u`, then enter Hue percentages 0-100 when prompted.
+**How to use it** — press `u`. At the prompt, enter: Enter Hue percentages 0-100.
 
 **What you enter** — `hue`.
 
@@ -82,7 +82,7 @@ Set the hue level of WILEye
 
 Set the resolution state of WILEye
 
-**How to use it** — press `y`, then enter Resolution Selection (0=640x480, 1=1280x720, 2=1920x1080) when prompted.
+**How to use it** — press `y`. At the prompt, enter: Enter Resolution Selection (0=640x480, 1=1280x720, 2=1920x1080).
 
 **What you enter** — `resolutionstate`.
 
@@ -90,6 +90,8 @@ Set the resolution state of WILEye
 
 Set the flash state of WILEye
 
-**How to use it** — press `l`, then enter Flash State (0=Off, 1=On) when prompted.
+**How to use it** — press `l`. At the prompt, enter: Enter Flash State (0=Off, 1=On).
 
 **What you enter** — `flash`.
+
+**See also:** [Camera panel](../panels/camera.md) — the on-screen panel for this.

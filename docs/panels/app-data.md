@@ -6,6 +6,4 @@ sidebar_position: 50
 
 > **Note:** This is a planned two-pane data browser. As of this writing, most of its implementation is stubbed out - the grid never populates and most of the button actions are placeholder code that doesn't do anything yet.
 
-## App Signals
-
-Help for this view (`fwPanelAppSignals`) has not been written yet.
+This panel exists on the device, but its documentation hasn't been written yet.

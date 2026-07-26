@@ -12,7 +12,7 @@ terminal, and on the device itself. See
 
 Drive a GPIO pin **high** (logic 1, ~3.3 V).
 
-##### Usage
+### Usage
 
 Enter the GPIO pin number when prompted:
 
@@ -20,19 +20,19 @@ Enter the GPIO pin number when prompted:
 s 25
 ```
 
-##### Valid Pins
+### Valid Pins
 
 Only pins exposed on the FreeWili connectors are accepted. On the standard
 build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`,
 `25`, `26`, `27`. Invalid pins return `false`.
 
-##### See Also
+### See Also
 
 - `l` — Low (drive a GPIO low)
 - `t` — Toggle (invert a GPIO)
 - `u` — Get All IOs (read full GPIO bitfield)
 
-**How to use it** — press `s`, then enter GPIO Number when prompted.
+**How to use it** — press `s`. At the prompt, enter: Enter GPIO Number.
 
 **What you enter** — `pin`.
 
@@ -40,7 +40,7 @@ build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`,
 
 Drive a GPIO pin **low** (logic 0, ~0 V).
 
-##### Usage
+### Usage
 
 Enter the GPIO pin number when prompted:
 
@@ -48,19 +48,19 @@ Enter the GPIO pin number when prompted:
 l 25
 ```
 
-##### Valid Pins
+### Valid Pins
 
 Only pins exposed on the FreeWili connectors are accepted. On the standard
 build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`,
 `25`, `26`, `27`. Invalid pins return `false`.
 
-##### See Also
+### See Also
 
 - `s` — High (drive a GPIO high)
 - `t` — Toggle (invert a GPIO)
 - `u` — Get All IOs (read full GPIO bitfield)
 
-**How to use it** — press `l`, then enter GPIO Number when prompted.
+**How to use it** — press `l`. At the prompt, enter: Enter GPIO Number.
 
 **What you enter** — `pin`.
 
@@ -69,7 +69,7 @@ build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`,
 **Invert** the current output level of a GPIO pin. If the pin is currently low it
 is driven high; if it is currently high it is driven low.
 
-##### Usage
+### Usage
 
 Enter the GPIO pin number when prompted:
 
@@ -77,27 +77,27 @@ Enter the GPIO pin number when prompted:
 t 25
 ```
 
-##### Valid Pins
+### Valid Pins
 
 Only pins exposed on the FreeWili connectors are accepted. On the standard
 build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`,
 `25`, `26`, `27`. Invalid pins return `false`.
 
-##### Notes
+### Notes
 
 - If the pin was previously configured as an input (e.g. floating or pulled),
   the read state determines the initial toggle direction before the pin is
   switched to output.
 - To force a known level instead of toggling, use `s` (High) or `l` (Low).
 
-##### See Also
+### See Also
 
 - `s` — High (drive a GPIO high)
 - `l` — Low (drive a GPIO low)
 - `p` — PWM IO (drive a GPIO with PWM)
 - `u` — Get All IOs (read full GPIO bitfield)
 
-**How to use it** — press `t`, then enter GPIO Number when prompted.
+**How to use it** — press `t`. At the prompt, enter: Enter GPIO Number.
 
 **What you enter** — `pin`.
 
@@ -106,7 +106,7 @@ build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`,
 Enable **PWM** (pulse-width modulation) output on a GPIO pin at a given
 frequency and duty cycle.
 
-##### Usage
+### Usage
 
 Enter the GPIO number, frequency (Hz), and duty cycle (%) separated by
 spaces:
@@ -117,13 +117,13 @@ p 25 1000 50
 
 The example above drives pin `25` with a 1 kHz square wave at 50 % duty.
 
-##### Valid Pins
+### Valid Pins
 
 Only pins exposed on the FreeWili connectors are accepted. On the
 standard build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`,
 `15`, `16`, `17`, `25`, `26`, `27`. Invalid pins return `false`.
 
-##### Notes
+### Notes
 
 - Very low or very high frequencies may not be exactly representable;
   the achieved value depends on the RP2350 PWM clock divider and wrap.
@@ -132,14 +132,14 @@ standard build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`,
 - To stop PWM and return the pin to plain GPIO, drive it with `s`, `l`,
   or `t`.
 
-##### See Also
+### See Also
 
 - `s` — High (drive a GPIO high)
 - `l` — Low (drive a GPIO low)
 - `t` — Toggle (invert a GPIO)
 - `u` — Get All IOs (read full GPIO bitfield)
 
-**How to use it** — press `p`, then enter GPIO Number, freq, and duty (0-100) seperated by spaces: when prompted.
+**How to use it** — press `p`. At the prompt, enter: Enter GPIO Number, freq, and duty (0-100) separated by spaces:.
 
 **What you enter** — `gpio_number`, `freq`, `duty`.
 
@@ -148,7 +148,7 @@ standard build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`,
 Read the **state of every GPIO pin** at once and print the result as a
 hexadecimal bitfield.
 
-##### Usage
+### Usage
 
 ```
 u
@@ -156,7 +156,7 @@ u
 
 No arguments are required.
 
-##### Decoding the Output
+### Decoding the Output
 
 For example, an output of `0200`:
 
@@ -168,7 +168,7 @@ For example, an output of `0200`:
 
 All other pins shown are low.
 
-##### Notes
+### Notes
 
 - Pins are sampled as **inputs** regardless of their current direction; this
   reads the pad level, so an output pin reads back the level it is driving.
@@ -178,7 +178,7 @@ All other pins shown are low.
 - The printed width is fixed at 4 hex digits and does not cover all RP2350
   GPIOs — use it primarily for the lower 16 pins.
 
-##### See Also
+### See Also
 
 - `s` — High (drive a GPIO high)
 - `l` — Low (drive a GPIO low)
@@ -192,7 +192,7 @@ All other pins shown are low.
 Periodically sample **all GPIO pins** and stream the bitfield to the host as
 `gpioReport` binary events at a fixed millisecond rate.
 
-##### Usage
+### Usage
 
 Enter the report rate in milliseconds when prompted:
 
@@ -203,7 +203,7 @@ o 10
 The example above streams the full GPIO bitfield every 10 ms. Pass `0` to
 **stop** streaming.
 
-##### Notes
+### Notes
 
 - The stream uses the **binary API** (`addEvent_gpioReport`), not the text
   console, so reports do not appear as printed lines.
@@ -212,14 +212,14 @@ The example above streams the full GPIO bitfield every 10 ms. Pass `0` to
 - Only one stream rate is active at a time; sending a new value replaces the
   previous one.
 
-##### See Also
+### See Also
 
 - `u` — Get All IOs (one-shot read of the GPIO bitfield as hex)
 - `s` — High (drive a GPIO high)
 - `l` — Low (drive a GPIO low)
 - `t` — Toggle (invert a GPIO)
 
-**How to use it** — press `o`, then enter Sample Time in milliseconds when prompted.
+**How to use it** — press `o`. At the prompt, enter: Enter Sample Time in milliseconds.
 
 **What you enter** — `reportratems`.
 
@@ -230,7 +230,7 @@ Enable or disable the **High-Speed Bidirectional IO (HSBDIO)** path, which uses
 allows GPIO26 to be driven as a fast bidirectional data line under FPGA control
 instead of being a plain RP2350 GPIO.
 
-##### Usage
+### Usage
 
 Enter `1` to enable HSBDIO or `0` to disable it:
 
@@ -239,7 +239,7 @@ e 1
 e 0
 ```
 
-##### Pins Used
+### Pins Used
 
 - `GPIO26` — high-speed bidirectional data line.
 - `GPIO27` — direction control for GPIO26 (driven by the host while HSBDIO is
@@ -248,13 +248,15 @@ e 0
 While HSBDIO is enabled, do **not** drive GPIO26 or GPIO27 with the normal
 GPIO commands (`s`, `l`, `t`, `p`) — disable HSBDIO first with `e 0`.
 
-##### See Also
+### See Also
 
 - `s` — High (drive a GPIO high)
 - `l` — Low (drive a GPIO low)
 - `t` — Toggle (invert a GPIO)
 - `u` — Get All IOs (read full GPIO bitfield)
 
-**How to use it** — press `e`, then enter 1 to enable or 0 to disable when prompted.
+**How to use it** — press `e`. At the prompt, enter: Enter 1 to enable or 0 to disable.
 
 **What you enter** — `pin`.
+
+**See also:** [GPIO panel](../panels/gpio.md) — the on-screen panel for this.

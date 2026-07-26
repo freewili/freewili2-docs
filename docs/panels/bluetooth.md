@@ -6,10 +6,6 @@ sidebar_position: 30
 
 Found under **Wireless** on the device's panel list.
 
-## BLEInfo
+This panel exists on the device, but its documentation hasn't been written yet.
 
-Help for this view (`fwBLEPanelInfo`) has not been written yet.
-
-## BLEControl
-
-Help for this view (`fwBLEPanelControl`) has not been written yet.
+**See also:** [Bluetooth LE](../features/bluetooth-le.md) — the console/GUI commands for this panel.

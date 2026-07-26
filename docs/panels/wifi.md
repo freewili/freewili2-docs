@@ -6,10 +6,6 @@ sidebar_position: 20
 
 Found under **Wireless** on the device's panel list.
 
-## Wifi Station Info
+This panel exists on the device, but its documentation hasn't been written yet.
 
-Help for this view (`fwWifiPanelStationInfo`) has not been written yet.
-
-## Wifi APInfo
-
-Help for this view (`fwWifiPanelAPInfo`) has not been written yet.
+**See also:** [Wifi](../features/wifi.md) — the console/GUI commands for this panel.

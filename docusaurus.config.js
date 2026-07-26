@@ -57,6 +57,23 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
+          // Explicit, not relied-upon-by-default: docs/_pending.md is the
+          // generator's internal editorial worklist (menus/panels nobody has
+          // classified in productdocs.json yet) and must never be a live
+          // page. Docusaurus's own default `exclude` already skips `_*`
+          // files, so this is currently redundant - which is exactly the
+          // problem (finding M6): a future change to `exclude` (e.g. someone
+          // narrowing it for an unrelated reason) could silently start
+          // publishing it with no test catching that. This list is
+          // Docusaurus's own documented default, restated here on purpose so
+          // _pending.md's exclusion doesn't depend on nobody ever touching
+          // this option.
+          exclude: [
+            '**/_*.{js,jsx,ts,tsx,md,mdx}',
+            '**/_*/**',
+            '**/*.test.{js,jsx,ts,tsx}',
+            '**/__tests__/**',
+          ],
         },
         blog: false,
         theme: { customCss: './src/css/custom.css' },

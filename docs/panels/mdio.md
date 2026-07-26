@@ -6,10 +6,6 @@ sidebar_position: 60
 
 Found under **IO** on the device's panel list.
 
-## MDIOLog
+This panel exists on the device, but its documentation hasn't been written yet.
 
-Help for this view (`fwMDIOPanelLog`) has not been written yet.
-
-## LA
-
-Help for this view (`fwPanelLA`) has not been written yet.
+**See also:** [MDIO](../features/mdio.md) — the console/GUI commands for this panel.

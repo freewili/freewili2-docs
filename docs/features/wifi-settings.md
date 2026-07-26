@@ -10,13 +10,13 @@ terminal, and on the device itself. See
 
 ## Enable Station Mode
 
-
+Connect the device to an existing Wi-Fi network in station mode, or disconnect from it
 
 **How to use it** — press `s`.
 
 ## SSID for Station Mode
 
-
+Set the name (SSID) of the Wi-Fi network to join in station mode
 
 **How to use it** — press `e`.
 
@@ -24,7 +24,7 @@ terminal, and on the device itself. See
 
 ## Password for Station Mode
 
-
+Set the password used to join the Wi-Fi network in station mode
 
 **How to use it** — press `p`.
 
@@ -32,13 +32,13 @@ terminal, and on the device itself. See
 
 ## Enable AP Mode
 
-
+Turn the device's own Wi-Fi access point on or off
 
 **How to use it** — press `a`.
 
 ## AP Auth
 
-
+Choose the Wi-Fi security type used by the device's own access point
 
 **How to use it** — press `u`.
 
@@ -46,13 +46,13 @@ terminal, and on the device itself. See
 
 ## AP hide SSID
 
-
+Hide the access point's network name (SSID) so it isn't broadcast to nearby devices
 
 **How to use it** — press `i`.
 
 ## SSID for AP
 
-
+Set the network name (SSID) broadcast by the device's own access point
 
 **How to use it** — press `g`.
 
@@ -60,7 +60,7 @@ terminal, and on the device itself. See
 
 ## Password for AP
 
-
+Set the password required to join the device's own access point
 
 **How to use it** — press `x`.
 
