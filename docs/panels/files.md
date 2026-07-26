@@ -15,9 +15,11 @@ there.
 
 Two lists side by side. The left list browses folders and files, starting
 at the card's root; a folder shows ".." at the top once you have moved into
-it, to step back out. The right list holds three fixed actions for whatever
-folder is showing on the left: New Directory, New File, and Flash ESP32.
-Folders are marked with a "[D]" prefix and shown in green; files are white.
+it, to step back out. The right list holds actions for whatever folder is
+showing on the left: New Directory and New File are always there, and
+Flash ESP32 joins them only when the current folder holds a flashable
+ESP32 image. Folders are marked with a "[D]" prefix and shown in green;
+files are white.
 
 ### Controls
 
@@ -43,13 +45,14 @@ nothing.
 
 ### The action list
 
-The right list always offers the same three choices, regardless of what is
-in the current folder:
+New Directory and New File are always offered:
 
 - New Directory - asks for a name and creates it in the current folder
 - New File - asks for a name and creates an empty file in the current folder
-- Flash ESP32 - sends the current folder to the ESP32 flasher
 
-Flash ESP32 is always present here, whether or not the current folder
-actually holds anything flashable - selecting it always attempts a flash of
-the current folder's contents.
+Flash ESP32 is added as a third choice only when the current folder holds
+a flashable ESP32 image; a folder without one shows just those first two.
+
+The third row stays selectable even when Flash ESP32 was not added for the
+current folder, so selecting it there still attempts a flash - of a folder
+that has nothing to flash - and nothing useful happens.

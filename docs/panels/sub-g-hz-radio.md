@@ -44,12 +44,18 @@ outside those three ranges is rejected - the radio simply will not tune
 there, no matter what a setup screen lets you type in.
 
 Where a radio's settings come from depends on which screen you are on.
-The Read screen (the receive log) and the Frequency Analyzer use whatever
-is stored in the Radio Settings menu found elsewhere in the device. Read
-Raw and Transmit do not - Read Raw's Frequency, Preset, Protocol and
-Duration are set right there on its own setup list, and Transmit sends
-whatever frequency, preset and protocol are recorded in the .sub file
-itself.
+The Read screen (the receive log) uses whatever is stored in the Radio
+Settings menu found elsewhere in the device. Read Raw and Transmit do
+not - Read Raw's Frequency, Preset, Protocol and Duration are set right
+there on its own setup list, and Transmit sends whatever frequency,
+preset and protocol are recorded in the .sub file itself.
+
+The Frequency Analyzer is different again: while it runs, it steps its
+own fixed list of frequencies rather than using the Radio Settings menu,
+and the layout it opens with comes from its own Frequency Analyzer
+Settings menu found elsewhere in the device. It only touches the Radio
+Settings menu on the way out, restoring each radio to whatever that menu
+has stored for it once you leave.
 
 ## Radio Receive Log
 

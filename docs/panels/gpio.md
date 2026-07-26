@@ -78,10 +78,15 @@ you can see fast signal changes a live view would miss.
 
 Each row is one channel: its name on the left, its waveform trace beside
 it. Which pins appear here, and what they are named, depends on which tool
-you opened this screen from. Up and Down move the highlighted row, shown
-with a gray band behind its name; whichever channel is highlighted when
-you arm a capture becomes its trigger source. Once a capture lands, a red
-vertical line marks the sample where the trigger fired.
+you opened this screen from. Once a capture lands, a red vertical line
+marks the sample where the trigger fired.
+
+On screens with a long channel list - GPIO in particular - Up and Down
+move a highlighted row, shown with a gray band behind its name, and
+whichever channel is highlighted when you arm a capture becomes its
+trigger source. On screens with only a few channels, there is no
+highlighted row: Up and Down do nothing here, and the trigger source is
+always the first channel shown.
 
 ### Controls
 
@@ -99,10 +104,10 @@ vertical line marks the sample where the trigger fired.
 ### Capturing
 
 Blue arms the capture - its label changes from Arm to Stop while armed -
-and waits for the trigger condition set by Yellow on the channel
-highlighted at that moment: a rising edge, a falling edge, or none, which
-starts capturing right away without waiting for either. Red forces the
-trigger early if you do not want to wait for it. Green sets how fast the
+and waits for the trigger condition set by Yellow on its trigger source
+(see The screen above for how that source is chosen): a rising edge, a
+falling edge, or none, which starts capturing right away without waiting
+for either. Red forces the trigger early if you do not want to wait for it. Green sets how fast the
 capture samples, from 10 million samples a second down to 10 thousand;
 faster rates see less time but finer detail.
 
@@ -116,14 +121,16 @@ always covers less time, and how much less depends on that channel count.
 ### After a capture
 
 Once a capture lands, the waveform fills the screen with the trigger point
-placed in the middle. Left and Right step the view through the rest of the
-buffer around it; before a capture finishes, they do nothing.
+placed roughly three-quarters of the way across, so more of what happened
+before the trigger is visible than after it. Left and Right step the view
+through the rest of the buffer around it; before a capture finishes, they
+do nothing.
 
 ### Shared by several tools
 
 This screen appears inside several different tools - GPIO, I2C, SPI, UART
-and MDIO all open it with their own AI button, each showing that tool's
-own pins or bus signals as the channels here. AI on this screen returns
+and MDIO all open it with their own Page button, each showing that tool's
+own pins or bus signals as the channels here. Page on this screen returns
 you to whichever one opened it.
 
 **See also:** [GPIO](../features/gpio.md) — the console/GUI commands for this panel.
