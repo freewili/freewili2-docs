@@ -8,4 +8,293 @@ sidebar_position: 10
 
 Found under **Wireless** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## Radios
+
+Entry point for the two onboard sub-GHz radios: pick where you want to go.
+
+### The screen
+
+A menu list fills the screen: Read, Read Raw, Transmit, Frequency Analyzer.
+The highlighted row is what Centre will open.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Gray | Move the highlight up |
+| Yellow | Move the highlight down |
+| Green | Labeled Sel, but pressing it does nothing - Centre opens the highlighted item |
+| Centre | Open the highlighted item |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+### What each item opens
+
+- **Read** opens the Radio Receive Log - a live view of packets coming in on
+  either radio.
+- **Read Raw** opens the Radio Raw Capture screen, which records a signal
+  straight to a file on the SD card.
+- **Transmit** opens the Sub Files list first, so you can choose a saved
+  file, then the Transmit screen to send it.
+- **Frequency Analyzer** opens a live RSSI scan across both radios.
+
+### The two radios
+
+This device has two identical sub-GHz radios, Radio 1 and Radio 2. Both are
+built around the same chip and share the same three supported frequency
+bands: 300 to 348 MHz, 387 to 464 MHz, and 779 to 928 MHz. A frequency
+outside those three ranges is rejected - the radio simply will not tune
+there, no matter what a setup screen lets you type in.
+
+Where a radio's settings come from depends on which screen you are on.
+The Read screen (the receive log) and the Frequency Analyzer use whatever
+is stored in the Radio Settings menu found elsewhere in the device. Read
+Raw and Transmit do not - Read Raw's Frequency, Preset, Protocol and
+Duration are set right there on its own setup list, and Transmit sends
+whatever frequency, preset and protocol are recorded in the .sub file
+itself.
+
+## Radio Receive Log
+
+Live log of packets arriving on one of the two radios, with a test
+transmit button.
+
+### The screen
+
+The current radio's name is shown top left, its frequency top right, and
+a scrolling log fills the rest of the screen: oldest at the top, newest
+at the bottom.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Yellow | Switch which radio is shown (the label names the other one) |
+| Gray | Send a fixed test message on the radio shown |
+| Green | Clear the log |
+| Blue | Back to the Radios menu |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+### Reading the log
+
+A line is added whenever a packet arrives with a strong enough signal: an
+`Rssi: <value>, Crc: <status>, LQI: <value>` summary line, followed by an
+`Rx)` line with the packet's first 8 bytes in hex. There is no line for
+silence or a weak signal - if nothing suitable arrives, the log simply
+does not grow. Every line is printed in the same plain white; nothing
+here is colour-coded by status.
+
+Gray sends a fixed test message, "FreeWili Yaya!", out on whichever radio
+is currently shown - it logs a matching `Tx)` line. It is not configurable
+from this screen and does not resend anything that was received.
+
+### Switching radios
+
+Yellow swaps between Radio 1 and Radio 2; the name and frequency shown
+update to match. Only one radio's incoming packets are logged here at a
+time - switching does not lose anything already logged, but it does stop
+watching the radio you switch away from.
+
+### What persists
+
+The log only fills in while this screen is on the display. Frequency,
+modulation and other radio settings are set from the Radio Settings menu
+found elsewhere in the device, not from this screen - leaving with Red
+stops the log from either radio until you come back.
+
+## Radio Raw Capture
+
+Records a raw sub-GHz signal on Radio 1 straight to a file on the SD card,
+in the same format the Transmit screen plays back.
+
+### The screen
+
+The main view shows no live readout right now - starting a capture does
+not show progress here, it records straight to the file. Config opens a
+setup list of six fields for the next capture.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Yellow | Config: open the capture setup list |
+| Green | Start a capture with the current setup |
+| Blue | Back to the Radios menu |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+### Setting up a capture
+
+Yellow opens a list of six fields. Centre opens the highlighted one:
+
+- **Name** - the file name the capture is saved as (default `cap1.sub`).
+- **Preset** - a list of four radio configurations: Ook 270 Async,
+  Ook 650 Async, Two FSK Dev 238 Async, Two FSK Dev 476 Async.
+- **Preset Data** - a raw hex value. It only takes effect with a custom
+  preset, and this screen's own Preset list does not offer one, so right
+  now this field has no way to take effect.
+- **Freq** - the frequency to capture at, in Hz.
+- **Protocol** - a list of three: Raw, BinRaw, Princeton.
+- **Duration** - how long the capture runs, in milliseconds, 0 to 5000.
+  Left at its default of 0, a capture stops almost as soon as it starts -
+  set this before pressing Green.
+
+Blue or Red on this list both cancel back to the main view without
+starting anything.
+
+### Frequency
+
+The Freq field accepts anything from 300,000,000 to 900,000,000 Hz, but
+the radio only tunes within its three supported bands: 300 to 348 MHz,
+387 to 464 MHz, and 779 to 928 MHz. A frequency the field accepts but that
+falls between those bands does nothing when you start a capture - no
+error is shown, the capture simply never begins.
+
+### What it saves
+
+A capture always uses Radio 1, and writes a `.sub` file with the setup
+above recorded in its header. By default that file is written to the
+root of the SD card, not the radio folder the Sub Files list reads from,
+so a capture left at its default name will not appear there - put that
+folder in the Name field if you want it to show up on the Transmit list.
+
+## Radio Sub Files
+
+Lists saved `.sub` signal files so you can pick one to transmit.
+
+### The screen
+
+A list fills the screen, titled "JUST GONNA SEND IT" - every `.sub` file
+found in the radio folder on the SD card. The highlighted row is what
+Centre will open.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Centre | Open the highlighted file on the Transmit screen |
+| Blue | Back to the Radios menu |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+### Where the files come from
+
+Only `.sub` files already on the SD card, in the radio folder, are
+listed - copy or capture one there first. The Radio Raw Capture screen
+writes files in this same format; giving a capture's Name field a path
+into the radio folder makes it show up here.
+
+### What happens next
+
+Selecting a file does not transmit it immediately - it opens the
+Transmit screen with that file loaded and ready, so you can start
+sending it from there.
+
+## Radio Transmit
+
+Sends the `.sub` file you picked on the Sub Files screen, on Radio 1 or
+Radio 2.
+
+### The screen
+
+The selected file name is shown at the top in yellow, with a status line
+below it: IDLE, Transmitting!, or Done!. While transmitting, a sample
+count and a moving graph appear - the graph is just an animated
+indicator that a transmit is under way, not a picture of the actual
+signal. A red "Repeating Transmit!" line appears when repeat is on.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Yellow | Start or stop sending the file on Radio 1 |
+| Green | Start or stop sending the file on Radio 2 |
+| Blue | Back to the Sub Files list |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+### Sending
+
+Press Yellow or Green once to start sending the selected file on that
+radio; the button's label changes to STOP while it runs. Pressing it
+again stops the transmit early. Only one radio transmits the file at a
+time - starting one does not automatically stop the other, but both
+send the same selected file.
+
+Press either button twice quickly to also turn on repeat: the file sends
+again automatically every time it finishes, shown by the red "Repeating
+Transmit!" line. Stop it the same way you stop a normal transmit.
+
+Repeat has a bug: every repeat after the first copy goes out on Radio 1,
+even if you started the repeating transmit on Radio 2. Starting repeat
+on Radio 2 sends the first copy there, then silently switches to
+Radio 1 for every copy after that.
+
+### Where the signal comes from
+
+The file itself carries its own frequency, preset and protocol, recorded
+when it was captured or created - this screen does not read those from
+the Radio Settings menu, it uses whatever the file specifies.
+
+### What persists
+
+Leaving this screen - Back, Cancel, or returning to the main menu - stops
+an in-progress transmit. Nothing keeps sending once you leave.
+
+## Radio Frequency Analyzer
+
+Continuously scans both radios for the strongest nearby signal and plots
+it.
+
+### The screen
+
+By default the screen is split between Radio 1 and Radio 2, each with a
+small plot of signal strength and a log of the strongest frequency found
+each pass, for example "433.920 MHz -60 dB". A yellow line on each plot
+marks the current RSSI threshold. View can switch to a single, larger
+plot for just one radio.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Yellow | View: open a list of layouts |
+| Centre | Choose the highlighted layout |
+| Green | Clear both radios' logged peaks and plots |
+| Blue | Show the RSSI threshold; press to change it |
+| Red | Stop scanning, restore normal radio settings, return to main menu |
+| Cancel | This help page |
+
+### How the scan works
+
+Each pass, a radio steps through a fixed list of common frequencies meant
+to cover its three supported bands - 300 to 348 MHz, 387 to 464 MHz, and
+779 to 928 MHz - then zooms in around the strongest one it found for a
+closer reading. A couple of the entries on that list sit just outside
+those bands; the radio cannot tune to them, so those particular steps are
+silently skipped with no effect on the scan. A frequency is only logged
+and plotted as a peak when its signal strength is above the RSSI
+threshold; weaker readings still fill the plot but are not logged as a
+peak.
+
+### RSSI threshold
+
+Blue's own label shows the current threshold, for example "-60 dB".
+Pressing it opens a number entry from -100 to 0 dB - values outside that
+range are rejected. Lower (more negative) accepts weaker signals as
+peaks; -100 accepts nearly anything, 0 accepts almost nothing.
+
+### Choosing a view
+
+View opens a list: Radio 1-2 Plot/Log, Radio 1 Plot/Log, Radio 1 Plot,
+Radio 2 Plot/Log, Radio 2 Plot. Choosing a single-radio layout only
+changes what is shown - both radios keep scanning underneath either way.
+
+### What persists
+
+The layout you land on when you open this screen comes from the
+Frequency Analyzer Settings menu found elsewhere in the device; choosing
+a different one with View lasts only until you leave. Leaving with Red
+restores each radio to whatever the Radio Settings menu has stored for
+it - the scan temporarily reconfigures both radios while it runs.

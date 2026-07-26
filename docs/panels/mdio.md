@@ -6,6 +6,114 @@ sidebar_position: 60
 
 Found under **IO** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## MDIO Log
+
+Reads and writes MDIO registers on an Ethernet PHY, and logs the results.
+
+### The screen
+
+A scrolling log fills the screen, oldest at the top and newest at the
+bottom. Each read, write or poll prints a line with the result. Blue lines
+show successful operations; red lines show when a device or module was not
+found.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Gray | Poll: scan PHY addresses 0-31 and check for an SFP module |
+| Hold Gray | Clear the log |
+| Yellow | Set up a register read |
+| Green | Set up a register write |
+| Blue | Set up a read-modify-write |
+| AI | Open the Logic Analyzer view, where available |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+### Setting up a read, write or read-modify-write
+
+Yellow, Green and Blue each open a list of settings for that operation:
+the protocol (Clause 22, Clause 45, Clause 45 Emulation, or Intrepid SFP),
+the PHY and device addresses it needs, the register address and, on a
+read, a poll rate - and - for a write or modify - the data and, for
+modify, the mask to apply to the existing value. Select a setting to
+change it, then press the button shown at the bottom of that list to run
+the operation; it returns you to the log and prints the result there. The
+poll rate on a read can be set but currently has no effect - a read runs
+once, the same as any other read. Red on a setup list cancels back to the
+log without running anything.
+
+### Poll
+
+Gray sweeps every PHY address from 0 to 31, checking Clause 22 and Clause 45
+compatibility at each one, and separately checks whether an SFP module is
+present. Addresses that answer are logged with which protocol they support;
+if a poll takes a while, that is normal - it is testing 32 addresses in
+turn. A poll that finds nothing logs "No MDIO PHYs Found". Holding Gray
+instead of tapping it clears the log without polling.
+
+### Shared by two menus
+
+This screen appears both as its own MDIO tool and inside another app that
+also offers a Logic Analyzer view alongside it. The AI button opens that
+Logic Analyzer view when one is available; from the standalone MDIO tool
+there isn't one to open.
+
+## Logic Analyzer
+
+Captures a burst of digital pins over time and draws them as waveforms, so
+you can see fast signal changes a live view would miss.
+
+### The screen
+
+Each row is one channel: its name on the left, its waveform trace beside
+it. Which pins appear here, and what they are named, depends on which tool
+you opened this screen from. Up and Down move the highlighted row, shown
+with a gray band behind its name; whichever channel is highlighted when
+you arm a capture becomes its trigger source. Once a capture lands, a red
+vertical line marks the sample where the trigger fired.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Yellow | Cycle the trigger edge: rising, falling, or none (one-shot) |
+| Green | Cycle the capture rate: 10M, 1M, 100k, or 10k samples per second |
+| Blue | Arm the capture, or stop it while armed |
+| Red | Force the trigger while armed |
+| Left / Right | Pan through a finished capture |
+| Gray | Shows the pan position once a capture is loaded; not a button, pressing it does nothing |
+| AI | Return to the screen this was opened from |
+| Cancel | This help page |
+
+### Capturing
+
+Blue arms the capture - its label changes from Arm to Stop while armed -
+and waits for the trigger condition set by Yellow on the channel
+highlighted at that moment: a rising edge, a falling edge, or none, which
+starts capturing right away without waiting for either. Red forces the
+trigger early if you do not want to wait for it. Green sets how fast the
+capture samples, from 10 million samples a second down to 10 thousand;
+faster rates see less time but finer detail.
+
+### Capture depth
+
+The sample buffer behind a capture is a fixed size, so the number of samples
+it holds depends on how many channels you are watching, not just the rate -
+fewer channels leaves room for more samples in the same buffer. A faster rate
+always covers less time, and how much less depends on that channel count.
+
+### After a capture
+
+Once a capture lands, the waveform fills the screen with the trigger point
+placed in the middle. Left and Right step the view through the rest of the
+buffer around it; before a capture finishes, they do nothing.
+
+### Shared by several tools
+
+This screen appears inside several different tools - GPIO, I2C, SPI, UART
+and MDIO all open it with their own AI button, each showing that tool's
+own pins or bus signals as the channels here. AI on this screen returns
+you to whichever one opened it.
 
 **See also:** [MDIO](../features/mdio.md) — the console/GUI commands for this panel.

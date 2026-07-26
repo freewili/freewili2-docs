@@ -6,6 +6,104 @@ sidebar_position: 50
 
 Found under **IO** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## SPI Log
+
+Live log of SPI transfers, with a wiring test.
+
+### The screen
+
+A scrolling log fills the screen, oldest at the top and newest at the
+bottom. Each transfer prints two lines: the bytes sent, then the bytes that
+came back.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Green | Send a fixed test transfer, to check the bus is wired and talking |
+| Gray | Open the Scripts Log view |
+| AI | Open the Logic Analyzer view |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+### Reading the log
+
+Each transfer logs as a `Tx)` line, the bytes this device sent, followed by
+a `Rx)` line, the bytes that came back at the same time - SPI always
+exchanges data in both directions in one operation. Only the first 8 bytes
+of a transfer are shown.
+
+The test transfer (Green) sends a fixed 8-byte pattern with its own manual
+chip-select toggle. It is not configurable from this screen; it exists to
+confirm the bus is wired correctly and something answers, not to talk to a
+specific part. Which pin it uses as chip select comes from the SPI settings
+menu.
+
+### What else shows up here
+
+This log is shared with the rest of the firmware: any SPI transfer made
+elsewhere while this screen is open - by a script, the console, or another
+part of the system - also prints its Tx/Rx lines here. The log only fills in
+while this screen is on the display; leaving it stops new lines from being
+recorded.
+
+## Logic Analyzer
+
+Captures a burst of digital pins over time and draws them as waveforms, so
+you can see fast signal changes a live view would miss.
+
+### The screen
+
+Each row is one channel: its name on the left, its waveform trace beside
+it. Which pins appear here, and what they are named, depends on which tool
+you opened this screen from. Up and Down move the highlighted row, shown
+with a gray band behind its name; whichever channel is highlighted when
+you arm a capture becomes its trigger source. Once a capture lands, a red
+vertical line marks the sample where the trigger fired.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Yellow | Cycle the trigger edge: rising, falling, or none (one-shot) |
+| Green | Cycle the capture rate: 10M, 1M, 100k, or 10k samples per second |
+| Blue | Arm the capture, or stop it while armed |
+| Red | Force the trigger while armed |
+| Left / Right | Pan through a finished capture |
+| Gray | Shows the pan position once a capture is loaded; not a button, pressing it does nothing |
+| AI | Return to the screen this was opened from |
+| Cancel | This help page |
+
+### Capturing
+
+Blue arms the capture - its label changes from Arm to Stop while armed -
+and waits for the trigger condition set by Yellow on the channel
+highlighted at that moment: a rising edge, a falling edge, or none, which
+starts capturing right away without waiting for either. Red forces the
+trigger early if you do not want to wait for it. Green sets how fast the
+capture samples, from 10 million samples a second down to 10 thousand;
+faster rates see less time but finer detail.
+
+### Capture depth
+
+The sample buffer behind a capture is a fixed size, so the number of samples
+it holds depends on how many channels you are watching, not just the rate -
+fewer channels leaves room for more samples in the same buffer. A faster rate
+always covers less time, and how much less depends on that channel count.
+
+### After a capture
+
+Once a capture lands, the waveform fills the screen with the trigger point
+placed in the middle. Left and Right step the view through the rest of the
+buffer around it; before a capture finishes, they do nothing.
+
+### Shared by several tools
+
+This screen appears inside several different tools - GPIO, I2C, SPI, UART
+and MDIO all open it with their own AI button, each showing that tool's
+own pins or bus signals as the channels here. AI on this screen returns
+you to whichever one opened it.
+
+The rest of this panel's on-screen help hasn't been written yet.
 
 **See also:** [SPI](../features/spi.md) — the console/GUI commands for this panel.

@@ -6,6 +6,100 @@ sidebar_position: 40
 
 Found under **IO** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## UART Log
+
+Live log of bytes received on the UART, with a wiring test.
+
+### The screen
+
+A scrolling log fills the screen, oldest at the top and newest at the
+bottom. Each line is a chunk of received bytes shown in hex, printed as they
+arrive.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Green | Send a fixed test string out the UART, to check the wiring |
+| Gray | Labeled, but not wired to anything on this screen - pressing it does nothing |
+| AI | Open the Logic Analyzer view |
+| Red | Return to the main menu |
+| Cancel | This help page |
+
+Gray carries the same icon used for navigation on the SPI and I2C log
+screens, but on this screen it has no function - that is expected, not a
+fault in your device.
+
+### Reading the log
+
+Incoming bytes are grouped as they are received and logged as space-separated
+hex pairs, up to 32 bytes per line. There is no separate line for what this
+device transmits - the test string (Green) only shows up here if it is wired
+back into the receive pin, which is a quick way to confirm a loopback or a
+device that echoes what it receives.
+
+### What persists
+
+The log only fills in while this screen is on the display; leaving it stops
+new bytes from being recorded, and nothing received while it is closed is
+kept. Baud rate and other wiring details are set from the UART settings menu,
+not from this screen.
+
+## Logic Analyzer
+
+Captures a burst of digital pins over time and draws them as waveforms, so
+you can see fast signal changes a live view would miss.
+
+### The screen
+
+Each row is one channel: its name on the left, its waveform trace beside
+it. Which pins appear here, and what they are named, depends on which tool
+you opened this screen from. Up and Down move the highlighted row, shown
+with a gray band behind its name; whichever channel is highlighted when
+you arm a capture becomes its trigger source. Once a capture lands, a red
+vertical line marks the sample where the trigger fired.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Yellow | Cycle the trigger edge: rising, falling, or none (one-shot) |
+| Green | Cycle the capture rate: 10M, 1M, 100k, or 10k samples per second |
+| Blue | Arm the capture, or stop it while armed |
+| Red | Force the trigger while armed |
+| Left / Right | Pan through a finished capture |
+| Gray | Shows the pan position once a capture is loaded; not a button, pressing it does nothing |
+| AI | Return to the screen this was opened from |
+| Cancel | This help page |
+
+### Capturing
+
+Blue arms the capture - its label changes from Arm to Stop while armed -
+and waits for the trigger condition set by Yellow on the channel
+highlighted at that moment: a rising edge, a falling edge, or none, which
+starts capturing right away without waiting for either. Red forces the
+trigger early if you do not want to wait for it. Green sets how fast the
+capture samples, from 10 million samples a second down to 10 thousand;
+faster rates see less time but finer detail.
+
+### Capture depth
+
+The sample buffer behind a capture is a fixed size, so the number of samples
+it holds depends on how many channels you are watching, not just the rate -
+fewer channels leaves room for more samples in the same buffer. A faster rate
+always covers less time, and how much less depends on that channel count.
+
+### After a capture
+
+Once a capture lands, the waveform fills the screen with the trigger point
+placed in the middle. Left and Right step the view through the rest of the
+buffer around it; before a capture finishes, they do nothing.
+
+### Shared by several tools
+
+This screen appears inside several different tools - GPIO, I2C, SPI, UART
+and MDIO all open it with their own AI button, each showing that tool's
+own pins or bus signals as the channels here. AI on this screen returns
+you to whichever one opened it.
 
 **See also:** [UART](../features/uart.md) — the console/GUI commands for this panel.

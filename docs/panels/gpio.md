@@ -6,6 +6,124 @@ sidebar_position: 20
 
 Found under **IO** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## GPIO
+
+Live view of the general purpose IO pins, with per-pin direction control
+and a built-in PWM generator.
+
+### The screen
+
+A list fills the screen, one row per pin: its name, its pin number, and a
+scrolling trace of its level behind it. A row is yellow while its pin
+reads high and cyan while it reads low. An icon after the pin number marks
+a pin that is currently set as an output. Up and Down move the
+highlighted row, shown with a gray band behind its name; the highlighted
+pin is the one Gray, Blue and Centre act on.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Centre | Flip the highlighted pin's output value |
+| Gray | Start a PWM signal on the highlighted pin |
+| Yellow | Labeled Wave, but not wired to anything on this screen - pressing it does nothing |
+| Green | Shows the IO bank voltage; opens a source list that has no effect |
+| Blue | Toggle the highlighted pin between input and output |
+| Red | Labeled Trig, but not wired to a trigger on this screen - pressing it returns to the main menu |
+| AI | Open the Logic Analyzer view |
+| Cancel | This help page |
+
+### Pin direction
+
+Blue swaps the highlighted pin between input and output. This is the same
+setting as the IO Directions menu found elsewhere in the device - changing
+it here changes it there too, and it is remembered after a restart.
+Centre's level flip only has a visible effect once a pin is set as an
+output; on an input pin there is nothing for it to drive.
+
+### PWM
+
+Gray opens a frequency entry. It does not enforce a range - you can type any
+number - but the generator itself only works from about 7.5 Hz to 62.5 MHz;
+ask for something outside that and nothing happens, silently. Within range it
+starts a square wave on the highlighted pin at that frequency with a fixed 50
+percent duty cycle. Starting one on a different pin does not stop an earlier
+one - each pin runs its own generator independently.
+
+There is no dedicated stop control. Toggling the pin back to input with Blue
+silences a running signal as a side effect, since that hands the pin back to
+plain IO.
+
+### IO voltage
+
+Green's own label shows the current IO bank voltage, for example
+"vio 3.30", and blinks a low-voltage warning below 0.9 V. Pressing Green
+opens a list titled Select IO Voltage Source, offering 3.3V, 5.0V, Prog
+Vout and Trig_IN/VREF - but choosing an item from it does not change
+anything. Despite the title, this list is not wired up to do that.
+
+### The Logic Analyzer view
+
+AI opens the Logic Analyzer, a separate screen that shares this screen's
+pins as its capture channels for a proper triggered, timed capture. This
+screen's own scrolling trace is a live, unsynchronized view only - use the
+Logic Analyzer when you need a trigger or a precise sample rate.
+
+## Logic Analyzer
+
+Captures a burst of digital pins over time and draws them as waveforms, so
+you can see fast signal changes a live view would miss.
+
+### The screen
+
+Each row is one channel: its name on the left, its waveform trace beside
+it. Which pins appear here, and what they are named, depends on which tool
+you opened this screen from. Up and Down move the highlighted row, shown
+with a gray band behind its name; whichever channel is highlighted when
+you arm a capture becomes its trigger source. Once a capture lands, a red
+vertical line marks the sample where the trigger fired.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Yellow | Cycle the trigger edge: rising, falling, or none (one-shot) |
+| Green | Cycle the capture rate: 10M, 1M, 100k, or 10k samples per second |
+| Blue | Arm the capture, or stop it while armed |
+| Red | Force the trigger while armed |
+| Left / Right | Pan through a finished capture |
+| Gray | Shows the pan position once a capture is loaded; not a button, pressing it does nothing |
+| AI | Return to the screen this was opened from |
+| Cancel | This help page |
+
+### Capturing
+
+Blue arms the capture - its label changes from Arm to Stop while armed -
+and waits for the trigger condition set by Yellow on the channel
+highlighted at that moment: a rising edge, a falling edge, or none, which
+starts capturing right away without waiting for either. Red forces the
+trigger early if you do not want to wait for it. Green sets how fast the
+capture samples, from 10 million samples a second down to 10 thousand;
+faster rates see less time but finer detail.
+
+### Capture depth
+
+The sample buffer behind a capture is a fixed size, so the number of samples
+it holds depends on how many channels you are watching, not just the rate -
+fewer channels leaves room for more samples in the same buffer. A faster rate
+always covers less time, and how much less depends on that channel count.
+
+### After a capture
+
+Once a capture lands, the waveform fills the screen with the trigger point
+placed in the middle. Left and Right step the view through the rest of the
+buffer around it; before a capture finishes, they do nothing.
+
+### Shared by several tools
+
+This screen appears inside several different tools - GPIO, I2C, SPI, UART
+and MDIO all open it with their own AI button, each showing that tool's
+own pins or bus signals as the channels here. AI on this screen returns
+you to whichever one opened it.
 
 **See also:** [GPIO](../features/gpio.md) — the console/GUI commands for this panel.

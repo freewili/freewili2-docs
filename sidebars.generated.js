@@ -42,7 +42,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Wireless',
-      items: ['panels/sub-g-hz-radio', 'panels/wifi', 'panels/bluetooth'],
+      items: ['panels/sub-g-hz-radio', 'panels/wifi', 'panels/bluetooth', 'panels/ir'],
     },
     {
       type: 'category',
@@ -52,17 +52,17 @@ module.exports = {
     {
       type: 'category',
       label: 'Tools & Scripting',
-      items: ['panels/scripts', 'panels/wili-blocks', 'panels/command-panel', 'panels/script-monitor', 'panels/app-data'],
+      items: ['panels/scripts', 'panels/wili-blocks', 'panels/command-panel', 'panels/script-monitor', 'panels/app-data', 'panels/editor'],
     },
     {
       type: 'category',
       label: 'GUI',
-      items: ['panels/camera'],
+      items: ['panels/sound-board', 'panels/clock-alarm', 'panels/light-show', 'panels/sensors', 'panels/camera', 'panels/tv-out'],
     },
     {
       type: 'category',
       label: 'System',
-      items: ['panels/setup-actions', 'panels/files'],
+      items: ['panels/setup-actions', 'panels/files', 'panels/settings-display', 'panels/power-management', 'panels/about'],
     },
     {
       type: 'category',

@@ -79,11 +79,20 @@
     "APP_SELECTED_RADIOS": { "publish": true, "title": "SubGHz Radio", "section": "wireless", "order": 10, "note": "This panel only appears on Free Wili boards built with the CC1101 sub-GHz radio installed; it won't show up on boards without that hardware option." },
     "APP_SELECTED_WIFI": { "publish": true, "title": "Wifi", "section": "wireless", "order": 20 },
     "APP_SELECTED_BLE": { "publish": true, "title": "Bluetooth", "section": "wireless", "order": 30 },
+    "APP_SELECTED_IR": { "publish": true, "title": "IR", "section": "wireless", "order": 40 },
 
-    "APP_SELECTED_CAMERA": { "publish": true, "title": "Camera", "section": "gui", "order": 10 },
+    "APP_SELECTED_SOUNDBOARD": { "publish": true, "title": "Sound Board", "section": "gui", "order": 10 },
+    "APP_SELECTED_RTC": { "publish": true, "title": "Clock & Alarm", "section": "gui", "order": 20 },
+    "APP_SELECTED_LIGHTSHOW": { "publish": true, "title": "Light Show", "section": "gui", "order": 30 },
+    "APP_SELECTED_SENSORS": { "publish": true, "title": "Sensors", "section": "gui", "order": 40 },
+    "APP_SELECTED_CAMERA": { "publish": true, "title": "Camera", "section": "gui", "order": 50 },
+    "APP_SELECTED_TV": { "publish": true, "title": "TV Out", "section": "gui", "order": 60 },
 
     "APP_SELECTED_MENUXPLORER": { "publish": true, "title": "Setup & Actions", "section": "system", "order": 10 },
     "APP_SELECTED_FILES": { "publish": true, "title": "Files", "section": "system", "order": 20 },
+    "APP_SELECTED_DSETTINGS": { "publish": true, "title": "Settings (Display)", "section": "system", "order": 30, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. It's a settings home on the display CPU, with its own categories (Power, Sound, LEDs, Infrared, Interface, Sensors) - a separate, display-side counterpart to the console's **Settings** panel, not the same data." },
+    "APP_SELECTED_POWER_MGMT": { "publish": true, "title": "Power Management", "section": "system", "order": 40 },
+    "APP_SELECTED_ABOUT": { "publish": true, "title": "About", "section": "system", "order": 50 },
 
     "APP_SELECTED_TERMINAL": { "publish": true, "title": "Terminal", "section": "wilinux", "order": 10 },
 
@@ -92,6 +101,7 @@
     "APP_SELECTED_CMD_PANEL": { "publish": true, "title": "Command Panel", "section": "tools", "order": 30 },
     "APP_SELECTED_CUSTOM": { "publish": true, "title": "Script Monitor", "section": "tools", "order": 40, "note": "This screen isn't picked from the on-screen panel list directly. It opens automatically when you run a script from **Scripts**, showing that script's log until it finishes or you stop it." },
     "APP_SELECTED_APP_DATA": { "publish": true, "title": "App Data", "section": "tools", "order": 50, "note": "This is a planned two-pane data browser. As of this writing, most of its implementation is stubbed out - the grid never populates and most of the button actions are placeholder code that doesn't do anything yet." },
+    "APP_SELECTED_EDITOR": { "publish": true, "title": "Editor", "section": "tools", "order": 60, "note": "This panel opens a fixed file (`text.txt`) rather than one you choose - the file picker that would let it open an arbitrary file isn't wired up yet, and the firmware source marks the fixed file as temporary." },
 
     "APP_SELECTED_MSETTINGS": { "publish": true, "title": "Settings", "section": "settings", "order": 10, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. The device's on-screen Settings home - pick a category to jump straight to its settings. It's a hand-maintained subset of what's in the console's Settings menu; RTC, Analog In, and Orca settings aren't listed here yet (Orca has its own **Orca Setup** panel)." },
     "APP_SELECTED_ORCASETUP": { "publish": true, "title": "Orca Setup", "section": "settings", "order": 20, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. It's a guided setup wizard for pairing with an Orca accessory over UART. It configures the same underlying setting as **Orca Settings** in the console Settings menu, with presets for known Orca variants (including flashing companion firmware for the Bottlenose variant)." }
