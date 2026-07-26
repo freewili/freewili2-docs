@@ -120,3 +120,12 @@ h1, h2, h3, h4 {
 .navbar__item.navbar-cta:hover {
   transform: translateY(-1px);
 }
+
+/* screenshots on generated panel pages */
+.markdown img {
+  max-width: 320px;
+  border: 1px solid var(--fw-line);
+  border-radius: 8px;
+  display: block;
+  margin: 1rem 0;
+}

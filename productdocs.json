@@ -1,0 +1,98 @@
+{
+  "sections": [
+    { "slug": "io", "title": "IO" },
+    { "slug": "wireless", "title": "Wireless" },
+    { "slug": "wilinux", "title": "Wi-Li-nux" },
+    { "slug": "apps", "title": "Apps" },
+    { "slug": "gui", "title": "GUI" },
+    { "slug": "system", "title": "System" },
+    { "slug": "settings", "title": "Settings" }
+  ],
+  "menus": {
+    "fwMenuIO": { "publish": true, "title": "IO", "section": "io", "order": 10 },
+    "fwMenuGPIO": { "publish": true, "title": "GPIO", "section": "io", "order": 20 },
+    "fwMenuUART": { "publish": true, "title": "UART", "section": "io", "order": 30 },
+    "fwMenuMDIO": { "publish": true, "title": "MDIO", "section": "io", "order": 40 },
+    "fwMenuSensors": { "publish": true, "title": "Sensors", "section": "io", "order": 50 },
+    "fwMenuI2C": { "publish": true, "title": "I2C", "section": "io", "order": 60 },
+    "fwMenuSPI": { "publish": true, "title": "SPI", "section": "io", "order": 70 },
+    "fwMenuCANFD": { "publish": true, "title": "CAN FD", "section": "io", "order": 80 },
+    "fwMenuAnalogIn": { "publish": true, "title": "Analog In", "section": "io", "order": 90 },
+    "fwMenuAnalogOut": { "publish": true, "title": "Analog Out & Trigger", "section": "io", "order": 100 },
+    "fwMenuLogicPlayer": { "publish": true, "title": "Logic Player", "section": "io", "order": 110 },
+    "fwMenuLogicAnalyzer": { "publish": true, "title": "Logic Analyzer", "section": "io", "order": 120 },
+    "fwMenuWILEye": { "publish": true, "title": "WilEye Camera", "section": "io", "order": 130 },
+    "fwMenuAudio": { "publish": true, "title": "Audio", "section": "io", "order": 140 },
+
+    "fwMenuWireless": { "publish": true, "title": "Wireless", "section": "wireless", "order": 10 },
+    "fwMenuNFC": { "publish": true, "title": "NFC", "section": "wireless", "order": 20 },
+    "fwMenuESP32Flasher": { "publish": true, "title": "ESP32 Flasher", "section": "wireless", "order": 30 },
+    "fwMenuWifi": { "publish": true, "title": "Wifi", "section": "wireless", "order": 40 },
+    "fwMenuBluetoothLE": { "publish": true, "title": "Bluetooth LE", "section": "wireless", "order": 50 },
+    "fwMenuIR": { "publish": true, "title": "IR", "section": "wireless", "order": 60 },
+
+    "fwMenuLinux": { "publish": true, "title": "Wi-Li-nux", "section": "wilinux", "order": 10 },
+
+    "fwMenuApps": { "publish": true, "title": "Apps", "section": "apps", "order": 10 },
+    "fwMenuScripting": { "publish": true, "title": "Scripting", "section": "apps", "order": 20 },
+    "fwMenuZoomIO": { "publish": true, "title": "ZoomIO", "section": "apps", "order": 30 },
+
+    "fwMenuHardware": { "publish": true, "title": "Hardware", "section": "system", "order": 10 },
+    "fwMenuSystem": { "publish": true, "title": "System", "section": "system", "order": 20 },
+
+    "fwMenuSettingsHome": { "publish": true, "title": "Device Settings", "section": "settings", "order": 10 },
+    "fwMenuGeneralSettings": { "publish": true, "title": "General Settings", "section": "settings", "order": 20 },
+    "fwMenuRTCSettings": { "publish": true, "title": "RTC Settings", "section": "settings", "order": 30 },
+    "fwMenuWifiSettings": { "publish": true, "title": "Wifi Settings", "section": "settings", "order": 40 },
+    "fwMenuBLESettings": { "publish": true, "title": "Bluetooth Settings", "section": "settings", "order": 50 },
+    "fwMenuRadioSettings": { "publish": true, "title": "Radio Settings", "section": "settings", "order": 60 },
+    "fwMenuRadioFASettings": { "publish": true, "title": "RF Analyzer Settings", "section": "settings", "order": 70 },
+    "fwMenuI2CSettings": { "publish": true, "title": "I2C Settings", "section": "settings", "order": 80 },
+    "fwMenuSPISettings": { "publish": true, "title": "SPI Settings", "section": "settings", "order": 90 },
+    "fwMenuUARTSettings": { "publish": true, "title": "UART Settings", "section": "settings", "order": 100 },
+    "fwMenuAnalogInSettings": { "publish": true, "title": "Analog In Settings", "section": "settings", "order": 110 },
+    "fwMenuIODirectionSettings": { "publish": true, "title": "IO Direction Settings", "section": "settings", "order": 120 },
+    "fwMenuLightShowSettings": { "publish": true, "title": "Light Show Settings", "section": "settings", "order": 130 },
+    "fwMenuNeptuneSettings": { "publish": true, "title": "Neptune Settings", "section": "settings", "order": 140 },
+    "fwMenuOrcaSettings": { "publish": true, "title": "Orca Settings", "section": "settings", "order": 150 },
+    "fwMenuWebsocketSettings": { "publish": true, "title": "Websocket Settings", "section": "settings", "order": 160 },
+    "fwMenuFPGAClockSettings": { "publish": true, "title": "FPGA Clock Settings", "section": "settings", "order": 170 },
+
+    "fwMenuGUI": { "publish": false, "note": "A host-side programming interface for driving on-screen panels from a connected computer - developer surface, already covered by the OneWili site." },
+    "fwMenuGUIControls": { "publish": false, "note": "A host-side programming interface for driving on-screen panels from a connected computer - developer surface, already covered by the OneWili site." },
+    "fwMenuGUIDialogs": { "publish": false, "note": "A host-side programming interface for driving on-screen panels from a connected computer - developer surface, already covered by the OneWili site." },
+    "fwMenuGUIPanels": { "publish": false, "note": "A host-side programming interface for driving on-screen panels from a connected computer - developer surface, already covered by the OneWili site." },
+    "fwMenuGUIControlProperties": { "publish": false, "note": "A host-side programming interface for driving on-screen panels from a connected computer - developer surface, already covered by the OneWili site." },
+    "fwMenuWasmDebug": { "publish": false, "note": "Internal debug tool for firmware/script developers." },
+    "fwMenuRthonDebug": { "publish": false, "note": "Internal debug tool for firmware/script developers." }
+  },
+  "panels": {
+    "APP_SELECTED_I2C": { "publish": true, "title": "I2C", "section": "io", "order": 10 },
+    "APP_SELECTED_GPIO": { "publish": true, "title": "GPIO", "section": "io", "order": 20 },
+    "APP_SELECTED_ANALOG": { "publish": true, "title": "Analog IO", "section": "io", "order": 30 },
+    "APP_SELECTED_UART": { "publish": true, "title": "UART", "section": "io", "order": 40 },
+    "APP_SELECTED_SPI": { "publish": true, "title": "SPI", "section": "io", "order": 50 },
+    "APP_SELECTED_MDIO": { "publish": true, "title": "MDIO", "section": "io", "order": 60 },
+    "APP_SELECTED_NEPTUNE": { "publish": true, "title": "CAN (FD)", "section": "io", "order": 70 },
+
+    "APP_SELECTED_RADIOS": { "publish": true, "title": "SubGHz Radio", "section": "wireless", "order": 10, "note": "This panel only appears on Free Wili boards built with the CC1101 sub-GHz radio installed; it won't show up on boards without that hardware option." },
+    "APP_SELECTED_WIFI": { "publish": true, "title": "Wifi", "section": "wireless", "order": 20 },
+    "APP_SELECTED_BLE": { "publish": true, "title": "Bluetooth", "section": "wireless", "order": 30 },
+
+    "APP_SELECTED_CAMERA": { "publish": true, "title": "Camera", "section": "gui", "order": 10 },
+
+    "APP_SELECTED_MENUXPLORER": { "publish": true, "title": "Setup & Actions", "section": "system", "order": 10 },
+    "APP_SELECTED_FILES": { "publish": true, "title": "Files", "section": "system", "order": 20 },
+
+    "APP_SELECTED_TERMINAL": { "publish": true, "title": "Terminal", "section": "wilinux", "order": 10 },
+
+    "APP_SELECTED_SCRIPTS": { "publish": true, "title": "Scripts", "section": "apps", "order": 10 },
+    "APP_SELECTED_FBLOCKS": { "publish": true, "title": "Wili Blocks", "section": "apps", "order": 20 },
+    "APP_SELECTED_CMD_PANEL": { "publish": true, "title": "Command Panel", "section": "apps", "order": 30 },
+    "APP_SELECTED_CUSTOM": { "publish": true, "title": "Script Monitor", "section": "apps", "order": 40, "note": "This screen isn't picked from the on-screen panel list directly. It opens automatically when you run a script from **Scripts**, showing that script's log until it finishes or you stop it." },
+    "APP_SELECTED_APP_DATA": { "publish": true, "title": "App Data", "section": "apps", "order": 50, "note": "This is a planned two-pane data browser. As of this writing, most of its implementation is stubbed out - the grid never populates and most of the button actions are placeholder code that doesn't do anything yet." },
+
+    "APP_SELECTED_MSETTINGS": { "publish": true, "title": "Settings", "section": "settings", "order": 10, "note": "The device's on-screen Settings home - pick a category to jump straight to its settings. It's a hand-maintained subset of what's in the console's Settings menu; RTC, Analog In, and Orca settings aren't listed here yet (Orca has its own **Orca Setup** panel)." },
+    "APP_SELECTED_ORCASETUP": { "publish": true, "title": "Orca Setup", "section": "settings", "order": 20, "note": "A guided setup wizard for pairing with an Orca accessory over UART. It configures the same underlying setting as **Orca Settings** in the console Settings menu, with presets for known Orca variants (including flashing companion firmware for the Bottlenose variant)." }
+  }
+}

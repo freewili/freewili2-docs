@@ -1,6 +1,9 @@
-// Hand-written navigation spine. Plan 2 adds the generated Menus & Commands
-// and Panels categories, sourced from sidebars.generated.js.
+// Hand-written navigation spine. The generated Menus & Commands and Panels
+// categories are sourced from sidebars.generated.js (machine-owned, do not
+// hand-edit that file - re-run menutool_productdocs instead).
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
+const generated = require('./sidebars.generated.js');
+
 const sidebars = {
   docs: [
     'index',
@@ -15,6 +18,16 @@ const sidebars = {
         'start-here/connecting',
         'start-here/firmware-update',
       ],
+    },
+    {
+      type: 'category',
+      label: 'Panels',
+      items: generated.panels,
+    },
+    {
+      type: 'category',
+      label: 'Menus & Commands',
+      items: generated.features,
     },
     {
       type: 'category',
