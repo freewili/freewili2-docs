@@ -12,7 +12,7 @@ terminal, and on the device itself. See
 
 Streams analog input values to the host at the given rate.
 
-**How to use it** — press `s`. At the prompt, enter: Enter Sample Time in milliseconds.
+**How to use it** — press `s`. At the prompt, enter: Sample Time in milliseconds.
 
 **What you enter** — `stream_rate_ms`.
 
@@ -26,7 +26,7 @@ Reads the latest TLA2024 voltages for all 4 channels.
 
 Configures a TLA2024 channel: mux 0-7 = A0-A1,A0-A3,A1-A3,A2-A3,A0-GND,A1-GND,A2-GND,A3-GND; range 0-5 = 6.144V,4.096V,2.048V,1.024V,0.512V,0.256V.
 
-**How to use it** — press `c`. At the prompt, enter: Enter channel (0-3), mux (0-7), range (0-5).
+**How to use it** — press `c`. At the prompt, enter: channel (0-3), mux (0-7), range (0-5).
 
 **What you enter** — `channel`, `mux`, `range`.
 
@@ -34,7 +34,7 @@ Configures a TLA2024 channel: mux 0-7 = A0-A1,A0-A3,A1-A3,A2-A3,A0-GND,A1-GND,A2
 
 Sets the TLA2024 data rate: 0-6 = 128,250,490,920,1600,2400,3300 SPS.
 
-**How to use it** — press `f`. At the prompt, enter: Enter data rate (0-6).
+**How to use it** — press `f`. At the prompt, enter: data rate (0-6).
 
 **What you enter** — `rate`.
 
@@ -42,7 +42,7 @@ Sets the TLA2024 data rate: 0-6 = 128,250,490,920,1600,2400,3300 SPS.
 
 Streams TLA2024 voltages to the host at the given rate (0 stops).
 
-**How to use it** — press `t`. At the prompt, enter: Enter Sample Time in milliseconds.
+**How to use it** — press `t`. At the prompt, enter: Sample Time in milliseconds.
 
 **What you enter** — `stream_rate_ms`.
 

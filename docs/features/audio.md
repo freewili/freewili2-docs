@@ -26,7 +26,7 @@ chime.wav
 - Playback is asynchronous — the call returns as soon as playback begins.
 - Use **Stream Audio** (`s`) to mirror audio to the host, or **Record Audio** (`r`) to capture from the microphone.
 
-**How to use it** — press `f`. At the prompt, enter: Enter audio file name.
+**How to use it** — press `f`. At the prompt, enter: audio file name.
 
 **What you enter** — `file_path`.
 
@@ -34,7 +34,7 @@ chime.wav
 
 Records audio to a file (blank name = auto-named).
 
-**How to use it** — press `r`. At the prompt, enter: Enter File Name or blank for auto file name..
+**How to use it** — press `r`. At the prompt, enter: File Name or blank for auto file name.
 
 **What you enter** — `file_name`.
 
@@ -42,7 +42,7 @@ Records audio to a file (blank name = auto-named).
 
 Plays a built-in audio asset by index or name.
 
-**How to use it** — press `a`. At the prompt, enter: Enter asset index or name.
+**How to use it** — press `a`. At the prompt, enter: asset index or name.
 
 **What you enter** — `asset_name`.
 
@@ -50,7 +50,7 @@ Plays a built-in audio asset by index or name.
 
 Enables or disables audio streaming to the host.
 
-**How to use it** — press `s`. At the prompt, enter: Enter 1 to enable 0 to disable.
+**How to use it** — press `s`. At the prompt, enter: 1 to enable 0 to disable.
 
 **What you enter** — `enable`.
 
@@ -58,7 +58,7 @@ Enables or disables audio streaming to the host.
 
 Speaks the given number aloud.
 
-**How to use it** — press `n`. At the prompt, enter: Enter number.
+**How to use it** — press `n`. At the prompt, enter: number.
 
 **What you enter** — `number`.
 
@@ -66,7 +66,7 @@ Speaks the given number aloud.
 
 Plays a tone of the given frequency, duration, and amplitude.
 
-**How to use it** — press `t`. At the prompt, enter: Enter frequency Duration and Amplitude.
+**How to use it** — press `t`. At the prompt, enter: frequency Duration and Amplitude.
 
 **What you enter** — `frequency`, `duration_ms`, `amplitude`.
 
@@ -88,6 +88,6 @@ Warning: low battery
 - To speak a numeric value, use **Numbers to Speech** (`n`) instead for proper digit/decimal pronunciation.
 - Use **Play Tone** (`t`), **Play Audio File** (`f`), or **Play Audio Asset** (`a`) for non‑speech audio output.
 
-**How to use it** — press `v`. At the prompt, enter: Enter text to speak.
+**How to use it** — press `v`. At the prompt, enter: text to speak.
 
 **What you enter** — `text`.

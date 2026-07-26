@@ -85,7 +85,7 @@ s
 
 Scans for nearby BLE devices for 5 seconds, streaming each discovery as a `btscan` event.
 
-**How to use it** — press `s`. At the prompt, enter: Enter scan duration in milliseconds:.
+**How to use it** — press `s`. At the prompt, enter: scan duration in milliseconds:
 
 **What you enter** — `durationms`.
 

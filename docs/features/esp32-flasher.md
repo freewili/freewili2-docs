@@ -29,7 +29,7 @@ p 1          # Finish flash, reboot
 - **Invalid target** — chip or revision not supported by the loader build.
 - **Invalid response at high baud** — retry with `0` (stay at 115200) or shorter / better-quality wires.
 
-**How to use it** — press `b`. At the prompt, enter: Enter Baudrate to updgrade to upon successful connection.
+**How to use it** — press `b`. At the prompt, enter: Baudrate to updgrade to upon successful connection.
 
 **What you enter** — `upgrade_transmission_rate`.
 
@@ -67,7 +67,7 @@ Toggle ESP32's Enable Pin
 
 Prepares ESP32 to write flash at offset and expected size. Block size can be up to 128 bytes
 
-**How to use it** — press `f`. At the prompt, enter: Enter offset (hex), followed by image size (int) and expected block size (int).
+**How to use it** — press `f`. At the prompt, enter: offset (hex), followed by image size (int) and expected block size (int).
 
 **What you enter** — `offset`, `size`, `block_size`.
 
@@ -83,7 +83,7 @@ Ends ESP32 Flashing Operations.
 
 Writes Binary Blob into flash
 
-**How to use it** — press `o`. At the prompt, enter: Enter Byte separated by spaces, up to 128 bytes:.
+**How to use it** — press `o`. At the prompt, enter: Byte separated by spaces, up to 128 bytes:
 
 **What you enter** — `flash_data`.
 
@@ -91,7 +91,7 @@ Writes Binary Blob into flash
 
 Reads binary blob from flash with given address and size.
 
-**How to use it** — press `j`. At the prompt, enter: Enter offset (hex) followed by size to read.
+**How to use it** — press `j`. At the prompt, enter: offset (hex) followed by size to read.
 
 **What you enter** — `offset`, `size`.
 
@@ -99,7 +99,7 @@ Reads binary blob from flash with given address and size.
 
 Perpares memeory write operations on the esp32. Max Block Size size is 128
 
-**How to use it** — press `y`. At the prompt, enter: Enter offset (hex), followed by image size (int) and expected block size (int).
+**How to use it** — press `y`. At the prompt, enter: offset (hex), followed by image size (int) and expected block size (int).
 
 **What you enter** — `offset`, `memory_block`, `block_size`.
 
@@ -107,7 +107,7 @@ Perpares memeory write operations on the esp32. Max Block Size size is 128
 
 Perpares memeory write operations on the esp32. Max Block Size size is 128
 
-**How to use it** — press `0`. At the prompt, enter: Enter offset (hex), followed by image size (int) and expected block size (int).
+**How to use it** — press `0`. At the prompt, enter: offset (hex), followed by image size (int) and expected block size (int).
 
 **What you enter** — `offset`, `memory_block`, `block_size`.
 
@@ -115,7 +115,7 @@ Perpares memeory write operations on the esp32. Max Block Size size is 128
 
 Disables memory write operations on esp32 and sets entry point in ram
 
-**How to use it** — press `t`. At the prompt, enter: Enter entry offset (hex) that the esp32 will boot to in RAM:.
+**How to use it** — press `t`. At the prompt, enter: entry offset (hex) that the esp32 will boot to in RAM:
 
 **What you enter** — `entry_address`.
 
@@ -123,7 +123,7 @@ Disables memory write operations on esp32 and sets entry point in ram
 
 Writes a 4 byte value onto a register in the esp32
 
-**How to use it** — press `g`. At the prompt, enter: Enter Regiser Address (hex) followed by value (hex):.
+**How to use it** — press `g`. At the prompt, enter: Regiser Address (hex) followed by value (hex):
 
 **What you enter** — `offset`, `value`.
 
@@ -131,7 +131,7 @@ Writes a 4 byte value onto a register in the esp32
 
 Reads a 4 byte value from a register in the esp32
 
-**How to use it** — press `c`. At the prompt, enter: Enter Regiser Address (hex) to read from:.
+**How to use it** — press `c`. At the prompt, enter: Regiser Address (hex) to read from:
 
 **What you enter** — `offset`.
 

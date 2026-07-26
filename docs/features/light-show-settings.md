@@ -10,7 +10,7 @@ terminal, and on the device itself. See
 
 ## Channel 1
 
-Choose which IO pin drives NeoPixel light show channel 1, or turn it off
+Turn the built-in NeoPixel light show on or off (fixed pins, not selectable)
 
 **How to use it** — press `a`.
 
@@ -18,7 +18,7 @@ Choose which IO pin drives NeoPixel light show channel 1, or turn it off
 
 ## Channel 2
 
-Choose which IO pin drives NeoPixel light show channel 2, or turn it off
+Not currently used by the firmware; has no effect
 
 **How to use it** — press `b`.
 
@@ -26,7 +26,7 @@ Choose which IO pin drives NeoPixel light show channel 2, or turn it off
 
 ## Channel 3
 
-Choose which IO pin drives NeoPixel light show channel 3, or turn it off
+Not currently used by the firmware; has no effect
 
 **How to use it** — press `c`.
 
@@ -34,7 +34,7 @@ Choose which IO pin drives NeoPixel light show channel 3, or turn it off
 
 ## Channel 4
 
-Choose which IO pin drives NeoPixel light show channel 4, or turn it off
+Not currently used by the firmware; has no effect
 
 **How to use it** — press `f`.
 
@@ -42,6 +42,6 @@ Choose which IO pin drives NeoPixel light show channel 4, or turn it off
 
 ## Use WiliWasm
 
-Choose whether the NeoPixel light show is driven by a WiliWasm script or the built-in effects engine
+Not currently used by the firmware; has no effect
 
 **How to use it** — press `e`.

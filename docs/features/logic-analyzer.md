@@ -32,7 +32,7 @@ c 1000 4096 0 7 2 1 1
 - Issue `s` (start) after configuring to begin capture, and `e` (stop) to halt.
 - For analog capture, configure separately with `a`.
 
-**How to use it** — press `c`. At the prompt, enter: Enter SampleRate (ns) SampleCount PinStart PinStop TriggerPin TriggerType (0=falling,1-rising,2-none,3-Continuous) Rearm (0/1).
+**How to use it** — press `c`. At the prompt, enter: SampleRate (ns) SampleCount PinStart PinStop TriggerPin TriggerType (0=falling,1-rising,2-none,3-Continuous) Rearm (0/1).
 
 **What you enter** — `sample_rate_ns`, `sample_count`, `pin_start`, `pin_stop`, `trigger_pin`, `trigger_type`, `rearm`.
 
@@ -40,7 +40,7 @@ c 1000 4096 0 7 2 1 1
 
 Configures the analog capture inputs.
 
-**How to use it** — press `a`. At the prompt, enter: Enter AnalogMask (bit0=GPIO43..bit3=GPIO46, 0=off) AnalogRateNs AnalogRes(8/16).
+**How to use it** — press `a`. At the prompt, enter: AnalogMask (bit0=GPIO43..bit3=GPIO46, 0=off) AnalogRateNs AnalogRes(8/16).
 
 **What you enter** — `analog_mask`, `analog_rate_ns`, `analog_res`.
 
@@ -60,6 +60,6 @@ Stops logic analyzer capture.
 
 Manually triggers the logic analyzer.
 
-**How to use it** — press `t`. At the prompt, enter: Enter trigger type (0=falling, 1=rising, 2=none, 3=continuous).
+**How to use it** — press `t`. At the prompt, enter: trigger type (0=falling, 1=rising, 2=none, 3=continuous).
 
 **What you enter** — `trigger_type`.

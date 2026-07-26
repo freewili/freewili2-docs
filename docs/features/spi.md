@@ -30,7 +30,7 @@ w 9F 00 00 00
 ```
 Response bytes 2–4 contain the manufacturer / device ID.
 
-**How to use it** — press `w`. At the prompt, enter: Enter Data Byte(s) Separated By Spaces.
+**How to use it** — press `w`. At the prompt, enter: Data Byte(s) Separated By Spaces.
 
 **What you enter** — `data_bytes`.
 

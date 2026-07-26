@@ -10,6 +10,6 @@ terminal, and on the device itself. See
 
 ## Files
 
-
+Open the file system submenu to browse and manage files
 
 **How to use it** — press `x`.

@@ -12,6 +12,6 @@ terminal, and on the device itself. See
 
 Streams accelerometer (and temperature) data to the host at the given rate.
 
-**How to use it** — press `o`. At the prompt, enter: Enter Sample Time in milliseconds.
+**How to use it** — press `o`. At the prompt, enter: Sample Time in milliseconds.
 
 **What you enter** — `stream_rate_ms`.

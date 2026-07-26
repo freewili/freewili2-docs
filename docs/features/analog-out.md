@@ -27,7 +27,7 @@ s 2 1.0     # Set window comparator low threshold to 1.0 V
 s 3 4.0     # Set window comparator high threshold to 4.0 V
 ```
 
-**How to use it** — press `s`. At the prompt, enter: Enter channel (0-3) and float voltage (0.0-4.84).
+**How to use it** — press `s`. At the prompt, enter: channel (0-3) and float voltage (0.0-4.84).
 
 **What you enter** — `channel`, `value`.
 
@@ -42,7 +42,7 @@ The `Trig IN/VREF` pin is **shared** with the CANFD special-function pins:
 - Software **CAN Rx**
 - **CANFD Int**
 
-**How to use it** — press `t`. At the prompt, enter: Enter Trigger voltages for V- and V+ (0-5.0).
+**How to use it** — press `t`. At the prompt, enter: Trigger voltages for V- and V+ (0-5.0).
 
 **What you enter** — `value_low`, `value_high`.
 
@@ -99,7 +99,7 @@ u 1 5.0       # enable VOut and set it to 5.0 V
 - Make sure the load connected to `VOut` is rated for the selected voltage **before** enabling.
 - Switching `VOut` on or changing voltage can briefly perturb attached devices; power-cycle-sensitive targets should be designed accordingly.
 
-**How to use it** — press `u`. At the prompt, enter: Enter Enable (0/1) Voltage (1.0 to 5.5V).
+**How to use it** — press `u`. At the prompt, enter: Enable (0/1) Voltage (1.0 to 5.5V).
 
 **What you enter** — `enable`, `set_voltage`.
 
@@ -137,7 +137,7 @@ g 2000    # ~2 µs glitch pulse on VOut
 - The crowbar briefly shorts `VOut` low — ensure the load and any series/decoupling components can tolerate the transient.
 - Avoid long or repeated pulses near the upper end of the range, especially at higher `VOut` voltages and currents.
 
-**How to use it** — press `g`. At the prompt, enter: Enter approx nanoseconds of glitch (10 to 2000).
+**How to use it** — press `g`. At the prompt, enter: approx nanoseconds of glitch (10 to 2000).
 
 **What you enter** — `nano_seconds`.
 
@@ -173,7 +173,7 @@ A precise high frequency costs amplitude: near the top of the range the slew rat
 - `s <channel> <value>` - set a static DC voltage (stops any waveform).
 - `p` - shows the current waveform state for both channels.
 
-**How to use it** — press `w`. At the prompt, enter: Enter channel (0-1) shape (0=off 1=tri 2=saw 3=invsaw 4=sine) freq (Hz) low (V) high (V) phase (0-3).
+**How to use it** — press `w`. At the prompt, enter: channel (0-1) shape (0=off 1=tri 2=saw 3=invsaw 4=sine) freq (Hz) low (V) high (V) phase (0-3).
 
 **What you enter** — `channel`, `waveform`, `frequency_hz`, `low_voltage`, `high_voltage`, `phase`.
 
@@ -191,7 +191,7 @@ x <mask>
 
 Configure each channel first with `w <channel> <waveform> <frequencyHz> <lowVoltage> <highVoltage> <phase>`. `w` also starts the channel it configures; use `x` when you need the two channels to start together.
 
-**How to use it** — press `x`. At the prompt, enter: Enter run mask (bit0 = ch0, bit1 = ch1; 0 stops both, 3 runs both).
+**How to use it** — press `x`. At the prompt, enter: run mask (bit0 = ch0, bit1 = ch1; 0 stops both, 3 runs both).
 
 **What you enter** — `mask`.
 

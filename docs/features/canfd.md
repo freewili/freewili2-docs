@@ -26,7 +26,7 @@ o 1 0   # disable streaming on channel 1
 - All frames will be received unless a receive filter is configured (see `Setup Filter`) so the controller actually accepts the frames you want to observe.
 - FreeWili2 only has one CAN channel (channel 2 is reserved for future orcas)
 
-**How to use it** — press `o`. At the prompt, enter: Enter Channel and enable state.
+**How to use it** — press `o`. At the prompt, enter: Channel and enable state.
 
 **What you enter** — `channel`, `enabled`.
 

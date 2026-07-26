@@ -18,7 +18,7 @@ Toggle Wifi Event Streaming
 
 Starts up Access Point with provided SSID and Password
 
-**How to use it** — press `a`. At the prompt, enter: Enter SSID, Password, Auth Mode [0-3], Hide SSID flag separated by spaces.
+**How to use it** — press `a`. At the prompt, enter: SSID, Password, Auth Mode [0-3], Hide SSID flag separated by spaces.
 
 **What you enter** — `ssid`, `password`, `authmode`, `hidessid`.
 
@@ -26,7 +26,7 @@ Starts up Access Point with provided SSID and Password
 
 Turns off Access Point
 
-**How to use it** — press `t`. At the prompt, enter: Enter SSID and Password, seperetad by spaces.
+**How to use it** — press `t`. At the prompt, enter: SSID and Password, seperetad by spaces.
 
 ## Get Stations connected to AP
 

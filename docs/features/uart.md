@@ -12,7 +12,7 @@ terminal, and on the device itself. See
 
 Writes data to a specific I2C Address
 
-**How to use it** — press `w`. At the prompt, enter: Enter Data Byte(s) Separated By Spaces.
+**How to use it** — press `w`. At the prompt, enter: Data Byte(s) Separated By Spaces.
 
 **What you enter** — `data_bytes`.
 

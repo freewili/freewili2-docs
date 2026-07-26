@@ -10,6 +10,6 @@ terminal, and on the device itself. See
 
 ## Enable Linux CPU
 
-
+Not yet implemented; always reports failure
 
 **How to use it** — press `a`.

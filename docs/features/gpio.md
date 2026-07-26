@@ -32,7 +32,7 @@ build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`,
 - `t` — Toggle (invert a GPIO)
 - `u` — Get All IOs (read full GPIO bitfield)
 
-**How to use it** — press `s`. At the prompt, enter: Enter GPIO Number.
+**How to use it** — press `s`. At the prompt, enter: GPIO Number.
 
 **What you enter** — `pin`.
 
@@ -60,7 +60,7 @@ build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`,
 - `t` — Toggle (invert a GPIO)
 - `u` — Get All IOs (read full GPIO bitfield)
 
-**How to use it** — press `l`. At the prompt, enter: Enter GPIO Number.
+**How to use it** — press `l`. At the prompt, enter: GPIO Number.
 
 **What you enter** — `pin`.
 
@@ -97,7 +97,7 @@ build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`,
 - `p` — PWM IO (drive a GPIO with PWM)
 - `u` — Get All IOs (read full GPIO bitfield)
 
-**How to use it** — press `t`. At the prompt, enter: Enter GPIO Number.
+**How to use it** — press `t`. At the prompt, enter: GPIO Number.
 
 **What you enter** — `pin`.
 
@@ -139,7 +139,7 @@ standard build these include: `8`, `9`, `10`, `11`, `12`, `13`, `14`,
 - `t` — Toggle (invert a GPIO)
 - `u` — Get All IOs (read full GPIO bitfield)
 
-**How to use it** — press `p`. At the prompt, enter: Enter GPIO Number, freq, and duty (0-100) separated by spaces:.
+**How to use it** — press `p`. At the prompt, enter: GPIO Number, freq, and duty (0-100) separated by spaces:
 
 **What you enter** — `gpio_number`, `freq`, `duty`.
 
@@ -219,7 +219,7 @@ The example above streams the full GPIO bitfield every 10 ms. Pass `0` to
 - `l` — Low (drive a GPIO low)
 - `t` — Toggle (invert a GPIO)
 
-**How to use it** — press `o`. At the prompt, enter: Enter Sample Time in milliseconds.
+**How to use it** — press `o`. At the prompt, enter: Sample Time in milliseconds.
 
 **What you enter** — `reportratems`.
 
@@ -255,7 +255,7 @@ GPIO commands (`s`, `l`, `t`, `p`) — disable HSBDIO first with `e 0`.
 - `t` — Toggle (invert a GPIO)
 - `u` — Get All IOs (read full GPIO bitfield)
 
-**How to use it** — press `e`. At the prompt, enter: Enter 1 to enable or 0 to disable.
+**How to use it** — press `e`. At the prompt, enter: 1 to enable or 0 to disable.
 
 **What you enter** — `pin`.
 

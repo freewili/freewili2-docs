@@ -16,7 +16,7 @@ Turn Bluetooth LE on or off
 
 ## BT <-> Terminal
 
-Allow the console terminal to be used over a Bluetooth LE connection
+Shown in Bluetooth LE status, but not currently used: the firmware always follows the Enable BT setting instead
 
 **How to use it** — press `t`.
 

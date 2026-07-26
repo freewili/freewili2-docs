@@ -12,8 +12,8 @@ terminal, and on the device itself. See
 
 ## Launch App
 
+Switch the built-in display to the app with the given app ID
 
-
-**How to use it** — press `a`. At the prompt, enter: Enter app id.
+**How to use it** — press `a`. At the prompt, enter: app id.
 
 **What you enter** — `app_id`.

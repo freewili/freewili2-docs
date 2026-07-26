@@ -12,7 +12,7 @@ terminal, and on the device itself. See
 
 Configures digital playback
 
-**How to use it** — press `c`. At the prompt, enter: Enter SampleRateNs SampleCount PinStart PinStop StartMode(0=now,1=rising,2=falling) TriggerPin Loop(0/1).
+**How to use it** — press `c`. At the prompt, enter: SampleRateNs SampleCount PinStart PinStop StartMode(0=now,1=rising,2=falling) TriggerPin Loop(0/1).
 
 **What you enter** — `sample_rate_ns`, `sample_count`, `pin_start`, `pin_stop`, `start_mode`, `trigger_pin`, `loop`.
 
@@ -20,7 +20,7 @@ Configures digital playback
 
 Configures DAC playback
 
-**How to use it** — press `a`. At the prompt, enter: Enter AnalogMask(bit0=Aout0 Bit3=Aout3) AnalogRateNs AnalogRes(8/16).
+**How to use it** — press `a`. At the prompt, enter: AnalogMask(bit0=Aout0 Bit3=Aout3) AnalogRateNs AnalogRes(8/16).
 
 **What you enter** — `mask`, `analog_rate_ns`, `analog_resolution`.
 
@@ -28,7 +28,7 @@ Configures DAC playback
 
 Loads a raw buffer from the filesystem
 
-**How to use it** — press `l`. At the prompt, enter: Enter file path to load into the play buffer.
+**How to use it** — press `l`. At the prompt, enter: file path to load into the play buffer.
 
 **What you enter** — `file_path`.
 

@@ -12,6 +12,6 @@ terminal, and on the device itself. See
 
 Enables or disables streaming of battery info to the host.
 
-**How to use it** — press `o`. At the prompt, enter: Enter 1 to enable 0 to disable.
+**How to use it** — press `o`. At the prompt, enter: 1 to enable 0 to disable.
 
 **What you enter** — `enable`.

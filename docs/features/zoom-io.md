@@ -24,7 +24,7 @@ o 0   # stop streaming
 - Streaming only affects RX delivery to the host; it does not change ZoomIO transmit behavior or the schedule table.
 - Pair with `w` (Write to FIFO), `u` (Update Schedule Table), and `p` (Setup Schedule Table) to drive traffic while observing responses.
 
-**How to use it** — press `o`. At the prompt, enter: Enter 1 to enable 0 to disable.
+**How to use it** — press `o`. At the prompt, enter: 1 to enable 0 to disable.
 
 **What you enter** — `enable`.
 
@@ -32,7 +32,7 @@ o 0   # stop streaming
 
 Sends a single ZoomIO message after the given delay (us).
 
-**How to use it** — press `w`. At the prompt, enter: Enter delay us and Hex Data Byte(s) Separated By Spaces.
+**How to use it** — press `w`. At the prompt, enter: delay us and Hex Data Byte(s) Separated By Spaces.
 
 **What you enter** — `delay`, `data`.
 
@@ -40,7 +40,7 @@ Sends a single ZoomIO message after the given delay (us).
 
 Updates a schedule-table transmit message.
 
-**How to use it** — press `u`. At the prompt, enter: Enter Table Index, delay us and hex data byte(s) Separated By Spaces.
+**How to use it** — press `u`. At the prompt, enter: Table Index, delay us and hex data byte(s) Separated By Spaces.
 
 **What you enter** — `table_index`, `delay`, `data`.
 
@@ -48,7 +48,7 @@ Updates a schedule-table transmit message.
 
 Sets up the schedule table size (0 to disable).
 
-**How to use it** — press `p`. At the prompt, enter: Enter number of table items, 0 to disable.
+**How to use it** — press `p`. At the prompt, enter: number of table items, 0 to disable.
 
 **What you enter** — `number_of_entries`.
 
@@ -62,7 +62,7 @@ Compiles built-in ZoomIO milestone program and launches it on core1 as RISC-V
 
 Compile and run a ZoomIO program on the RISC-V core1
 
-**How to use it** — press `r`. At the prompt, enter: Enter the .zio script path.
+**How to use it** — press `r`. At the prompt, enter: the .zio script path.
 
 **What you enter** — `path`.
 
