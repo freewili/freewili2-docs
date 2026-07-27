@@ -6,8 +6,8 @@ sidebar_position: 20
 
 ## Wili Blocks
 
-Watches a running function-block program step by step, and lets you pause,
-resume or single-step it.
+Watches a running Wili Block step by step, and lets you pause, resume or
+single-step it.
 
 ### The screen
 

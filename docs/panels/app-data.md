@@ -6,8 +6,8 @@ sidebar_position: 50
 
 ## App Data
 
-Lists the named values ("app signals") a running function-block program
-or script reads and writes, each with its live value. Signals can also
+Lists the named values ("app signals") a running Wili Block or script
+reads and writes, each with its live value. Signals can also
 be created, renamed, removed and set by hand from this screen.
 
 ### The screen
