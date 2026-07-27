@@ -8,23 +8,32 @@ sidebar_position: 50
 
 ## App Data
 
-Meant to list the named values ("app signals") a running function-block
-program is tracking, each with its current value.
+Lists the named values ("app signals") a running function-block program
+or script reads and writes, each with its live value. Signals can also
+be created, renamed, removed and set by hand from this screen.
 
 ### The screen
 
-A two-column grid, headed "name" and "value". As shipped, the grid never
-actually fills in - it always stays empty, showing only its column headers.
+The left side is a two-column grid, headed "name" and "value". Each row
+is one signal; values refresh live while the screen is open. The right
+side shows the selected signal's name above a chart that streams that
+signal's value over time (plotted in thousandths, so 1.5 charts as
+1500).
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Red | Return to main menu |
+| Up / Down | Select the previous / next signal |
+| Left / Right | Jump the selection five rows |
+| Center | Edit the selected signal's value |
+| Gray | Set the selected signal's value to zero |
+| Yellow | Add a new signal (asks for its name) |
+| Green | Remove the selected signal |
+| Blue | Rename the selected signal |
 | Cancel | This help page |
 
-Gray shows the same icon used for "return to main menu" on other screens,
-but does nothing here. Yellow, Green and Blue are labeled Rename, Remove and
-Copy, but none of them do anything either. Red is the only button that
-actually works on this screen, even though it is labeled "paste" - pressing
-it exits to the main menu, not a paste action.
+Adding a name that already exists selects the existing signal instead
+of creating a duplicate. Up to 32 signals can exist at once; commas in
+names are replaced with underscores. Removing a signal takes effect
+immediately, with no confirmation.
