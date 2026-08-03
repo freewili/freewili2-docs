@@ -9,6 +9,10 @@
     { "slug": "system", "title": "System" },
     { "slug": "settings", "title": "Settings" }
   ],
+  "helpPages": {
+    "main.md": { "publish": true, "title": "Home Screen", "section": "system", "order": 5 },
+    "script-output.md": { "publish": false, "note": "Opened by fwPanelAppCustom for the running-script log; the Script Monitor panel page already covers that screen." }
+  },
   "menus": {
     "fwMenuIO": { "publish": true, "title": "IO", "section": "io", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to GPIO, UART, MDIO, Sensors, I2C, SPI, CAN FD, Analog In, Analog Out & Trigger, Logic Player, Logic Analyzer, WilEye Camera, Audio, or Serial LEDs." },
     "fwMenuGPIO": { "publish": true, "title": "GPIO", "section": "io", "order": 20, "panelKey": "APP_SELECTED_GPIO" },

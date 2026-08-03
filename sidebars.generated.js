@@ -62,7 +62,7 @@ module.exports = {
     {
       type: 'category',
       label: 'System',
-      items: ['panels/setup-actions', 'panels/files', 'panels/settings-display', 'panels/power-management', 'panels/about'],
+      items: ['panels/home-screen', 'panels/setup-actions', 'panels/files', 'panels/settings-display', 'panels/power-management', 'panels/about'],
     },
     {
       type: 'category',

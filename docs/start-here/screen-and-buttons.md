@@ -127,7 +127,9 @@ while the device is already running.
 
 The device has its own on-screen help viewer.
 
-Pressing **Green** on the main menu opens the general help topic. On a
+Pressing **Green** on the main menu opens the general help topic — the same
+page published here as [Home Screen](../panels/home-screen.md), which also
+covers picking and authoring home-screen themes. On a
 panel that declares its own help topic, **Cancel** opens that topic instead
 of backing out — pressing Cancel there brings up that screen's help page
 directly on the device.
