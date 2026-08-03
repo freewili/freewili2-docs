@@ -8,4 +8,4 @@ These commands are available three ways — in the FREE-WILi GUI app, in a seria
 terminal, and on the device itself. See
 [Connecting it to a computer](../start-here/connecting.md) for how to reach them.
 
-> **Note:** This section is a navigation hub with no commands of its own - use it to jump straight to GPIO, UART, MDIO, Sensors, I2C, SPI, CAN FD, Analog In, Analog Out & Trigger, Logic Player, Logic Analyzer, WilEye Camera, or Audio.
+> **Note:** This section is a navigation hub with no commands of its own - use it to jump straight to GPIO, UART, MDIO, Sensors, I2C, SPI, CAN FD, Analog In, Analog Out & Trigger, Logic Player, Logic Analyzer, WilEye Camera, Audio, or Serial LEDs.

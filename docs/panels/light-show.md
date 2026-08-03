@@ -48,3 +48,70 @@ yourself.
 If a received infrared code changes the active pattern while this
 screen is open, the highlighted selection here jumps to match it
 automatically.
+
+### Serial LEDs
+
+The Page button switches to a second screen, "Serial LEDs", which
+configures up to 8 external addressable LED strips (WS2812 "RGB" or
+SK6812 "RGBW") driven from the main CPU's header GPIOs. Press Page
+again to return to the pattern picker.
+
+External strips need the device's PSRAM; on a unit without it every
+change is refused and the strips stay off.
+
+#### The screen
+
+A list of 11 rows: strips 1-8, then Show, Auto Show, and Jambu Orca
+setup. Each strip row reads like `3: GPIO11 30 RGB` - its pin, LED
+count, LED type, and `inv` if the data line is inverted. `off` means
+the strip is disabled; "waiting for main..." clears as soon as the
+main CPU answers with the current configuration.
+
+#### Configuring a strip
+
+Select a strip row and answer the chain of dialogs:
+
+1. **GPIO** - pick Off to disable the strip, or one of the header
+   pins (8-17, 25, 26, 27). A disabled strip keeps its length, type
+   and polarity for the next enable.
+2. **LEDs (1-1024)** - how many LEDs are on the strip.
+3. **LED type** - RGB (WS2812, 3 bytes per LED) or RGBW (SK6812,
+   4 bytes per LED).
+4. **Polarity** - Normal, or Inverted if the data line passes through
+   an inverting driver.
+
+Changes apply immediately and are saved on the main CPU, so they
+survive a power cycle.
+
+#### Show and Auto Show
+
+**Show** picks one of the same 14 patterns as the first screen and
+runs it on **all** strips (the choice is not saved across reboots).
+**Auto Show** toggles on the spot: while On, the external strips
+automatically follow whatever pattern is picked on the Light Show
+screen - from there, from the console, or by IR.
+
+#### Jambu Orca setup
+
+One-step preset for the Jambu Orca 8-channel LED breakout. Enter how
+many strips are plugged in (1-8) and strips 1-N are mapped to the
+breakout's channels in order; higher-numbered strips are disabled.
+Lengths and types already configured are kept (new strips default to
+30 RGB LEDs) - adjust per strip afterwards if needed.
+
+| Strip | Main GPIO | Strip | Main GPIO |
+|---|---|---|---|
+| 1 | 13 | 5 | 26 |
+| 2 | 14 | 6 | 25 |
+| 3 | 11 | 7 | 9 |
+| 4 | 15 | 8 | 10 |
+
+Power the breakout's 5V from its barrel jack (or its USB power
+select) when driving more than a handful of LEDs - the FreeWili
+itself cannot feed long strips.
+
+#### Limits
+
+Up to 8 strips and up to 1024 LEDs per strip. A full 1024-LED frame
+takes about 30-40 ms on the wire, so very long strips animate at a
+lower rate than short ones.

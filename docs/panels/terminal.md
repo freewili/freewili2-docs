@@ -6,8 +6,6 @@ sidebar_position: 10
 
 Found under **Wi-Li-nux** on the device's panel list.
 
-This panel is also listed as **Skelltris**, **Wili8**, and **Doom** under **Apps** on the device's panel list. Those are placeholder entries for real SD-card apps whose launch wiring isn't finished yet, so today they fall back to opening this panel instead.
-
 ## Terminal
 
 A text console into the device: type a line, press enter, and see the

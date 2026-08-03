@@ -42,6 +42,12 @@ default immediately, but still leaves the screen marked as having
 unsaved changes, so press Blue again afterward if you want the reset to
 stick.
 
+The Sensors category is a special case. Its values are owned by the main
+CPU, which pushes them to the display every time settings are loaded.
+You can still change them here and the change takes effect immediately,
+but it is not saved - a reboot restores whatever the main CPU holds. To
+change a sensor setting permanently, use Sensors under Main CPU Setup.
+
 ### Where this fits
 
 This screen is not on the on-device main menu; it is reached from the

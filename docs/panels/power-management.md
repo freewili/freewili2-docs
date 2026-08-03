@@ -13,10 +13,12 @@ device is awake and running normally.
 
 ### The screen
 
-Two columns of numbered zone buttons - Zone 1 through Zone 9 on the left,
-Zone 10 through Zone 17 on the right. A zone lit green is switched on;
-grey is off. The highlighted zone (its label prefixed with ">") is the
-one the d-pad is currently pointing at.
+Two columns of zone buttons, each labelled `N:Name` (for example
+`3:Audio`) - the number is the zone as the console menu and host API
+address it. Zone 1 through Zone 9 are in the left column, Zone 10 through
+Zone 17 in the right. A zone lit green is switched on; grey is off. The
+highlighted zone (its label prefixed with ">") is the one the d-pad is
+currently pointing at.
 
 ### Controls
 
@@ -25,10 +27,10 @@ one the d-pad is currently pointing at.
 | Left / Right | Switch between the two columns |
 | Up / Down | Move the highlight to the next zone in the column |
 | Center / Green | Turn the highlighted zone on or off |
-| Gray | Previous tab (Wakeup Conditions) |
+| Gray | Previous tab (Power State) |
 | Yellow | Next tab (Sleep Config) |
 | Blue | Send this configuration |
-| Red | Back |
+| Red | Back - leaves without sending |
 | Hold Cancel | This help page |
 
 Tapping a zone button directly also toggles it and moves the highlight
@@ -36,30 +38,48 @@ there.
 
 ### Sending the configuration
 
-Power Devices, Sleep Config and Wakeup Conditions are three tabs of one
-screen with a single Send action. Blue sends the zones and conditions
-set across all three tabs to the power controller - there is no
-confirmation prompt. If any wakeup condition is checked on the Wakeup
-Conditions tab, Red (Back) sends that same configuration on the way out
-instead of just leaving the screen - once a condition is checked, Back
-is not a safe way to cancel out of this app. With no wakeup condition
-checked, Back leaves without sending. Cancel does not send or leave
-either way - hold it, do not tap it, to reach this page.
-
-Sending this configuration hands it off to the power controller - the
-screen itself does not ask for confirmation.
+Power Devices, Sleep Config, Wakeup Conditions and Power State are four
+tabs of one screen with a single Send action. Blue sends the zones and
+conditions set across Power Devices, Sleep Config and Wakeup Conditions to
+the power controller - there is no confirmation prompt. Red leaves the
+screen without sending anything.
+Cancel neither sends nor leaves - hold it, do not tap it, to reach this
+page.
 
 Sending with none of the six wakeup conditions checked leaves nothing
 selected to wake the device back up. See Wakeup Conditions before
-sending to make sure at least one condition is checked.
+sending.
 
 ### Zones
 
-There are 17 zones, numbered only - the screen does not say what each
-one powers. All 17 are on by default. Turning a zone off here only
-changes what stays powered while the device is awake; it has no effect
-on what stays powered during sleep - that is set separately on the Sleep
-Config tab.
+Seventeen zones can be switched here. Each button's label gives the zone
+number and what it powers:
+
+| # | Name | Powers |
+|---|---|---|
+| 1 | Sensors | IMU, magnetometer, humidity sensor, light sensor, IO expander |
+| 2 | Display | LCD panel and touch controller |
+| 3 | Audio | Audio codec |
+| 4 | Sub-GHz | CC1101 radio and LoRa module |
+| 5 | ESP32 | ESP32-C5 module |
+| 6 | FPGA | FPGA and its SRAM |
+| 7 | SD Card | microSD and its USB bridge |
+| 8 | USB Hub | USB hub and EEPROMs |
+| 9 | Board LED | Board-manager status LED - not a power rail |
+| 10 | LEDs | RGB LEDs |
+| 11 | Analog | DAC, ADC, opamps |
+| 12 | Aux | Display auxiliary rail (tentative) |
+| 13 | NFC/RFID | NFC and 125 kHz RFID |
+| 14 | FTDI | USB serial bridge |
+| 15 | CAN | CAN controller and transceiver |
+| 16 | Debug CPU | On-board debug probe |
+| 17 | CM0 | Compute module and its microSD |
+
+All seventeen default to on. Turning one off here only changes what
+stays powered while the device is awake; what stays powered during sleep
+is set separately on the Sleep Config tab. Zone 9 is the exception - it
+is not a power rail, so switching it only turns the board-manager LED on
+or off and has no effect on power in either mode.
 
 ## Sleep Config
 
@@ -67,10 +87,10 @@ Chooses which power zones stay switched on if the device goes to sleep.
 
 ### The screen
 
-The same layout as Power Devices: two columns of the same 17 numbered
-zones, Zone 1 through Zone 9 on the left and Zone 10 through Zone 17 on
-the right. A zone lit blue stays powered during sleep; grey is powered
-off. The highlighted zone is prefixed with ">".
+The same layout as Power Devices: two columns of the same 17 zones, each
+labelled `N:Name`, Zone 1 through Zone 9 on the left and Zone 10 through
+Zone 17 on the right. A zone lit blue stays powered during sleep; grey is
+powered off. The highlighted zone is prefixed with ">".
 
 ### Controls
 
@@ -82,7 +102,7 @@ off. The highlighted zone is prefixed with ">".
 | Gray | Previous tab (Power Devices) |
 | Yellow | Next tab (Wakeup Conditions) |
 | Blue | Send this configuration |
-| Red | Back |
+| Red | Back - leaves without sending |
 | Hold Cancel | This help page |
 
 Tapping a zone button directly also toggles it and moves the highlight
@@ -90,34 +110,31 @@ there.
 
 ### Sending the configuration
 
-Power Devices, Sleep Config and Wakeup Conditions are three tabs of one
-screen with a single Send action. Blue sends the zones and conditions
-set across all three tabs to the power controller - there is no
-confirmation prompt. If any wakeup condition is checked on the Wakeup
-Conditions tab, Red (Back) sends that same configuration on the way out
-instead of just leaving the screen - once a condition is checked, Back
-is not a safe way to cancel out of this app. With no wakeup condition
-checked, Back leaves without sending. Cancel does not send or leave
-either way - hold it, do not tap it, to reach this page.
-
-Sending this configuration hands it off to the power controller - the
-screen itself does not ask for confirmation.
+Power Devices, Sleep Config, Wakeup Conditions and Power State are four
+tabs of one screen with a single Send action. Blue sends the zones and
+conditions set across Power Devices, Sleep Config and Wakeup Conditions to
+the power controller - there is no confirmation prompt. Red leaves the
+screen without sending anything.
+Cancel neither sends nor leaves - hold it, do not tap it, to reach this
+page.
 
 Sending with none of the six wakeup conditions checked leaves nothing
 selected to wake the device back up. See Wakeup Conditions before
-sending to make sure at least one condition is checked.
+sending.
 
 ### Sleep zones
 
 All 17 zones are off by default, so sleep cuts power to everything
 unless a zone is turned on here. Some of that is done for you: checking
-ESP on the Wakeup Conditions tab forces Zone 5 on, checking IMU or Light
-forces Zone 1 on, and checking WIO GPIO forces Zone 4 on, overriding
-whatever this screen shows for that zone. This is applied the moment a
-condition is checked and again right before Send, so a sensor a wakeup
-condition depends on cannot end up unpowered by accident. Zones forced
-on this way still show their normal color here; the screen does not mark
-them as locked.
+ESP on the Wakeup Conditions tab forces zone 5 (ESP32) on, checking IMU
+or Light forces zone 1 (Sensors) on, and checking WIO GPIO forces zone 4
+(Sub-GHz) on, overriding whatever this screen shows for that zone. This
+is applied the moment a condition is checked and again right before
+Send, so a sensor a wakeup condition depends on cannot end up unpowered
+by accident. Zones forced on this way still show their normal color
+here; the screen does not mark them as locked. See Power Devices for
+what each zone powers, including zone 9, the board-manager LED, which is
+not a power rail.
 
 ## Wakeup Conditions
 
@@ -141,9 +158,9 @@ selected timeout is lit blue. The highlighted condition is prefixed with
 | Center | Toggle the highlighted condition on or off; inside the Idle Timeout strip, leaves the strip instead |
 | Green | Toggle the highlighted condition on or off, including the last one highlighted if the cursor is currently in the Idle Timeout strip |
 | Gray | Previous tab (Sleep Config) |
-| Yellow | Next tab (Power Devices) |
+| Yellow | Next tab (Power State) |
 | Blue | Send this configuration |
-| Red | Back |
+| Red | Back - leaves without sending |
 | Hold Cancel | This help page |
 
 Green always toggles whichever condition was last highlighted, even
@@ -152,18 +169,13 @@ condition is shown selected.
 
 ### Sending the configuration
 
-Power Devices, Sleep Config and Wakeup Conditions are three tabs of one
-screen with a single Send action. Blue sends the zones and conditions
-set across all three tabs to the power controller - there is no
-confirmation prompt. Checking any condition here means Red (Back) sends
-that same configuration on the way out instead of just leaving the
-screen - once a condition is checked, Back is not a safe way to cancel
-out of this app. With no condition checked, Back leaves without sending.
-Cancel does not send or leave either way - hold it, do not tap it, to
-reach this page.
-
-Sending this configuration hands it off to the power controller - the
-screen itself does not ask for confirmation.
+Power Devices, Sleep Config, Wakeup Conditions and Power State are four
+tabs of one screen with a single Send action. Blue sends the zones and
+conditions set across Power Devices, Sleep Config and Wakeup Conditions to
+the power controller - there is no confirmation prompt. Red leaves the
+screen without sending anything.
+Cancel neither sends nor leaves - hold it, do not tap it, to reach this
+page.
 
 If Send goes out with none of the six conditions checked, there is
 nothing selected to wake the device back up. Make sure at least one
@@ -191,3 +203,61 @@ not idle-sleep on its own. A timeout other than Never can only be chosen
 once at least one condition above is checked; with nothing checked, the
 strip is locked to Never and left and right are ignored while it is
 highlighted.
+
+## Power State
+
+A live readout of battery, charger and rail state, read straight from the
+display CPU's own hardware. No host protocol is involved, so this tab
+works with nothing plugged into the USB port.
+
+### The screen
+
+Eight readings, refreshed about twice a second:
+
+| Row | Meaning |
+|---|---|
+| Charge | Fuel gauge state of charge, as a percent |
+| Current | Fuel gauge average current, in mA - negative while the battery is discharging, positive while it is charging |
+| Capacity | Fuel gauge remaining and full-charge capacity, in mAh |
+| Battery | Battery voltage measured by the power controller, in mV |
+| System | System rail voltage measured by the power controller, in mV |
+| VBUS | USB input voltage measured by the power controller, in mV |
+| Charger | Charger state (Not charging / Pre-charge / Fast charge / Charged) and charge current, in mA |
+| Zones on | How many of the 17 user-controllable power zones are currently switched on |
+
+The three fuel-gauge readings (Charge, Current, Capacity) come from an I2C
+device that can fail to answer. A real battery pack never reports a zero
+full-charge capacity, so a zero read there is treated as a failed
+transaction rather than an actual empty pack: those three rows show `--`
+instead of a number whenever the read fails, rather than a misleading 0.
+The Battery, System, VBUS, Charger and Zones on rows come from the power
+controller's status cache and the zone state, not the fuel gauge, so they
+are unaffected by a fuel-gauge failure.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Gray | Previous tab (Wakeup Conditions) |
+| Yellow | Next tab (Power Devices) |
+| Blue | Send the configuration set on the other three tabs |
+| Red | Back - leaves without sending |
+| Hold Cancel | This help page |
+
+This tab has no controls to edit - it only displays readings. Blue and Red
+behave the same here as on the other three tabs, since Send/Back apply to
+the whole screen, not to whichever tab happens to be showing.
+
+### Sending the configuration
+
+Power Devices, Sleep Config, Wakeup Conditions and Power State are four
+tabs of one screen with a single Send action. Blue sends the zones and
+conditions set across the other three tabs to the power controller - there
+is no confirmation prompt. Red leaves the screen without sending anything.
+Cancel neither sends nor leaves - hold it, do not tap it, to reach this
+page.
+
+Sending with none of the six wakeup conditions checked leaves nothing
+selected to wake the device back up. See Wakeup Conditions before sending.
+
+**See also:** [Power Management](../features/power-management.md) — the console/GUI commands for this panel.

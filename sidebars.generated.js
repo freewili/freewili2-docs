@@ -5,12 +5,12 @@ module.exports = {
     {
       type: 'category',
       label: 'IO',
-      items: ['features/io', 'features/gpio', 'features/uart', 'features/mdio', 'features/sensors', 'features/i2c', 'features/spi', 'features/canfd', 'features/analog-in', 'features/analog-out', 'features/logic-player', 'features/logic-analyzer', 'features/wil-eye', 'features/audio'],
+      items: ['features/io', 'features/gpio', 'features/uart', 'features/mdio', 'features/sensors', 'features/i2c', 'features/spi', 'features/canfd', 'features/analog-in', 'features/analog-out', 'features/logic-player', 'features/logic-analyzer', 'features/wil-eye', 'features/audio', 'features/serial-leds'],
     },
     {
       type: 'category',
       label: 'Wireless',
-      items: ['features/wireless', 'features/nfc', 'features/esp32-flasher', 'features/wifi', 'features/bluetooth-le', 'features/ir'],
+      items: ['features/wireless', 'features/nfc', 'features/esp32-flasher', 'features/wifi', 'features/bluetooth-le', 'features/ir', 'features/lo-ra'],
     },
     {
       type: 'category',
@@ -25,12 +25,12 @@ module.exports = {
     {
       type: 'category',
       label: 'System',
-      items: ['features/hardware', 'features/system'],
+      items: ['features/hardware', 'features/system', 'features/power-management', 'features/file-system'],
     },
     {
       type: 'category',
       label: 'Settings',
-      items: ['features/settings-home', 'features/general-settings', 'features/rtc-settings', 'features/wifi-settings', 'features/ble-settings', 'features/radio-settings', 'features/radio-fa-settings', 'features/i2c-settings', 'features/spi-settings', 'features/uart-settings', 'features/analog-in-settings', 'features/io-direction-settings', 'features/light-show-settings', 'features/neptune-settings', 'features/orca-settings', 'features/websocket-settings', 'features/fpga-clock-settings'],
+      items: ['features/settings-home', 'features/general-settings', 'features/rtc-settings', 'features/wifi-settings', 'features/ble-settings', 'features/radio-settings', 'features/radio-fa-settings', 'features/i2c-settings', 'features/spi-settings', 'features/uart-settings', 'features/analog-in-settings', 'features/io-direction-settings', 'features/sensor-settings', 'features/neptune-settings', 'features/orca-settings', 'features/websocket-settings', 'features/fpga-clock-settings'],
     }
   ],
   panels: [
@@ -42,7 +42,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Wireless',
-      items: ['panels/sub-g-hz-radio', 'panels/wifi', 'panels/bluetooth', 'panels/ir'],
+      items: ['panels/sub-g-hz-radio', 'panels/wifi', 'panels/bluetooth', 'panels/ir', 'panels/lo-ra'],
     },
     {
       type: 'category',

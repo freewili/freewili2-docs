@@ -15,3 +15,11 @@ Enables or disables streaming of battery info to the host.
 **How to use it** — press `o`. At the prompt, enter: 1 to enable 0 to disable.
 
 **What you enter** — `enable`.
+
+## Read OTP Info
+
+Reads bytes from the fused OTP identity blob (bl_otp_info v3). An unprovisioned device reads all zeros. Read in chunks of 256 bytes or less.
+
+**How to use it** — press `b`. At the prompt, enter: Dec: Offset, Length (bytes within the 512-byte identity blob).
+
+**What you enter** — `offset`, `length`.

@@ -259,4 +259,18 @@ GPIO commands (`s`, `l`, `t`, `p`) — disable HSBDIO first with `e 0`.
 
 **What you enter** — `pin`.
 
+## Set IO Voltage Source
+
+Selects which source the DISPLAY IO expander connects to the external IO voltage rail.
+
+- `0` - disconnected
+- `1` - 3.3 V
+- `2` - 5.0 V
+- `3` - Trig_IN/VREF
+- `4` - programmable Vout
+
+**How to use it** — press `v`. At the prompt, enter: 0=None, 1=3.3V, 2=5.0V, 3=Trig_IN/VREF, 4=Prog Vout.
+
+**What you enter** — `source`.
+
 **See also:** [GPIO panel](../panels/gpio.md) — the on-screen panel for this.

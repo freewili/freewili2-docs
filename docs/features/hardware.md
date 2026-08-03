@@ -8,8 +8,4 @@ These commands are available three ways — in the FREE-WILi GUI app, in a seria
 terminal, and on the device itself. See
 [Connecting it to a computer](../start-here/connecting.md) for how to reach them.
 
-## Files
-
-Open the file system submenu to browse and manage files
-
-**How to use it** — press `x`.
+> **Note:** This section is a navigation hub with no commands of its own - use it to jump straight to Device Settings, System, File System, or Power Management.

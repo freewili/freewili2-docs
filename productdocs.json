@@ -10,7 +10,7 @@
     { "slug": "settings", "title": "Settings" }
   ],
   "menus": {
-    "fwMenuIO": { "publish": true, "title": "IO", "section": "io", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to GPIO, UART, MDIO, Sensors, I2C, SPI, CAN FD, Analog In, Analog Out & Trigger, Logic Player, Logic Analyzer, WilEye Camera, or Audio." },
+    "fwMenuIO": { "publish": true, "title": "IO", "section": "io", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to GPIO, UART, MDIO, Sensors, I2C, SPI, CAN FD, Analog In, Analog Out & Trigger, Logic Player, Logic Analyzer, WilEye Camera, Audio, or Serial LEDs." },
     "fwMenuGPIO": { "publish": true, "title": "GPIO", "section": "io", "order": 20, "panelKey": "APP_SELECTED_GPIO" },
     "fwMenuUART": { "publish": true, "title": "UART", "section": "io", "order": 30, "panelKey": "APP_SELECTED_UART" },
     "fwMenuMDIO": { "publish": true, "title": "MDIO", "section": "io", "order": 40, "panelKey": "APP_SELECTED_MDIO" },
@@ -24,13 +24,15 @@
     "fwMenuLogicAnalyzer": { "publish": true, "title": "Logic Analyzer", "section": "io", "order": 120 },
     "fwMenuWILEye": { "publish": true, "title": "WilEye Camera", "section": "io", "order": 130, "panelKey": "APP_SELECTED_CAMERA" },
     "fwMenuAudio": { "publish": true, "title": "Audio", "section": "io", "order": 140 },
+    "fwMenuSerialLEDs": { "publish": true, "title": "Serial LEDs", "section": "io", "order": 150 },
 
-    "fwMenuWireless": { "publish": true, "title": "Wireless", "section": "wireless", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to NFC, ESP32 Flasher, Wifi, Bluetooth LE, or IR." },
+    "fwMenuWireless": { "publish": true, "title": "Wireless", "section": "wireless", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to NFC, ESP32 Flasher, Wifi, Bluetooth LE, IR, or LoRa." },
     "fwMenuNFC": { "publish": true, "title": "NFC", "section": "wireless", "order": 20 },
     "fwMenuESP32Flasher": { "publish": true, "title": "ESP32 Flasher", "section": "wireless", "order": 30 },
     "fwMenuWifi": { "publish": true, "title": "Wifi", "section": "wireless", "order": 40, "panelKey": "APP_SELECTED_WIFI" },
     "fwMenuBluetoothLE": { "publish": true, "title": "Bluetooth LE", "section": "wireless", "order": 50, "panelKey": "APP_SELECTED_BLE" },
     "fwMenuIR": { "publish": true, "title": "IR", "section": "wireless", "order": 60 },
+    "fwMenuLoRa": { "publish": true, "title": "LoRa", "section": "wireless", "order": 70, "panelKey": "APP_SELECTED_LORA" },
 
     "fwMenuLinux": { "publish": true, "title": "Wi-Li-nux", "section": "wilinux", "order": 10 },
 
@@ -38,8 +40,10 @@
     "fwMenuScripting": { "publish": true, "title": "Scripting", "section": "apps", "order": 20 },
     "fwMenuZoomIO": { "publish": true, "title": "ZoomIO", "section": "apps", "order": 30 },
 
-    "fwMenuHardware": { "publish": true, "title": "Hardware", "section": "system", "order": 10 },
+    "fwMenuHardware": { "publish": true, "title": "Hardware", "section": "system", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to Device Settings, System, File System, or Power Management." },
     "fwMenuSystem": { "publish": true, "title": "System", "section": "system", "order": 20 },
+    "fwMenuPowerManagement": { "publish": true, "title": "Power Management", "section": "system", "order": 30, "panelKey": "APP_SELECTED_POWER_MGMT" },
+    "fwMenuFileSystem": { "publish": true, "title": "File System", "section": "system", "order": 40, "panelKey": "APP_SELECTED_FILES" },
 
     "fwMenuSettingsHome": { "publish": true, "title": "Device Settings", "section": "settings", "order": 10 },
     "fwMenuGeneralSettings": { "publish": true, "title": "General Settings", "section": "settings", "order": 20 },
@@ -53,7 +57,7 @@
     "fwMenuUARTSettings": { "publish": true, "title": "UART Settings", "section": "settings", "order": 100 },
     "fwMenuAnalogInSettings": { "publish": true, "title": "Analog In Settings", "section": "settings", "order": 110 },
     "fwMenuIODirectionSettings": { "publish": true, "title": "IO Direction Settings", "section": "settings", "order": 120 },
-    "fwMenuLightShowSettings": { "publish": true, "title": "Light Show Settings", "section": "settings", "order": 130 },
+    "fwMenuSensorSettings": { "publish": true, "title": "Sensor Settings", "section": "settings", "order": 130 },
     "fwMenuNeptuneSettings": { "publish": true, "title": "Neptune Settings", "section": "settings", "order": 140 },
     "fwMenuOrcaSettings": { "publish": true, "title": "Orca Settings", "section": "settings", "order": 150 },
     "fwMenuWebsocketSettings": { "publish": true, "title": "Websocket Settings", "section": "settings", "order": 160 },
@@ -80,6 +84,7 @@
     "APP_SELECTED_WIFI": { "publish": true, "title": "Wifi", "section": "wireless", "order": 20 },
     "APP_SELECTED_BLE": { "publish": true, "title": "Bluetooth", "section": "wireless", "order": 30 },
     "APP_SELECTED_IR": { "publish": true, "title": "IR", "section": "wireless", "order": 40 },
+    "APP_SELECTED_LORA": { "publish": true, "title": "LoRa", "section": "wireless", "order": 50 },
 
     "APP_SELECTED_SOUNDBOARD": { "publish": true, "title": "Sound Board", "section": "gui", "order": 10 },
     "APP_SELECTED_RTC": { "publish": true, "title": "Clock & Alarm", "section": "gui", "order": 20 },

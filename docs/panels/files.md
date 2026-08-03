@@ -8,51 +8,40 @@ Found under **System** on the device's panel list.
 
 ## Files
 
-Browses the SD card, and creates, renames, removes or flashes what it finds
-there.
+Browses the SD card and internal flash, and creates, renames or removes
+what it finds there.
 
 ### The screen
 
-Two lists side by side. The left list browses folders and files, starting
-at the card's root; a folder shows ".." at the top once you have moved into
-it, to step back out. The right list holds actions for whatever folder is
-showing on the left: New Directory and New File are always there, and
-Flash ESP32 joins them only when the current folder holds a flashable
-ESP32 image. Folders are marked with a "[D]" prefix and shown in green;
-files are white.
+One full-width file list. The header row shows the folder being listed;
+it starts at the card's root. Once inside a folder, ".." appears at the
+top to step back out. Folders show a folder icon and sort first,
+followed by files, each group alphabetical.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Left / Right | Switch focus between the browse list and the action list |
-| Up / Down | Move the highlighted item in whichever list has focus |
-| Center | Open a folder, or run the highlighted action |
+| Up / Down | Move the highlighted entry |
+| Center | Open the highlighted folder (".." steps back up) |
+| Page | Jump a screenful down (wraps to the top) |
+| Left | Step back up one folder level |
 | Gray | Rename the highlighted file or folder |
 | Yellow | Remove the highlighted file or folder (asks to confirm) |
+| Green | Create a new file in the folder being listed |
+| Blue | Create a new folder in the folder being listed |
 | Red | Return to main menu |
 | Cancel | This help page |
 
-Green and Blue are labeled Copy and Paste but neither does anything on this
-screen.
-
 ### Browsing
 
-The left list shows up to 20 files and folders at a time. Center on a folder
-moves into it; Center on ".." moves back up one level. Gray and Yellow only
-act on the left list - pressing them while the right list has focus does
-nothing.
+The list shows up to 48 entries per folder. Green and Blue create into
+the folder currently being listed; Rename and Remove act on the
+highlighted entry and do nothing while ".." is highlighted.
 
-### The action list
+### Renaming and removing
 
-New Directory and New File are always offered:
+Gray opens the on-screen keyboard for the new name; the entry keeps its
+place in the same folder. Yellow asks for confirmation before it deletes.
 
-- New Directory - asks for a name and creates it in the current folder
-- New File - asks for a name and creates an empty file in the current folder
-
-Flash ESP32 is added as a third choice only when the current folder holds
-a flashable ESP32 image; a folder without one shows just those first two.
-
-The third row stays selectable even when Flash ESP32 was not added for the
-current folder, so selecting it there still attempts a flash - of a folder
-that has nothing to flash - and nothing useful happens.
+**See also:** [File System](../features/file-system.md) — the console/GUI commands for this panel.

@@ -22,9 +22,9 @@ time. Selecting an item plays it right away.
 | Button | Action |
 |---|---|
 | Center (or tap) | Play the highlighted sound |
-| Blue | Next page: User, ROM, Tones, SAM |
+| Page | Next page: User, ROM, Tones, SAM |
 | Hold Green | On the ROM page, start or stop auto-cycling through every ROM sound about every 3 seconds; does nothing on the other pages |
-| Red | Return to the main menu |
+| Home | Return to the main menu |
 | Cancel | This help page |
 
 Gray and Yellow carry no label here and do nothing.

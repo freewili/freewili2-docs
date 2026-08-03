@@ -13,9 +13,17 @@ Reached from the main menu as "Command Panel".
 ### The screen
 
 Opens locked, showing whatever controls have been placed on the current
-page. A page can be blank if nothing has been added yet. Unlocking (see
-below) switches into edit mode, where the currently selected control is
-highlighted.
+page. Unlocking (see below) switches into edit mode, where the currently
+selected control is highlighted.
+
+If the current page has no controls at all, the screen opens directly in
+edit mode and shows a "Load Wili File" touch button in the middle. Tapping
+it opens a file picker on the SD card's `wilifiles` folder; picking a
+`.wili` project file loads it and rebuilds the panel from its contents.
+
+To make a project load automatically at power-up, put it in
+`wilifiles/default/` - the first `.wili` file found there is loaded at
+boot.
 
 ### Controls
 

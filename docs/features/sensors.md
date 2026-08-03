@@ -8,10 +8,40 @@ These commands are available three ways — in the FREE-WILi GUI app, in a seria
 terminal, and on the device itself. See
 [Connecting it to a computer](../start-here/connecting.md) for how to reach them.
 
-## Stream Accel
+## Stream Motion
 
-Streams accelerometer (and temperature) data to the host at the given rate.
+Streams accelerometer and gyroscope data to the host at the given rate. 0 stops the stream.
 
-**How to use it** — press `o`. At the prompt, enter: Sample Time in milliseconds.
+**How to use it** — press `m`. At the prompt, enter: Sample Time in milliseconds.
 
 **What you enter** — `stream_rate_ms`.
+
+## Stream Field
+
+Streams magnetometer data to the host at the given rate. 0 stops the stream.
+
+**How to use it** — press `f`. At the prompt, enter: Sample Time in milliseconds.
+
+**What you enter** — `stream_rate_ms`.
+
+## Stream Env
+
+Streams temperature, humidity and ambient light to the host. This stream is change-driven: the rate is a heartbeat floor, so samples can arrive faster when readings move. 0 stops the stream.
+
+**How to use it** — press `e`. At the prompt, enter: Sample Time in milliseconds.
+
+**What you enter** — `stream_rate_ms`.
+
+## Stream Orientation
+
+Streams fused roll, pitch, yaw and heading to the host at the given rate. 0 stops the stream.
+
+**How to use it** — press `r`. At the prompt, enter: Sample Time in milliseconds.
+
+**What you enter** — `stream_rate_ms`.
+
+## Get Sensors
+
+Prints the most recent sample from each of the four sensor groups.
+
+**How to use it** — press `g`.

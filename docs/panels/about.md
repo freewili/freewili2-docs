@@ -19,30 +19,33 @@ right shows a "Docs" label and a QR code that links to the online product
 documentation. Lower on the screen, under "Max CPU Loop Times", are three
 rows - Main, GUI Main and GUI Disp - each the longest time that part of the
 firmware has taken to run through one processing pass since the numbers
-were last cleared.
+were last cleared. The Heap Statistics section reports free 32 KiB blocks
+and maximum simultaneously used blocks for both CPUs. `--` means that CPU
+has not supplied heap data.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Gray | Move to the next About screen (RTC) |
-| Green | Clear the three Max CPU Loop Times numbers |
+| Page | Move to the next About screen (RTC) |
+| Green | Clear the loop-time peaks and reset heap high-water values to current usage |
 | Blue | Reboot the device |
-| Red | Return to the main menu |
+| Home | Return to the main menu |
 | Cancel | This help page |
 
 ### The five About screens
 
 This is the first of five About screens, always reached in the same order:
-About, RTC, Battery, GPIO Voltage, Peripheral Detect. Gray steps forward
-through that list; Red leaves to the main menu from any of them.
+About, RTC, Battery, GPIO Voltage, Peripheral Detect. Page steps forward
+through that list and wraps back to About; Home leaves to the main menu.
 
 ### Diagnostics and reboot
 
 The version lines and the Max CPU Loop Times numbers are aimed at firmware
 developers more than everyday use, but they are on screen so they are
 documented here. The three loop-time numbers update continuously while this
-screen is open; Green resets all three back to zero.
+screen is open. Green resets their peaks to zero and resets heap high-water
+values to current usage.
 
 Blue is labeled "reset" and always performs a full device reboot. It does
 not selectively reset just the display or just the statistics - whatever
@@ -66,10 +69,10 @@ as zeros and is not currently useful.
 
 | Button | Action |
 |---|---|
-| Gray | Move to the next About screen (Battery) |
+| Page | Move to the next About screen (Battery) |
 | Yellow | Set the clock |
 | Green | Zero the seconds |
-| Red | Return to the main menu |
+| Home | Return to the main menu |
 | Cancel | This help page |
 
 ### Setting the clock
@@ -123,8 +126,8 @@ current. Nine more lines follow, top to bottom:
 
 | Button | Action |
 |---|---|
-| Gray | Move to the next About screen (GPIO Voltage) |
-| Red | Return to the main menu |
+| Page | Move to the next About screen (GPIO Voltage) |
+| Home | Return to the main menu |
 | Cancel | This help page |
 
 ### Charge state, fault and rank
@@ -172,7 +175,7 @@ and update continuously.
 
 | Button | Action |
 |---|---|
-| Gray | Move to the next About screen (Peripheral Detect) |
+| Page | Move to the next About screen (Peripheral Detect) |
 | Yellow | Feed the GPIO reference from the 5.0 V rail |
 | Green | Feed the GPIO reference from Prog Vout |
 | Blue | Feed the GPIO reference from the external reference pin |
@@ -182,10 +185,8 @@ and update continuously.
 ### Where this actually takes effect
 
 Pressing Yellow, Green, Blue or Red switches the GPIO reference
-immediately - this is the one place in the device where that choice
-actually happens in hardware. The GPIO view has a similar-looking list of
-source options under its Green button, but choosing an item there has no
-effect; use this screen instead.
+immediately. The GPIO view's Green-button source picker controls the same
+hardware through the MAIN-to-DISPLAY command link.
 
 ## Peripheral Detect
 
@@ -202,12 +203,9 @@ red - the colour is a status signal, not a selection.
 
 | Button | Action |
 |---|---|
-| Red | Return to the main menu |
+| Page | Wrap to the first About screen |
+| Home | Return to the main menu |
 | Cancel | This help page |
-
-Gray carries the same next-screen label as the other About screens, but on
-this screen it does nothing - this is the last screen in the About
-sequence and pressing Gray does not move anywhere.
 
 ### Same flags as the Battery screen
 

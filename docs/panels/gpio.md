@@ -27,7 +27,7 @@ pin is the one Gray, Blue and Centre act on.
 | Centre | Flip the highlighted pin's output value |
 | Gray | Start a PWM signal on the highlighted pin |
 | Yellow | Labeled Wave, but not wired to anything on this screen - pressing it does nothing |
-| Green | Shows the IO bank voltage; opens a source list that has no effect |
+| Green | Shows the IO bank voltage; opens the IO voltage-source picker |
 | Blue | Toggle the highlighted pin between input and output |
 | Red | Labeled Trig, but not wired to a trigger on this screen - pressing it returns to the main menu |
 | AI | Open the Logic Analyzer view |
@@ -59,8 +59,14 @@ plain IO.
 Green's own label shows the current IO bank voltage, for example
 "vio 3.30", and blinks a low-voltage warning below 0.9 V. Pressing Green
 opens a list titled Select IO Voltage Source, offering 3.3V, 5.0V, Prog
-Vout and Trig_IN/VREF - but choosing an item from it does not change
-anything. Despite the title, this list is not wired up to do that.
+Vout, Trig_IN/VREF and Disconnect. Choosing an item sends the selection to
+the DISPLAY CPU, which switches the corresponding VREF connection through
+its IO expander; Disconnect leaves the VREF rail unpowered.
+
+Choosing Prog Vout first asks for the output voltage (1.00 to 5.50 V,
+enforced by the entry dialog), powers up the programmable supply at that
+voltage, and only then switches VREF over to it - cancelling the entry
+leaves the previous source connected.
 
 ### The Logic Analyzer view
 
