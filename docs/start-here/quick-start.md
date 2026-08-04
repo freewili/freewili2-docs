@@ -48,16 +48,16 @@ Four buttons beside the screen mean the same thing on every panel:
 
 |  | Button | What it does |
 |---|---|---|
-| ![Ok button](/img/bok.png) | **Ok** | Opens or confirms whatever is selected |
-| ![Cancel button](/img/bcancel.png) | **Cancel** | Backs out one level — or opens that screen's help page, where it has one |
-| ![Home button](/img/bhome.png) | **Home** | Straight back to the main menu, from anywhere |
-| ![Page button](/img/bpage.png) | **Page** | Switches to another screen within the same panel, where there is one |
+| ![Ok button](../../static/img/bok.png) | **Ok** | Opens or confirms whatever is selected |
+| ![Cancel button](../../static/img/bcancel.png) | **Cancel** | Backs out one level — or opens that screen's help page, where it has one |
+| ![Home button](../../static/img/bhome.png) | **Home** | Straight back to the main menu, from anywhere |
+| ![Page button](../../static/img/bpage.png) | **Page** | Switches to another screen within the same panel, where there is one |
 
 The five coloured buttons under the screen mean whatever the panel you're
 looking at says they mean. The bar along the bottom of the screen always
 shows their current labels, so when in doubt, read the bar.
 
-| ![Gray button](/img/bwhite.png) | ![Yellow button](/img/byellow.png) | ![Green button](/img/bgreen.png) | ![Blue button](/img/bblue.png) | ![Red button](/img/bred.png) |
+| ![Gray button](../../static/img/bwhite.png) | ![Yellow button](../../static/img/byellow.png) | ![Green button](../../static/img/bgreen.png) | ![Blue button](../../static/img/bblue.png) | ![Red button](../../static/img/bred.png) |
 |---|---|---|---|---|
 | Gray | Yellow | Green | Blue | Red |
 
