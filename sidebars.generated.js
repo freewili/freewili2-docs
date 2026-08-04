@@ -52,7 +52,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Tools & Scripting',
-      items: ['panels/scripts', 'panels/wili-blocks', 'panels/command-panel', 'panels/script-monitor', 'panels/app-data', 'panels/editor'],
+      items: ['panels/scripts', 'panels/wili-blocks', 'panels/command-panel', 'panels/script-monitor', 'panels/app-data'],
     },
     {
       type: 'category',
@@ -62,7 +62,7 @@ module.exports = {
     {
       type: 'category',
       label: 'System',
-      items: ['panels/home-screen', 'panels/setup-actions', 'panels/files', 'panels/settings-display', 'panels/power-management', 'panels/about'],
+      items: ['panels/home-screen', 'panels/setup-actions', 'panels/files', 'panels/settings-display', 'panels/power-management', 'panels/about', 'panels/editor'],
     },
     {
       type: 'category',

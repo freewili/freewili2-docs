@@ -23,3 +23,17 @@ Reads bytes from the fused OTP identity blob (bl_otp_info v3). An unprovisioned 
 **How to use it** — press `b`. At the prompt, enter: Dec: Offset, Length (bytes within the 512-byte identity blob).
 
 **What you enter** — `offset`, `length`.
+
+## Device State
+
+Report the device state for host sync: SD card host (none|main|usb), event host-streaming gate (0|1), active-stream mask (hex, bit index = event id). More space-separated fields may be appended later.
+
+**How to use it** — press `g`.
+
+## Event Host Streaming
+
+Enables or disables streaming of events to the host. When disabled, stream-class events are suppressed at the host output; protocol events still flow. Same gate as control bytes 0x05 (off) and 0x06 (on).
+
+**How to use it** — press `e`. At the prompt, enter: 1 to enable 0 to disable.
+
+**What you enter** — `enable`.
