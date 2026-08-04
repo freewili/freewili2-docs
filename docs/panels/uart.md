@@ -8,7 +8,7 @@ Found under **IO** on the device's panel list.
 
 ## UART Log
 
-Live log of bytes received on the UART, with a wiring test.
+Live log of bytes received on the UART, with a manual send.
 
 ### The screen
 
@@ -20,23 +20,28 @@ arrive.
 
 | Button | Action |
 |---|---|
-| Green | Send a fixed test string out the UART, to check the wiring |
-| Gray | Labeled, but not wired to anything on this screen - pressing it does nothing |
-| AI | Open the Logic Analyzer view |
-| Red | Return to the main menu |
+| Yellow | Send - opens a hex-entry box and sends the bytes you type out the UART |
+| Gray | Open the Logic Analyzer view |
+| PAGE | Open the Logic Analyzer view |
 | Cancel | This help page |
 
-Gray carries the same icon used for navigation on the SPI and I2C log
-screens, but on this screen it has no function - that is expected, not a
-fault in your device.
+HOME leaves the screen from here, as it does everywhere else in the menu.
+Green, Blue and Red carry no label on this screen and do nothing.
 
 ### Reading the log
 
 Incoming bytes are grouped as they are received and logged as space-separated
-hex pairs, up to 32 bytes per line. There is no separate line for what this
-device transmits - the test string (Green) only shows up here if it is wired
-back into the receive pin, which is a quick way to confirm a loopback or a
-device that echoes what it receives.
+hex pairs, up to 32 bytes per line.
+
+Send (Yellow) opens a text box for entering bytes as hex, separated by
+spaces, commas or tabs (`48 49` or `48,49`), up to 16 bytes. Entering
+something that is not valid hex, or more than 16 bytes, rejects the input
+with a message and sends nothing. A successful send prints its own `Tx)`
+line with the bytes sent - the line means the bytes were handed to the UART,
+not that anything on the other end received them. There is no separate
+receive line for it either: a sent line only shows up a second time if it is
+wired back into the receive pin, which is a quick way to confirm a loopback
+or a device that echoes what it receives.
 
 ### What persists
 
@@ -45,6 +50,22 @@ new bytes from being recorded, and nothing received while it is closed is
 kept. Baud rate and other wiring details are set from the UART settings menu,
 not from this screen.
 
+### Logic Analyzer view
+
+Gray or PAGE switch to a Logic Analyzer view of the UART lines (TX, RX, CTS,
+RTS), with a title line showing the mode, sample rate and capture state. A
+labelled Back button on that view returns here.
+
+### Power
+
+This screen needs the FPGA power zone (6) - the UART header lines route
+through the FPGA. With that rail off, opening this screen raises "Enable
+FPGA power zone"; the screen still opens behind it, but nothing sent reaches
+the header pins even though it still logs a `Tx)` line. That check only runs
+once, on entry: nothing here re-checks the zone, or the header pins' IO
+direction, before a Send goes out. Zone 6 is on by default and is switched
+from Power Devices.
+
 ## Logic Analyzer
 
 Captures a burst of digital pins over time and draws them as waveforms, so
@@ -52,10 +73,17 @@ you can see fast signal changes a live view would miss.
 
 ### The screen
 
-Each row is one channel: its name on the left, its waveform trace beside
-it. Which pins appear here, and what they are named, depends on which tool
-you opened this screen from. Once a capture lands, a red vertical line
-marks the sample where the trigger fired.
+A title line across the top names what this view is doing: the mode it is
+capturing, the sample rate, and its state - for example "SPI analyzer 1M
+idle", changing to armed once you start a capture and to done once the
+capture lands. Once a capture is loaded, the title also adds a position,
+such as "done 2/4", showing which slice of the buffer the trace below is
+panned to.
+
+Below the title, each row is one channel: its name on the left, its
+waveform trace beside it. Which pins appear here, and what they are named,
+depends on which tool you opened this screen from. Once a capture lands, a
+red vertical line marks the sample where the trigger fired.
 
 On screens with a long channel list - GPIO in particular - Up and Down
 move a highlighted row, shown with a gray band behind its name, and
@@ -63,6 +91,11 @@ whichever channel is highlighted when you arm a capture becomes its
 trigger source. On screens with only a few channels, there is no
 highlighted row: Up and Down do nothing here, and the trigger source is
 always the first channel shown.
+
+The title costs some of the screen's height, so the GPIO capture - the
+one with the longest channel list, 13 rows - now shows 12 at a time and
+scrolls with Up and Down to reach the last one. The shorter protocol
+channel lists still show every row at once.
 
 ### Controls
 
@@ -73,9 +106,11 @@ always the first channel shown.
 | Blue | Arm the capture, or stop it while armed |
 | Red | Force the trigger while armed |
 | Left / Right | Pan through a finished capture |
-| Gray | Shows the pan position once a capture is loaded; not a button, pressing it does nothing |
-| AI | Return to the screen this was opened from |
+| Gray / Page | Back - returns to the protocol panel this view was opened from |
 | Cancel | This help page |
+
+Red forces the trigger and keeps its Trig label to say so. Home leaves
+the app from here the same as it does everywhere else.
 
 ### Capturing
 
@@ -106,7 +141,13 @@ do nothing.
 
 This screen appears inside several different tools - GPIO, I2C, SPI, UART
 and MDIO all open it with their own Page button, each showing that tool's
-own pins or bus signals as the channels here. Page on this screen returns
-you to whichever one opened it.
+own pins or bus signals as the channels here. Gray or Page on this screen
+returns you to whichever one opened it.
+
+The capture itself runs on the RP2350's own PIO hardware, not the FPGA, so
+opening this screen never needs the FPGA power zone. SPI, UART, GPIO and
+MDIO route their own header lines through the FPGA and need that zone
+regardless of this screen; I2C reaches the header directly and needs no
+FPGA zone at all.
 
 **See also:** [UART](../features/uart.md) — the console/GUI commands for this panel.

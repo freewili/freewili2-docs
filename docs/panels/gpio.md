@@ -82,10 +82,17 @@ you can see fast signal changes a live view would miss.
 
 ### The screen
 
-Each row is one channel: its name on the left, its waveform trace beside
-it. Which pins appear here, and what they are named, depends on which tool
-you opened this screen from. Once a capture lands, a red vertical line
-marks the sample where the trigger fired.
+A title line across the top names what this view is doing: the mode it is
+capturing, the sample rate, and its state - for example "SPI analyzer 1M
+idle", changing to armed once you start a capture and to done once the
+capture lands. Once a capture is loaded, the title also adds a position,
+such as "done 2/4", showing which slice of the buffer the trace below is
+panned to.
+
+Below the title, each row is one channel: its name on the left, its
+waveform trace beside it. Which pins appear here, and what they are named,
+depends on which tool you opened this screen from. Once a capture lands, a
+red vertical line marks the sample where the trigger fired.
 
 On screens with a long channel list - GPIO in particular - Up and Down
 move a highlighted row, shown with a gray band behind its name, and
@@ -93,6 +100,11 @@ whichever channel is highlighted when you arm a capture becomes its
 trigger source. On screens with only a few channels, there is no
 highlighted row: Up and Down do nothing here, and the trigger source is
 always the first channel shown.
+
+The title costs some of the screen's height, so the GPIO capture - the
+one with the longest channel list, 13 rows - now shows 12 at a time and
+scrolls with Up and Down to reach the last one. The shorter protocol
+channel lists still show every row at once.
 
 ### Controls
 
@@ -103,9 +115,11 @@ always the first channel shown.
 | Blue | Arm the capture, or stop it while armed |
 | Red | Force the trigger while armed |
 | Left / Right | Pan through a finished capture |
-| Gray | Shows the pan position once a capture is loaded; not a button, pressing it does nothing |
-| AI | Return to the screen this was opened from |
+| Gray / Page | Back - returns to the protocol panel this view was opened from |
 | Cancel | This help page |
+
+Red forces the trigger and keeps its Trig label to say so. Home leaves
+the app from here the same as it does everywhere else.
 
 ### Capturing
 
@@ -136,7 +150,13 @@ do nothing.
 
 This screen appears inside several different tools - GPIO, I2C, SPI, UART
 and MDIO all open it with their own Page button, each showing that tool's
-own pins or bus signals as the channels here. Page on this screen returns
-you to whichever one opened it.
+own pins or bus signals as the channels here. Gray or Page on this screen
+returns you to whichever one opened it.
+
+The capture itself runs on the RP2350's own PIO hardware, not the FPGA, so
+opening this screen never needs the FPGA power zone. SPI, UART, GPIO and
+MDIO route their own header lines through the FPGA and need that zone
+regardless of this screen; I2C reaches the header directly and needs no
+FPGA zone at all.
 
 **See also:** [GPIO](../features/gpio.md) — the console/GUI commands for this panel.

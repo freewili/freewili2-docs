@@ -6,41 +6,54 @@ sidebar_position: 20
 
 ## Wili Blocks
 
-Watches a running Wili Block step by step, and lets you pause, resume or
-single-step it.
+Meant to watch a running step program - a "function block" - one step at a
+time, letting you pause, resume or single-step it. In this build the part of
+the firmware that actually steps a loaded program forward is switched off, so
+nothing on this screen ever moves under its own power.
 
 ### The screen
 
-A list on the left is meant to show each step of the program, one line per
-step, highlighting whichever one is currently executing. As shipped the list
-never actually fills in - it stays blank while the highlight still moves
-through it. To its right, a "step value" field and a progress bar; the bar
-fills as a percentage while a step is timed and waiting, and is otherwise
-empty.
+A typical SD card has no step-program file on it, so this is what actually
+opens: "Function Blocks" at the top, then "No blocks loaded.", "A step
+program is", "read from a .vs3fb", "on the SD card." Gray, Yellow and Red
+carry no label and do nothing.
+
+### Why nothing runs
+
+A function block is a small step program - waits, jumps, loops, value sets
+and reads, and so on - stored as an XML file with a root `FBlock` tag and a
+`Steps` block holding one `Step` entry per line. The firmware loads whatever
+file sits at a fixed path, `myfblock.vs3fb` at the root of the SD card,
+unconditionally at boot; there is no way to pick a different file or folder
+from the UI.
+
+Loading is as far as it goes. The code that steps a loaded program forward,
+once per pass of MAIN's main loop, is commented out - deliberately, for the
+same reason the Command Panel doesn't run either: with no limit on how long a
+single step can take, stepping a program on every loop pass could stall MAIN
+past its own watchdog, clamped to a 16.7 second maximum, and reboot the
+device. So a file gets read at boot if one is there, and nothing ever
+advances it afterward. Command Panel and the Dynamic Panel editor are in a
+similar unwired state, for their own reasons (see command-panel.md and
+dynamic-panel.md).
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Gray | Pause or resume the running program |
-| Yellow | Advance one step while paused |
 | Cancel | This help page |
 
-Green, Blue and Red carry no label here and do nothing. Up and Down move the
-highlight in the step list, but only while the program is paused - while it
-is running, the highlight follows the current step on its own and overrides
-any manual selection.
+Gray, Yellow, Green, Blue and Red carry no label and do nothing in the
+shipped no-file state. HOME leaves the screen from here, as it does
+everywhere else in the menu.
 
-### Pause and resume
+### If a .vs3fb file is present
 
-Gray toggles between pausing and resuming the program, but its label always
-reads "stop" - it does not change to show which action it will perform next,
-so watch the progress bar and highlight to tell whether the program is
-actually running. Yellow only makes sense while paused: it steps the program
-forward by exactly one step.
-
-### No way back
-
-None of the button-bar buttons return you to the main menu on this screen,
-and Cancel only reopens this help page - it does not close it. As shipped,
-leaving this screen requires restarting the device.
+Place a `myfblock.vs3fb` file at the root of the SD card and reboot, and the
+step list fills in for real: one line per step, a "step value" field, and a
+progress bar to the right. Gray's label does switch between "stop" and "run",
+and Yellow does arm a single step, but both only touch flags that the
+disabled step runner never reads back. The highlighted step never leaves the
+first one, the progress bar never fills, and Up/Down still just move the
+highlight by hand - none of it changes what the device does, because nothing
+is actually running.

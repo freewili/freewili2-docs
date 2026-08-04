@@ -8,33 +8,22 @@ Found under **System** on the device's panel list.
 
 ## Editor
 
-A text editor and file-opening screen, opened from the main menu.
-
-### The screen
-
-The screen initially shows an **Open File** button. Activating it opens an SD
-card file picker. Select a file to open the text-editing view; its caption shows
-the selected filename.
+Opens and edits a file from the SD card. The initial Open File button launches
+the picker; Files and Scripts can also open the editor directly.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Cancel | This help page |
-| Open File | Browse the SD card and select a file to edit |
+| Ok | Save to the original path and exit |
+| Cancel | Exit without saving |
+| Hold Cancel | This help page |
+| Open File | Choose a file to edit |
 
-Gray, Yellow, Green, Blue and Red carry no label here and do nothing.
+The editing cursor is magenta. Literal `#` and backtick characters are drawn
+as ordinary file text rather than display escape markers. Editor input owns
+the buttons while active, so events do not leak to the panel underneath.
 
-### Opening a file
-
-Activate **Open File**, browse from the SD card root, highlight a file, and
-confirm it. Canceling the picker returns to the Open File screen without
-changing the active file.
-
-The editor loads the selected file and uses its original path when saving.
-
-### Keyboard
-
-A connected USB keyboard can type in the editor. While editing, number keys
-remain text input and F1-F5 operate the five screen soft buttons. See the USB
-keyboard documentation for the complete key map.
+A USB keyboard types normally. Number keys remain text in editor and text or
+number dialogs; F1-F5 operate the five soft buttons there. See the USB keyboard
+product documentation for the complete mapping.

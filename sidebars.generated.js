@@ -10,7 +10,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Wireless',
-      items: ['features/wireless', 'features/nfc', 'features/esp32-flasher', 'features/wifi', 'features/bluetooth-le', 'features/ir', 'features/lo-ra'],
+      items: ['features/wireless', 'features/nfc', 'features/nfc-saved-cards', 'features/nfc-mifare-classic', 'features/nfc-raw', 'features/nfc-extra', 'features/esp32-flasher', 'features/wifi', 'features/bluetooth-le', 'features/ir', 'features/lo-ra', 'features/radio'],
     },
     {
       type: 'category',
@@ -20,7 +20,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Apps',
-      items: ['features/apps', 'features/scripting', 'features/zoom-io'],
+      items: ['features/apps', 'features/scripting', 'features/zoom-io', 'features/app-signals', 'features/wili-files'],
     },
     {
       type: 'category',
@@ -42,17 +42,17 @@ module.exports = {
     {
       type: 'category',
       label: 'Wireless',
-      items: ['panels/sub-g-hz-radio', 'panels/wifi', 'panels/bluetooth', 'panels/ir', 'panels/lo-ra'],
+      items: ['panels/sub-g-hz-radio', 'panels/wifi', 'panels/bluetooth', 'panels/ir', 'panels/lo-ra', 'panels/nfc'],
     },
     {
       type: 'category',
       label: 'Wi-Li-nux',
-      items: ['panels/terminal'],
+      items: ['panels/terminal', 'panels/linux-terminal'],
     },
     {
       type: 'category',
       label: 'Tools & Scripting',
-      items: ['panels/scripts', 'panels/wili-blocks', 'panels/command-panel', 'panels/script-monitor', 'panels/app-data'],
+      items: ['panels/scripts', 'panels/wili-blocks', 'panels/command-panel', 'panels/script-monitor', 'panels/app-data', 'panels/wili-files'],
     },
     {
       type: 'category',

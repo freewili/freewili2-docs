@@ -9,7 +9,10 @@ Found under **IO** on the device's panel list.
 ## Analog IO
 
 Live view of the four analog inputs, with control over the two analog outputs,
-the trigger window and the programmable supply.
+the trigger window and the programmable supply. The inputs and outputs live on
+CN23, the 10-pin CAN/analog header - a separate connector from the 20-pin GPIO
+header, so none of it is affected by the IO voltage reference selected there
+(see about-vref.md and gpio.md).
 
 ### The screen
 
@@ -18,9 +21,9 @@ own colour. Under it, the numbers are the present reading for each channel.
 
 Below those sits the trigger indicator, then a row of five controls:
 
-- **o0**, **o1** — the two analog output voltages
-- **tg-**, **tg+** — the low and high thresholds of the trigger window
-- **Vo** — the programmable output supply
+- **o0**, **o1** - the two analog output voltages
+- **tg-**, **tg+** - the low and high thresholds of the trigger window
+- **Vo** - the programmable output supply
 
 The selected control is drawn in yellow.
 
@@ -36,17 +39,23 @@ The selected control is drawn in yellow.
 | Green | Input source: TLA2024, RP2350, or Both |
 | Yellow | Turn the programmable supply on or off |
 | Blue | Route the trigger comparator to the CPU, or release it |
+| Red | Retired as the exit control; unlabelled and does nothing here |
 | Cancel | This help page |
+
+HOME leaves the screen from here, as it does everywhere else in the menu.
 
 ### Outputs
 
-`o0` and `o1` go straight to the AOUT pins. Full scale is 4.84 V — the 1.21 V
-internal reference at 4x gain — so asking for more simply holds at 4.84 V.
+`o0` and `o1` go straight to the AOUT pins. Full scale is 4.84 V, the 1.21 V
+internal reference at 4x gain, so asking for more simply holds at 4.84 V.
 
 Each of these two channels can generate a waveform instead of a steady voltage.
-Press Centre on the row to set one up. While a waveform is configured, that row
-shows the shape and frequency rather than a voltage, and nudging the row with
-Up, Down or the slider hands the channel back to DC at the voltage shown.
+Press Centre on the row to open a separate waveform-editor screen for that
+channel. While a waveform is configured, that row shows the shape and
+frequency rather than a voltage, and nudging the row with Up, Down or the
+slider hands the channel back to DC at the voltage shown. The waveform screen
+has its own dedicated OK button to return here; unlike this page, it keeps
+Red working as a labelled Stop control.
 
 ### The trigger window
 
@@ -63,12 +72,35 @@ changing rather than triggering.
 The yellow button switches it on and off; the row sets the voltage. Check what
 you have connected before enabling it.
 
+This is the same physical supply that about-vref.md and gpio.md call Prog
+Vout, one of the sources selectable elsewhere as what feeds the 20-pin GPIO
+header's IO reference voltage. Turning Vo on or changing its voltage here
+changes what that source delivers if it is the one currently selected there.
+
 ### Input source
 
-The green button chooses what the plot and the readouts show. TLA2024 is the
-external ADC, RP2350 is the processor's own. Both shows the external reading
-large with the internal one beneath it in grey, which is useful when you want to
-see whether the two agree.
+The green button cycles what the plot and the readouts show:
+
+- **TLA2024** is the external ADC: 12-bit, single-ended against ground at its default +/-6.144 V range (3 mV per step), reading the connector directly with no attenuation ahead of the chip.
+- **RP2350** is the processor's own ADC: also 12-bit, read through a fixed front-end divider and scaled back in software to a 0-5.0 V range (roughly 1.2 mV per step).
+
+Both shows the external reading large with the internal one beneath it in
+grey, which is useful when you want to see whether the two agree.
+
+Gray's capture rate (50/20/10/5 ms) controls how often a new point lands in
+the plot, but it only actually resamples the ADC when RP2350 is feeding it.
+When the plot is fed from the TLA2024 instead, each point is just whatever
+that chip's own background scan last produced - it cycles through all four
+channels roughly every 40 ms (paced 10 ms per channel at its default data
+rate) no matter what Gray is set to.
+
+### Power
+
+This panel requires the Analog power zone (11) - the DAC, the TLA2024 and the
+front-end opamps behind both ADCs all sit on it. Opening this screen with the
+zone off raises an "Enable Analog power zone" message box; the screen still
+opens behind it, but nothing here reflects real hardware until the zone comes
+back on. Zone 11 is on by default and is switched from Power Devices.
 
 ## Waveform Generator
 
@@ -76,6 +108,9 @@ Drives the DAC63204's built-in function generator on an analog output.
 Reached from the **Analog IO** screen: select the `o0` or `o1` row and press
 **center**. Only those two channels have a generator — `tg-` and `tg+` are the
 trigger-window comparator thresholds and `Vo` is the programmable supply.
+
+`o0` is AOUT0, pin 5 of the CN23 10-pin analog/CAN header; `o1` is AOUT1, pin 3
+of the same header.
 
 ### Controls
 
@@ -87,6 +122,10 @@ trigger-window comparator thresholds and `Vo` is the programmable supply.
 | Green | `run` starts the channel; reads `update` once running |
 | Red | `stop` (blank when nothing is running) |
 | Ok | Leave, back to Analog IO |
+
+Red stops the running waveform; its label goes blank when there is
+nothing to stop. Ok returns to the Analog IO screen; HOME leaves the menu
+entirely from here, as it does everywhere else.
 
 `update` re-applies the settings and re-triggers the generator. You do not need
 it to make an edit take effect — edits reach the hardware as you make them while
@@ -173,5 +212,12 @@ x <mask>
 a single write, so `x 3` starts them on the same edge — use it when two channels
 need to start together. The console also exposes **phase** (0, 120, 240, or 90
 degrees), which this screen always leaves at 0 degrees.
+
+### Power
+
+This screen requires the Analog power zone (11), which also feeds the TLA2024
+ADC and the input opamps. Opening it with that zone off puts up an "Enable
+Analog power zone" message box; the screen still opens behind it. Zone 11 is
+on by default and is switched from Power Devices.
 
 **See also:** [Analog In](../features/analog-in.md), and [Analog Out & Trigger](../features/analog-out.md) — the console/GUI commands for this panel.

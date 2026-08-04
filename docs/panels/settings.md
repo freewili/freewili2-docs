@@ -26,22 +26,27 @@ each shown as "Name [value]".
 | Button | Action |
 |---|---|
 | Center (or tap) | Open the highlighted category, or edit the highlighted field |
-| Red | Back: from a field list to the categories, then out of Setup entirely |
+| Red | Back: from a field list to the categories |
 | Hold Blue | Reset every setting on this screen to its factory default |
 | Cancel | This help page |
 
-Blue is labeled Save, but a short press does nothing - see below.
+Blue is labeled Save, but a short press does nothing - see below. Red
+carries a back-arrow label while a field list is open and steps back to
+the categories list; on the categories list itself it has no label and
+does nothing. HOME leaves the screen from here, as it does everywhere
+else in the menu.
 
 ### Editing a field
 
 Opening a field shows whatever dialog fits its type: a number pad, a
-hex entry, a text box, or a pick list. A plain on/off field has no
-dialog at all - selecting it just flips the value in place. Confirming
-a dialog saves that one field immediately and returns you to the field
-list; nothing is left unsaved afterward, which is why tapping Blue does
-nothing. Holding Blue instead resets every field in every category on
-this screen back to its factory default, right away and without asking
-to confirm.
+hex entry, a text box, or a pick list. A plain on/off field, or a pick
+list with only two choices, has no dialog at all - selecting it just
+flips the value in place. Confirming a dialog writes that one field to
+flash immediately and returns you to the field list, so it survives a
+reboot from that point on - nothing is ever left unsaved, which is why
+tapping Blue does nothing. Holding Blue instead resets every field in
+every category on this screen back to its factory default, right away
+and without asking to confirm.
 
 ### Where this fits
 

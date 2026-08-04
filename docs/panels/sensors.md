@@ -9,52 +9,64 @@ Found under **GUI** on the device's panel list.
 ## Microphone
 
 Live view of the onboard microphone: its raw waveform, its frequency
-spectrum, and a scrolling spectrogram of the same spectrum over time.
+spectrum, and a scrolling spectrogram of the same spectrum over time. It
+can also record a short clip and play it back.
 
 ### The screen
 
 "Microphone" is shown top left, with an LED next to it that lights while
-sound is detected. Below that, two plots share the top half of the
-screen: the raw waveform on the left, the frequency spectrum on the
-right. The bottom half is a waterfall - a scrolling spectrogram fed by
-the same spectrum data.
+a loud sound is detected. Below that, two plots share the top half of
+the screen, each with its own caption drawn in the trace's own color: a
+green "Waveform 8kHz" caption over the raw waveform on the left, and a
+magenta "FFT 0-4kHz" caption over the frequency spectrum on the right.
+The bottom half is a magenta-captioned "Spectrogram 0-4kHz" waterfall, a
+scrolling view fed by the same spectrum data as the FFT plot above it.
 
 The waveform plot traces the raw microphone signal rescaled to 0-100,
-with 50 as silence. The spectrum plot and the waterfall both cover the
-same 127 frequency bins, roughly 31 Hz to 3970 Hz in steps of about 31
-Hz (127 bins of a 256-point, 8 kHz analysis), low frequency on the left.
-The spectrum plot's height is also an arbitrary 0-100 scale, not a
+with 50 as silence - this is what the sound looks like over time. The
+FFT plot and the waterfall both cover the same 127 frequency bins,
+roughly 31 Hz to 3970 Hz (0-4 kHz) in steps of about 31 Hz, low frequency
+on the left - this is the same sound broken down by pitch instead of by
+time. The FFT plot's height is also an arbitrary 0-100 scale, not a
 physical loudness unit.
 
 In the waterfall, each new row lands on top and older rows scroll down,
-about 31 rows a second. Color there shows how far a bin's energy is
-above its own recent average, not its absolute loudness: dark blue is at
-or below that average, brightening through blue, then red-orange,
-orange and bright orange/yellow the further a bin rises above its own
-recent history.
+about 31 rows a second, showing how that pitch breakdown has been
+changing over the last several seconds. Color there shows how far a
+bin's energy is above its own recent average, not its absolute loudness:
+dark blue is at or below that average, brightening through blue, then
+red-orange, orange and bright orange/yellow the further a bin rises
+above its own recent history.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| AI | Open the Sensors screen (motion, field and environment readings) |
+| Yellow | rec 5s - record a clip |
 | Green | Play back the most recent recording, if one exists |
+| Gray | Switch to the Sensors screen (motion, field and environment readings) |
+| PAGE | Also switches to the Sensors screen |
 | Cancel | This help page |
 
-Gray carries a label here but does nothing. Yellow is labeled "rec" and
-is meant to start a recording, but the firmware handler that would
-actually start it is currently disabled, so nothing is recorded - the
-progress bar flashes on for an instant and then hides itself again. Red
-shows the usual return-to-main-menu icon, but its handler is empty on
-this screen, so pressing it does nothing. Blue carries no label and also
-does nothing.
+Blue carries no label and does nothing here. HOME leaves the screen, as
+it does everywhere else in the menu.
 
-### Recording is currently non-functional
+### Recording
 
-Pressing Yellow does not record audio on this screen: the command it
-sends is received but ignored, so no file is ever produced here. Green's
-playback still works if a recording exists from elsewhere in the
-firmware; with nothing recorded, there is nothing to play.
+Yellow records a clip about five seconds long. Its label changes to
+"recording" for the duration, with a progress bar filling alongside it;
+pressing Yellow again while a recording is already running or queued
+does nothing. Afterward the label reverts to "rec 5s", or shows "rec
+failed" if the clip could not be written - for example, if there is no
+SD card. A successful recording is saved under /record on the SD card,
+named from the current date and time.
+
+### Playback
+
+Green plays back the most recently recorded clip, whether it was made
+here or elsewhere in the firmware. It needs the Audio power zone on;
+with that zone off, pressing Green raises "Enable Audio power zone"
+rather than doing nothing.
 
 ## Sensors
 
@@ -65,104 +77,80 @@ sensors, one page at a time, each with its own trace.
 
 "Sensors" is shown top left, with a status line to its right naming the
 current page and, if a sensor it needs is missing, saying so. A plot fills
-most of the screen, and four numbers run along the bottom: the first three
-in each page's own colors - magenta, green, cyan - and a fourth in yellow.
-Red cycles through five pages: Accel, Gyro, Field, Environ, Orient. Red has
-no label on the button bar, but it is how you move between pages.
+most of the screen, and four numbers run along the bottom. Their colors
+change with the page: whichever ones have a matching trace are drawn in
+that trace's color, so the readouts double as the plot's legend.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Red | Cycle to the next page (no on-screen label) |
-| Gray | rtry - retry detecting any sensor currently reported missing |
+| Gray | Cycle to the next page; the label names the page it goes to |
+| Yellow | rtry - retry detecting any sensor currently reported missing |
 | Green | clr - clear the plot; on the Field page this also resets the magnetic-field calibration |
 | Blue | mic - go to the Microphone screen |
+| PAGE | Also goes to the Microphone screen |
 | Cancel | This help page |
 
-Yellow and AI carry no label here and do nothing.
+Red carries no label here and does nothing. HOME leaves the screen from
+here, as it does everywhere else in the menu.
 
 ### Accel
 
-X, Y and Z acceleration in g, magenta/green/cyan, plus MOVING or still in
-yellow. Each axis number turns white while that axis is currently moving,
-and reverts to its normal color once it settles. The plot covers plus or
-minus 2 g.
+X, Y and Z acceleration in g, in magenta/green/cyan, plus MOVING or still
+in white. Each axis number turns white while that axis is currently
+moving, and reverts to its normal color once it settles. The plot covers
+plus or minus 2 g.
 
 ### Gyro
 
-X, Y and Z angular rate in degrees per second, with "dps" in the yellow
-slot. The plot covers plus or minus 400 degrees per second.
+X, Y and Z angular rate in degrees per second, in orange/yellow/pale
+blue, with "dps" in white. The plot covers plus or minus 400 degrees per
+second.
 
 ### Field
 
-X, Y and Z calibrated magnetic field in microtesla (uT), with the compass
-heading in degrees in the yellow slot. The plot covers plus or minus 100
-uT. Green resets the magnetic-field calibration on this page only.
+X, Y and Z calibrated magnetic field in microtesla (uT), in red/green/
+blue, with the compass heading in degrees in white. The plot covers plus
+or minus 100 uT. Green resets the magnetic-field calibration on this page
+only.
 
 ### Environ
 
 Temperature in Celsius, temperature in Fahrenheit, relative humidity as a
-percent, and illuminance in lux. If the temperature/humidity sensor is
-missing, the status line shows "SHT40?"; if the light sensor is missing,
-it shows "OPT?". The plot carries two traces: illuminance on a log scale
-(0.1 lux at the bottom, 100000 lux at the top, so normal indoor light
-does not pin to the floor) and humidity plotted directly as a percent.
+percent, and illuminance in lux. Only the last two are plotted, and only
+those two are colored to match their trace - humidity light blue, lux
+yellow; the temperature readouts are not on the plot and stay white. If
+the temperature/humidity sensor is missing, the status line shows
+"SHT40?"; if the light sensor is missing, it shows "OPT?". The plot
+carries two traces: illuminance on a log scale (0.1 lux at the bottom,
+100000 lux at the top, so normal indoor light does not pin to the floor)
+and humidity plotted directly as a percent.
 
 ### Orient
 
 Roll, pitch and yaw in degrees, fused from the motion and field sensors,
-with the compass heading in degrees in the yellow slot. The plot covers
-plus or minus 180 degrees.
+in magenta/green/cyan, with the compass heading in degrees in white. The
+plot covers plus or minus 180 degrees.
 
 ### Missing sensors
 
-Gray retries detecting whichever sensor - motion, field, or the
+Yellow retries detecting whichever sensor - motion, field, or the
 temperature/humidity/light pair - is currently reported missing, no
 matter which page is showing. A reading that stays missing after a retry
 usually means the part is not present on this board, not a loose
 connection.
 
-## Gas Sensor
+### Power
 
-Shows a raw gas-sensor number alongside the onboard air-quality sensor's
-readings, switchable between an air-quality mode and a "coffee or not"
-gas-estimate mode.
-
-Not reachable: this screen exists in the firmware source, but nothing
-currently wires it into the Sensors app on any build of this product, so
-it does not appear on any current FreeWili2 device. This page describes
-what the code does, in case that changes.
-
-### The screen
-
-Top left: "Gas", then a raw number from a sensor channel. Nothing in
-this screen's own code converts that number into a real-world unit such
-as parts-per-million - the only code that does that conversion belongs
-to a different, unrelated firmware target - so treat it as a relative
-number, not a calibrated one.
-
-Next to it, depending on mode: in air-quality mode, the air-quality
-index with an accuracy figure, plus pressure, temperature and humidity;
-in "coffee or not" mode, a gas-percentage estimate with its own accuracy
-figure, with pressure and humidity left blank. A plot across the rest of
-the screen traces pressure, temperature and humidity (0-100 scale;
-pressure is divided by 20 to fit).
-
-### Controls
-
-| Button | Action |
-|---|---|
-| Blue | IAQ - switch to air-quality index mode |
-| Yellow | CoN - switch to "coffee or not" gas-estimate mode |
-| Green | clr - clear the plot |
-| Gray | Labeled "next", but does not switch pages - it silently stops the air-quality sensor (the same cleanup that runs when leaving the screen), so readings stop updating until you leave and come back |
-| Red | Return to the main menu |
-| Cancel | This help page |
-
-### Modes
-
-Air-quality mode is what this screen always starts in, every time it is
-shown, even if "coffee or not" was selected last time. "Coffee or Not"
-mode is a gas-percentage estimate instead of an air-quality index; it
-does not report pressure or humidity.
+The app declares the Sensors power zone (1), shared with the Microphone
+screen since the zone check is per app, not per panel. Opening either
+screen with zone 1 off puts up an "Enable Sensors power zone" message
+box; the screen still opens behind it, but every reading here shows as
+absent until the zone comes back on. Zone 1 is on by default and is
+switched from Power Devices. It powers the BMI323 IMU, BMM350
+magnetometer, SHT40 humidity sensor and OPT4001 light sensor these pages
+read from. The microphone array's own supply rail is not called out
+separately in the hardware reference, so this requirement does not cover
+it; playback and recording on the Microphone screen check the Audio zone
+(3) on their own, only when they are actually used.

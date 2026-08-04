@@ -21,19 +21,40 @@ built-in patterns. Selecting one applies it right away.
 | Button | Action |
 |---|---|
 | Center (or tap) | Apply the highlighted pattern |
-| Blue | Start or stop auto-cycling; label changes to "stop" while cycling |
-| Red | Return to the main menu |
+| Blue | Start or stop auto-cycling; label reads "cycle" or "stop" |
+| Gray | Turn the LEDs off; label reads "off" |
 | Cancel | This help page |
 
-Gray, Yellow and Green carry no label here and do nothing.
+Yellow, Green and Red carry no label here and do nothing. HOME leaves
+the screen from here, as it does everywhere else in the menu.
 
 ### The patterns
 
 14 built-in patterns, fixed in the firmware rather than loaded from the
 SD card: manual, rainbow, snowstorm, redchase, rainbowchase, bluechase,
-greendot, palebluedot, bluesin, whitefade, bargraph, zylon, audio,
-accelerometer. Selecting palebluedot also plays a short built-in sound
-of the same name.
+greendot, palebluedot, bluesin, whitefade, mic level bar, zylon, mic
+spectrum, accelerometer. All seven of the board's LEDs are used by
+every pattern.
+
+Mic level bar and mic spectrum are both driven by the onboard
+microphone but show different things. Mic level bar is a level meter:
+it fills the strip with a colour ramp, green to red, as the sound gets
+louder. Mic spectrum instead tracks the loudest frequency bin, filling
+the strip blue to white with that spectral peak rather than the overall
+volume.
+
+Zylon sweeps a single red dot with a dim red tail from one end of the
+strip to the other and back, covering every LED with no gap at either
+end.
+
+Accelerometer maps the X tilt axis across the whole strip - it picks
+which single LED lights - while Y and Z set that LED's colour (red from
+Y, blue from Z), using the full 0-255 brightness range. If the
+accelerometer is unavailable or its power rail is off, the strip stays
+dark instead of showing garbage.
+
+Selecting palebluedot also plays a short built-in sound of the same
+name - that's by design, not a bug.
 
 ### Auto-cycling
 
@@ -41,7 +62,8 @@ While cycling, each pattern runs for 5 seconds before moving to the
 next. Starting the cycle skips manual - if manual is selected when you
 start, it jumps to rainbow first - and wraps from the last pattern back
 to rainbow, never landing on manual again until you stop and pick it
-yourself.
+yourself. Stopping the cycle (Blue again) leaves whichever pattern was
+showing running; it does not blank the strip.
 
 ### Set from elsewhere
 
@@ -115,3 +137,11 @@ itself cannot feed long strips.
 Up to 8 strips and up to 1024 LEDs per strip. A full 1024-LED frame
 takes about 30-40 ms on the wire, so very long strips animate at a
 lower rate than short ones.
+
+### Power
+
+The app declares the LED power zone (10); the strip itself needs it to
+light at all. The accelerometer and microphone that drive some of the
+patterns are on other rails the app does not declare - if either is off,
+or the sensor itself isn't present, those patterns just go dark instead
+of warning about a missing zone.

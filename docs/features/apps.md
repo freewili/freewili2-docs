@@ -8,7 +8,7 @@ These commands are available three ways — in the FREE-WILi GUI app, in a seria
 terminal, and on the device itself. See
 [Connecting it to a computer](../start-here/connecting.md) for how to reach them.
 
-> **Note:** Despite this menu's name, it does not launch an SD-card app - it jumps straight to an on-screen panel by its numeric ID. The device's actual Apps folder (Skelltris, Wili8, Doom) is a separate part of the on-screen panel list; see the **Terminal** panel page for those.
+> **Note:** Despite this menu's name, it does not launch an SD-card app - it jumps straight to an on-screen panel by its numeric ID. Real SD-card apps are launched from the device's own file screens, not from here.
 
 ## Launch App
 

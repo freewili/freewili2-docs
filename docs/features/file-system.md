@@ -104,7 +104,7 @@ Toggles which host controls the SD card.
 
 ## Load Wili Project
 
-Loads a fwcom .wili project (panels, blocks, app signals) and shows the Command Panel app.
+Loads a fwcom .wili project (panels, blocks, app signals) and shows the Panels app.
 
 **How to use it** — press `w`. At the prompt, enter: .wili Project FilePath.
 

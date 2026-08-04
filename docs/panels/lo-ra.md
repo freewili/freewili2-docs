@@ -6,6 +6,95 @@ sidebar_position: 50
 
 Found under **Wireless** on the device's panel list.
 
-This panel exists on the device, but its documentation hasn't been written yet.
+## LoRa
+
+Live log of LoRa packets arriving on the WIO-E5 module, with a text or raw
+frame you can type and transmit.
+
+### The screen
+
+A four-line header sits above a scrolling log that fills the rest of the
+screen, oldest at the top and newest at the bottom.
+
+The header is read back from the modem itself, not from a settings menu,
+and is repainted only when the modem's configuration actually changes:
+
+- Top left the screen's name, top right the region the frequency falls in - US915, EU868, 433, CN470, or `?` for a frequency outside all four
+- Frequency in MHz, transmit power in dBm, and preamble length (`Pre`)
+- Spreading factor, bandwidth in kHz, and coding rate as 4/N
+- Sync word in hex, and the Meshtastic preset that spreading factor and bandwidth add up to - ShortTurbo, ShortFast, ShortSlow, MediumFast, MediumSlow, LongFast, LongMod, LongSlow, or Custom if the pair matches no preset
+
+The sync word matters: two radios only hear each other if their sync words
+match, so a header showing an unexpected value is the first thing to check
+when nothing is arriving.
+
+The sync word is the last argument of the console Configure command, along
+with preamble length; frequency, spreading factor, bandwidth, coding rate
+and power are the ones before it. None of them are changeable from this
+panel. Leave the last two arguments off and the sync word becomes 0x12, the
+value most LoRa equipment listens on; 0x2B is what a stock Meshtastic device
+uses. Testing without putting traffic on a real mesh means moving off the
+mesh sync word, the region's default channel, or both.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Yellow | Switch between MESSAGE and RAW-FRAME mode |
+| Green | Type something and send it, in whichever mode is current |
+| Blue | Clear the log |
+| Red | Retired as the exit control; unlabelled and does nothing here |
+| Cancel | This help page |
+
+Gray is unbound on this screen and draws no label at all. HOME leaves the
+screen from here, as it does everywhere else in the menu.
+
+### Power
+
+The LoRa module sits on power zone 4, Sub-GHz, shared with the CC1101
+radios. Opening this screen with that zone switched off puts up an
+"Enable Sub-GHz power zone" message box; the screen still opens behind
+it, but the modem cannot answer and no packets arrive. Zone 4 is on by
+default and is switched from Power Devices.
+
+### Reading the log
+
+Each received packet is one line: `RX <rssi>dBm: ` followed by the
+packet's bytes in hex, with no separators. Signal strength is in tenths
+of a dBm and is normally negative. Only the first 64 bytes of a packet
+are kept, and the log itself cuts a line at 128 characters, so a long
+packet is shown truncated rather than wrapped.
+
+Sending echoes into the same log in red - `TX: ` and the text in message
+mode, `> ` and exactly what you typed in raw mode. A mode change writes a
+`-- MESSAGE mode --` or `-- RAW-FRAME mode --` marker in purple, so the
+log records where each change happened.
+
+Packets are only logged while this screen is on the display. Anything
+that arrives while it is closed is not kept, and opening the screen
+starts from an empty log with a `Listening for LoRa packets...` line.
+Blue puts that line back.
+
+### Sending
+
+Green opens a text entry. The on-screen keyboard is up only while the
+entry is open, so the coloured buttons work normally the rest of the
+time; leaving the entry empty sends nothing.
+
+In MESSAGE mode what you type is transmitted as-is, byte for byte, with
+no header or framing added.
+
+In RAW-FRAME mode the text is read as hex: the first value is the command
+byte and every space-separated value after it is payload. `02 48 69`
+sends command 0x02 with the two payload bytes 0x48 0x69. This is the
+module's own frame format and bypasses the message path entirely, so a
+mistyped command byte reaches the modem exactly as written.
+
+### What persists
+
+Nothing on this screen is saved. Mode resets to MESSAGE the next time the
+firmware starts, and the frequency, spreading factor, power and sync word
+in the header are the modem's live configuration, set elsewhere rather
+than from here.
 
 **See also:** [LoRa](../features/lo-ra.md) — the console/GUI commands for this panel.

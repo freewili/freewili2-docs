@@ -6,10 +6,13 @@ sidebar_position: 20
 
 > **Note:** This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. It's a guided setup wizard for pairing with an Orca accessory over UART. It configures the same underlying setting as **Orca Settings** in the console Settings menu, with presets for known Orca variants (including flashing companion firmware for the Bottlenose variant).
 
+Found under **System** on the device's panel list.
+
 ## Choose your ORCA!
 
-Chooses which device is connected to the wireless co-processor's UART port,
-including the Bottlenose wireless module.
+Chooses which external module is wired to the Orca UART connector: which
+device MAIN expects to be talking to, and the baud rate, data bits and flow
+control it uses to talk to it.
 
 ### The screen
 
@@ -21,63 +24,97 @@ marked and shown in yellow; the rest are white.
 | Button | Action |
 |---|---|
 | Blue | Save your selection |
-| Red | Return to main menu (asks to save first if you have unsaved changes) |
+| Red | No label; if you have changed the selection since opening the screen, asks whether to save before returning to the main menu - answering either way leaves. With nothing changed, does nothing |
 | Cancel | This help page |
 
-Gray, Yellow and Green carry no label here and do nothing.
+Gray, Yellow and Green carry no label here and do nothing. HOME leaves the
+screen from here, as it does everywhere else in the menu.
+
+### Wi-Fi/Bluetooth vs. the camera
+
+This list matters for the camera and does not matter for Wi-Fi or
+Bluetooth on FreeWili 2. The wireless co-processor there is the ESP32-C5
+soldered to the board, on its own dedicated UART - it is always present, so
+nothing needs to be selected here for Wi-Fi or Bluetooth to work. WIL-EYE,
+by contrast, is a genuine plug-in module on the external Orca connector; the
+Camera screen can't reach it unless "WILEye" is selected here.
+
+The Wi-Fi, Bluetooth and Camera screens all link back to this screen when
+they can't reach their device. That's the right move for the camera. It
+isn't for Wi-Fi/Bluetooth on FreeWili 2 - this screen has no bearing on
+that connection there, so coming here to fix it is a dead end.
 
 ### Choosing a device
 
-Selecting an entry applies it right away and marks it as unsaved until you
-press Blue. Choosing Bottlenose specifically also asks whether to flash it;
-answering yes opens the Bottlenose flasher screen (see its own help page).
+Selecting an entry applies it right away - the yellow marker moves - and
+marks the screen as having unsaved changes until you press Blue. Choosing
+BottleNose or WILEye also sets the UART's baud rate, data bits and flow
+control to match what that device expects; the other entries just record
+the choice without touching the UART settings. Choosing BottleNose
+specifically also asks whether to flash it; answering yes opens the
+Bottlenose flasher screen (see its own help page), answering no leaves
+BottleNose selected without flashing anything.
 
-### Not reachable from the device's own menus
+Nothing here checks whether the module you picked is actually plugged in.
+Select one that isn't there and the choice still saves normally; the only
+sign of trouble shows up later, on whichever screen actually talks to that
+device (the Camera screen, for WIL-EYE), which will simply report no
+connection.
 
-This screen's own menu entry has been removed in favor of "Setup & Actions"
-(Menu Xplorer), which exposes the same UART device choice alongside every
-other setting. This screen's code still exists and still works, but nothing
-in the current menus opens it - it can only be reached by a script or
-console command that launches it directly. Other help pages that mention
-"Settings -> Orca Setup" for choosing Bottlenose are describing the setting
-itself, which "Setup & Actions" now provides in place of this screen.
+### Flashing
+
+The Bottlenose flasher reached from here talks to a plug-in Bottlenose
+module over this same Orca UART connector, using its BOOT/RESET button
+handshake. It does not touch the board's own soldered wireless chip.
+Flashing that chip is a separate action from the Files screen: browse to a
+folder holding a flashable ESP32 image and a "Flash ESP32" choice appears
+there.
+
+### Reaching this screen
+
+"Orca Setup" is a top-level entry in the System folder of the main menu.
 
 ## Bottlenose Default App Flasher
 
-Flashes the Bottlenose wireless module's default application.
+Flashes the default application onto a Bottlenose module plugged into the
+Orca connector, using its BOOT/RESET button handshake. This is not the
+board's own soldered ESP32-C5 - flashing that chip is the "Flash ESP32"
+action on the Files screen instead (see files.md).
 
 ### The screen
 
 Opens on a setup guide, in red text, explaining how to put Bottlenose into
 flash mode: hold its BOOT button, press and release its RESET button, then
-release BOOT. Pressing Green starts the flash and switches the screen to a
-progress view: a running-state label, a bar showing which partition is
-currently being written, a separate percentage complete, and status text
-lines.
+release BOOT. Pressing Green switches the screen to a flash view: a
+running-state label, a bar showing which partition is currently being
+written, a separate percentage complete, and status text lines.
 
 ### Controls
 
 | Button | Action |
 |---|---|
 | Green (setup view) | Start flashing |
-| Green (after flashing finishes) | Go back to the setup view |
+| Green (flash view) | Go back to the setup view |
 | Red | Go back to the previous screen |
 | Cancel | This help page |
 
-Gray, Yellow and Blue carry no label here and do nothing. Green has no
-label, and does nothing, while a flash is actively in progress.
+Gray, Yellow and Blue carry no label here and do nothing. Red returns
+to the "Choose your ORCA!" screen (see orca-setup.md). HOME leaves the
+screen from here, as it does everywhere else in the menu.
 
-### Progress
+### The flash step doesn't flash anything yet
 
-While flashing, the running-state label reads "Flashing!"; the bar tracks
-which of the partitions is currently being written, not a percentage - the
-separate percentage text next to it is the actual completion figure. When
-the flash finishes, the status lines change to "Finished! Press 'Reset' btn
-on Bottlenose to run app." and Green is relabeled "Back", returning you to
-the setup guide to flash again if you want to.
+Pressing Green switches to the flash view, but nothing behind it opens a
+connection to the module or sends it data - the code path that would
+drive a real transfer is stubbed out. By the time the view appears, the
+running-state label already reads "Idle", the bar and percentage stay at
+0/0%, and the status lines already read "Finished! Press 'Reset' btn on
+Bottlenose to run app.", even though nothing was erased or written. Green
+is relabeled "Back" from the same moment; pressing it returns to the
+setup guide, and pressing Green there does the same thing again.
 
 ### Reached only from Choose your ORCA!
 
 This screen has no menu entry of its own. It opens automatically from the
-"Choose your ORCA!" screen after you select Bottlenose and confirm you want
-to flash it, and Red returns you there.
+"Choose your ORCA!" screen after you select Bottlenose and confirm you
+want to flash it (see orca-setup.md), and Red returns you there.

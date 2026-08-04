@@ -11,9 +11,15 @@ pick one to open it.
 
 Up and Down move through the list, and the centre button opens the highlighted
 app. The button bar along the bottom always shows what the five coloured buttons
-do on the screen you are currently looking at, so when in doubt, read the bar.
+do on the screen you are currently looking at, so when in doubt, read the bar -
+a blank label means that button does nothing.
 
-Most screens leave with the Red button.
+HOME is how you leave a screen: press it from anywhere in the menu and it
+returns you here, to the launcher. Red has no fixed job: on most screens it
+carries no label and does nothing, like any other blank button on the bar.
+Where a screen gives Red a real job - clearing a log, stopping a running
+signal, forcing a trigger, sending or cancelling a pending change - its
+label says so.
 
 ## Home-screen themes
 

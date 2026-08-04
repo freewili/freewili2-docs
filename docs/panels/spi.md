@@ -8,7 +8,7 @@ Found under **IO** on the device's panel list.
 
 ## SPI Log
 
-Live log of SPI transfers, with a wiring test.
+Live log of SPI transfers, with a manual send.
 
 ### The screen
 
@@ -20,24 +20,27 @@ came back.
 
 | Button | Action |
 |---|---|
-| Green | Send a fixed test transfer, to check the bus is wired and talking |
-| Gray | Open the Scripts Log view |
-| AI | Open the Logic Analyzer view |
-| Red | Return to the main menu |
+| Yellow | Send - opens a hex-entry box and sends the bytes you type as one SPI transfer |
+| Gray | Open the Logic Analyzer view |
+| PAGE | Open the Logic Analyzer view |
 | Cancel | This help page |
+
+HOME leaves the screen from here, as it does everywhere else in the menu.
 
 ### Reading the log
 
 Each transfer logs as a `Tx)` line, the bytes this device sent, followed by
 a `Rx)` line, the bytes that came back at the same time - SPI always
 exchanges data in both directions in one operation. Only the first 8 bytes
-of a transfer are shown.
+of a transfer are shown, even if more were sent.
 
-The test transfer (Green) sends a fixed 8-byte pattern with its own manual
-chip-select toggle. It is not configurable from this screen; it exists to
-confirm the bus is wired correctly and something answers, not to talk to a
-specific part. Which pin it uses as chip select comes from the SPI settings
-menu.
+Send (Yellow) opens a text box for entering bytes as hex, separated by
+spaces, commas or tabs (`9F 00 00 00` or `9F,00,00,00`), up to 16 bytes.
+The whole entry goes out as one transfer: the chip-select pin drops low, all
+the bytes shift out and in together, then it goes high again. Entering
+something that is not valid hex, or more than 16 bytes, rejects the input
+with a message and sends nothing. Which pin is used as chip select comes
+from the SPI settings menu, not from this screen.
 
 ### What else shows up here
 
@@ -47,39 +50,21 @@ part of the system - also prints its Tx/Rx lines here. The log only fills in
 while this screen is on the display; leaving it stops new lines from being
 recorded.
 
-## Scripts Log
+### Logic Analyzer view
 
-Shows the text a running WASM or RTHON script prints while this screen is
-open.
+Gray or PAGE switch to a Logic Analyzer view of the SPI lines (MISO, CS,
+SCLK, MOSI), with a title line showing the mode, sample rate and capture
+state. A labelled Back button on that view returns here.
 
-### The screen
+### Power
 
-A scrolling log fills the screen, oldest at the top and newest at the
-bottom.
-
-### Controls
-
-| Button | Action |
-|---|---|
-| Blue | Clear the log |
-| Red | Return to main menu |
-| Cancel | This help page |
-
-Gray is labeled here but does nothing. Green is labeled "input" but also
-does nothing on this screen. Yellow carries no label and does nothing.
-
-### Reading the log
-
-This view only fills in while it is on the display - a script's print
-output while some other screen is showing is not captured here. Blue clears
-what has accumulated so far without stopping the script itself.
-
-### Reached from more than one place
-
-This same log view is built into two different tools: the Scripts app and
-the SPI tool. Today the SPI screen is the one that actually opens it - press
-Gray on the SPI Log screen to get here. However you arrived, it always shows
-script print output, never SPI bus activity.
+This screen needs the FPGA power zone - the SPI header pins route through
+the FPGA, unlike I2C's direct connection to the header. With that rail off,
+opening this screen raises "Enable FPGA power zone". That check only runs
+once, on entry: nothing here re-checks the zone, or the header pins' IO
+direction, before a Send goes out, so a transfer sent with the rail off, or
+a pin pointed the wrong way, does not raise a second warning - it just does
+not reach anything.
 
 ## Logic Analyzer
 
@@ -88,10 +73,17 @@ you can see fast signal changes a live view would miss.
 
 ### The screen
 
-Each row is one channel: its name on the left, its waveform trace beside
-it. Which pins appear here, and what they are named, depends on which tool
-you opened this screen from. Once a capture lands, a red vertical line
-marks the sample where the trigger fired.
+A title line across the top names what this view is doing: the mode it is
+capturing, the sample rate, and its state - for example "SPI analyzer 1M
+idle", changing to armed once you start a capture and to done once the
+capture lands. Once a capture is loaded, the title also adds a position,
+such as "done 2/4", showing which slice of the buffer the trace below is
+panned to.
+
+Below the title, each row is one channel: its name on the left, its
+waveform trace beside it. Which pins appear here, and what they are named,
+depends on which tool you opened this screen from. Once a capture lands, a
+red vertical line marks the sample where the trigger fired.
 
 On screens with a long channel list - GPIO in particular - Up and Down
 move a highlighted row, shown with a gray band behind its name, and
@@ -99,6 +91,11 @@ whichever channel is highlighted when you arm a capture becomes its
 trigger source. On screens with only a few channels, there is no
 highlighted row: Up and Down do nothing here, and the trigger source is
 always the first channel shown.
+
+The title costs some of the screen's height, so the GPIO capture - the
+one with the longest channel list, 13 rows - now shows 12 at a time and
+scrolls with Up and Down to reach the last one. The shorter protocol
+channel lists still show every row at once.
 
 ### Controls
 
@@ -109,9 +106,11 @@ always the first channel shown.
 | Blue | Arm the capture, or stop it while armed |
 | Red | Force the trigger while armed |
 | Left / Right | Pan through a finished capture |
-| Gray | Shows the pan position once a capture is loaded; not a button, pressing it does nothing |
-| AI | Return to the screen this was opened from |
+| Gray / Page | Back - returns to the protocol panel this view was opened from |
 | Cancel | This help page |
+
+Red forces the trigger and keeps its Trig label to say so. Home leaves
+the app from here the same as it does everywhere else.
 
 ### Capturing
 
@@ -142,7 +141,13 @@ do nothing.
 
 This screen appears inside several different tools - GPIO, I2C, SPI, UART
 and MDIO all open it with their own Page button, each showing that tool's
-own pins or bus signals as the channels here. Page on this screen returns
-you to whichever one opened it.
+own pins or bus signals as the channels here. Gray or Page on this screen
+returns you to whichever one opened it.
+
+The capture itself runs on the RP2350's own PIO hardware, not the FPGA, so
+opening this screen never needs the FPGA power zone. SPI, UART, GPIO and
+MDIO route their own header lines through the FPGA and need that zone
+regardless of this screen; I2C reaches the header directly and needs no
+FPGA zone at all.
 
 **See also:** [SPI](../features/spi.md) — the console/GUI commands for this panel.

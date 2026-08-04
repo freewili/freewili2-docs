@@ -31,18 +31,25 @@
     "fwMenuSerialLEDs": { "publish": true, "title": "Serial LEDs", "section": "io", "order": 150 },
 
     "fwMenuWireless": { "publish": true, "title": "Wireless", "section": "wireless", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to NFC, ESP32 Flasher, Wifi, Bluetooth LE, IR, or LoRa." },
-    "fwMenuNFC": { "publish": true, "title": "NFC", "section": "wireless", "order": 20 },
+    "fwMenuNFC": { "publish": true, "title": "NFC", "section": "wireless", "order": 20, "panelKey": "APP_SELECTED_NFC" },
+    "fwMenuNFCSavedCards": { "publish": true, "title": "NFC Saved Cards", "section": "wireless", "order": 21 },
+    "fwMenuNFCMifareClassic": { "publish": true, "title": "NFC MIFARE Classic", "section": "wireless", "order": 22 },
+    "fwMenuNFCRaw": { "publish": true, "title": "NFC Raw Transceiver", "section": "wireless", "order": 23 },
+    "fwMenuNFCExtra": { "publish": true, "title": "NFC Extra Actions", "section": "wireless", "order": 24 },
     "fwMenuESP32Flasher": { "publish": true, "title": "ESP32 Flasher", "section": "wireless", "order": 30 },
     "fwMenuWifi": { "publish": true, "title": "Wifi", "section": "wireless", "order": 40, "panelKey": "APP_SELECTED_WIFI" },
     "fwMenuBluetoothLE": { "publish": true, "title": "Bluetooth LE", "section": "wireless", "order": 50, "panelKey": "APP_SELECTED_BLE" },
     "fwMenuIR": { "publish": true, "title": "IR", "section": "wireless", "order": 60 },
     "fwMenuLoRa": { "publish": true, "title": "LoRa", "section": "wireless", "order": 70, "panelKey": "APP_SELECTED_LORA" },
+    "fwMenuRadio": { "publish": true, "title": "Radio", "section": "wireless", "order": 80, "panelKey": "APP_SELECTED_RADIOS" },
 
     "fwMenuLinux": { "publish": true, "title": "Wi-Li-nux", "section": "wilinux", "order": 10 },
 
-    "fwMenuApps": { "publish": true, "title": "Jump to Panel", "section": "apps", "order": 10, "note": "Despite this menu's name, it does not launch an SD-card app - it jumps straight to an on-screen panel by its numeric ID. The device's actual Apps folder (Skelltris, Wili8, Doom) is a separate part of the on-screen panel list; see the **Terminal** panel page for those." },
+    "fwMenuApps": { "publish": true, "title": "Jump to Panel", "section": "apps", "order": 10, "note": "Despite this menu's name, it does not launch an SD-card app - it jumps straight to an on-screen panel by its numeric ID. Real SD-card apps are launched from the device's own file screens, not from here." },
     "fwMenuScripting": { "publish": true, "title": "Scripting", "section": "apps", "order": 20 },
     "fwMenuZoomIO": { "publish": true, "title": "ZoomIO", "section": "apps", "order": 30 },
+    "fwMenuAppSignals": { "publish": true, "title": "App Signals", "section": "apps", "order": 40, "panelKey": "APP_SELECTED_APP_DATA" },
+    "fwMenuWiliFiles": { "publish": true, "title": "Wili Files", "section": "apps", "order": 50, "panelKey": "APP_SELECTED_WILI_FILES" },
 
     "fwMenuHardware": { "publish": true, "title": "Hardware", "section": "system", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to Device Settings, System, File System, or Power Management." },
     "fwMenuSystem": { "publish": true, "title": "System", "section": "system", "order": 20 },
@@ -89,6 +96,7 @@
     "APP_SELECTED_BLE": { "publish": true, "title": "Bluetooth", "section": "wireless", "order": 30 },
     "APP_SELECTED_IR": { "publish": true, "title": "IR", "section": "wireless", "order": 40 },
     "APP_SELECTED_LORA": { "publish": true, "title": "LoRa", "section": "wireless", "order": 50 },
+    "APP_SELECTED_NFC": { "publish": true, "title": "NFC", "section": "wireless", "order": 60 },
 
     "APP_SELECTED_SOUNDBOARD": { "publish": true, "title": "Sound Board", "section": "gui", "order": 10 },
     "APP_SELECTED_RTC": { "publish": true, "title": "Clock & Alarm", "section": "gui", "order": 20 },
@@ -103,13 +111,15 @@
     "APP_SELECTED_POWER_MGMT": { "publish": true, "title": "Power Management", "section": "system", "order": 40 },
     "APP_SELECTED_ABOUT": { "publish": true, "title": "About", "section": "system", "order": 50 },
 
-    "APP_SELECTED_TERMINAL": { "publish": true, "title": "Terminal", "section": "wilinux", "order": 10 },
+    "APP_SELECTED_TERMINAL": { "publish": true, "title": "Terminal", "section": "wilinux", "order": 10, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. The Wi-Li-nux folder now lists **Linux Terminal** instead, which talks to the CM0 Linux shell." },
+    "APP_SELECTED_LINUX_TERMINAL": { "publish": true, "title": "Linux Terminal", "section": "wilinux", "order": 20 },
 
     "APP_SELECTED_SCRIPTS": { "publish": true, "title": "Scripts", "section": "tools", "order": 10 },
     "APP_SELECTED_FBLOCKS": { "publish": true, "title": "Wili Blocks", "section": "tools", "order": 20 },
     "APP_SELECTED_CMD_PANEL": { "publish": true, "title": "Command Panel", "section": "tools", "order": 30 },
     "APP_SELECTED_CUSTOM": { "publish": true, "title": "Script Monitor", "section": "tools", "order": 40, "note": "This screen isn't picked from the on-screen panel list directly. It opens automatically when you run a script from **Scripts**, showing that script's log until it finishes or you stop it." },
     "APP_SELECTED_APP_DATA": { "publish": true, "title": "App Data", "section": "tools", "order": 50 },
+    "APP_SELECTED_WILI_FILES": { "publish": true, "title": "Wili Files", "section": "tools", "order": 60 },
     "APP_SELECTED_EDITOR": { "publish": true, "title": "Editor", "section": "system", "order": 60 },
 
     "APP_SELECTED_MSETTINGS": { "publish": true, "title": "Settings", "section": "settings", "order": 10, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. The device's on-screen Settings home - pick a category to jump straight to its settings. It's a hand-maintained subset of what's in the console's Settings menu; RTC, Analog In, and Orca settings aren't listed here yet (Orca has its own **Orca Setup** panel)." },

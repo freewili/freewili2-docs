@@ -15,27 +15,39 @@ resend, replay or fuzz them.
 
 "IR hacker" is shown top left; to its right, the most recently received
 code in hex, labeled "nec" - this screen assumes the NEC infrared
-protocol and does not decode others. Below that, a scrolling log fills
-the rest of the screen, oldest at the top and newest at the bottom. Each
-line reads "ir" followed by the code in hex. A line is yellow when it is
-the first code of a new signal - more than half a second since the last
-one, or none received yet - and the regular log color for a repeat code
-within that half second.
+protocol and does not decode others. That label updates the moment a new
+code arrives. Below that, a scrolling log fills the rest of the screen,
+oldest at the top and newest at the bottom. Each line reads "ir" followed
+by the code in hex. A line is yellow when it is the first code of a new
+signal - more than half a second since the last one, or none received
+yet - and the regular log color for a repeat code within that half
+second.
+
+If the state machine that drives transmit lost its PIO slot to another
+driver at boot, the log's first line reads "IR transmit PIO did not
+load" in red. That is a diagnostic, not a log entry: it means Yellow,
+Green, Blue and Hold Blue will not actually send anything, even though
+receiving still works.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Gray | Switch to the IR Remote screen |
-| Yellow | Enter a code by hand (hex), pre-filled with the last one received; any value is accepted, nothing is enforced |
-| Green | Replay the received codes still in the buffer (up to the last 32), sending them back out about 100 ms apart |
-| Blue | Resend the last received code |
+| Gray | remotes - switch to the IR Remote screen |
+| Yellow | code - enter a code by hand (hex), pre-filled with the last one received; any value is accepted, nothing is enforced |
+| Green | replay - resend the received codes still in the buffer (up to the last 32), about 100 ms apart |
+| Blue | resend - resend the last received code |
 | Hold Blue | Start or stop fuzzing: repeatedly transmits variations of the last received code - its low 16 bits kept, the rest cycled - about every 100 ms |
-| Red | Clear the log and the received-code buffer |
+| Red | clear - clear the log and the received-code buffer |
+| Page | Switch to the IR Remote screen |
 | Cancel | This help page |
 
-Unlike most other screens, Red here clears rather than returning to the
-main menu.
+Each button fires once per press; it does not repeat on release or on
+holding it down. Blue is the one exception: a press sends the last code
+as usual, and a separate, longer hold toggles the fuzzer.
+
+Red clears the log and is labeled to say so. HOME leaves the screen
+from here, as it does everywhere else in the menu.
 
 ### Fuzzing
 
@@ -51,33 +63,54 @@ databases kept on the SD card.
 
 ### The screen
 
-Opens on a list of databases, captioned "Pick Remote IRL": every
-`.fwir` file in the `/ir/` folder on the SD card, plus a built-in "roku"
-entry that is always present even with an empty folder. Selecting one
-loads it and switches to a list of that database's saved commands,
-captioned "Blast Away!". Selecting a command there sends it right away.
+This screen has two views, easy to mix up if you don't know the
+captions:
+
+- **Picker**, captioned "Pick Remote IRL" - a list of every `.fwir` database file in the `/ir/` folder on the SD card, plus a built-in "roku" entry that is always present even with an empty folder. Selecting an entry opens it and switches to the command view.
+- **Command view**, captioned "Blast Away!" - the saved commands in whichever remote you just opened. Selecting one transmits it right away.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Center (or tap) | On the database list, open it; on a command list, send that code |
-| Blue | On the database list: create a new, empty database (asks for a name). On a command list: save the most recently received code into the open database (asks for a name); does nothing if no code has been received yet |
-| Red | Return to the main menu |
+| Center (or tap) | Picker: open the highlighted remote. Command view: transmit the highlighted code |
+| Gray | back - one step out: command view to the picker, picker to the IR Hacker screen |
+| Blue | Picker: new - create a database (asks for a name). Command view: save - store the most recently received code under a name |
+| Page | Switch to the IR Hacker screen |
 | Cancel | This help page |
 
-Gray, Yellow and Green carry no label here and do nothing.
+Yellow, Green and Red carry no label on either view and do nothing.
+HOME leaves the screen from here, as it does everywhere else in the
+menu.
+
+Before Gray did this, there was no way back from either view at all.
 
 ### Databases
 
 A database is a plain text file in `/ir/` on the SD card, one command
-per line as `name=code`. The built-in "roku" database is not a file - it
-is 17 fixed commands built into the firmware.
+per line as `name=code`. Codes are written in hex (`name=0x1234ABCD`);
+older files saved in plain decimal still load, since both are read the
+same way. The built-in "roku" database is not a file - it is 17 fixed
+commands built into the firmware, and there is nothing behind it to
+save into.
+
+Creating a database from the picker leaves you on the picker
+afterward, now showing every existing remote plus the new one, so you
+can open it right away and start saving codes. Before this fix the
+list went blank until you left the screen and came back in.
+
+### Feedback
+
+Every dead end here says so instead of leaving you guessing:
+
+- Creating a database reports whether it made the file or that a remote by that name already exists.
+- Opening a database with no saved commands says there are no codes yet.
+- Saving while roku is open refuses outright, since roku is built in and has no file to append to.
 
 ### Working with IR Hacker
 
-Blue on a command list saves whatever code was most recently received
-on the IR Hacker screen. The two screens are meant to be used together:
-receive a code there, then come here to name and save it. There is no
-button on this screen that returns you to IR Hacker directly; Red leaves
-the app entirely, back to the main menu.
+Blue in the command view saves whatever code was most recently
+received on the IR Hacker screen, even if that was a while ago - it
+does not have to be fresh. The two screens are meant to be used
+together: receive a code there, then come here to name and save it.
+Gray on the picker now takes you straight back to IR Hacker.

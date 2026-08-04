@@ -15,3 +15,17 @@ Enable/disable NFC reader with auto tag streaming
 **How to use it** — press `r`. At the prompt, enter: 1 to enable, 0 to disable.
 
 **What you enter** — `enable`.
+
+## Print Card Info
+
+Display detailed info about detected card
+
+**How to use it** — press `c`.
+
+## Get Status (debug)
+
+Display NFC hardware state and debug info
+
+**How to use it** — press `g`.
+
+**See also:** [NFC panel](../panels/nfc.md) — the on-screen panel for this.

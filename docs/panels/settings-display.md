@@ -8,9 +8,9 @@ sidebar_position: 30
 
 ## Display Setup
 
-Picks and edits the display's own settings - sensors, power, sound,
-LEDs, infrared, and the button/touch interface - separately from the
-main-CPU categories on the Main CPU Setup screen.
+Picks and edits the display processor's own settings - sensors, power, sound,
+LEDs, infrared, and double-click timing - separately from the main-CPU
+categories on the Main CPU Setup screen.
 
 ### The screen
 
@@ -23,30 +23,40 @@ own fields, each shown as "Name [value]".
 | Button | Action |
 |---|---|
 | Center (or tap) | Open the highlighted category, or edit the highlighted field |
-| Red | Back: from a field list to the categories; from the categories, out of Setup - asking to save first if anything changed |
-| Blue | Save all changes made on this screen |
+| Red | Within a field list, back to the categories (`#96`); on the categories list, Red carries no label and does nothing |
+| Blue | Save all changes made on this screen to storage |
 | Hold Blue | Reset every setting on this screen to its factory default |
 | Cancel | This help page |
 
+HOME leaves Setup outright from anywhere on this screen, as it does
+everywhere else in the menu; it does not ask you to save first.
+
 ### Editing a field
 
-Opening a field shows whatever dialog fits its type - a number pad, a
-pick list, or a plain on/off toggle. Unlike Main CPU Setup, a change
-here is not written to storage as soon as you confirm it - it only
-marks the screen as having unsaved changes. Press Blue to write
-everything you have changed; leaving with Red while something is
-unsaved instead shows a "Save Changes?" prompt first, so you get one
-more chance to save or discard before you go. Holding Blue skips both of
-those - it resets every field in every category back to its factory
-default immediately, but still leaves the screen marked as having
-unsaved changes, so press Blue again afterward if you want the reset to
-stick.
+Opening a field shows whatever dialog fits its type - a number pad, a pick
+list, or, for a two-choice list such as an on/off toggle, an instant flip
+with no dialog at all. Picking an entry from a list or confirming a number
+applies it right away: most of what lives on this screen is read live by
+the rest of the firmware, so the effect usually shows before you even back
+out of the field list. What Blue controls is only whether the change
+survives a reboot - editing a field marks the screen as having unsaved
+changes, and only Blue writes the current values to storage. Backing out
+with Red or leaving with HOME does not prompt you to save; whatever you
+changed keeps running until the next reboot, when the file actually on
+storage - not your in-session edit - is what comes back. Holding Blue
+resets every field in every category to its factory default immediately,
+live the same way as any other edit, but still leaves the screen marked as
+having unsaved changes, so press Blue again afterward if you want the
+reset to stick.
 
-The Sensors category is a special case. Its values are owned by the main
-CPU, which pushes them to the display every time settings are loaded.
-You can still change them here and the change takes effect immediately,
-but it is not saved - a reboot restores whatever the main CPU holds. To
-change a sensor setting permanently, use Sensors under Main CPU Setup.
+### Categories
+
+- **Sensors** - accelerometer and gyro full-scale range, the movement threshold, temperature calibration (scale and offset), and the sensor stream-defaults bitmask. This one is a special case: the main CPU owns these values and pushes its copy down as soon as the display link comes up, so a reboot always overwrites whatever you set here. A field you edit still changes the display's live copy immediately - it is just not saved locally. To change a sensor setting permanently, use Sensors under Main CPU Setup.
+- **Power** - display brightness on USB power and at each battery tier (above 70%, above 30%, below 30%), the on-battery and powered-display shutoff timeouts, and whether sound or movement resets the shutoff timer. All of it is read live by the power manager, so a change takes effect right away.
+- **Sound** - the quiet-detection threshold, playback and recording volume, default recording length, and whether system sounds play. Applied live the moment you confirm the edit.
+- **LEDs** - the default light show pattern, how many LED strips are wired up, and whether a Roku remote's up/down/OK cycles through patterns. All three take effect live; a pattern change shows up on the strip immediately.
+- **Infrared** - whether a Roku remote's IR codes are also remapped onto the on-screen button bar (gray/yellow/etc.). Applies to the next code the receiver decodes.
+- **Interface** - a double-click timing window. The field is present, editable and saved like any other, but nothing currently reads it back; the button double-click detector uses a fixed interval regardless of what's set here.
 
 ### Where this fits
 

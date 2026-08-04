@@ -8,7 +8,7 @@ Found under **IO** on the device's panel list.
 
 ## I2C Log
 
-Live log of I2C bus activity, with a bus scan and a wiring test.
+Live log of I2C bus activity, with a bus scan and a manual write.
 
 ### The screen
 
@@ -21,11 +21,13 @@ a summary of how many devices a scan found, or a byte written to the bus.
 | Button | Action |
 |---|---|
 | Green | Scan the bus and log every address that answers |
-| Blue | Send a fixed test write, to check the bus is wired and talking |
+| Yellow | Send - opens a hex-entry box and writes the bytes you type |
+| Blue | Set I2C address - the label shows the address currently selected |
 | Gray | Open the Logic Analyzer view |
-| AI | Open the Logic Analyzer view |
-| Red | Return to the main menu |
+| PAGE | Open the Logic Analyzer view |
 | Cancel | This help page |
+
+HOME leaves the screen from here, as it does everywhere else in the menu.
 
 ### Reading the log
 
@@ -34,14 +36,21 @@ address that responds, `R) A: <addr> R: <byte>` in hex, followed by a
 `Poll Found N devices` summary line. Addresses reserved by the I2C
 specification are skipped.
 
-The test write (Blue) sends a small fixed pattern to a fixed address and
-register - it is not configurable from this screen. It exists to confirm the
-bus itself is wired correctly, not to talk to a specific part. Every attempt
-prints a `W)` line with the address, register and data sent, whether or not
-anything on the bus actually acknowledged it - the line means the write was
-sent, not that it succeeded, and nothing on screen tells the two apart. Bus
-clock speed and whether the internal pull-up resistors are enabled are set
-from the I2C settings menu, not from this screen.
+Send (Yellow) opens a text box for entering bytes as hex, separated by
+spaces, commas or tabs (`0A 15 01 55` or `0A,15,01,55`), up to 16 bytes.
+The first byte is the register, the rest is the data written to it; the
+target address is not part of this entry, it is whatever Blue currently has
+set. Entering something that is not valid hex, or more than 16 bytes,
+rejects the input with a message and sends nothing. Every attempt prints a
+`W)` line with the address, register and data sent, whether or not anything
+on the bus actually acknowledged it - the line means the write was sent, not
+that it succeeded, and nothing on screen tells the two apart. Bus clock
+speed and whether the internal pull-up resistors are enabled are set from
+the I2C settings menu, not from this screen.
+
+Blue opens a numeric editor for the target address (0-127); its label
+updates to show the address currently selected, and that address is used
+for every Send until it is changed again.
 
 ### What else shows up here
 
@@ -51,6 +60,18 @@ part of the system - also prints a `W)` line here. The log only fills in
 while this screen is on the display; leaving it stops new lines from being
 recorded.
 
+### Logic Analyzer view
+
+Gray or PAGE switch to a Logic Analyzer view of the I2C lines (SDA/SCL),
+with a title line showing the mode, sample rate and capture state. A
+labelled Back button on that view returns here.
+
+### Power
+
+This screen does not need the FPGA power zone. I2C0 reaches the 20-pin
+header directly, and the FPGA only sniffs the line for the Logic Analyzer
+capture, so the bus itself works with the FPGA rail off.
+
 ## Logic Analyzer
 
 Captures a burst of digital pins over time and draws them as waveforms, so
@@ -58,10 +79,17 @@ you can see fast signal changes a live view would miss.
 
 ### The screen
 
-Each row is one channel: its name on the left, its waveform trace beside
-it. Which pins appear here, and what they are named, depends on which tool
-you opened this screen from. Once a capture lands, a red vertical line
-marks the sample where the trigger fired.
+A title line across the top names what this view is doing: the mode it is
+capturing, the sample rate, and its state - for example "SPI analyzer 1M
+idle", changing to armed once you start a capture and to done once the
+capture lands. Once a capture is loaded, the title also adds a position,
+such as "done 2/4", showing which slice of the buffer the trace below is
+panned to.
+
+Below the title, each row is one channel: its name on the left, its
+waveform trace beside it. Which pins appear here, and what they are named,
+depends on which tool you opened this screen from. Once a capture lands, a
+red vertical line marks the sample where the trigger fired.
 
 On screens with a long channel list - GPIO in particular - Up and Down
 move a highlighted row, shown with a gray band behind its name, and
@@ -69,6 +97,11 @@ whichever channel is highlighted when you arm a capture becomes its
 trigger source. On screens with only a few channels, there is no
 highlighted row: Up and Down do nothing here, and the trigger source is
 always the first channel shown.
+
+The title costs some of the screen's height, so the GPIO capture - the
+one with the longest channel list, 13 rows - now shows 12 at a time and
+scrolls with Up and Down to reach the last one. The shorter protocol
+channel lists still show every row at once.
 
 ### Controls
 
@@ -79,9 +112,11 @@ always the first channel shown.
 | Blue | Arm the capture, or stop it while armed |
 | Red | Force the trigger while armed |
 | Left / Right | Pan through a finished capture |
-| Gray | Shows the pan position once a capture is loaded; not a button, pressing it does nothing |
-| AI | Return to the screen this was opened from |
+| Gray / Page | Back - returns to the protocol panel this view was opened from |
 | Cancel | This help page |
+
+Red forces the trigger and keeps its Trig label to say so. Home leaves
+the app from here the same as it does everywhere else.
 
 ### Capturing
 
@@ -112,7 +147,13 @@ do nothing.
 
 This screen appears inside several different tools - GPIO, I2C, SPI, UART
 and MDIO all open it with their own Page button, each showing that tool's
-own pins or bus signals as the channels here. Page on this screen returns
-you to whichever one opened it.
+own pins or bus signals as the channels here. Gray or Page on this screen
+returns you to whichever one opened it.
+
+The capture itself runs on the RP2350's own PIO hardware, not the FPGA, so
+opening this screen never needs the FPGA power zone. SPI, UART, GPIO and
+MDIO route their own header lines through the FPGA and need that zone
+regardless of this screen; I2C reaches the header directly and needs no
+FPGA zone at all.
 
 **See also:** [I2C](../features/i2c.md) — the console/GUI commands for this panel.

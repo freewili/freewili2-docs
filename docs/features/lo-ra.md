@@ -12,9 +12,9 @@ terminal, and on the device itself. See
 
 https://meshtastic.org/docs/configuration/radio/lora/
 
-**How to use it** — press `c`. At the prompt, enter: freqHz sf bwEnc cr power  (bwEnc 0=125/1=250/2=500kHz; cr 5-8=4/5..4/8; power dBm -9..22).
+**How to use it** — press `c`. At the prompt, enter: freqHz sf bwEnc cr power [preamble] [sync hex] (bw 0/1/2=125/250/500k; cr 5-8; pwr -9..22).
 
-**What you enter** — `freq_hz`, `sf`, `bw_enc`, `cr`, `power`.
+**What you enter** — `freq_hz`, `sf`, `bw_enc`, `cr`, `power`, `preamble`, `sync`.
 
 ## Send
 

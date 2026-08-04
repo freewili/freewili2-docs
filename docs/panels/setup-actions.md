@@ -10,23 +10,39 @@ Found under **System** on the device's panel list.
 
 Browses every setting and command the device exposes, as a single
 drill-down list, and lets you view or change any of them from one place.
+It walks the same command tree the serial console understands and the
+OneWili API is generated from - a category here, a setting, or a command
+is not a summary of that tree, it is that tree, so the console, OneWili,
+and this screen always agree.
+
+Earlier firmware gave this screen and the Wi-Li-nux Terminal screen the
+same internal launch id, so opening either tile from the main menu could
+launch both at once, stacked on top of each other. That collision is
+fixed: selecting "Setup & Actions" now opens only this screen.
 
 ### The screen
 
 A list fills the screen, one entry per row: rows ending in ">" are
 categories - select one to drill into it. Rows followed by a value in
 brackets are settings, showing the value currently stored; selecting one
-opens a dialog to change it. Plain rows are commands; selecting one runs
-it, after first asking for any values it needs.
+opens a dialog to change it, except a plain on/off or two-choice setting,
+which flips in place instead and saves immediately with no dialog shown.
+Plain rows are commands; selecting one runs it, after first asking for
+any values it needs.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Red | Go back one level, or return to the main menu from the top level |
+| Red | Go back one level in the tree |
 | Cancel | This help page |
 
 Gray, Yellow, Green and Blue carry no label here and do nothing.
+
+Red steps back one level in the tree, and is labeled to say so at every
+level except the top, where there is nowhere left to go back to and it
+does nothing. HOME leaves the screen from here, as it does everywhere
+else in the menu.
 
 ### Where this list comes from
 
@@ -43,7 +59,7 @@ A command may ask for one or more values first, one dialog at a time -
 a number, a piece of text, or a choice from a list. Cancelling any of
 these dialogs abandons the command without running it. Once every value
 is collected, the command runs immediately, the same as if it had been
-typed at a console - this is not a preview. The result then appears in
+typed at the console - this is not a preview. The result then appears in
 place of the list: the command's name in yellow if it ran successfully or
 red if it did not, followed by its response, one line at a time. If the
 response looks like it was cut off, an extra red line says so. Selecting

@@ -10,19 +10,19 @@ terminal, and on the device itself. See
 
 ## List Zones
 
-Lists all 17 power zones with their name and rail.
+Lists all 17 power zones with their name and rail, then the three control lines (18-20).
 
 **How to use it** — press `l`.
 
 ## Get Zones
 
-Shows which power zones are currently on. Needs a telemetry sample.
+Shows which power zones are currently on, then the reset state of the three control lines.
 
 **How to use it** — press `g`.
 
 ## Set Zone
 
-Switches one power zone on or off. Zone 9 is the board-manager LED, not a power rail.
+Switches one power zone on or off. Zone 9 is the board-manager LED, not a power rail; zones 18-20 are reset lines with their own commands.
 
 **How to use it** — press `s`. At the prompt, enter: zone number and 1 or 0.
 
@@ -49,5 +49,61 @@ Streams battery, charger and power-zone telemetry to the host at the given rate.
 **How to use it** — press `o`. At the prompt, enter: Sample Time in milliseconds.
 
 **What you enter** — `stream_rate_ms`.
+
+## Set WIO Reset Line
+
+Zone 18 is `WIO_RST`, the PIC's `RG3` output into the LoRa module's `NRST` pin. It is a reset line and not a power rail, so it has a level rather than an on/off, and `NRST` is active low.
+
+### Usage
+
+```
+w 1
+```
+
+### Notes
+
+- Ok is deferred until the PIC's status frame reports that pin back, so it means the line really moved. A timeout prints what it read instead.
+- Zone 4 must be on. This command only moves a reset line, and releasing a module whose `3V3_S4` rail is off achieves nothing.
+- Releasing reset says nothing about what firmware the module holds. It is what makes the module answerable at all.
+
+**How to use it** — press `w`. At the prompt, enter: 0 to hold the LoRa module in reset, 1 to release it.
+
+**What you enter** — `state`.
+
+## Set CM0 Run Line
+
+Zone 19 is `CM0_RUNPG`, the PIC's `RH0` output into the compute module's `RUN_PG` pin. Active high: low holds the Linux CPU in reset, high lets it run.
+
+### Usage
+
+```
+c 1
+```
+
+### Notes
+
+- Zone 17 must be on. Driving this line high into an unpowered module is the fault that Enable Linux CPU in the Linux menu avoids by setting the rail and the line in one frame, so prefer that command for ordinary use and this one when you need the line alone.
+- Ok is deferred until the PIC reports the pin at the requested level.
+
+**How to use it** — press `c`. At the prompt, enter: 0 to hold the Linux CPU in reset, 1 to release it.
+
+**What you enter** — `state`.
+
+## Get Control Lines
+
+Reads back the three control-line pin levels: `WIO_RST` (zone 18), `CM0_RUNPG` (zone 19) and `MAIN_PWR_RST` (zone 20).
+
+### Usage
+
+```
+n
+```
+
+### Notes
+
+- These bits are decoded from the PIC status frame's port bytes, the same source as the 17 rails, so they are a read-back rather than an echo of what was last requested.
+- Get Zones prints the same three bits with labels.
+
+**How to use it** — press `n`.
 
 **See also:** [Power Management panel](../panels/power-management.md) — the on-screen panel for this.

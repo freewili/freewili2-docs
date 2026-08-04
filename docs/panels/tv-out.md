@@ -8,45 +8,47 @@ Found under **GUI** on the device's panel list.
 
 ## TV Out
 
-Switches the board's own screen buffer into a live video signal, sent out
-over its DVI pins. Selecting it from the main menu does not turn video on
-right away - it opens a diagnostic list first, and Green is what actually
-starts video.
+Sends the board's own screen buffer out as a live 1280x720 video signal over
+its DVI pins. This screen used to freeze the whole device solid - one of two
+reports of a total lockup - and starting video is what triggered it. That has
+been fixed in firmware but not yet confirmed on hardware, so treat what
+follows as the intended behavior rather than a proven one.
 
 ### The screen
 
-An empty log box fills most of the screen, with four labelled buttons
-underneath: Poll, Read, TV Out and RMW. This layout is carried over from
-the MDIO tool found elsewhere in the IO menu, but most of what made that
-tool work was left out when this screen was built from it - the log stays
-empty, and only two of the four buttons do anything.
+An empty log box fills most of the screen. Two lines are printed into it as
+soon as the screen opens, saying Green sends 1280x720 to HDMI and that the
+LCD freezes while it streams.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Gray | Labeled Poll; pressed does nothing |
-| Hold Gray | Clear the log |
-| Yellow | Read - open a list of read settings: protocol, PHY and device address, register address, poll rate |
-| Blue | Labeled RMW; does nothing, here or inside the Read list |
-| Green | TV Out - start sending live video (see below - there is no way back) |
-| Red | Does nothing, here or inside the Read list |
-| Cancel | This help page (until Green is pressed - see below) |
+| Green | Start sending video |
+| Red | Retired; unlabelled and does nothing |
+| Gray, Yellow, Blue | Do nothing |
+| Cancel | This help page |
 
-### Starting video
+HOME leaves the screen from here, as it does everywhere else in the menu,
+and stops the video on the way out.
 
-Green stops the normal menu firmware and begins sending the current screen
-image out continuously as a video signal. This cannot be undone from the
-screen: every button stops responding the instant you press it, including
-Cancel. The only way back is to power the device off and on again.
+### Starting and stopping video
 
-### Getting back without pressing Green
+Green begins streaming the current screen image out continuously as DVI
+video, over GPIO12-19 on the DISPLAY processor. While it runs, the LCD stops
+updating and the log prints a reminder that the screen is frozen until Red -
+that message is stale: Red does nothing here, and HOME is what actually
+gets you out. Leaving with HOME stops the video and
+restores the display, so the screen can be reopened and started again
+afterward.
 
-Even before Green, this screen has no working way back to the main menu.
-Red is meant to close it, both on the main log view and inside the Read
-list Yellow opens, but its handler does nothing in either place. Editing
-the Read list's fields does work - selecting an entry lets you change its
-protocol, address, register or poll rate, and the list redraws with the
-new value - but nothing sends those values anywhere, and there is no
-button that runs a read. As shipped, opening this screen at all means
-restarting the device to leave it.
+### Why this used to hang the whole device
+
+Starting video reclocks the processor's system clock to the rate DVI needs,
+and that clock feeds the peripheral clock the UARTs derive their baud rate
+from. The firmware now reads back each UART's baud rate before the switch
+and reapplies it after, on both the way in and the way back out, so the PIC
+link and the Main-to-Display link keep working. If you have a serial
+terminal open on one of the board's UARTs when you start or stop video, the
+port may still glitch for the moment the clock is actually moving even
+though the firmware puts the rate back.

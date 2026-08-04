@@ -8,14 +8,16 @@ Found under **IO** on the device's panel list.
 
 ## MDIO Log
 
-Reads and writes MDIO registers on an Ethernet PHY, and logs the results.
+Reads and writes registers on an Ethernet PHY over MDIO, or on an SFP
+module over I2C, using one of four protocols, and logs the results.
 
 ### The screen
 
 A scrolling log fills the screen, oldest at the top and newest at the
-bottom. Each read, write or poll prints a line with the result. Blue lines
-show successful operations; red lines show when a device or module was not
-found.
+bottom. A read, write or modify prints a short group of lines for the raw
+register transaction, then a summary line with the result; a poll prints
+one line for each PHY address that answers, plus a separate line for the
+SFP check.
 
 ### Controls
 
@@ -26,38 +28,104 @@ found.
 | Yellow | Set up a register read |
 | Green | Set up a register write |
 | Blue | Set up a read-modify-write |
-| AI | Open the Logic Analyzer view, where available |
-| Red | Return to the main menu |
+| AI | Open the Logic Analyzer view |
 | Cancel | This help page |
+
+Red draws no label on this main view; HOME leaves the screen from here, as
+it does everywhere else in the menu. Opening a setup list puts a live back
+arrow on Red - see below.
+
+### Pins
+
+MDC, MDIO and the buffer-direction line are fixed at GPIO 25, 26 and 27,
+reaching the CN26 header - the same GPIO map FreeWili 1 uses for MDIO.
+They are not configurable from this screen.
 
 ### Setting up a read, write or read-modify-write
 
-Yellow, Green and Blue each open a list of settings for that operation:
-the protocol (Clause 22, Clause 45, Clause 45 Emulation, or Intrepid SFP),
-the PHY and device addresses it needs, the register address and, on a
-read, a poll rate - and - for a write or modify - the data and, for
-modify, the mask to apply to the existing value. Select a setting to
-change it, then press the button shown at the bottom of that list to run
-the operation; it returns you to the log and prints the result there. The
-poll rate on a read can be set but currently has no effect - a read runs
-once, the same as any other read. Red on a setup list cancels back to the
-log without running anything.
+Yellow, Green and Blue each open a list titled "Setup" with its fields
+shown as `Name [value]`. Center (or tap) opens the highlighted one:
+
+- **Method** - Clause 22, Clause 45, Clause 45 EMU, or Intrepid SFP. Opens its own pick list with the current method highlighted.
+- **Phy Addr** (0-31) - shown for Clause 22, Clause 45 and Clause 45 EMU.
+- **Device Addr** (0-31) - shown for Clause 45, Clause 45 EMU and Intrepid SFP.
+- **Register Addr** - shown for every method; its top end depends on the method, 31 for Clause 22 or 65535 for the others.
+- **Data** - the value to write; shown on the write and modify lists.
+- **Data Mask** - which bits of Data replace the register's existing value; shown only on the modify list.
+- **Poll Rate (ms)** - shown only on the read list. It can be set but currently has no effect - a read still runs once, the same as any other read.
+
+Changing the method changes which address fields are offered, since
+Clause 22 only needs a PHY address, Intrepid SFP only needs a device
+address, and Clause 45 (plain or emulated) needs both.
+
+Only two buttons are live on a setup list. Blue is labeled with the
+operation it runs - Read, Write or Modify - performs it, and returns to
+the log. Red carries a back-arrow label here instead of its usual blank
+one, and cancels back to the log without running anything. Gray, Yellow
+and Green show no label on a setup list.
+
+### Reading the log
+
+A successful read, write or modify logs twice. First the raw register
+access prints as a short group of lines: the operation tag (`22 R)`,
+`22 W)`, `45 R)`, `45 W)`, `45x R)`/`45x W)` for Clause 45 EMU, or
+`SFP R)`/`SFP W)`), then whichever of the PHY address and device address
+the method uses, then the register address and the value. Reads log in
+black and writes log in blue; a modify logs both a read group and a write
+group, since a read-modify-write is a read followed by a write
+internally. Second, a purple summary line repeats the result on its own:
+`Read <value>`, `Wrote <value>`, or `Now <value>` for a modify, each with
+the four-digit hex value.
+
+If the register access itself fails once MDIO is already set up, a
+message box reports it directly - `MDIO read failed`, `MDIO write
+failed` or `MDIO modify failed` - and nothing is added to the log for
+that attempt. If setting up MDIO fails before the access is even
+attempted, the message box names what went wrong instead, for example
+`MDIO init: IO expander did not answer` or `MDIO init: FPGA refused
+HSBDIO mode`.
 
 ### Poll
 
-Gray sweeps every PHY address from 0 to 31, checking Clause 22 and Clause 45
-compatibility at each one, and separately checks whether an SFP module is
-present. Addresses that answer are logged with which protocol they support;
-if a poll takes a while, that is normal - it is testing 32 addresses in
-turn. A poll that finds nothing logs "No MDIO PHYs Found". Holding Gray
-instead of tapping it clears the log without polling.
+Gray sweeps every PHY address from 0 to 31, checking Clause 22, Clause 45
+and Clause 45-via-Clause-22 (emulation) compatibility at each one over
+MDIO, then separately checks for an Intrepid SFP module over I2C. This
+blocks the firmware for a few seconds while it runs - the screen will not
+respond until it finishes.
 
-### Shared by two menus
+Each address that answers logs a blue line here, `PHY found at address
+<addr>. Compatability: <clauses>.` (that is the actual spelling on
+screen). Addresses that answer nothing are not logged individually; if
+none of the 32 answer, a single red `No MDIO PHYs Found` line is added
+instead. The SFP check logs its own line - blue `SFP ID: ...` with the
+module's temperature and signal quality if one is found, or red `SFP
+Module not Found` if not - and it always runs, even if the PHY sweep
+above it stopped early.
 
-This screen appears both as its own MDIO tool and inside another app that
-also offers a Logic Analyzer view alongside it. The Page button opens that
-Logic Analyzer view when one is available; from the standalone MDIO tool
-there isn't one to open.
+If MDIO itself fails to set up partway through the sweep - the same
+failures a read or write can hit - the sweep stops right there without
+logging anything for it; that failure only reaches the console, not this
+screen.
+
+Holding Gray instead of tapping it clears the log without polling.
+
+### Logic Analyzer view
+
+AI switches to a Logic Analyzer view of the MDC and MDIO lines, with a
+title line showing the mode, sample rate and capture state. AI on that
+view returns here. This tool always carries that view alongside it, so
+AI always has something to open.
+
+### Power
+
+This screen needs the FPGA power zone (6): setting up MDIO drives the
+FPGA's HSBDIO mode so GP27 can steer the GP26 buffer direction, and that
+setup needs the FPGA's register bus to answer. With that rail off,
+opening this screen raises "Enable FPGA power zone"; the screen still
+opens behind it, but setup is unlikely to succeed until the rail is back
+on. That check only runs once, on entry - it does not re-run before a
+read, write, poll or modify. Zone 6 is on by default and is switched from
+Power Devices.
 
 ## Logic Analyzer
 
@@ -66,10 +134,17 @@ you can see fast signal changes a live view would miss.
 
 ### The screen
 
-Each row is one channel: its name on the left, its waveform trace beside
-it. Which pins appear here, and what they are named, depends on which tool
-you opened this screen from. Once a capture lands, a red vertical line
-marks the sample where the trigger fired.
+A title line across the top names what this view is doing: the mode it is
+capturing, the sample rate, and its state - for example "SPI analyzer 1M
+idle", changing to armed once you start a capture and to done once the
+capture lands. Once a capture is loaded, the title also adds a position,
+such as "done 2/4", showing which slice of the buffer the trace below is
+panned to.
+
+Below the title, each row is one channel: its name on the left, its
+waveform trace beside it. Which pins appear here, and what they are named,
+depends on which tool you opened this screen from. Once a capture lands, a
+red vertical line marks the sample where the trigger fired.
 
 On screens with a long channel list - GPIO in particular - Up and Down
 move a highlighted row, shown with a gray band behind its name, and
@@ -77,6 +152,11 @@ whichever channel is highlighted when you arm a capture becomes its
 trigger source. On screens with only a few channels, there is no
 highlighted row: Up and Down do nothing here, and the trigger source is
 always the first channel shown.
+
+The title costs some of the screen's height, so the GPIO capture - the
+one with the longest channel list, 13 rows - now shows 12 at a time and
+scrolls with Up and Down to reach the last one. The shorter protocol
+channel lists still show every row at once.
 
 ### Controls
 
@@ -87,9 +167,11 @@ always the first channel shown.
 | Blue | Arm the capture, or stop it while armed |
 | Red | Force the trigger while armed |
 | Left / Right | Pan through a finished capture |
-| Gray | Shows the pan position once a capture is loaded; not a button, pressing it does nothing |
-| AI | Return to the screen this was opened from |
+| Gray / Page | Back - returns to the protocol panel this view was opened from |
 | Cancel | This help page |
+
+Red forces the trigger and keeps its Trig label to say so. Home leaves
+the app from here the same as it does everywhere else.
 
 ### Capturing
 
@@ -120,7 +202,13 @@ do nothing.
 
 This screen appears inside several different tools - GPIO, I2C, SPI, UART
 and MDIO all open it with their own Page button, each showing that tool's
-own pins or bus signals as the channels here. Page on this screen returns
-you to whichever one opened it.
+own pins or bus signals as the channels here. Gray or Page on this screen
+returns you to whichever one opened it.
+
+The capture itself runs on the RP2350's own PIO hardware, not the FPGA, so
+opening this screen never needs the FPGA power zone. SPI, UART, GPIO and
+MDIO route their own header lines through the FPGA and need that zone
+regardless of this screen; I2C reaches the header directly and needs no
+FPGA zone at all.
 
 **See also:** [MDIO](../features/mdio.md) — the console/GUI commands for this panel.

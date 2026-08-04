@@ -13,17 +13,20 @@ advertising, and lets you turn BLE on or off and set the name it advertises.
 
 ### The screen
 
-This screen needs the Bottlenose wireless co-processor selected in
-Setup & Actions (Menu Xplorer). If it is not selected, the screen shows
-only a short notice telling you to enable it there, and nothing below
-applies.
-
-With it selected, top to bottom:
+The ESP32-C5 radio is soldered to this device and has its own link to
+the main processor, so this screen is always live - there is no Orca
+UART setting to point at it first. Top to bottom:
 
 - **Advert Name** - the name this device advertises over Bluetooth LE
 - A status line, coloured to match the state below, with the device's Bluetooth MAC address to its right once the co-processor answers
 - **Terminal Enabled** - Enabled or Disabled (see below - it looks live but is not)
 - **Num of Devices** - always reads 0; it is not wired up to a live count
+
+This screen used to render black. Captions were written in a way the
+display dropped instead of showing, and the controls' ids did not match
+the order they were created in, so an update meant for one line landed
+on another and overwrote it instead of appearing on its own. Both are
+fixed now; what follows is what the screen actually shows.
 
 ### Controls
 
@@ -31,17 +34,23 @@ With it selected, top to bottom:
 |---|---|
 | Blue | Turn Bluetooth LE on or off |
 | Green | Set the advertised name |
-| Red | Return to the main menu |
 | Cancel | This help page |
 
-Gray and Yellow have no label on this screen and do nothing.
+Gray, Yellow and Red have no label on this screen and do nothing. HOME
+leaves the screen from here, as it does everywhere else in the menu.
 
 ### Status colours
 
 - Green "Running" - BLE is on and advertising
 - Yellow "Starting" - BLE is turning on
-- Red "Disabled" - the co-processor is reachable but BLE is off
-- Red "BT CPU DISCONNECTED" - the co-processor has not answered in the last 2 seconds; the MAC address, Terminal Enabled and Num of Devices are all hidden and nothing else on the screen is being refreshed
+- Red "Disabled" - the module is reachable but BLE is off
+- Red "ESP32 radio not responding" - the module has not answered in the last 2 seconds; the MAC address, Terminal Enabled and Num of Devices are all hidden and nothing else on the screen is being refreshed
+
+A hint line below the status fills in for two of these: while
+"Starting" is showing it reads "On, waiting for the radio."; while the
+module is silent it instead names the likely reason - either that there
+was simply no reply, or that power zone 5, the zone the ESP32 sits on,
+is switched off. It stays blank the rest of the time.
 
 This status line updates continuously while the screen is open, not on a
 timer - whatever it shows is current as of right now.
@@ -50,11 +59,24 @@ timer - whatever it shows is current as of right now.
 
 Green opens a text entry for the name. It accepts up to 30 characters;
 type more and the extra is silently discarded rather than shown as an
-error. The name and whether BLE is on are saved and survive a restart.
+error.
+
+Turning BLE on while the name is still blank seeds a default of
+"FreeWili" rather than refusing - unlike an access point, a nameless
+BLE advertisement carries no open network with it, so there is nothing
+gained by blocking it.
 
 You can turn BLE on or off, or change the name, even while the status
-shows CPU DISCONNECTED - the change is saved right away and sent to the
-co-processor automatically the moment it reconnects.
+shows the module is not responding - either change is sent to the
+module automatically the moment it answers. Turning BLE on from here
+also switches power zone 5 back on if it was off, so the radio has a
+rail to come up on.
+
+Whether BLE is on is saved right away and survives a restart. A changed
+name is pushed to the module live but is not written to disk on its
+own; it lands on disk the next time the BLE settings are saved as a
+whole, which the on/off switch also does. A name typed here and never
+followed by a Blue press is lost on the next restart.
 
 ### Terminal Enabled
 
@@ -75,22 +97,24 @@ The screen shows only a "BT Control" title. Nothing else is drawn here.
 
 | Button | Action |
 |---|---|
-| Red | Return to the main menu |
 | Cancel | This help page |
 
 Gray, Green and Yellow carry labels - "sel", "mode" and a third one - but
 none of them are wired to anything on this screen: pressing them does
-nothing. Blue has no label here and also does nothing.
+nothing. Red and Blue have no label here and also do nothing. HOME
+leaves the screen from here as it does everywhere else.
 
 ### What this screen is for
 
 Right now, this screen exists but is not implemented: none of its
-buttons other than Red and Cancel do anything, and it shows no BLE
-information of its own. For live Bluetooth status, advertised name and
-the on/off switch, use the BT Info screen instead.
+buttons do anything other than Cancel, and it shows no BLE information
+of its own. For live Bluetooth status, advertised name and the on/off
+switch, use the BT Info screen instead.
 
 Nothing on the BT Info screen leads here, so this screen is not
 reachable through the device's own menus; it is normally opened only by
-a script.
+a script. Opening it still needs power zone 5, the ESP32 rail, on first -
+that requirement belongs to the BLE app as a whole, not to anything this
+screen itself draws or checks.
 
 **See also:** [Bluetooth LE](../features/bluetooth-le.md) — the console/GUI commands for this panel.

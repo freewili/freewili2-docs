@@ -8,40 +8,24 @@ Found under **System** on the device's panel list.
 
 ## Files
 
-Browses the SD card and internal flash, and creates, renames or removes
-what it finds there.
-
-### The screen
-
-One full-width file list. The header row shows the folder being listed;
-it starts at the card's root. Once inside a folder, ".." appears at the
-top to step back out. Folders show a folder icon and sort first,
-followed by files, each group alphabetical.
+Browses the SD card and internal flash, and creates, renames, removes or opens entries.
 
 ### Controls
 
 | Button | Action |
 |---|---|
 | Up / Down | Move the highlighted entry |
-| Center | Open the highlighted folder (".." steps back up) |
-| Page | Jump a screenful down (wraps to the top) |
-| Left | Step back up one folder level |
+| Center / Ok | Open the highlighted folder or file; `..` steps up |
+| Page | Jump one screen down; the last page wraps to the top |
+| Left | Step back one folder level |
 | Gray | Rename the highlighted file or folder |
-| Yellow | Remove the highlighted file or folder (asks to confirm) |
-| Green | Create a new file in the folder being listed |
-| Blue | Create a new folder in the folder being listed |
-| Red | Return to main menu |
+| Yellow | Remove the highlighted entry after confirmation |
+| Green | Create a file in the current folder |
+| Blue | Create a folder in the current folder |
+| Red | Return directly to the SD-card root |
 | Cancel | This help page |
 
-### Browsing
-
-The list shows up to 48 entries per folder. Green and Blue create into
-the folder currently being listed; Rename and Remove act on the
-highlighted entry and do nothing while ".." is highlighted.
-
-### Renaming and removing
-
-Gray opens the on-screen keyboard for the new name; the entry keeps its
-place in the same folder. Yellow asks for confirmation before it deletes.
+Folders sort before files. Opening a regular file sends it to the Editor.
+Red resets the browser to the SD root even from a deeply nested folder.
 
 **See also:** [File System](../features/file-system.md) — the console/GUI commands for this panel.

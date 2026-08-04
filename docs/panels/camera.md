@@ -8,28 +8,45 @@ Found under **GUI** on the device's panel list.
 
 ## Camera
 
-Take pictures and video with the WILEye camera module, and adjust its
-image settings.
+Drives the WIL-EYE Orca camera module: takes pictures and video, and
+adjusts its image settings. FreeWili 2 has no camera of its own - this
+screen exists to talk to a WIL-EYE plugged into the Orca connector, and
+says so plainly when there isn't one to talk to.
 
 ### The screen
 
-This screen needs WILEye selected in Setup & Actions (Menu Xplorer). If
-it is not selected, the screen shows a short notice telling you to
-enable it there, and nothing below applies.
+The screen shows one of three states, and switches between them on its
+own as the module is plugged in, unplugged, or starts or stops
+answering - you never need to leave and re-enter for it to notice.
 
-With it selected, a list fills the screen: Take Picture SD, Take Picture
-FW, Start Video (or Stop Video while recording), Set Zoom, Set Contrast,
-Set Brightness, Set Saturation, Set Hue, a Flash entry, and Set
-Resolution.
+- **Not selected** - WIL-EYE is not the device chosen on the Orca UART. The screen reads "No camera on this device" and explains: FreeWili 2 has no camera of its own, this screen drives the WIL-EYE Orca module, and to select it go to Settings > Orca Setup > WILEye (today that choice is reached through Setup & Actions / Menu Xplorer - see the Orca Setup help page).
+- **Not responding** - WIL-EYE is selected but has sent nothing back yet. The screen reads "WIL-EYE not responding" and suggests checking that the module is seated and powered; it also says the page will pick the module up on its own once it answers.
+- **Connected** - a list fills the screen, captioned "Eye See You": Take Picture SD, Take Picture FW, Start Video (or Stop Video while recording), Set Zoom, Set Contrast, Set Brightness, Set Saturation, Set Hue, a Flash entry, and Set Resolution.
+
+Earlier versions of this screen could go black instead of showing
+either of the first two messages, with nothing on screen to explain
+why. That's fixed now - a missing or silent module always draws a
+worded screen rather than an empty one.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Red | Return to the main menu |
+| Center (or tap) | Connected screen only: run the highlighted item |
 | Cancel | This help page |
 
-Gray, Yellow, Blue and Green carry no label here and do nothing.
+Gray, Yellow, Green, Blue and Red carry no label here and do nothing.
+HOME leaves the screen from here, as it does everywhere else in the
+menu.
+
+### Still needs Orca mode
+
+Wi-Fi and Bluetooth talk to a co-processor soldered to the board, so
+their screens are always live with no setup step first. The camera is
+different: WIL-EYE genuinely is a separate module that plugs into the
+Orca connector rather than something built into FreeWili 2, so it still
+has to be chosen as the Orca device before this screen does anything
+beyond telling you that it isn't.
 
 ### Taking pictures and video
 
@@ -56,5 +73,13 @@ Saturation 50; Hue 2; or Resolution 640x480.
 The Flash entry's label follows the camera's state, but selecting it
 always turns the flash off, regardless of what the label says at the
 time.
+
+### Power
+
+fwPanelAppCamera does not declare a required power zone, so this screen
+never puts up an "Enable ... power zone" message and does not switch
+anything on for you. The WIL-EYE module's own rail on the Orca connector
+is not part of the documented zone map - if it has no power, expect the
+"not responding" screen above rather than any warning here.
 
 **See also:** [WilEye Camera](../features/wil-eye.md) — the console/GUI commands for this panel.

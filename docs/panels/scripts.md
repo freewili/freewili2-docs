@@ -6,42 +6,29 @@ sidebar_position: 10
 
 ## Scripts
 
-Picks a script from the SD card and runs it.
-
-### The screen
-
-A pick list titled "Select Script" fills the screen, showing the files found
-in the /scripts/ folder - up to 20 of them.
+Lists scripts from `/scripts/` on the SD card and runs the selected entry.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Blue | Stop a script that is currently running |
-| Green | Edit the highlighted rTHON (`.rtn`) or ZoomIO (`.zio`) script |
-| Red | Return to main menu |
+| Center / Ok | Run the highlighted script |
+| Green | Edit a highlighted rTHON `.rtn` or ZoomIO `.zio` script |
+| Blue | Stop the running script |
+| Red | Return to the main menu |
 | Cancel | This help page |
 
-Gray and Yellow carry no label here and do nothing.
+WASM binaries are run-only. Source scripts return here after the Editor saves
+or discards the editing session.
 
-### Running a script
+### Serial menu
 
-Selecting an entry runs it right away: this screen closes and the script's
-own output takes over the display. Which kind of script runs depends on its
-file extension - a .z file runs as a Zoom script and a .r file as an RTHON
-script; anything else is treated as a compiled WASM script. If the file you
-select has no extension at all, ".wasm" is assumed.
-
-Blue stops whatever script is currently running, if any; it does not close
-this list. Green opens the highlighted `.rtn` or `.zio` source file in the
-text editor. WASM files are compiled binaries and remain run-only. Save and
-exit the editor to return to the Scripts panel. Use the Files screen to delete
-or rename scripts.
+Scripting > App Signals manages shared named values, waves and streaming.
+Scripting > Wili Files loads, saves, resets and configures default Wili projects.
 
 ## Scripts Log
 
-Shows the text a running WASM or RTHON script prints while this screen is
-open.
+Shows the text a running WASM or RTHON script writes.
 
 ### The screen
 
@@ -53,21 +40,54 @@ bottom.
 | Button | Action |
 |---|---|
 | Blue | Clear the log |
-| Red | Return to main menu |
 | Cancel | This help page |
 
 Gray is labeled here but does nothing. Green is labeled "input" but also
-does nothing on this screen. Yellow carries no label and does nothing.
+does nothing on this screen. Yellow and Red carry no label and do
+nothing. HOME leaves the screen from here, as it does everywhere else in
+the menu.
 
 ### Reading the log
 
-This view only fills in while it is on the display - a script's print
-output while some other screen is showing is not captured here. Blue clears
-what has accumulated so far without stopping the script itself.
+This view only fills in while it is on the display - output from a
+script while some other screen is showing is dropped, not queued up for
+later. Blue clears what has accumulated so far without stopping the
+script itself.
 
-### Reached from more than one place
+A WASM script's output comes from its own print calls, in whatever color
+the script picked. An RTHON script writes two kinds of line here: the
+interpreter's own status messages (a startup banner, "Compiling ....", a
+tokenization count, "No errors" or "errors", "Starting...", "Program
+complete ...." when it finishes) and, separately, whatever the script's
+own `print()` statements write - both always black.
 
-This same log view is built into two different tools: the Scripts app and
-the SPI tool. Today the SPI screen is the one that actually opens it - press
-Gray on the SPI Log screen to get here. However you arrived, it always shows
-script print output, never SPI bus activity.
+### Stopping a script
+
+Blue on this screen only clears the log, it does not stop anything
+running. A WASM script is stopped with Blue on the Scripts list itself
+(see scripts.md), not from here. RTHON scripts have no stop control at
+all once started.
+
+### Taking over the screen, or not
+
+Picking a WASM or RTHON script takes over the whole display with a
+dedicated running-script view until it finishes or HOME leaves - see
+scripts.md for picking a script. A Zoom (`.zio`) script is the opposite:
+picking one starts it in the background and leaves whatever screen you
+were on alone; it has no log view of its own.
+
+### About this panel
+
+This log view is built as the Scripts app's second panel, but nothing in
+the current pick-list flow switches to it - picking a script opens the
+running-script view described above instead. Its clear button and log
+widget work as described here if this panel is ever reached, but day to
+day the log a running script fills is the other view, not this one.
+
+### RTHON scripts
+
+Do not run RTHON scripts yet, including the seeded `hello.rtn` example.
+The RTHON interpreter needs a single stack frame bigger than the stack
+MAIN gives it, so any RTHON script overflows the stack and can crash the
+device. The RTHON runner is menutool output, so the fix belongs in that
+generator, not in a hand patch here.

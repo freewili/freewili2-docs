@@ -8,17 +8,24 @@ Found under **Wireless** on the device's panel list.
 
 ## Station Info
 
-Shows this device's Wi-Fi client connection to your network, and lets you
-set the network name, password and on/off switch it uses to join it.
+Shows this device's Wi-Fi station (client) connection, and lets you set
+the network name, password and on/off switch it uses to join it.
+Station mode joins a network that already exists - it does not create
+one. To broadcast your own network from this device, use the AP Info
+screen (Gray) instead.
 
 ### The screen
 
-This screen needs the Bottlenose wireless co-processor selected in
-Setup & Actions (Menu Xplorer). If it is not selected, the screen shows
-only a short notice telling you to enable it there, and nothing below
-applies.
+The ESP32-C5 radio is soldered to this device and has its own link to
+the main processor, so this screen is always live - there is no Orca
+UART setting to point at it first, and nothing needs selecting in Orca
+Setup. The screen always shows one of three honest states: a "Wi-Fi
+radio off" page on hardware where Orca still has to be pointed at
+BottleNose (not reachable on FreeWili 2, where the ESP32-C5 is soldered
+down and always available), the module not answering, or the live
+panel below with whatever it currently knows.
 
-With it selected, top to bottom:
+On the live panel, top to bottom:
 
 - **SSID** - the Wi-Fi network name this device tries to join
 - **Password** - shown and typed in plain text, not masked
@@ -32,22 +39,33 @@ With it selected, top to bottom:
 | Blue | Turn station mode on or off |
 | Yellow | Set the SSID |
 | Green | Set the password |
-| Red | Return to the main menu |
+| Gray | Go to AP Info |
 | Cancel | This help page |
 
-Gray is labeled on this screen but does nothing.
+Red carries no label here and does nothing. HOME leaves the screen from
+here, as it does everywhere else in the menu. Gray pages to AP Info and
+back; AP Info's own Gray returns here.
 
-### Status colours
+### Connection states
 
-- Green "Connected" - joined the network and has an IP address
-- Yellow "Waiting for IP" - joined the network, still requesting an address
-- Red "Disconnected" - station mode is on but not joined to a network
-- Red "Disabled" - station mode is off
-- Red "WIFI CPU DISCONNECTED" - the co-processor has not answered in the last 2 seconds; the MAC address is hidden, the IP, gateway and mask fields are blanked, and nothing on the screen is being refreshed
+The status line reports the ESP32's actual state machine, not just on
+or off:
 
-This status line, the MAC address and the IP fields refresh about once a
-second while the screen is open, so a change may take a moment to show
-up.
+- Red "Disabled" - station mode is off; the interface is down
+- Red "Disconnected" - station mode is on and the interface has started, but it has not associated with a network yet; despite the label this means running but not joined, not off
+- Yellow "Waiting for IP" - associated with the network, still requesting an address
+- Green "Connected" - has an IP address; the IP, gateway and mask fields are filled in
+- Red "ESP32 radio not responding" (shown as "On - ESP32 not responding" if station mode is set on) - the module has not answered in the last 2 seconds; the MAC address is hidden, the IP, gateway and mask fields are blanked, and nothing on the screen is being refreshed
+
+When the module is silent a second line appears under the addresses,
+naming the likely reason: either that there was simply no reply, or
+that power zone 5, the zone the ESP32 sits on, is switched off. The
+same line reads "Set an SSID to enable." if the module is reachable but
+no SSID has been saved yet.
+
+This status line, the MAC address and the IP fields refresh about once
+a second while the screen is open, so a change may take a moment to
+show up.
 
 ### SSID and password
 
@@ -56,34 +74,47 @@ characters and password up to 62; type more and the extra is silently
 discarded rather than shown as an error. Both, and whether station mode
 is on, are saved and survive a restart.
 
-You can change any of these, or turn station mode on or off, even while
-the status shows WIFI CPU DISCONNECTED - the change is saved right away
-and sent to the co-processor automatically the moment it reconnects.
+You can change either, or turn station mode on or off, even while the
+status shows the module is not responding - the change is saved right
+away and sent to the module automatically the moment it answers.
+
+Blue refuses to turn station mode on if no SSID is saved yet: it shows
+"Set an SSID first (yellow)" and leaves the setting off, rather than
+silently doing nothing. With an SSID saved, turning station mode on
+also switches power zone 5 back on if it was off, so the radio has a
+rail to come up on.
 
 There is nothing else to set for station mode - security type is
-negotiated automatically with the network you join. The device's own
-access point has separate settings, covered by the AP Info screen and
-the Wifi Settings menu found elsewhere in the device.
+negotiated automatically with the network you join.
+
+### Power
+
+This app needs power zone 5, the ESP32's rail. If the zone is off when
+you open Station Info or AP Info, a message box says so on the way in.
+Blue on this screen still turns the zone back on for you once an SSID
+is saved, per above.
 
 ## AP Info
 
 Shows this device's own Wi-Fi access point, and lets you set its network
-name, password and on/off switch.
+name, password and on/off switch. This page **creates** a network; the
+Station Info page next to it **joins** one instead. If you want the device
+to broadcast its own network, this is the page to use.
 
 ### The screen
 
-This screen needs the Bottlenose wireless co-processor selected in
-Setup & Actions (Menu Xplorer). If it is not selected, the screen shows
-only a short notice telling you to enable it there, and nothing below
-applies.
-
-With it selected, top to bottom:
+The ESP32-C5 radio is soldered to this device and has its own link to
+the main processor, so this screen is always live - there is no Orca
+UART setting to point at it first (that requirement only applies to the
+older board, where BottleNose is a plug-in module sharing a UART with
+other peripherals). Top to bottom:
 
 - **Num of Devices** - always reads 0; it is not wired up to a live count
 - **SSID** - the network name this device broadcasts
 - **Password** - shown and typed in plain text, not masked
 - A status line, coloured to match the state below, with the device's Wi-Fi MAC address to its right once the co-processor answers
 - **IP address**, **gateway** and **subnet mask** of the access point - each the usual four dot-separated numbers, blank unless the access point is running
+- A hint line that explains the status when it is anything other than plainly running
 
 ### Controls
 
@@ -92,16 +123,23 @@ With it selected, top to bottom:
 | Blue | Turn the access point on or off |
 | Yellow | Set the SSID |
 | Green | Set the password |
-| Red | Return to the main menu |
+| Gray | Go to the Station Info page |
+| Red | Retired as the exit control; unlabelled and does nothing here |
 | Cancel | This help page |
 
-Gray is labeled on this screen but does nothing.
+HOME leaves the screen from here, as it does everywhere else in the menu.
 
 ### Status colours
 
 - Green "Running" - the access point is broadcasting
 - Red "Disabled" - the access point is off
-- Red "WIFI CPU DISCONNECTED" - the co-processor has not answered in the last 2 seconds; the MAC address and IP fields are hidden and nothing on the screen is being refreshed
+- Red "ESP32 radio not responding" - the module has not answered in the last 2 seconds; the MAC address and IP fields are hidden and nothing on the screen is being refreshed
+- Red "On - ESP32 not responding" - the setting is on but the module has gone silent since; the hint line below explains why
+
+The hint line under the addresses fills in whenever there is something to
+explain: no reply from the ESP32, power zone 5 (the zone the ESP32 sits
+on) switched off, no SSID set yet, or the access point turned on and
+still waiting to come up.
 
 Unlike Station Info, there is no in-between "connecting" colour here -
 the access point is either running or it is not. This status line, the
@@ -115,14 +153,36 @@ characters and password up to 62; type more and the extra is silently
 discarded rather than shown as an error. Both, and whether the access
 point is on, are saved and survive a restart.
 
-You can change any of these, or turn the access point on or off, even
-while the status shows WIFI CPU DISCONNECTED - the change is saved right
-away and sent to the co-processor automatically the moment it reconnects.
+Turning the access point on with Blue while the SSID is blank is refused
+with a "Set an SSID first (yellow)" message box - an unnamed access point
+would come up open, so the firmware will not start it. Setting the SSID
+afterward removes the block, and Blue works normally again.
+
+You can change the SSID or password, or turn the access point on or off,
+even while the status shows the module is not responding - the change is
+saved right away and sent to the module automatically the moment it
+answers. Turning the access point on from here also switches power zone
+5 back on if it was off, so the radio has a rail to come up on.
+
+### The access point itself
+
+The access point comes up on the 2.4 GHz band, fixed channel 7 - there
+is no setting on this device to change either one. A password shorter
+than 8 characters results in an open network, regardless of the security
+type chosen in the Wifi Settings menu; only 8 characters or more actually
+secures it.
 
 ### What is not on this screen
 
 The access point's security type and whether its SSID is hidden from
 scans are set in the Wifi Settings menu found elsewhere in the device,
 not here. This screen only shows and sets SSID, password and on/off.
+
+## WiFi Control
+
+Provides the WiFi control screen.
+
+Use Yellow to select an item and Green to change its mode. Cancel opens this
+help page; Home returns to the main menu.
 
 **See also:** [Wifi](../features/wifi.md) — the console/GUI commands for this panel.

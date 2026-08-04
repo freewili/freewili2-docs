@@ -28,16 +28,24 @@ has not supplied heap data.
 | Button | Action |
 |---|---|
 | Page | Move to the next About screen (RTC) |
-| Green | Clear the loop-time peaks and reset heap high-water values to current usage |
-| Blue | Reboot the device |
+| Gray | Move to the next About screen (RTC), wrapping to the first screen from the last |
+| Left / Right | Move to the previous / next About screen, same wrap |
+| Green | Clear the three Max CPU Loop Times numbers and reset heap high-water values to current usage |
+| Blue (hold) | Reboot the device |
+| Red | Retired - does nothing |
 | Home | Return to the main menu |
 | Cancel | This help page |
 
 ### The five About screens
 
 This is the first of five About screens, always reached in the same order:
-About, RTC, Battery, GPIO Voltage, Peripheral Detect. Page steps forward
-through that list and wraps back to About; Home leaves to the main menu.
+About, RTC, Battery, GPIO Voltage, Peripheral Detect. Page, Gray and the
+d-pad's Right button all step forward through that list; Left steps
+backward. Paging wraps in both directions, so stepping forward from
+Peripheral Detect lands back on About, and stepping backward from About
+lands on Peripheral Detect - no screen is a dead end. Red does nothing on
+these screens, except on GPIO Voltage where it picks a voltage source;
+Home leaves the About app from any of the five.
 
 ### Diagnostics and reboot
 
@@ -47,10 +55,11 @@ documented here. The three loop-time numbers update continuously while this
 screen is open. Green resets their peaks to zero and resets heap high-water
 values to current usage.
 
-Blue is labeled "reset" and always performs a full device reboot. It does
-not selectively reset just the display or just the statistics - whatever
-the button is asked to do internally, the device reboots completely every
-time it is pressed.
+Blue is labeled "hold=reset" and is hold-only: a plain press does nothing,
+and only a long press reboots the device. It does not selectively reset
+just the display or just the statistics - the whole device, both
+processors and the PIC, reboots every time the button is held. There is no
+confirmation prompt, so treat the hold deliberately.
 
 ## RTC
 
@@ -69,11 +78,17 @@ as zeros and is not currently useful.
 
 | Button | Action |
 |---|---|
-| Page | Move to the next About screen (Battery) |
+| Gray | Move to the next About screen (Battery) |
 | Yellow | Set the clock |
 | Green | Zero the seconds |
-| Home | Return to the main menu |
+| Red | Nothing - no label |
+| HOME | Leave this screen |
 | Cancel | This help page |
+
+Gray and the d-pad's Left/Right both page - Right and Gray go forward to
+Battery, Left goes back to About. Paging wraps in both directions across
+all five About screens, so no page is a dead end. Red has no label and
+does nothing here; HOME leaves the screen.
 
 ### Setting the clock
 
@@ -108,6 +123,10 @@ temperature, charge state and USB-C power detection.
 
 ### The screen
 
+The screen paints the moment you open it - the header starts out reading
+"x.xx V" and "---" and fills in from real data a moment later, rather than
+holding the screen back until the first readings are in hand.
+
 Top row: the battery voltage in large text, and the charge state next to
 it. Below the state, a smaller number shows the fuel gauge's own average
 current. Nine more lines follow, top to bottom:
@@ -116,19 +135,25 @@ current. Nine more lines follow, top to bottom:
 - ICHG and TEMP - the charge current, and the charger's own temperature reading
 - FLT and RANK - the charger's fault state, and its temperature-sensor rank
 - SRC and CC - where the USB power is coming from, and the negotiated current tier
-- CC1 and CC2 - the two USB-C CC line voltages, used for cable and orientation detection
+- CC1 and CC2 - always reads "CC1 --  CC2 --"; this line is a fixed placeholder and never shows a real voltage on this firmware
 - ATT, VREG, TREG - three status flags, shown as text when set and blank when not
 - DET AUD HPD USB - three more connection flags, shown as plain text (not colour-coded; see the Peripheral Detect screen for the colour-coded version of the same three flags)
-- SOC and FG - the fuel gauge's own charge percentage and average current (the same current shown at the top of the screen)
-- CAP - remaining and full charge capacity, in mAh (milliamp-hours)
+- SOC and FG - the fuel gauge's own charge percentage and average current (the same current shown at the top of the screen), both dashes if the pack is missing or not answering
+- CAP - remaining and full charge capacity, in mAh (milliamp-hours), also dashes when the pack is missing or not answering
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Page | Move to the next About screen (GPIO Voltage) |
-| Home | Return to the main menu |
+| Gray | Move to the next About screen (GPIO Voltage), wrapping around |
+| Red | Nothing - no label |
+| HOME | Leave this screen |
 | Cancel | This help page |
+
+This is the third of five About screens. Gray and the d-pad's Left/Right
+all page - Right and Gray move forward to GPIO Voltage, Left moves back to
+RTC, and paging wraps around at either end of the five-screen list. Red
+has no label and does nothing here; HOME leaves the screen.
 
 ### Charge state, fault and rank
 
@@ -152,12 +177,25 @@ adjustable from this screen. TEMP is computed from the charger's raw sensor
 reading; outside the sensor's usable range it shows "---C" instead of a
 number rather than a misleading value.
 
+### Missing or unresponsive pack
+
+Presence is checked with a single read of the fuel gauge's full-charge
+capacity: a real pack never reports zero there, so a zero reading (which
+is also what a failed I2C transaction returns) is treated as no pack
+present. When that happens SOC, FG and CAP all show dashes instead of
+numbers, and the state-of-charge, average-current and remaining-capacity
+registers are skipped for that poll rather than read anyway.
+
 ### Refresh
 
 VBAT, STATE, VBUS/VSYS, ICHG/TEMP, FLT/RANK, SRC/CC, CC1/CC2, ATT/VREG/TREG
 and the DET flags all come from the same status message from the keyboard
 controller and update as often as that arrives. SOC, FG and CAP come from
-the fuel gauge separately and refresh at most once a second.
+the fuel gauge separately: the first read happens after the screen has
+already painted rather than before, so a slow or absent gauge no longer
+delays the screen coming up. After that it polls the gauge once a second
+while a pack is answering, backing off to once every five seconds while it
+is not.
 
 ## GPIO Voltage
 
@@ -203,9 +241,15 @@ red - the colour is a status signal, not a selection.
 
 | Button | Action |
 |---|---|
-| Page | Wrap to the first About screen |
-| Home | Return to the main menu |
+| Gray | Move to the next About screen (About), wrapping around |
+| Red | Nothing - no label |
+| HOME | Leave this screen |
 | Cancel | This help page |
+
+This is the last of the five About screens. Gray and the d-pad's Left/Right
+both page - Right and Gray go forward and wrap back around to the first
+About screen, Left goes back to GPIO Voltage. Red has no label and does
+nothing here; HOME leaves the screen.
 
 ### Same flags as the Battery screen
 
