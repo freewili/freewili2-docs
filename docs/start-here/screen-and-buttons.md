@@ -106,13 +106,11 @@ below).
 | Ok | On the main menu, the same as Center — opens whatever's highlighted. Inside a panel, what Ok does is up to that screen: some use it to confirm an edit or leave a sub-panel (the Analog IO waveform screen leaves that way), others don't use it at all. Check the screen's own button labels if you're not sure. |
 | Cancel | Back out one level — or, on a screen that has a help page, opens that help instead (see below) |
 | Home | Return to the main menu |
-| Fourth A/B/X/Y button | Unconfirmed — see note below |
+| Page | Switch to another screen within the same panel, where that panel has more than one — the Logic Analyzer view opens this way from GPIO, UART, SPI, I2C and MDIO, and the About screens step through each other with it |
 | Gray / Yellow / Green / Blue / Red | Five context buttons under the screen; each panel assigns its own meaning to them (for example, on the Analog IO waveform screen, Green starts the waveform and Red stops it) |
 
-<!-- VERIFY: the fourth A/B/X/Y button's label — the site's spec copy calls
-     it "page," the firmware's button-event table defines it as an
-     AI-agent button instead of a page button. Whichever it is, its
-     specific function on-device is unconfirmed here. -->
+See [Quick start](quick-start.md#the-buttons) for what each of these looks
+like on the device.
 
 Beyond these short-press, per-panel meanings, three of the five context
 buttons also have a long-press shortcut in the GUI that's the same

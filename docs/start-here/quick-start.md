@@ -42,6 +42,32 @@ into folders (IO, Wireless, GUI, System, and others). Use **up** and
 to open whatever's highlighted — including opening a folder to reveal the
 panels inside it. **Cancel** backs out one level.
 
+## The buttons
+
+Four buttons beside the screen mean the same thing on every panel:
+
+|  | Button | What it does |
+|---|---|---|
+| ![Ok button](/img/bok.png) | **Ok** | Opens or confirms whatever is selected |
+| ![Cancel button](/img/bcancel.png) | **Cancel** | Backs out one level — or opens that screen's help page, where it has one |
+| ![Home button](/img/bhome.png) | **Home** | Straight back to the main menu, from anywhere |
+| ![Page button](/img/bpage.png) | **Page** | Switches to another screen within the same panel, where there is one |
+
+The five coloured buttons under the screen mean whatever the panel you're
+looking at says they mean. The bar along the bottom of the screen always
+shows their current labels, so when in doubt, read the bar.
+
+| ![Gray button](/img/bwhite.png) | ![Yellow button](/img/byellow.png) | ![Green button](/img/bgreen.png) | ![Blue button](/img/bblue.png) | ![Red button](/img/bred.png) |
+|---|---|---|---|---|
+| Gray | Yellow | Green | Blue | Red |
+
+The D-pad moves through whatever is on screen: **up** and **down** through a
+list, **left** and **right** to change a selected value, and **center** to
+open or activate — the same action as Ok on the main menu.
+
+[Screen and buttons](screen-and-buttons.md#button-map) has the full map,
+including the long-press shortcuts.
+
 ## Something to try right now
 
 No wiring, no setup: open the **GUI** folder and select **Sensors**. It
