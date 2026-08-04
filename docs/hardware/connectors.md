@@ -112,17 +112,17 @@ otherwise documented here beyond their names.
 **Red** doesn't have a GUI long-press action. It does two other things,
 depending on when you hold it, and they're easy to conflate:
 
-- **Held while the device is already running**, red puts the device to
-  sleep — this is the PIC's own button poll acting independently of the GUI
-  or display processor, and it's how you actually power the device down day
-  to day.
+- **Held while the device is already running** for 6 seconds, red starts a
+  safe 10-second shutdown, after which the device drops into a 60 µA sleep
+  — "ship mode". This is the PIC's own button poll acting independently of
+  the GUI or display processor, and it's how you actually power the device
+  down day to day. Gray, held for 3 seconds, powers it back on.
 - **Held at power-up**, red instead forces the main processor into its
   recovery bootloader — a hardware path, unrelated to sleep. See
   [Recovery mode](../help/recovery-mode.md#last-resort-hold-red-at-power-up).
 <!-- VERIFY: gray and yellow's long-press actions (audio mode, setup mode)
      are confirmed only by name from rmpLib/rpPanelManager.cpp's long-press
      switch — what each mode actually looks or behaves like on screen isn't
-     confirmed here. Red's held-while-running sleep timing (~556 poll
-     ticks) is confirmed from fw2_pic16/full-firmware.X/main.c:163-170; the
-     real-world duration that maps to, and whether this "deep sleep" is a
-     full power-off or something lighter, are not independently confirmed. -->
+     confirmed here. Red's held-while-running behaviour (6 s hold, 10 s
+     shutdown, 60 uA ship mode) and gray's 3 s power-on are owner-confirmed;
+     the underlying poll is fw2_pic16/full-firmware.X/main.c:163-170. -->

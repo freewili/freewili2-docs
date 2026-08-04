@@ -18,10 +18,11 @@ in the /scripts/ folder - up to 20 of them.
 | Button | Action |
 |---|---|
 | Blue | Stop a script that is currently running |
+| Green | Edit the highlighted rTHON (`.rtn`) or ZoomIO (`.zio`) script |
 | Red | Return to main menu |
 | Cancel | This help page |
 
-Gray, Yellow and Green carry no label here and do nothing.
+Gray and Yellow carry no label here and do nothing.
 
 ### Running a script
 
@@ -32,8 +33,10 @@ script; anything else is treated as a compiled WASM script. If the file you
 select has no extension at all, ".wasm" is assumed.
 
 Blue stops whatever script is currently running, if any; it does not close
-this list. There is no way to delete, rename or preview a script from this
-screen - use the Files screen for that.
+this list. Green opens the highlighted `.rtn` or `.zio` source file in the
+text editor. WASM files are compiled binaries and remain run-only. Save and
+exit the editor to return to the Scripts panel. Use the Files screen to delete
+or rename scripts.
 
 ## Scripts Log
 
