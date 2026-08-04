@@ -7,15 +7,17 @@ sidebar_position: 2
 
 ## Power on
 
-Press the gray button for 3 seconds and release and FreeWili will power on. Also plugging in USB will power the device on.
-
 ![Gray button](../../static/img/bwhite.png)
+
+Hold the gray button for 3 seconds, then let go — FREE-WILi 2 powers on.
+Plugging in USB powers it on too.
 
 ## Power off
 
 ![Red button](../../static/img/bred.png)
 
-Holding red for 6 seconds will initiate a safe 10 second shutdown. The device will then enter a 60 uA sleep mode (also called ship mode).
+Hold the red button for 6 seconds and the device begins a safe 10-second
+shutdown, then settles into a 60 µA sleep called ship mode.
 
 Holding red *at* power-up is a different thing entirely — it forces the main
 processor into its recovery bootloader instead of affecting power at all.
@@ -32,11 +34,13 @@ into folders (IO, Wireless, GUI, System, and others). Use **up** and
 to open whatever's highlighted — including opening a folder to reveal the
 panels inside it. **Cancel** backs out one level.
 
-## On Device Help
+## On-device help
 
 ![Cancel button](../../static/img/bcancel.png)
 
-Pressing the cancel button on any panel will show the help for that panel. If a panel happens to use the cancel button itself, long press it (6 seconds) to show the help instead.
+Press **Cancel** on any panel to read that panel's own help page. On a panel
+that already uses Cancel for something of its own, hold it for 6 seconds
+instead.
 
 ## The buttons
 
