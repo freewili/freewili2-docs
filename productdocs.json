@@ -50,6 +50,7 @@
     "fwMenuZoomIO": { "publish": true, "title": "ZoomIO", "section": "apps", "order": 30 },
     "fwMenuAppSignals": { "publish": true, "title": "App Signals", "section": "apps", "order": 40, "panelKey": "APP_SELECTED_APP_DATA" },
     "fwMenuWiliFiles": { "publish": true, "title": "Wili Files", "section": "apps", "order": 50, "panelKey": "APP_SELECTED_WILI_FILES" },
+    "fwMenuLogger": { "publish": true, "title": "Logger", "section": "apps", "order": 60, "panelKey": "APP_SELECTED_LOGGER" },
 
     "fwMenuHardware": { "publish": true, "title": "Hardware", "section": "system", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to Device Settings, System, File System, or Power Management." },
     "fwMenuSystem": { "publish": true, "title": "System", "section": "system", "order": 20 },
@@ -120,6 +121,7 @@
     "APP_SELECTED_CUSTOM": { "publish": true, "title": "Script Monitor", "section": "tools", "order": 40, "note": "This screen isn't picked from the on-screen panel list directly. It opens automatically when you run a script from **Scripts**, showing that script's log until it finishes or you stop it." },
     "APP_SELECTED_APP_DATA": { "publish": true, "title": "App Data", "section": "tools", "order": 50 },
     "APP_SELECTED_WILI_FILES": { "publish": true, "title": "Wili Files", "section": "tools", "order": 60 },
+    "APP_SELECTED_LOGGER": { "publish": true, "title": "Logger", "section": "tools", "order": 70 },
     "APP_SELECTED_EDITOR": { "publish": true, "title": "Editor", "section": "system", "order": 60 },
 
     "APP_SELECTED_MSETTINGS": { "publish": true, "title": "Settings", "section": "settings", "order": 10, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. The device's on-screen Settings home - pick a category to jump straight to its settings. It's a hand-maintained subset of what's in the console's Settings menu; RTC, Analog In, and Orca settings aren't listed here yet (Orca has its own **Orca Setup** panel)." },

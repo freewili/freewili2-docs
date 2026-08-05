@@ -20,7 +20,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Apps',
-      items: ['features/apps', 'features/scripting', 'features/zoom-io', 'features/app-signals', 'features/wili-files'],
+      items: ['features/apps', 'features/scripting', 'features/zoom-io', 'features/app-signals', 'features/wili-files', 'features/logger'],
     },
     {
       type: 'category',
@@ -52,7 +52,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Tools & Scripting',
-      items: ['panels/scripts', 'panels/wili-blocks', 'panels/command-panel', 'panels/script-monitor', 'panels/app-data', 'panels/wili-files'],
+      items: ['panels/scripts', 'panels/wili-blocks', 'panels/command-panel', 'panels/script-monitor', 'panels/app-data', 'panels/wili-files', 'panels/logger'],
     },
     {
       type: 'category',
