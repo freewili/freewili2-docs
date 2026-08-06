@@ -37,7 +37,7 @@ receiving still works.
 | Yellow | code - enter a code by hand (hex), pre-filled with the last one received; any value is accepted, nothing is enforced |
 | Green | replay - resend the received codes still in the buffer (up to the last 32), about 100 ms apart |
 | Blue | resend - resend the last received code |
-| Hold Blue | Start or stop fuzzing: repeatedly transmits variations of the last received code - its low 16 bits kept, the rest cycled - about every 100 ms |
+| Hold Blue | Start or stop fuzzing: walks the command byte of the last received code, sending one variant about every 100 ms |
 | Red | clear - clear the log and the received-code buffer |
 | Page | Switch to the IR Remote screen |
 | Cancel | This help page |
@@ -49,12 +49,23 @@ as usual, and a separate, longer hold toggles the fuzzer.
 Red clears the log and is labeled to say so. HOME leaves the screen
 from here, as it does everywhere else in the menu.
 
+The board LEDs report IR traffic while this screen is open: a received
+code pulses three of them purple, and a transmitted one pulses the
+other three yellow.
+
 ### Fuzzing
 
-Fuzzing is a way to probe what codes a receiver responds to: it keeps
-the low 16 bits of the last code you received and steps through the
-remaining bits, sending a new variant about every 100 ms, until you
-press and hold Blue again to stop it.
+Fuzzing is a way to probe what codes a receiver responds to. It holds
+the low 16 bits of the last code you received - the address half of an
+NEC code - and walks the command half: a counter 0 through 255 in the
+top byte, its complement in the byte below, which is the pairing a real
+NEC remote uses. One variant goes out about every 100 ms, so a full
+sweep takes roughly 26 seconds and then starts over. It keeps going
+until you press and hold Blue again.
+
+Because only the command half changes, fuzzing probes one device
+address at a time: point it at the receiver you care about, capture one
+of its codes first, then fuzz from that.
 
 ## IR Remote
 
@@ -83,21 +94,27 @@ Yellow, Green and Red carry no label on either view and do nothing.
 HOME leaves the screen from here, as it does everywhere else in the
 menu.
 
-Before Gray did this, there was no way back from either view at all.
+A code arriving while you are on this screen still pulses the board
+LEDs purple, the same as it does on IR Hacker.
 
 ### Databases
 
 A database is a plain text file in `/ir/` on the SD card, one command
-per line as `name=code`. Codes are written in hex (`name=0x1234ABCD`);
-older files saved in plain decimal still load, since both are read the
-same way. The built-in "roku" database is not a file - it is 17 fixed
-commands built into the firmware, and there is nothing behind it to
-save into.
+per line as `name=code`. Saving writes the code in hex, zero-padded to
+eight digits (`power=0x20DF10EF`); older files saved in plain decimal
+still load, since both are read the same way. Naming a database without
+an extension gives it `.fwir`.
+
+A database holds **32 codes**. Loading one stops after the 32nd line,
+and saving into a full database fails rather than growing it - so a
+hand-written file longer than that is quietly truncated when opened.
+
+The built-in "roku" database is not a file - it is 17 fixed commands
+built into the firmware, and there is nothing behind it to save into.
 
 Creating a database from the picker leaves you on the picker
-afterward, now showing every existing remote plus the new one, so you
-can open it right away and start saving codes. The new database opens
-list went blank until you left the screen and came back in.
+afterward, showing every existing remote plus the new one, so you can
+open it right away and start saving codes.
 
 ### Feedback
 
@@ -113,4 +130,5 @@ Blue in the command view saves whatever code was most recently
 received on the IR Hacker screen, even if that was a while ago - it
 does not have to be fresh. The two screens are meant to be used
 together: receive a code there, then come here to name and save it.
-Gray on the picker now takes you straight back to IR Hacker.
+Gray on the picker takes you straight back to IR Hacker, and Page
+switches between the two from either screen.
