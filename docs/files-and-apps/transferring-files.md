@@ -33,9 +33,9 @@ swaps the device-side microSD card onto the built-in high-speed USB reader,
 where it shows up on a connected host computer as an ordinary USB
 mass-storage drive — drag files back and forth like any USB drive, no
 special software required, and the reader is Raspberry Pi Imager-compatible
-too. See [Connectors](../hardware/connectors.md#storage) for the mux
-mechanism this relies on and how this differs from gray's separate
-long-press action.
+too. See [Connectors](../hardware/connectors.md#bottom-edge) for where the
+card slots are, and [Long-press actions](../start-here/screen-and-buttons.md#long-press-actions)
+for how this differs from gray's separate long-press.
 
 **A USB thumb drive, the other direction — with a caveat.** FREE-WILi 2's USB
 host ports (see [Connectors](../hardware/connectors.md)) can recognize a

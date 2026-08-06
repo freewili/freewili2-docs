@@ -141,3 +141,31 @@ Reads a 4 byte value from a register in the esp32
 Flash default application onto ESP32
 
 **How to use it** — press `n`.
+
+## Flash From Folder
+
+Starts flashing the ESP32 from a folder on the SD card. The folder must contain a `flasher_args.json` manifest as produced by an `idf.py build` (copy the whole build output folder - the manifest plus the `.bin` files it references - onto the SD card).
+
+### Typical Workflow
+
+```text
+w            # wireless menu
+a            # ESP32 Flasher Functions
+w 1:/bottlenose/   # start flashing
+s            # poll: flashing progress partition_index partition_count
+```
+
+### Troubleshooting
+
+- **Timeout events** - ESP32 not entering the bootloader; check power and the BOOT/EN lines.
+- **Manifest parse errors** - `flasher_args.json` larger than 4 KB or more than 6 partitions is rejected.
+
+**How to use it** — press `w`. At the prompt, enter: SD card folder containing flasher_args.json (e.g. 1:/bottlenose/).
+
+**What you enter** — `folder`.
+
+## Flash Status
+
+Reports ESP32 flashing state and progress percentage
+
+**How to use it** — press `s`.

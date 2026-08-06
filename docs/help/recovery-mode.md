@@ -33,8 +33,8 @@ else has failed.
      RP2350's BOOTSEL line, hardware). Not confirmed: this choreography. -->
 
 Don't confuse this with the other things holding red does — see
-[Screen and buttons](../start-here/screen-and-buttons.md#button-map) and
-[Connectors](../hardware/connectors.md#sleep-and-mode-buttons). Holding red
+[Long-press actions](../start-here/screen-and-buttons.md#long-press-actions).
+Holding red
 **after** the device is already running does something completely
 different: it puts the device to sleep. That's a separate mechanism, owned
 by the PIC, and it's how you power the device down day to day — it has

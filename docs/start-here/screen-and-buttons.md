@@ -112,14 +112,40 @@ below).
 See [Quick start](quick-start.md#the-buttons) for what each of these looks
 like on the device.
 
-Beyond these short-press, per-panel meanings, three of the five context
-buttons also have a long-press shortcut in the GUI that's the same
-everywhere rather than panel-specific — see
-[Connectors](../hardware/connectors.md#sleep-and-mode-buttons) for what
-gray, yellow, and blue's long-presses do. Red doesn't have a GUI long-press;
-instead it does two different things depending on *when* you hold it — see
-[Recovery mode](../help/recovery-mode.md) for holding it at power-up versus
-while the device is already running.
+## Long-press actions
+
+Beyond the short-press, per-panel meanings above, three of the five context
+buttons have a long-press shortcut in the GUI that is the same everywhere
+rather than panel-specific. All three only fire from the main screen:
+long-pressing **gray** switches to an audio-only mode, long-pressing
+**yellow** enters a setup mode, and long-pressing **blue** enters the
+display processor's own bootloader (see
+[Recovery mode](../help/recovery-mode.md)) — that last one also needs USB
+connected, with the charger actively charging or finished charging.
+<!-- VERIFY: gray and yellow's long-press actions (audio mode, setup mode)
+     are confirmed only by name from rmpLib/rpPanelManager.cpp's long-press
+     switch, gated on m_iCurrentViewType == mainscreen — what each mode
+     actually looks or behaves like on screen isn't confirmed here. -->
+
+**Red** has no GUI long-press action. It does two other things, depending on
+when you hold it, and they are easy to conflate:
+
+- **Held while the device is already running** for 6 seconds, red starts a
+  safe 10-second shutdown, after which the device drops into a 60 µA sleep
+  — "ship mode". This is the PIC's own button poll, acting independently of
+  the GUI or the display processor, and it is how you power the device down
+  day to day. Gray, held for 3 seconds, powers it back on.
+- **Held at power-up**, red instead forces the main processor into its
+  recovery bootloader — a hardware path, unrelated to sleep. See
+  [Recovery mode](../help/recovery-mode.md#last-resort-hold-red-at-power-up).
+<!-- VERIFY: red's held-while-running behaviour (6 s hold, 10 s shutdown,
+     60 uA ship mode) and gray's 3 s power-on are owner-confirmed; the
+     underlying poll is fw2_pic16/full-firmware.X/main.c:163-170. -->
+<!-- Moved here 2026-08-06 from the Connectors page, which was the wrong home
+     for it - buttons are not connectors - when that page was rewritten
+     around the per-edge connector graphics. -->
+
+
 
 ## Built-in help
 

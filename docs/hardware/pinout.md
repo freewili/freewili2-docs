@@ -56,12 +56,19 @@ Two pins changed function, called out below.
      physical pin-1 orientation / keying of the connector. -->
 
 **Pins 16 and 18 changed function.** FreeWili 1 used these as the SWD debug
-clock and data lines for an external debug probe. FREE-WILi 2 has its own
-debug probe built into the board (see
-[Connectors](connectors.md#onboard-debug-probe)), so external SWD is no
-longer needed there — freewili.com's own spec pages confirm these pins now
-carry CAN FD instead. The exact CAN FD signal names on pins 16/18 are not
-confirmed from a source this page's author read directly.
+clock and data lines for an external debug probe. FREE-WILi 2 has a debug
+probe built into the board itself — an enhanced Raspberry Pi Debug Probe
+able to flash and debug both RP2350s and the LoRa module's STM32, plus JTAG
+and serial access to the ESP32-C5, with no external programmer. So external
+SWD is no longer needed here, and freewili.com's own spec pages confirm
+these pins now carry CAN FD instead. The exact CAN FD signal names on pins
+16/18 are not confirmed from a source this page's author read directly.
+<!-- The debug-probe description moved here 2026-08-06 from the Connectors
+     page, which now covers only the physical connectors shown in the
+     per-edge graphics. The probe is internal and was never confirmed to be
+     reachable from an external connector, so it does not belong there. -->
+
+
 <!-- VERIFY: exact CAN FD signal assignment on header pins 16 and 18 (e.g.
      which is CAN-H/CAN-L or TX/RX) — confirmed only that "the pins formerly
      used for debugging are now CAN FD pins" per freewili.com's CAN FD spec

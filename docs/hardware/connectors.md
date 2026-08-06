@@ -5,124 +5,75 @@ sidebar_position: 3
 
 # Connectors
 
-The physical ports on the case, separate from the GPIO pinout covered on the
-[Pinout](pinout.md) page.
+Every port on the outside of the case, edge by edge. What each GPIO pin
+actually does is on the [Pinout](pinout.md) page; this one is about the
+physical connectors and where to find them.
 
-## USB
+The numbers in each table match the numbered callouts in the picture above it.
 
-FREE-WILi 2 has multiple USB roles in play at once:
+## Top edge
 
-- **Three USB host ports**, for plugging in peripherals — mouse, keyboard,
-  joystick, GPS receiver, a serial adapter, or a thumb drive. Two connect to
-  the display processor at 12 Mbit; the third is high-speed, at 480 Mbit.
-  Each port's 5 V is software-switched from the display processor, so it can
-  also power-cycle whatever's plugged into it.
-- **A device-mode USB connection to a host PC**, which is how the console,
-  the OneWili API, and the FREE-WILi GUI app all reach the device (see
-  [Connecting](../start-here/connecting.md)).
+![Connectors on the top edge of FREE-WILi 2](/img/ConnectorsTop.png)
 
-<!-- VERIFY: exact physical connector types (USB-C vs USB-A) and which
-     specific port on the case is the host-PC device connection versus which
-     are the three host ports — confirmed from freewili.com's USB Host spec
-     page that three host ports exist at those speeds, and from FreeWili 1's
-     docs that the device-mode connection exposes multiple serial ports over
-     an internal hub, but not the physical layout of connectors on the
-     FREE-WILi 2 case. -->
+| # | Connector | What it's for |
+|---|---|---|
+| 1 | USB Device | The connection to a host PC. The console, the OneWili API and the FREE-WILi GUI app all reach the device through this port — see [Connecting](../start-here/connecting.md). |
+| 2 | IR Window | A cut-out in front of the infrared transmitter and receiver, for line-of-sight control and capture. |
+| 3–6 | Mic 1–4 | The four openings for the microphone array. |
+| 7 | DVI | Video out to an external monitor or projector, driven by the display processor's HSTX peripheral. |
+| 8 | SubGHz Antenna | The external antenna, shared by the CC1101 and the LoRa module. This is the same connector shown on the left edge below. |
 
-## Storage
+## Bottom edge
 
-Two microSD cards: one for the device's own file system, one dedicated to
-the Raspberry Pi CM0's Linux install. The device-side card sits behind an
-I/O-expander mux that toggles it between the main processor and an
-integrated high-speed USB card reader — pressing **gray** drives that mux.
-This is a distinct action from **long-pressing gray**, which instead enters
-audio-only mode (see [Sleep and mode buttons](#sleep-and-mode-buttons)
-below) — the two are gated on different press lengths, not the same
-gesture. Handed to the reader, the card presents to a connected computer as
-an ordinary USB mass-storage drive, and the reader is Raspberry Pi
-Imager-compatible for flashing a fresh image straight onto the card. See
-[Transferring files](../files-and-apps/transferring-files.md) for how this
-is actually used.
-<!-- VERIFY: physical location/accessibility of each microSD slot on the
-     case (e.g. whether either requires opening the case). Also: the
-     gray-button/mux mechanism is confirmed from
-     targets/fw2mainsbl/stage3.cpp in the firmware source, but that's
-     bootloader-stage code — whether the mux toggle is a short tap or has
-     its own hold requirement during normal runtime is not confirmed; what
-     is confirmed (from rmpLib/rpPanelManager.cpp) is that gray's
-     long-press action is the separate audio-mode switch described below,
-     so the two are not triggered by the same press length. -->
+![Connectors on the bottom edge of FREE-WILi 2](/img/ConnectorsBottom.png)
 
-## Audio
+| # | Connector | What it's for |
+|---|---|---|
+| 1 | Linux SDCard | The microSD card holding the Raspberry Pi CM0's Linux install. |
+| 2 | USB Host 1 | A USB host port — mouse, keyboard, joystick, GPS receiver, serial adapter, thumb drive. |
+| 3 | USB Host 2 | A second USB host port, the same as the first. |
+| 4 | Linux USB Host | A USB host port belonging to the Linux side rather than the display processor. |
+| 5 | Main SDCard | The device's own file system. This card can also be handed to an internal USB card reader so a connected computer sees it as an ordinary mass-storage drive — see [Transferring files](../files-and-apps/transferring-files.md). |
 
-A 3.5 mm TRRS jack carries both headphone/speaker output and microphone
-input over a single combined connector, so a standard headset works without
-extra adapters.
+Each host port's 5 V is software-switched, so the device can power-cycle
+whatever is plugged into it.
 
-## Video
+<!-- VERIFY: which of the three host ports is the high-speed one. The previous
+     revision of this page said two run at 12 Mbit off the display processor
+     and a third at 480 Mbit, sourced from freewili.com's USB Host spec page —
+     but that does not say whether the 480 Mbit port is the one the graphic
+     labels "Linux USB Host". Speeds are left off the table rather than
+     guessing at the mapping. -->
 
-A full-size DVI connector, driven by the display processor's HSTX
-peripheral, for sending the device's screen output to an external monitor
-or projector.
+## Left edge
 
-## GPIO and analog
+![Connectors on the left edge of FREE-WILi 2](/img/ConnectionsLeft.png)
 
-The 20-pin GPIO header and 10-pin analog header — see
-[Pinout](pinout.md) for what's on each pin.
+| # | Connector | What it's for |
+|---|---|---|
+| 1 | SubGHz Antenna | The threaded external antenna connector for the sub-GHz radio. NFC and 125 kHz RFID use internal antennas instead and have no external connector. |
+| 2 | 3.5 mm Audio Jack | Headphone and speaker output, and microphone input, over one combined connector — so a standard headset works without an adapter. |
 
-## Antenna
+<!-- VERIFY: (a) the antenna connector's exact type. It is drawn as a gold
+     threaded coax connector, which looks like SMA, but SMA and RP-SMA are not
+     distinguishable from the render and the previous revision explicitly
+     declined to claim SMA. (b) That the antenna in this view and the one in
+     the top-edge view are the same physical connector at the corner the two
+     edges share - the device is documented as having a single switched
+     external antenna, so two would be a surprise, but the two renders are
+     from different angles and this has not been confirmed against a unit.
+     (c) The jack being TRRS (combined out + mic) is carried over from the
+     previous revision; the graphic only labels it "3.5 mm Audio Jack", and
+     the device has its own four-microphone array on the top edge. -->
 
-The sub-GHz radio (switchable between the CC1101 and the LoRa module) uses a
-single external antenna connector. NFC and 125 kHz RFID use internal
-antennas near the back of the case instead, with no external connector.
-<!-- VERIFY: antenna connector type (SMA vs other) and physical location —
-     confirmed only that it's described as "external" on freewili.com's
-     sub-GHz/LoRa spec page; FreeWili 1's docs describe "two SMA connectors"
-     but FREE-WILi 2's radio architecture (single switched antenna) differs
-     enough that the SMA claim isn't safe to carry over unconfirmed. -->
+## Right edge
 
-## IR window
+![Connectors on the right edge of FREE-WILi 2](/img/ConnectorsRight.png)
 
-A cut-out in the case in front of the IR transmit/receive circuitry, for
-line-of-sight infrared control and capture.
+| # | Connector | What it's for |
+|---|---|---|
+| 1 | 10 Position Analog GPIO | The 10-pin analog header. |
+| 2 | 20 Position GPIO | The 20-pin GPIO header — software-defined SPI, UART, I2C, CAN FD and general-purpose IO. |
 
-## Onboard debug probe
-
-FREE-WILi 2 has a debug probe built into the board itself — an enhanced
-Raspberry Pi Debug Probe capable of flashing and debugging both RP2350s and
-the LoRa module's STM32 processor, plus JTAG and serial access to the
-ESP32-C5 — all without an external programmer. This is what freed up the
-GPIO header's former SWD pins (see [Pinout](pinout.md)) for CAN FD instead.
-<!-- VERIFY: whether the onboard debug probe is reachable from an external
-     connector (for probing other boards) or is purely internal/self-only —
-     not confirmed from source material available here. -->
-
-## Sleep and mode buttons
-
-Three of the five context buttons have a long-press shortcut in the GUI, and
-all three only fire from the main screen: long-pressing **gray** switches to
-an audio-only mode, long-pressing **yellow** enters a setup mode, and
-long-pressing **blue** enters the display processor's own bootloader (see
-[Recovery mode](../help/recovery-mode.md)) — that last one also needs USB
-connected with the charger actively charging or finished charging. All three
-are confirmed from the firmware's button-handling code, gated on
-`m_iCurrentViewType == mainscreen`, but audio mode and setup mode aren't
-otherwise documented here beyond their names.
-
-**Red** doesn't have a GUI long-press action. It does two other things,
-depending on when you hold it, and they're easy to conflate:
-
-- **Held while the device is already running** for 6 seconds, red starts a
-  safe 10-second shutdown, after which the device drops into a 60 µA sleep
-  — "ship mode". This is the PIC's own button poll acting independently of
-  the GUI or display processor, and it's how you actually power the device
-  down day to day. Gray, held for 3 seconds, powers it back on.
-- **Held at power-up**, red instead forces the main processor into its
-  recovery bootloader — a hardware path, unrelated to sleep. See
-  [Recovery mode](../help/recovery-mode.md#last-resort-hold-red-at-power-up).
-<!-- VERIFY: gray and yellow's long-press actions (audio mode, setup mode)
-     are confirmed only by name from rmpLib/rpPanelManager.cpp's long-press
-     switch — what each mode actually looks or behaves like on screen isn't
-     confirmed here. Red's held-while-running behaviour (6 s hold, 10 s
-     shutdown, 60 uA ship mode) and gray's 3 s power-on are owner-confirmed;
-     the underlying poll is fw2_pic16/full-firmware.X/main.c:163-170. -->
+Both headers are also what [Orca expansion boards](orca-modules.md) plug into.
+See [Pinout](pinout.md) for what sits on each pin.
