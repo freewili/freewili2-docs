@@ -11,14 +11,6 @@ FREE-WILi 2 has two microSD cards: one for the device's own file system
 (scripts, sounds, images, app data), and one dedicated to the Raspberry Pi
 CM0's Linux install. They're independent — files on one aren't visible from
 the other.
-<!-- VERIFY: the device-side card (owned by the main processor, mounted as
-     drive "1:" in its file system code, and shared with the display
-     processor over an internal link) is confirmed from the firmware
-     source. The second, CM0-side card is confirmed only from freewili.com's
-     spec pages (the CM0 is a separate Raspberry Pi Compute Module running
-     its own Linux image) — the RP2350 firmware examined for this page
-     doesn't touch that card at all, so its physical slot, removability, and
-     exact contents aren't confirmed here. -->
 
 ## The on-device Files panel
 
