@@ -13,3 +13,9 @@ terminal, and on the device itself. See
 Not yet implemented; always reports failure
 
 **How to use it** — press `a`.
+
+## Power Cycle Debugger
+
+Powers debugger zone 16 off for 500 ms, then powers it back on.
+
+**How to use it** — press `c`.

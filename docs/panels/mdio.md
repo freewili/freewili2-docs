@@ -120,12 +120,11 @@ AI always has something to open.
 
 This screen needs the FPGA power zone (6): setting up MDIO drives the
 FPGA's HSBDIO mode so GP27 can steer the GP26 buffer direction, and that
-setup needs the FPGA's register bus to answer. With that rail off,
-opening this screen raises "Enable FPGA power zone"; the screen still
-opens behind it, but setup is unlikely to succeed until the rail is back
-on. That check only runs once, on entry - it does not re-run before a
-read, write, poll or modify. Zone 6 is on by default and is switched from
-Power Devices.
+setup needs the FPGA's register bus to answer. Opening this screen
+switches that rail on if it was off, without asking; setup is unlikely to
+succeed until it is up. That only happens once, on entry - it does not
+re-run before a read, write, poll or modify. Zone 6 is on by default and
+is also switched from Power Devices.
 
 ## Logic Analyzer
 

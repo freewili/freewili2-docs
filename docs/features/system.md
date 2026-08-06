@@ -24,6 +24,14 @@ Reads bytes from the fused OTP identity blob (bl_otp_info v3). An unprovisioned 
 
 **What you enter** — `offset`, `length`.
 
+## Boot UF2
+
+Reboots into the SBL bootloader, which chain-loads the named RAM-app UF2 from the SD card /update directory (card root as fallback). No response is sent on success — the device resets.
+
+**How to use it** — press `u`. At the prompt, enter: the UF2 filename (8.3, SD card /update directory).
+
+**What you enter** — `filename`.
+
 ## Device State
 
 Report the device state for host sync: SD card host (none|main|usb), event host-streaming gate (0|1), active-stream mask (hex, bit index = event id). More space-separated fields may be appended later.

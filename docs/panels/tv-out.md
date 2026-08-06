@@ -8,11 +8,8 @@ Found under **GUI** on the device's panel list.
 
 ## TV Out
 
-Sends the board's own screen buffer out as a live 1280x720 video signal over
-its DVI pins. This screen used to freeze the whole device solid - one of two
-reports of a total lockup - and starting video is what triggered it. That has
-been fixed in firmware but not yet confirmed on hardware, so treat what
-follows as the intended behavior rather than a proven one.
+Sends the device's screen buffer as a live 1280x720 DVI video signal. Hardware
+validation is still in progress, so save important work before starting video.
 
 ### The screen
 
@@ -42,13 +39,8 @@ gets you out. Leaving with HOME stops the video and
 restores the display, so the screen can be reopened and started again
 afterward.
 
-### Why this used to hang the whole device
+### Serial connections
 
-Starting video reclocks the processor's system clock to the rate DVI needs,
-and that clock feeds the peripheral clock the UARTs derive their baud rate
-from. The firmware now reads back each UART's baud rate before the switch
-and reapplies it after, on both the way in and the way back out, so the PIC
-link and the Main-to-Display link keep working. If you have a serial
-terminal open on one of the board's UARTs when you start or stop video, the
-port may still glitch for the moment the clock is actually moving even
-though the firmware puts the rate back.
+Starting or stopping video briefly changes the display processor's clock.
+Active serial connections may momentarily lose data during that transition.
+If a terminal stops responding, reconnect it after leaving TV Out.

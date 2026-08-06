@@ -59,12 +59,11 @@ labelled Back button on that view returns here.
 ### Power
 
 This screen needs the FPGA power zone (6) - the UART header lines route
-through the FPGA. With that rail off, opening this screen raises "Enable
-FPGA power zone"; the screen still opens behind it, but nothing sent reaches
-the header pins even though it still logs a `Tx)` line. That check only runs
-once, on entry: nothing here re-checks the zone, or the header pins' IO
-direction, before a Send goes out. Zone 6 is on by default and is switched
-from Power Devices.
+through the FPGA. Opening this screen switches that rail on if it was off,
+without asking; until it is up nothing sent reaches the header pins even
+though it still logs a `Tx)` line. That only happens once, on entry: nothing
+here re-checks the zone, or the header pins' IO direction, before a Send goes
+out. Zone 6 is on by default and is also switched from Power Devices.
 
 ## Logic Analyzer
 

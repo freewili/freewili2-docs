@@ -56,6 +56,7 @@
     "fwMenuSystem": { "publish": true, "title": "System", "section": "system", "order": 20 },
     "fwMenuPowerManagement": { "publish": true, "title": "Power Management", "section": "system", "order": 30, "panelKey": "APP_SELECTED_POWER_MGMT" },
     "fwMenuFileSystem": { "publish": true, "title": "File System", "section": "system", "order": 40, "panelKey": "APP_SELECTED_FILES" },
+    "fwMenuDisplayFunctions": { "publish": true, "title": "Display Functions", "section": "system", "order": 50, "panelKey": "APP_SELECTED_DISPLAYLOADER" },
 
     "fwMenuSettingsHome": { "publish": true, "title": "Device Settings", "section": "settings", "order": 10 },
     "fwMenuGeneralSettings": { "publish": true, "title": "General Settings", "section": "settings", "order": 20 },
@@ -123,6 +124,7 @@
     "APP_SELECTED_WILI_FILES": { "publish": true, "title": "Wili Files", "section": "tools", "order": 60 },
     "APP_SELECTED_LOGGER": { "publish": true, "title": "Logger", "section": "tools", "order": 70 },
     "APP_SELECTED_EDITOR": { "publish": true, "title": "Editor", "section": "system", "order": 60 },
+    "APP_SELECTED_DISPLAYLOADER": { "publish": true, "title": "Display Apps", "section": "system", "order": 70 },
 
     "APP_SELECTED_MSETTINGS": { "publish": true, "title": "Settings", "section": "settings", "order": 10, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. The device's on-screen Settings home - pick a category to jump straight to its settings. It's a hand-maintained subset of what's in the console's Settings menu; RTC, Analog In, and Orca settings aren't listed here yet (Orca has its own **Orca Setup** panel)." },
     "APP_SELECTED_ORCASETUP": { "publish": true, "title": "Orca Setup", "section": "settings", "order": 20, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. It's a guided setup wizard for pairing with an Orca accessory over UART. It configures the same underlying setting as **Orca Settings** in the console Settings menu, with presets for known Orca variants (including flashing companion firmware for the Bottlenose variant)." }

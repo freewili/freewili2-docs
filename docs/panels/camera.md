@@ -77,9 +77,9 @@ time.
 ### Power
 
 fwPanelAppCamera does not declare a required power zone, so this screen
-never puts up an "Enable ... power zone" message and does not switch
-anything on for you. The WIL-EYE module's own rail on the Orca connector
-is not part of the documented zone map - if it has no power, expect the
-"not responding" screen above rather than any warning here.
+does not switch anything on for you. The WIL-EYE module's own rail on the
+Orca connector is not part of the documented zone map - if it has no
+power, expect the "not responding" screen above rather than any warning
+here.
 
 **See also:** [WilEye Camera](../features/wil-eye.md) — the console/GUI commands for this panel.

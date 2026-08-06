@@ -51,10 +51,9 @@ the menu, and Red is labeled with the same home glyph.
 ### Power
 
 The reader sits on power zone 13, NFC/RFID, which feeds the ST25R3916 front end.
-Opening this screen with that zone switched off puts up an "Enable NFC/RFID
-power zone" message box; the screen still opens behind it, but the chip cannot
-answer and the status block reports `no NFC chip`. Zone 13 is switched from
-Power Devices.
+Opening this screen switches that zone on if it was off, without asking, and
+holds it for as long as the screen stays open; until the rail is up the status
+block reports `no NFC chip`. Zone 13 is also switched from Power Devices.
 
 ### Reading the log
 

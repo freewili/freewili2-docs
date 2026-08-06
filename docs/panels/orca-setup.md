@@ -74,47 +74,28 @@ there.
 
 "Orca Setup" is a top-level entry in the System folder of the main menu.
 
-## Bottlenose Default App Flasher
+## Bottlenose App Flasher
 
-Flashes the default application onto a Bottlenose module plugged into the
-Orca connector, using its BOOT/RESET button handshake. This is not the
-board's own soldered ESP32-C5 - flashing that chip is the "Flash ESP32"
-action on the Files screen instead (see files.md).
+This panel prepares a Bottlenose module connected to the Orca port for its
+default application. It does not program FreeWili's onboard ESP32-C5; use
+**Files > Flash ESP32** for that device.
 
-### The screen
+### Entering flash mode
 
-Opens on a setup guide, in red text, explaining how to put Bottlenose into
-flash mode: hold its BOOT button, press and release its RESET button, then
-release BOOT. Pressing Green switches the screen to a flash view: a
-running-state label, a bar showing which partition is currently being
-written, a separate percentage complete, and status text lines.
+1. Hold the Bottlenose **BOOT** button.
+2. Press and release **RESET**.
+3. Release **BOOT**.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Green (setup view) | Start flashing |
-| Green (flash view) | Go back to the setup view |
-| Red | Go back to the previous screen |
-| Cancel | This help page |
+| Green | Continue to the flash-status view, or return to setup |
+| Red | Return to Choose your ORCA |
+| Cancel | Open this help page |
 
-Gray, Yellow and Blue carry no label here and do nothing. Red returns
-to the "Choose your ORCA!" screen (see orca-setup.md). HOME leaves the
-screen from here, as it does everywhere else in the menu.
+### Availability
 
-### The flash step doesn't flash anything yet
-
-Pressing Green switches to the flash view, but nothing behind it opens a
-connection to the module or sends it data - the code path that would
-drive a real transfer is stubbed out. By the time the view appears, the
-running-state label already reads "Idle", the bar and percentage stay at
-0/0%, and the status lines already read "Finished! Press 'Reset' btn on
-Bottlenose to run app.", even though nothing was erased or written. Green
-is relabeled "Back" from the same moment; pressing it returns to the
-setup guide, and pressing Green there does the same thing again.
-
-### Reached only from Choose your ORCA!
-
-This screen has no menu entry of its own. It opens automatically from the
-"Choose your ORCA!" screen after you select Bottlenose and confirm you
-want to flash it (see orca-setup.md), and Red returns you there.
+Programming Bottlenose is not available in the current firmware release. The
+status view is informational and does not erase or write the attached module.
+Use a supported external programmer until in-device flashing is enabled.

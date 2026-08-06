@@ -8,624 +8,151 @@ sidebar_position: 10
 
 Found under **Wireless** on the device's panel list.
 
-## Radios
+## Sub-GHz Radios
 
-Entry point for the two onboard CC1101 sub-GHz radios, listed as "SubGHz"
-in the main menu's Wireless folder. From here you pick which of the app's
-four screens to open.
+The Sub-GHz application is intended for receiving, recording, analyzing, and
+transmitting signals with the onboard CC1101 radios.
 
-### Does this actually work
+### Availability
 
-No, not on the current firmware. The whole app is dead code in this build.
-`fwPanelAppRadios` and all six of its panels only get compiled in when
-`RADIO_CC1101_SUPPORTED` is defined, and neither `targets/fw2main/CMakeLists.txt`
-nor `targets/fw2display/CMakeLists.txt` defines it - that symbol is only set
-for the old single-CPU FreeWilli Classic target and the PC simulator. The
-`rpCC1101` objects the panels reach for as `extern rpCC1101 obRadio1` /
-`obRadio2` are likewise only instantiated in `targets/fwclassic/FreeWilliMain.cpp`,
-which the current build never compiles.
+CC1101 panels are not included in the current FreeWili 2 firmware release.
+Selecting **Wireless > SubGHz** may therefore open an empty screen. Use Home to
+return to the launcher.
 
-`fwPanelLibDisplay.h`, the panel list the DISPLAY image actually builds,
-never includes `fwPanelAppRadios.h` at all - MAIN doesn't have it either.
-The "SubGHz" tile still shows up in the Wireless folder because
-`fwPanelLibDisplay.cpp` adds it unconditionally, but selecting it opens a
-blank screen: no processor has an app registered under that id, so nothing
-runs the app's `initPanel()` and nothing gets drawn. What follows describes
-what the source says this app is meant to do, not what happens if you
-actually select it today.
+The separate **LoRa** application is available and uses the WIO-E5 radio. See
+its help page for receiving and sending LoRa data.
 
-### The intro screen (as designed)
+When CC1101 support is enabled in a future release, this application will
+provide these tools:
 
-A menu list fills the screen: Read, Read Raw, Transmit, Frequency Analyzer.
-The highlighted row is what Centre will open.
+- Read received packets
+- Capture raw signals
+- Transmit saved `.sub` files
+- Scan signal strength by frequency
 
-### Controls (as designed)
+Radio transmission is regulated. Only transmit on frequencies and at power
+levels permitted in your location.
 
-| Button | Action |
-|---|---|
-| Gray | Move the highlight up |
-| Yellow | Move the highlight down |
-| Green | Labeled Sel, but pressing it does nothing - Centre opens the highlighted item |
-| Centre | Open the highlighted item |
-| Red | Unlabelled and does nothing here |
-| Cancel | This help page |
+## Sub-GHz Receive Log
 
-HOME leaves the screen from here, as it does everywhere else in the menu.
+This panel is designed to show packets received by either onboard CC1101
+radio. A received packet includes its data, signal strength, link quality, and
+CRC result.
 
-### The page map
-
-Each item opens a separate screen with its own help topic; this is how you
-get between them:
-
-- **Read** opens the Radio Receive Log (radios-rx-log.md). Its Blue button goes back to this intro list.
-- **Read Raw** opens the Radio Raw Capture screen (radios-read-raw.md). Blue goes back to this intro list from its main view, but backs out of its own Config sub-view first if that's open rather than leaving the app in one step.
-- **Transmit** opens the Sub Files list first (radios-sub-list.md); picking a file there opens the Transmit screen (radios-tx.md). Transmit's Blue button returns to the Sub Files list, not to this intro - getting back here takes an extra step.
-- **Frequency Analyzer** opens a live RSSI scan (radios-freq-analyzer.md). It has no button that returns to this intro list at all; HOME is the only way out once you're in it.
-
-### The two radios
-
-This device has two identical sub-GHz radios, Radio 1 and Radio 2. Both are
-built around the same chip and share the same three supported frequency
-bands: 300 to 348 MHz, 387 to 464 MHz, and 779 to 928 MHz. A frequency
-outside those three ranges is rejected - the radio simply will not tune
-there, no matter what a setup screen lets you type in.
-
-Where a radio's settings come from depends on which screen you are on.
-The Read screen (the receive log) uses whatever is stored in the Radio
-Settings menu found elsewhere in the device. Read Raw and Transmit do
-not - Read Raw's Frequency, Preset, Protocol and Duration are set right
-there on its own setup list, and Transmit sends whatever frequency,
-preset and protocol are recorded in the .sub file itself.
-
-The Frequency Analyzer is different again: while it runs, it steps its
-own fixed list of frequencies rather than using the Radio Settings menu,
-and the layout it opens with comes from its own Frequency Analyzer
-Settings menu found elsewhere in the device. See radios-freq-analyzer.md
-for exactly when and how it hands each radio back to the Radio Settings
-menu's configuration.
-
-### Power
-
-The app declares `RP_ZONE(4)` in `fwPanelAppRadios::requiredZoneMask()` -
-zone 4 is "Sub-GHz" on this board, the same rail LoRa runs on (see
-lora.md and power-devices.md). If this app is ever wired back into a
-build, all four of its screens would need that zone powered; there is no
-way to confirm that in practice while the app itself cannot be reached.
-
-### Antenna
-
-The CC1101 radios and the LoRa module share a single SP3T RF switch
-(`rmpLib/fw2SubGhzAnt.h`): only one of LoRa, CC1101 Low, CC1101 Medium or
-CC1101 High can be connected to the antenna at any moment, and the same
-switch bits also gate the CC1101 chip-select demux, so the two radio
-families are mutually exclusive at the hardware level. In practice that
-means a working Radios app and the LoRa screen could never send or
-receive at the same time - opening one disconnects the other from the
-antenna, it isn't just a settings conflict.
-
-## Radio Receive Log
-
-The "Read" screen of the Radios app: a live log of packets arriving on one
-of the two CC1101 sub-GHz radios, with a test transmit button.
-
-### Does this actually work
-
-No. This screen is one of six panels in the Radios app, and the whole app
-is dead code in the current build - see radios.md for the full picture
-(`RADIO_CC1101_SUPPORTED` is not defined for either `targets/fw2main` or
-`targets/fw2display`, so `fwPanelAppRadios` and everything under it,
-including this panel, never compiles in). Nothing runs this screen's
-`initPanel()` on real hardware today.
-
-It runs deeper than that here specifically. Even with the app wired back
-in, this panel's own `updateData()` - the code that would poll the radio
-and fill the log - is entirely commented out. The lines this screen is
-meant to show instead come from a different path: `rpCC1101::receive_Packet()`,
-called by `fwMenuRadio::printRadioRxData()` whenever `fwMenuRadio::processEvents()`
-runs and this screen's stream flag is set. But nothing calls
-`processEvents()` from the main loop either - `fwMenuMain.cpp` only pumps
-`obMenuFileSystem.processEvents()` there. So restoring the app alone would
-not make receive logging work; the poll call would have to come back too.
-Sending (Gray, below) does not depend on either of those - it calls
-`send_Packet()` directly - so it is the one part of this screen that would
-work again as soon as the app itself is recompiled in.
-
-What follows describes what the source says this screen is meant to do,
-not what happens if you actually select it today.
-
-### The screen (as designed)
-
-The current radio's name is shown top left, its frequency top right, and
-a scrolling log fills the rest of the screen: oldest at the top, newest
-at the bottom.
-
-### Controls (as designed)
+### Controls
 
 | Button | Action |
 |---|---|
-| Gray | Send a test transmission on the radio shown |
-| Yellow | Switch which radio is shown (the label names the other one) |
+| Gray | Send a test packet |
+| Yellow | Switch between Radio 1 and Radio 2 |
 | Green | Clear the log |
-| Blue | Back to the Radios intro list (radios.md) |
-| Red | Unlabelled; silently stops watching both radios without leaving the screen (see "What persists" below) |
-| Cancel | This help page |
+| Blue | Return to the Sub-GHz menu |
+| Cancel | Open this help page |
 
-HOME leaves the screen from here, as it does everywhere else in the menu.
+### Availability
 
-### Sending
+The CC1101 application, including receive logging, is not included in the
+current FreeWili 2 firmware release. See **Sub-GHz Radios** for availability
+information.
 
-Gray asks the currently selected radio to switch to idle and then to
-transmit; either way it ends by switching the radio back to receive.
+## Sub-GHz Raw Capture
 
-If both switches succeed, it sends a packet - in principle the last
-packet received, falling back to a fixed test string if none has been
-received yet. In practice it always sends the fixed string: the buffer
-it would resend from (`btLastPacket` / `iLastPacketSize`) is only ever
-written by the dead `updateData()` code, so `iLastPacketSize` never
-leaves zero. The string sent is `"FreeWili Yaya!"`.
-
-A successful send logs a `Tx) ` line with the first 8 bytes actually
-sent, in hex. If either switch fails, the log gets a line reading
-`Failed to trasmit` instead (that spelling is in the source).
-
-### Reading the log (as designed)
-
-If the receive path were wired up, an incoming packet would add two
-lines: an `Rssi: <value>, Crc: <0 or 1>, LQI: <value>` summary, followed
-by an `Rx) ` line with the packet's first 8 bytes in hex. Both come from
-`rpCC1101::receive_Packet()`, in the same plain white as the `Tx) ` line - nothing here is colour-coded by status. On the current firmware this
-half of the log never populates; see "Does this actually work" above.
-
-### Switching radios (as designed)
-
-Yellow swaps between Radio 1 and Radio 2; the name and frequency shown
-update to match, and the stream flag that marks which radio is "current"
-moves with it. It does not clear anything already in the log, and both
-radios keep their log target pointed at this same log control for as
-long as this screen is open - only the stream flag decides which one is
-actually being watched.
-
-### What persists
-
-Frequency, modulation and other radio settings come from the Radio
-Settings menu found elsewhere in the device, not from this screen.
-Leaving with HOME does not stop the streaming this screen started -
-this panel's hide handler is empty. Only the unlabelled Red button
-clears the stream flags and log target, and only if you press it before
-leaving; nothing does that automatically on the way out.
-
-### Power
-
-Same requirement as the rest of this app: `RP_ZONE(4)`, "Sub-GHz" - see
-radios.md for detail. There is no way to confirm this in practice while
-the app itself cannot be reached.
-
-## Radio Raw Capture
-
-Records a raw sub-GHz signal on Radio 1 straight to a file on the SD card,
-in the same format the Transmit screen plays back.
-
-### Does this actually run
-
-No, not on current firmware. This screen belongs to `fwPanelAppRadios`,
-which is only compiled in when `RADIO_CC1101_SUPPORTED` is defined; neither
-`targets/fw2main/CMakeLists.txt` nor `targets/fw2display/CMakeLists.txt`
-defines it, and neither one even lists `fwRadiosPanelReadRaw.cpp` as a
-source file to build. See radios.md for the full picture of what's dead in
-this app and why its entry tile still shows up in the menu anyway.
-Everything below describes what the code is written to do, not something
-you can reach on the firmware that actually ships today.
-
-### The screen
-
-The main view shows no live readout right now - starting a capture does
-not show progress here, it records straight to the file. Config opens a
-setup list of six fields for the next capture.
+Raw Capture records Sub-GHz pulse timing and saves it as a `.sub` file on the
+SD card. Use the configuration view to choose the frequency, radio preset,
+capture duration, and output name before recording.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Yellow | Config: open the capture setup list |
-| Green | Start a capture with the current setup |
-| Blue | Back to the Radios menu |
-| Red | No label here; pressing it does nothing |
-| Cancel | This help page |
+| Gray / Yellow | Move through configuration fields |
+| Center | Edit the highlighted field |
+| Green | Start or stop capture |
+| Blue | Return to the previous view |
+| Red | Open or close configuration, as labeled |
+| Cancel | Open this help page |
 
-HOME leaves the screen from here, as it does everywhere else in the menu.
+Keep the device close to the transmitter during capture. A clean recording
+usually contains one or more complete button presses with a short quiet period
+before and after them.
 
-### Setting up a capture
+### Availability
 
-Yellow opens a list of six fields. Centre opens the highlighted one:
+The CC1101 application is not included in the current FreeWili 2 firmware
+release. See **Sub-GHz Radios** for availability information.
 
-- **Name** - the file name the capture is saved as (default `cap1.sub`).
-- **Preset** - a list of four radio configurations: Ook 270 Async, Ook 650 Async, Two FSK Dev 238 Async, Two FSK Dev 476 Async.
-- **Preset Data** - a raw hex value. It only takes effect with a custom preset, and this screen's own Preset list does not offer one, so right now this field has no way to take effect.
-- **Freq** - the frequency to capture at, in Hz.
-- **Protocol** - a list of three: Raw, BinRaw, Princeton.
-- **Duration** - how long the capture runs, in milliseconds, 0 to 5000. Left at its default of 0, a capture stops almost as soon as it starts - set this before pressing Green.
+## Sub-GHz Signal Files
 
-Blue and Red both cancel this list back to the main view without starting
-anything. Red is not the same button it is on the main view: here it
-carries the `#96` back-arrow glyph and does real navigation - the same
-one-step-back that Blue does from this list. Getting from the setup list
-all the way out of the app still takes two steps: one press to close the
-list, a second to leave the main view.
-
-### Frequency
-
-The Freq field accepts anything from 300,000,000 to 900,000,000 Hz, but
-the radio only tunes within its three supported bands: 300 to 348 MHz,
-387 to 464 MHz, and 779 to 928 MHz. A frequency the field accepts but that
-falls between those bands fails the capture - but not cleanly: the `.sub`
-file is already created and its header written before the frequency is
-handed to the radio, so a header-only file with no `RAW_Data` can be left
-behind even though nothing was ever recorded.
-
-### What it saves
-
-A capture always uses Radio 1, and writes a `.sub` file with the setup
-above recorded in its header. By default that file is written to the
-root of the SD card, not the radio folder the Sub Files list reads from,
-so a capture left at its default name will not appear there - put that
-folder in the Name field if you want it to show up on the Transmit list.
-
-The data itself lands as one or more `RAW_Data:` lines, each holding 512
-signed numbers with alternating sign marking alternating signal levels -
-the same raw duration-count values the Transmit screen reads back to
-replay a capture. A long enough capture appends more than one `RAW_Data:`
-line as each 512-sample buffer fills.
-
-### Capturing right after a transmit
-
-The receive path this screen starts (`rpCC1101::async_StartRx`) never
-reasserts the CC1101's GDO0 data pin as an input at the PIO level -  only
-the transmit path (`async_StartTx`) touches that pin's direction, and it
-sets it to output. Nothing in `async_StopTx`, `async_StopRx`, or
-`async_StartRx` sets it back before a capture's PIO program starts
-waiting on that pin. If a transmit has run on Radio 1 since boot, a Read
-Raw capture on Radio 1 afterward can come back with a `RAW_Data` line of
-nothing but the PIO's own idle output level, not real durations off the
-air - and there is nothing on this screen that would tell you that
-happened; it just looks like a capture that saw no signal. This is a gap
-in the code as written, not something the screen protects against or
-reports, and it is still present.
-
-### Power
-
-The host app declares `RP_ZONE(4)` in `fwPanelAppRadios::requiredZoneMask()` - the Sub-GHz rail LoRa also runs on (see radios.md and power-devices.md).
-That requirement is moot on current firmware, since the app it belongs to
-is not part of either build.
-
-## Radio Sub Files
-
-Lists what is in the `/radio/` folder on the SD card so you can pick a
-`.sub` signal file to send. This is the screen Transmit opens into
-first; see radios.md for how it fits into the rest of the app.
-
-### Does this actually run
-
-No, not on current firmware. This screen belongs to `fwPanelAppRadios`,
-gated behind `RADIO_CC1101_SUPPORTED`, which neither
-`targets/fw2main/CMakeLists.txt` nor `targets/fw2display/CMakeLists.txt`
-defines - and neither one even lists `fwRadiosPanelSubList.cpp` as a
-source file to build. See radios.md for the full picture of what's dead
-in this app and why its entry tile still shows up in the menu anyway.
-Everything below describes what the code is written to do, not something
-you can reach on the firmware that actually ships today.
-
-### The screen
-
-A list titled "JUST GONNA SEND IT" fills the screen: up to the first 12
-entries `loadDirectoryToLogList` finds in `/radio/`, in whatever order
-the filesystem returns them. Nothing here filters by extension - a
-subfolder or a file with any extension other than `.sub` is listed right
-alongside the signal files, and only the first 12 entries the folder
-holds are ever reachable from this screen. The highlighted row is what
-Centre opens.
+This panel lists saved Sub-GHz signal files from the `/radio/` folder on the
+SD card. Selecting a file opens it in the transmit panel; it does not transmit
+immediately.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Centre | Open the highlighted entry on the Transmit screen |
-| Blue | Back to the Radios menu |
-| Red | Unlabelled and does nothing here |
-| Cancel | This help page |
+| Up / Down | Move through the file list |
+| Center | Open the highlighted file |
+| Blue | Return to the Sub-GHz menu |
+| Cancel | Open this help page |
 
-HOME leaves the screen from here, as it does everywhere else in the menu.
+Files must use the `.sub` format. If the list is empty, confirm that the SD
+card is mounted and that the files are stored in `/radio/`.
 
-### Where the files come from
+### Availability
 
-Only entries already in `/radio/` on the SD card are listed. `mount()`
-creates `/scripts/`, `/fpga/` and a few other folders on the SD card
-when it mounts successfully, but never `/radio/` - nothing creates that
-folder for you, and if it does not exist yet there is no empty-state
-message either, the list is simply blank. The Radio Raw Capture screen
-(radios-read-raw.md) writes files in this same format, but saves to the
-card's root by default - put `/radio/` in its Name field if you want a
-capture to show up here.
+The CC1101 application is not included in the current FreeWili 2 firmware
+release. See **Sub-GHz Radios** for availability information.
 
-The list is rebuilt from the card every time this screen opens, not just
-once at boot, so a file added after power-on appears the next time you
-visit. The highlighted row and the scroll position both reset to the top
-each time as well.
+## Sub-GHz Transmit
 
-### Selecting an entry
-
-Centre resolves the highlighted row back to a path with
-`getDirectoryItemByIndex` and hands it to the Transmit screen
-(radios-tx.md); selecting a file does not transmit it immediately.
-`rpFileSystem.cpp` used to disagree with itself about whether
-subfolders counted as list rows - the on-screen list counted them and
-the row-to-path lookup skipped them, so a folder anywhere in the listing
-resolved a selection to the wrong file. That was the exact defect class
-that hit the Scripts list; the fix there made both sides agree, and this
-screen's display list and its row lookup now walk the same, corrected
-enumeration.
-
-That fix is not fully wired up here, though: this screen's own selection
-handler (`fwRadiosPanelSubList::addEventPickList`) still calls
-`getDirectoryItemByIndex` with the old four-argument form the fix
-replaced, one argument short of what the function takes now - as
-written, it will not compile if this file is ever added back to a
-build. It also never checks whether the resolved entry is a subfolder
-before treating it as a `.sub` file, unlike the Scripts list. Neither
-problem has ever been exercised, since this file isn't part of either
-current build (see above).
-
-### Power
-
-The host app declares `RP_ZONE(4)` in `fwPanelAppRadios::requiredZoneMask()` - this panel does not declare one of its own. See radios.md for what
-zone 4 is on this board; the requirement is moot on current firmware
-since the app it belongs to is not part of either build.
-
-## Radio Transmit
-
-Sends the `.sub` file you picked on the Sub Files screen (radios-sub-list.md),
-on Radio 1 or Radio 2.
-
-### Does this actually run
-
-No, not on current firmware. This screen belongs to `fwPanelAppRadios`,
-which is only compiled in when `RADIO_CC1101_SUPPORTED` is defined; neither
-`targets/fw2main/CMakeLists.txt` nor `targets/fw2display/CMakeLists.txt`
-defines it, and neither one lists `fwRadiosPanelTransmitSub.cpp` (or the
-Sub Files list ahead of it) as a source file to build at all. See radios.md
-for the full picture of what's dead in this app and why its "SubGHz" entry
-tile still shows up in the main menu anyway. Everything below describes
-what the code is written to do, not something you can reach on the
-firmware that actually ships today.
-
-### The screen
-
-The selected file name is shown at the top in yellow, with a status line
-below it: IDLE, Transmitting!, or Done!. While transmitting, a sample
-count and a moving graph appear - the graph is just an animated
-indicator that a transmit is under way, not a picture of the actual
-signal. A red "Repeating Transmit!" line appears when repeat is on.
+This panel transmits the signal stored in the selected `.sub` file. The
+screen shows the file name, radio settings, and transmit status.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Yellow | Start or stop sending the file on Radio 1 |
-| Green | Start or stop sending the file on Radio 2 |
-| Blue | Back to the Sub Files list |
-| Red | Unlabelled; pressing it does nothing |
-| Cancel | This help page |
+| Gray | Transmit once |
+| Yellow | Change the repeat count |
+| Green | Start or stop repeated transmission |
+| Blue | Return to the signal-file list |
+| Cancel | Open this help page |
 
-HOME leaves the screen from here, as it does everywhere else in the menu.
+The frequency, modulation preset, protocol, and signal data come from the
+selected file. A malformed or unsupported file is rejected without sending.
 
-### Sending
+### Availability
 
-Press Yellow or Green once to start sending the selected file on that
-radio; the button's label changes to STOP while it runs. Pressing it
-again stops the transmit early.
+The CC1101 application is not included in the current FreeWili 2 firmware
+release. See **Sub-GHz Radios** for availability information.
 
-Only one transmit can actually be running at a time, because the file
-parser that drives the CC1101 (`rpSubFileParser`) is a single shared
-object, not one per radio. Pressing the other radio's button while a
-transmit is running stops it, but only resets the label on the button
-you just pressed - the button that originally started the transmit is
-left reading STOP even though nothing is sending anymore.
+Radio transmission is regulated. Only transmit signals you are authorized to
+use, on frequencies and at power levels permitted in your location.
 
-Press either button twice quickly to also turn on repeat: the file sends
-again automatically every time it finishes, shown by the red "Repeating
-Transmit!" line. Stop it the same way you stop a normal transmit.
+## Sub-GHz Frequency Analyzer
 
-Repeat has a bug: every repeat after the first copy goes out on Radio 1,
-even if you started the repeating transmit on Radio 2. Starting repeat
-on Radio 2 sends the first copy there, then silently switches to
-Radio 1 for every copy after that.
+The Frequency Analyzer scans supported Sub-GHz frequencies and plots received
+signal strength. Use it to find active channels before opening a receive or
+raw-capture panel.
 
-### The .sub file
-
-Files come from the Sub Files screen, which lists whatever `.sub` files
-are already sitting in `/radio/` on the SD card - a file has to be there
-before it shows up to pick.
-
-The parser only recognizes seven header tags: Filetype, Version,
-Frequency, Preset, Custom_preset_data, Protocol and RAW_Data. Anything
-else in the file - including the Key, TE, Bit and Repeat tags a Flipper
-fixed-code remote file uses - stops the read with an "Invalid Tag"
-console message instead of transmitting. Only the plain RAW-capture
-layout actually plays: `Protocol: RAW` with one or more `RAW_Data:`
-lines of signed sample durations, the same format this app's own Raw
-Capture screen writes (radios-read-raw.md). A fixed-code Key file never
-reaches a RAW_Data line, so this screen can say "Transmitting!" while
-sending nothing.
-
-Preset accepts four built-in CC1101 configurations - Ook 270 Async, Ook
-650 Async, Two FSK Dev 238 Async, Two FSK Dev 476 Async - plus Custom,
-which is meant to carry its own register bytes in a `Custom_preset_data:`
-line. Custom doesn't work cleanly in practice: the `Custom_preset_module:`
-line every real Custom-preset file also includes isn't one of the seven
-recognized tags either, so it trips the same "Invalid Tag" handling
-before the data line is ever reached.
-
-The `Protocol:` value itself is checked against only the literal string
-`RAW` - anything else just logs "Encountered Invalid Protocol" without
-stopping the RAW_Data that follows. It's the tag list above, not the
-Protocol field, that actually decides whether a file plays.
-
-### Where the signal comes from
-
-The file itself carries its own frequency, preset and protocol, recorded
-when it was captured or created - this screen does not read those from
-the Radio Settings menu, it uses whatever the file specifies.
-
-### Antenna
-
-Setting the frequency also picks the antenna path: `rpCC1101::setFrequency()`
-switches between three fixed sub-GHz bands - 300 to 348 MHz, 387 to 464
-MHz, and 779 to 928 MHz - the same three ranges the file's Frequency
-value has to fall inside, or `setFrequency()` fails and the previous
-frequency is left in place; nothing in this parsing path checks for that
-failure. The two CC1101 radios and the LoRa module all share a single
-SP3T RF switch (`rmpLib/fw2SubGhzAnt.h`) rather than separate antennas,
-so whichever band a transmit lands on is the only one actually connected
-at that moment - the wrong band, or LoRa left selected, costs real
-signal strength rather than just being a cosmetic mismatch. See radios.md
-for the full antenna picture.
-
-### Power
-
-The host app declares `RP_ZONE(4)` in `fwPanelAppRadios::requiredZoneMask()` - zone 4 is Sub-GHz, the same rail the LoRa screen runs on (see radios.md,
-lora.md and power-devices.md). That requirement is moot on current
-firmware, since the app it belongs to is not part of either build.
-
-### Transmitting is regulated
-
-What frequencies and power levels are legal to transmit on is set by
-radio regulations wherever you are, not by this screen, so that's on you
-to know before you press Yellow or Green.
-
-### What persists
-
-Leaving this screen - Back, Cancel, or returning to the main menu - stops
-an in-progress transmit. Nothing keeps sending once you leave.
-
-## Radio Frequency Analyzer
-
-Sweeps each radio across a fixed list of test frequencies, one at a time,
-and reports whichever one currently has the strongest signal. It is not a
-spectrum analyzer - the screen's own controls are named after an FFT plot,
-but there is no FFT anywhere in this code; the curve is just each
-frequency's single RSSI sample, taken one at a time and joined in list
-order, so it tells you the loudest frequency right now, not the shape of
-everything around it.
-
-### Does this actually work
-
-No. Like the rest of the Radios app, this panel is compiled out of the
-current firmware: `fwPanelAppRadios` (and this panel with it) only gets
-built when `RADIO_CC1101_SUPPORTED` is defined, and neither
-`targets/fw2main/CMakeLists.txt` nor `targets/fw2display/CMakeLists.txt`
-defines it - see radios.md for the full picture. The
-`obFrequencyAnalyzerChannel1`/`obFrequencyAnalyzerChannel2` objects this
-panel scans are, like the underlying `obRadio1`/`obRadio2` CC1101 objects,
-only instantiated in `targets/fwclassic/FreeWilliMain.cpp`, the old
-single-CPU Classic target, which the current build never touches.
-Everything below describes what the source says this screen is meant to
-do, not what happens if you select "SubGHz" today.
-
-### The screen (as designed)
-
-By default the screen is split between Radio 1 and Radio 2, each with a
-small plot of RSSI samples and a log of the strongest frequency found
-each pass, for example "433.920 MHz  -60 dB". A yellow line on each plot
-marks the current RSSI threshold. View can switch to a single, larger
-plot for just one radio, with the same peak text shown as an on-screen
-label instead of a log line.
-
-### Controls (as designed)
+### Controls
 
 | Button | Action |
 |---|---|
-| Yellow | View: open a list of layouts |
-| Centre | Choose the highlighted layout |
-| Green | Clear both radios' logged peaks and plots |
-| Blue | Show the RSSI threshold; press to change it |
-| Red | Unlabelled; has no visible effect (see What persists) |
-| Cancel | This help page |
+| Gray / Yellow | Change the highlighted scan setting |
+| Green | Start or pause scanning |
+| Blue | Change the frequency range or layout, as labeled |
+| Cancel | Open this help page |
+| Home | Return to the launcher |
 
-HOME leaves the screen from here, as it does everywhere else in the menu.
+A taller or brighter peak indicates a stronger signal at that frequency. RF
+noise can also produce peaks, so repeat the scan while operating the
+transmitter you want to identify.
 
-### How the scan works
+### Availability
 
-Each pass, a radio steps through a fixed list of 57 specific frequencies
-covering its three supported bands - 300 to 348 MHz, 387 to 464 MHz, and
-779 to 928 MHz - recording one RSSI reading per entry at a wide, 650 kHz
-receive bandwidth. Two of those 57 entries, 350.000 MHz and 467.750 MHz,
-sit just outside those bands: `setFrequency()` silently refuses an
-out-of-band value, so the radio doesn't actually retune for that step - it
-just re-samples RSSI at whatever frequency the previous step left it on,
-rather than that step being skipped outright.
-
-If the strongest of those 57 readings beats the RSSI threshold, the scan
-then zooms in: a second, finer sweep from 300 kHz below that frequency to
-300 kHz above it, in 20 kHz steps (30 points), at a narrower 58 kHz
-receive bandwidth. Whichever fine reading is strongest becomes the
-reported peak, provided it also beats the threshold; if the fine sweep
-doesn't turn up anything that strong, the coarse reading is reported
-instead. If even the coarse peak never beat the threshold, the fine
-sweep is skipped entirely and nothing is logged that pass.
-
-The plotted curve, in every layout, is always the 57 coarse readings -
-the fine sweep's readings only ever reach the log text and the peak
-label, never the plot. The curve's horizontal axis is the list in order,
-not a linear frequency axis, so the real gaps between the three bands
-(348 to 387 MHz, 464 to 779 MHz) are not represented on screen - the
-curve just runs straight from one band's last entry into the next band's
-first.
-
-Antenna selection needs no attention here: every `setFrequency()` call -
-coarse or fine - also switches which of the CC1101's antenna paths is
-connected (see radios.md's Antenna section for the shared RF switch with
-LoRa), so each of those readings is already taken on the correct band.
-There is no separate antenna setting on this screen that could be left
-pointed at the wrong band during a sweep.
-
-### RSSI threshold
-
-Blue's own label shows the current threshold, for example "-60 dB".
-Pressing it opens a number entry from -100 to 0 dB - values outside that
-range are rejected. Lower (more negative) accepts weaker signals as
-peaks; -100 accepts nearly anything, 0 accepts almost nothing. The same
-threshold applies to both radios; there is no separate one for Radio 2.
-
-### Choosing a view
-
-View opens a list: Radio 1-2 Plot/Log, Radio 1 Plot/Log, Radio 1 Plot,
-Radio 2 Plot/Log, Radio 2 Plot. Choosing a single-radio layout only
-changes what is shown - both radios keep scanning underneath either way
-(a filter in the update loop that reads as if it should skip the hidden
-radio checks for a layout equal to two different values at once, so it
-can never be true, and never skips anything).
-
-### What persists
-
-The layout you land on when you open this screen comes from the
-Frequency Analyzer Settings menu found elsewhere in the device; choosing
-a different one with View lasts only until you leave.
-
-The radios are never reliably handed back to the Radio Settings menu's
-configuration. Red is unlabelled and does not leave the screen - HOME is
-the only way out, and HOME does not stop the scan first either. Pressing
-Red does quietly call each radio's own settings-restore routine, but
-while scanning is running it has no visible effect: the very next pass
-calls `reset()` and reconfigures both radios from scratch anyway,
-overwriting whatever Red just restored. Leaving with HOME never calls
-that restore routine at all, so each radio is left in whatever
-configuration the last scan pass set - the scan's own settings, not the
-Radio Settings menu's - once you leave.
-
-### Power
-
-This screen is part of the Radios app, which requires the Sub-GHz power
-zone (`RP_ZONE(4)` in `fwPanelAppRadios::requiredZoneMask()`) - see
-radios.md's Power section for what that zone feeds and why it can't be
-confirmed on hardware while the app is dead code.
+The CC1101 application is not included in the current FreeWili 2 firmware
+release. See **Sub-GHz Radios** for availability information.
 
 **See also:** [Radio](../features/radio.md) — the console/GUI commands for this panel.

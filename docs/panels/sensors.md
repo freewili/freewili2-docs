@@ -64,9 +64,9 @@ named from the current date and time.
 ### Playback
 
 Green plays back the most recently recorded clip, whether it was made
-here or elsewhere in the firmware. It needs the Audio power zone on;
-with that zone off, pressing Green raises "Enable Audio power zone"
-rather than doing nothing.
+here or elsewhere in the firmware. It needs the Audio power zone (3),
+which is not the zone this app declares, so pressing Green switches that
+rail on itself, without asking, and then plays.
 
 ## Sensors
 
@@ -144,11 +144,10 @@ connection.
 ### Power
 
 The app declares the Sensors power zone (1), shared with the Microphone
-screen since the zone check is per app, not per panel. Opening either
-screen with zone 1 off puts up an "Enable Sensors power zone" message
-box; the screen still opens behind it, but every reading here shows as
-absent until the zone comes back on. Zone 1 is on by default and is
-switched from Power Devices. It powers the BMI323 IMU, BMM350
+screen since the requirement is per app, not per panel. Opening either
+screen switches zone 1 on if it was off, without asking, and holds it for
+as long as the screen stays open; readings show as absent until the rail
+is up. Zone 1 is on by default and is also switched from Power Devices. It powers the BMI323 IMU, BMM350
 magnetometer, SHT40 humidity sensor and OPT4001 light sensor these pages
 read from. The microphone array's own supply rail is not called out
 separately in the hardware reference, so this requirement does not cover

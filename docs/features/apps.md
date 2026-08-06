@@ -17,3 +17,11 @@ Switch the built-in display to the app with the given app ID
 **How to use it** — press `a`. At the prompt, enter: app id.
 
 **What you enter** — `app_id`.
+
+## Run App
+
+Runs /apps/<filename> on the display processor. The destination is inferred by reading the image, not the name: a UF2 whose blocks target SRAM is staged in RAM and launched; one targeting the PSRAM window (0x11000000) is staged into PSRAM through the loader stub and launched; anything else is written to flash. RAM and PSRAM launches leave flash untouched. A flash load takes 30-60 seconds with the screen blank.
+
+**How to use it** — press `r`. At the prompt, enter: the UF2 filename in /apps.
+
+**What you enter** — `filename`.

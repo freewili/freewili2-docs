@@ -52,10 +52,10 @@ screen from here, as it does everywhere else in the menu.
 ### Power
 
 The LoRa module sits on power zone 4, Sub-GHz, shared with the CC1101
-radios. Opening this screen with that zone switched off puts up an
-"Enable Sub-GHz power zone" message box; the screen still opens behind
-it, but the modem cannot answer and no packets arrive. Zone 4 is on by
-default and is switched from Power Devices.
+radios. Opening this screen switches that zone on if it was off, without
+asking, and holds it for as long as the screen stays open; the modem
+needs a moment on the rail before it answers. Zone 4 is on by default
+and is also switched from Power Devices.
 
 ### Reading the log
 

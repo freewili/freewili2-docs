@@ -6,54 +6,30 @@ sidebar_position: 20
 
 ## Wili Blocks
 
-Meant to watch a running step program - a "function block" - one step at a
-time, letting you pause, resume or single-step it. In this build the part of
-the firmware that actually steps a loaded program forward is switched off, so
-nothing on this screen ever moves under its own power.
+Wili Blocks displays step-based automation programs stored on the SD card.
 
-### The screen
+### Opening a program
 
-A typical SD card has no step-program file on it, so this is what actually
-opens: "Function Blocks" at the top, then "No blocks loaded.", "A step
-program is", "read from a .vs3fb", "on the SD card." Gray, Yellow and Red
-carry no label and do nothing.
+Save the program as `/myfblock.vs3fb` on the SD card, then restart FreeWili.
+The panel lists each step and shows its value and progress.
 
-### Why nothing runs
-
-A function block is a small step program - waits, jumps, loops, value sets
-and reads, and so on - stored as an XML file with a root `FBlock` tag and a
-`Steps` block holding one `Step` entry per line. The firmware loads whatever
-file sits at a fixed path, `myfblock.vs3fb` at the root of the SD card,
-unconditionally at boot; there is no way to pick a different file or folder
-from the UI.
-
-Loading is as far as it goes. The code that steps a loaded program forward,
-once per pass of MAIN's main loop, is commented out - deliberately, for the
-same reason the Command Panel doesn't run either: with no limit on how long a
-single step can take, stepping a program on every loop pass could stall MAIN
-past its own watchdog, clamped to a 16.7 second maximum, and reboot the
-device. So a file gets read at boot if one is there, and nothing ever
-advances it afterward. Command Panel and the Dynamic Panel editor are in a
-similar unwired state, for their own reasons (see command-panel.md and
-dynamic-panel.md).
+If no program is available, the panel displays **No blocks loaded**. Check that
+the SD card is mounted and that the file is in the card's root directory with
+the exact name `myfblock.vs3fb`.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Cancel | This help page |
+| Up / Down | Move through the step list |
+| Gray | Start or pause the program when execution is available |
+| Yellow | Advance one step while paused when execution is available |
+| Cancel | Open this help page |
+| Home | Return to the launcher |
 
-Gray, Yellow, Green, Blue and Red carry no label and do nothing in the
-shipped no-file state. HOME leaves the screen from here, as it does
-everywhere else in the menu.
+### Availability
 
-### If a .vs3fb file is present
-
-Place a `myfblock.vs3fb` file at the root of the SD card and reboot, and the
-step list fills in for real: one line per step, a "step value" field, and a
-progress bar to the right. Gray's label does switch between "stop" and "run",
-and Yellow does arm a single step, but both only touch flags that the
-disabled step runner never reads back. The highlighted step never leaves the
-first one, the progress bar never fills, and Up/Down still just move the
-highlight by hand - none of it changes what the device does, because nothing
-is actually running.
+This firmware can load and display a Wili Blocks program, but program
+execution is not available in the current release. Start, pause, and
+single-step therefore do not change the running state. You can still use this
+panel to inspect the steps in a compatible file.

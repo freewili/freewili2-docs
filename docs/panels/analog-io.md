@@ -97,10 +97,10 @@ rate) no matter what Gray is set to.
 ### Power
 
 This panel requires the Analog power zone (11) - the DAC, the TLA2024 and the
-front-end opamps behind both ADCs all sit on it. Opening this screen with the
-zone off raises an "Enable Analog power zone" message box; the screen still
-opens behind it, but nothing here reflects real hardware until the zone comes
-back on. Zone 11 is on by default and is switched from Power Devices.
+front-end opamps behind both ADCs all sit on it. Opening this screen switches
+that zone on if it was off, without asking; readings take a moment to reflect
+real hardware while the rail comes up. Zone 11 is on by default and is also
+switched from Power Devices.
 
 ## Waveform Generator
 
@@ -216,8 +216,8 @@ degrees), which this screen always leaves at 0 degrees.
 ### Power
 
 This screen requires the Analog power zone (11), which also feeds the TLA2024
-ADC and the input opamps. Opening it with that zone off puts up an "Enable
-Analog power zone" message box; the screen still opens behind it. Zone 11 is
-on by default and is switched from Power Devices.
+ADC and the input opamps. Opening it switches that zone on if it was off,
+without asking. Zone 11 is on by default and is also switched from Power
+Devices.
 
 **See also:** [Analog In](../features/analog-in.md), and [Analog Out & Trigger](../features/analog-out.md) — the console/GUI commands for this panel.

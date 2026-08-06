@@ -9,3 +9,17 @@ terminal, and on the device itself. See
 [Connecting it to a computer](../start-here/connecting.md) for how to reach them.
 
 > **Note:** This section is a navigation hub with no commands of its own - use it to jump straight to Device Settings, System, File System, or Power Management.
+
+## Get Time
+
+Reads the real-time clock kept by the board-manager PIC. The reply is one line of decimal tokens: year month day weekday hour min sec, with weekday 0=Sun..6=Sat and a 24-hour clock. Fails when the display link is down or the PIC has not seeded the clock yet.
+
+**How to use it** — press `t`.
+
+## Set Time
+
+Sets the real-time clock kept by the board-manager PIC. Arguments are year (2000-2099), month, day, hour (24-hour), minute, second; the weekday is derived from the date. See Also: t (Get Time).
+
+**How to use it** — press `c`. At the prompt, enter: YYYY MM DD hh mm ss (24-hour).
+
+**What you enter** — `year`, `month`, `day`, `hour`, `min`, `sec`.

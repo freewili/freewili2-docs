@@ -96,7 +96,7 @@ save into.
 
 Creating a database from the picker leaves you on the picker
 afterward, now showing every existing remote plus the new one, so you
-can open it right away and start saving codes. Before this fix the
+can open it right away and start saving codes. The new database opens
 list went blank until you left the screen and came back in.
 
 ### Feedback

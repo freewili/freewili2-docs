@@ -59,12 +59,12 @@ state. A labelled Back button on that view returns here.
 ### Power
 
 This screen needs the FPGA power zone - the SPI header pins route through
-the FPGA, unlike I2C's direct connection to the header. With that rail off,
-opening this screen raises "Enable FPGA power zone". That check only runs
-once, on entry: nothing here re-checks the zone, or the header pins' IO
-direction, before a Send goes out, so a transfer sent with the rail off, or
-a pin pointed the wrong way, does not raise a second warning - it just does
-not reach anything.
+the FPGA, unlike I2C's direct connection to the header. Opening this screen
+switches that rail on if it was off, without asking. That only happens once,
+on entry: nothing here re-checks the zone, or the header pins' IO direction,
+before a Send goes out, so a transfer sent while the rail is still coming
+up, or with a pin pointed the wrong way, does not warn - it just does not
+reach anything.
 
 ## Logic Analyzer
 

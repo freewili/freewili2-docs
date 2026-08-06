@@ -89,10 +89,10 @@ negotiated automatically with the network you join.
 
 ### Power
 
-This app needs power zone 5, the ESP32's rail. If the zone is off when
-you open Station Info or AP Info, a message box says so on the way in.
-Blue on this screen still turns the zone back on for you once an SSID
-is saved, per above.
+This app needs power zone 5, the ESP32's rail. Opening Station Info or
+AP Info switches that zone on if it was off, without asking, and holds
+it for as long as either screen stays open. Blue on this screen also
+turns the zone back on once an SSID is saved, per above.
 
 ## AP Info
 

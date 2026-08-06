@@ -85,36 +85,13 @@ elsewhere in the device, but that setting is not currently used: this
 device's actual Bluetooth terminal access always follows the Blue
 button's on/off state instead, regardless of what Terminal Enabled says.
 
-## BT Control
+## Bluetooth Control
 
-A second Bluetooth LE screen, alongside BT Info.
+Bluetooth controls are provided on the **BT Info** screen. Use that screen to
+view the ESP32 connection state, change the advertised device name, and turn
+Bluetooth LE on or off.
 
-### The screen
-
-The screen shows only a "BT Control" title. Nothing else is drawn here.
-
-### Controls
-
-| Button | Action |
-|---|---|
-| Cancel | This help page |
-
-Gray, Green and Yellow carry labels - "sel", "mode" and a third one - but
-none of them are wired to anything on this screen: pressing them does
-nothing. Red and Blue have no label here and also do nothing. HOME
-leaves the screen from here as it does everywhere else.
-
-### What this screen is for
-
-Right now, this screen exists but is not implemented: none of its
-buttons do anything other than Cancel, and it shows no BLE information
-of its own. For live Bluetooth status, advertised name and the on/off
-switch, use the BT Info screen instead.
-
-Nothing on the BT Info screen leads here, so this screen is not
-reachable through the device's own menus; it is normally opened only by
-a script. Opening it still needs power zone 5, the ESP32 rail, on first -
-that requirement belongs to the BLE app as a whole, not to anything this
-screen itself draws or checks.
+This placeholder screen has no configurable controls in the current release.
+Press Home to return to the launcher or Cancel to close this help page.
 
 **See also:** [Bluetooth LE](../features/bluetooth-le.md) — the console/GUI commands for this panel.

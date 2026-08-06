@@ -25,7 +25,7 @@ module.exports = {
     {
       type: 'category',
       label: 'System',
-      items: ['features/hardware', 'features/system', 'features/power-management', 'features/file-system'],
+      items: ['features/hardware', 'features/system', 'features/power-management', 'features/file-system', 'features/display-functions'],
     },
     {
       type: 'category',
@@ -62,7 +62,7 @@ module.exports = {
     {
       type: 'category',
       label: 'System',
-      items: ['panels/home-screen', 'panels/setup-actions', 'panels/files', 'panels/settings-display', 'panels/power-management', 'panels/about', 'panels/editor'],
+      items: ['panels/home-screen', 'panels/setup-actions', 'panels/files', 'panels/settings-display', 'panels/power-management', 'panels/about', 'panels/editor', 'panels/display-apps'],
     },
     {
       type: 'category',

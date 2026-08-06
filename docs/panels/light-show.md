@@ -140,8 +140,8 @@ lower rate than short ones.
 
 ### Power
 
-The app declares the LED power zone (10); the strip itself needs it to
-light at all. The accelerometer and microphone that drive some of the
-patterns are on other rails the app does not declare - if either is off,
-or the sensor itself isn't present, those patterns just go dark instead
-of warning about a missing zone.
+The app declares the LED power zone (10), so opening the screen switches
+it on if it was off; the strip needs it to light at all. The accelerometer
+and microphone that drive some of the patterns are on other rails the app
+does not declare - if either is off, or the sensor itself isn't present,
+those patterns just go dark.

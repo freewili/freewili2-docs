@@ -15,6 +15,7 @@ Connects to the CM0 Linux shell and displays its output.
 | Button | Action |
 |---|---|
 | Green | Enter and send a shell command |
+| Yellow | Enable or disable the Linux CPU |
 | Blue | Clear the terminal log |
 | Red | Send Ctrl-C to the running command |
 | Up/Down | Recall previous command lines |
@@ -22,3 +23,25 @@ Connects to the CM0 Linux shell and displays its output.
 
 The shell connection is attached while this panel is visible and detached
 when the panel closes.
+
+### Power
+
+Nothing here can tell whether you want the Linux CPU running, so opening
+the screen powers nothing - Yellow does, and the button says which way it
+will go: "Enable" while the module is down, "Disable" while it is up.
+
+Enabling switches the S17 rail (zone 17), its RUN/PG run line (control
+line 19) and the FPGA rail the bridge runs through (zone 6), all in one
+frame. The rail alone is not enough - with RUN/PG still low the module
+stays in reset and nothing ever answers. Enable Linux CPU in the Linux
+Functions console menu does the same thing, and the two always agree
+because both read the live zone state the PIC reports.
+
+The label follows that live state rather than the press, so it flips a
+second or so after Yellow, once the PIC has applied the frame. Booting
+takes longer still, so the terminal can sit silent for a stretch after
+enabling.
+
+Disabling drops the rail and the run line but leaves zone 6 on, since the
+rest of the firmware uses the FPGA. Leaving the screen switches nothing
+off - the module keeps running.
