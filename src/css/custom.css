@@ -121,11 +121,38 @@ h1, h2, h3, h4 {
   transform: translateY(-1px);
 }
 
-/* screenshots on generated panel pages */
+/* Images in docs pages.
+ *
+ * This used to cap every image at 320px, meant for 480x320 panel screenshots.
+ * The cap silently applied to everything else too - the 900px connector
+ * diagrams rendered at a third of their size, with their callout labels
+ * unreadable. max-width: 100% keeps an image inside the column without ever
+ * shrinking one that already fits: the button icons in Quick start are 80x80
+ * and are unaffected either way, and a 480x320 screenshot still lands at its
+ * natural size. */
 .markdown img {
-  max-width: 320px;
+  max-width: 100%;
   border: 1px solid var(--fw-line);
   border-radius: 8px;
   display: block;
   margin: 1rem 0;
+}
+
+/* Connector diagrams - docs/hardware/connectors.md.
+ *
+ * 900x900 line drawings whose whole job is to be read, so they take the full
+ * column width. They are also transparent PNGs with dark grey artwork, so on a
+ * dark page the device body all but disappears - hence their own light surface
+ * in both themes.
+ *
+ * Matched on the file name, because there is no per-page hook to hang this on:
+ * `wrapperClassName` is *pages* front matter and is ignored on a doc, and
+ * Docusaurus hashes an image to /assets/images/<stem>-<hash>.png, dropping the
+ * directory - so the source path cannot be selected on either. The stem
+ * survives, so this matches ConnectorsTop/Bottom/Right and ConnectionsLeft.
+ * Rename one of those and it silently stops applying. */
+.markdown img[src*="/Connect"] {
+  width: 100%;
+  background: #f4f5f7;
+  padding: 0.5rem;
 }
