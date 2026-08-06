@@ -23,3 +23,63 @@ Transmits a 4-byte IR code.
 **How to use it** — press `a`. At the prompt, enter: 4 byte IR code in hex.
 
 **What you enter** — `ir_code`.
+
+## IR Self Test
+
+Transmits one frame per supported protocol and checks that the on-board receiver decodes each one back. Takes a few seconds and emits infrared.
+
+**How to use it** — press `t`.
+
+## List IR Dir
+
+Lists the directories and .ir files on the SD card, directories first. Empty path lists \ir\.
+
+**How to use it** — press `l`. At the prompt, enter: Directory to list, empty for \ir\.
+
+**What you enter** — `path`.
+
+## List IR Buttons
+
+Lists the buttons in one Flipper .ir file with the index each one is sent by. Malformed entries are counted as skipped, not listed.
+
+**How to use it** — press `b`. At the prompt, enter: Path of a .ir file.
+
+**What you enter** — `path`.
+
+## Send IR Button
+
+Transmits one button from a .ir file, repeated by the IR Repeat setting. Emits infrared.
+
+**How to use it** — press `s`. At the prompt, enter: Button index then the .ir file path.
+
+**What you enter** — `index`, `path`.
+
+## Save IR Capture
+
+Appends the last received signal to \ir\learned.ir under this name, decoded when the protocol was recognised and as raw timings when it was not.
+
+**How to use it** — press `c`. At the prompt, enter: Name for the captured signal.
+
+**What you enter** — `name`.
+
+## IR Status
+
+Reports the IR engine's carrier, repeat count, capture overruns and whether the \ir\ tree exists on the card.
+
+**How to use it** — press `i`.
+
+## IR Carrier
+
+Default transmit carrier frequency. Only these four are legal; a .ir raw entry with its own frequency line overrides this for that entry.
+
+**How to use it** — press `f`.
+
+**What you enter** — `value`.
+
+## IR Repeat
+
+How many times Send IR Button transmits each frame, 1 to 5, with a 40 ms gap between repeats.
+
+**How to use it** — press `r`.
+
+**What you enter** — `value`.

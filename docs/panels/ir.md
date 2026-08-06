@@ -6,129 +6,488 @@ sidebar_position: 40
 
 Found under **Wireless** on the device's panel list.
 
-## IR Hacker
+## IR Remotes
 
-Shows every infrared code the device receives as it arrives, and can
-resend, replay or fuzz them.
+Builds your own remote controls out of codes you captured, and sends
+them. A remote here is a named `.ir` file in `\ir\remotes\` on the SD
+card holding a list of named buttons, so one you make survives a power
+cycle and can be copied off the card afterwards.
 
-### The screen
+The workflow is: capture a button on the IR Learn screen, come here, and
+add it to a remote under a name that means something. Repeat until the
+remote has everything you need.
 
-"IR hacker" is shown top left; to its right, the most recently received
-code in hex, labeled "nec" - this screen assumes the NEC infrared
-protocol and does not decode others. That label updates the moment a new
-code arrives. Below that, a scrolling log fills the rest of the screen,
-oldest at the top and newest at the bottom. Each line reads "ir" followed
-by the code in hex. A line is yellow when it is the first code of a new
-signal - more than half a second since the last one, or none received
-yet - and the regular log color for a repeat code within that half
-second.
+### The two views
 
-If the state machine that drives transmit lost its PIO slot to another
-driver at boot, the log's first line reads "IR transmit PIO did not
-load" in red. That is a diagnostic, not a log entry: it means Yellow,
-Green, Blue and Hold Blue will not actually send anything, even though
-receiving still works.
+The screen has one list that shows two different things, and the title
+tells you which:
 
-### Controls
+- **IR Remotes** - the picker. Every remote on the card, one per row. Selecting one opens it.
+- **the remote's name** - its buttons. The names run down the left; the coloured pad on the right is the same buttons, laid out to be pressed.
 
-| Button | Action |
-|---|---|
-| Gray | remotes - switch to the IR Remote screen |
-| Yellow | code - enter a code by hand (hex), pre-filled with the last one received; any value is accepted, nothing is enforced |
-| Green | replay - resend the received codes still in the buffer (up to the last 32), about 100 ms apart |
-| Blue | resend - resend the last received code |
-| Hold Blue | Start or stop fuzzing: walks the command byte of the last received code, sending one variant about every 100 ms |
-| Red | clear - clear the log and the received-code buffer |
-| Page | Switch to the IR Remote screen |
-| Cancel | This help page |
+### The picker: remotes, then recents
 
-Each button fires once per press; it does not repeat on release or on
-holding it down. Blue is the one exception: a press sends the last code
-as usual, and a separate, longer hold toggles the fuzzer.
+Below the remotes, in cyan, are the **last ten `.ir` files you opened**
+from anywhere under `\ir\` - the way back to a database file without
+walking the tree to it again. Selecting one opens it exactly as browse
+would. Whatever you opened last is the row the cursor starts on when you
+come to this screen, so returning to it is one press.
 
-Red clears the log and is labeled to say so. HOME leaves the screen
-from here, as it does everywhere else in the menu.
+The list lives in `\ir\recents.txt`, one path per line, newest first.
+It is ordinary text: read it, edit it, or delete it from a PC and the
+screen follows. Remotes are not repeated in the cyan half, since they
+are already listed above it.
 
-The board LEDs report IR traffic while this screen is open: a received
-code pulses three of them purple, and a transmitted one pulses the
-other three yellow.
+Blue opens **browse**, which reaches any `.ir` file under `\ir\` rather
+than only the ones in `\ir\remotes\`. That is how you send a code
+straight out of a downloaded database without copying it into a remote
+first. A browsed file opens in the same buttons view and sends the same
+way, but it cannot be edited: `add` and `assign` are withheld over it so
+a database file is never rewritten by accident. Gray goes back.
 
-### Fuzzing
+The chooser browse opens is the shared file picker, so Green and Blue
+page up and down through a folder - a category of the Flipper database
+runs to over a hundred entries.
 
-Fuzzing is a way to probe what codes a receiver responds to. It holds
-the low 16 bits of the last code you received - the address half of an
-NEC code - and walks the command half: a counter 0 through 255 in the
-top byte, its complement in the byte below, which is the pairing a real
-NEC remote uses. One variant goes out about every 100 ms, so a full
-sweep takes roughly 26 seconds and then starts over. It keeps going
-until you press and hold Blue again.
+### The touch pad
 
-Because only the command half changes, fuzzing probes one device
-address at a time: point it at the receiver you care about, capture one
-of its codes first, then fuzz from that.
+Inside a remote the right of the screen is sixteen coloured keys. Touch
+one and it transmits - no need to move a cursor to it first. The names
+down the left are the same buttons in the same order, and Center or OK
+still sends whichever of those is highlighted, so either way works.
 
-## IR Remote
+A key stays pressed for exactly as long as the frame takes to go out,
+then comes back up.
 
-Sends saved infrared codes as a virtual remote, organized into named
-databases kept on the SD card.
+Each pad position keeps its colour as the pages change under it, because
+the position is the thing your hand learns, not the name on it. A remote
+with more than sixteen buttons gets a **page** key on Blue; it wraps.
+Keys with nothing behind them are not drawn - a coloured key that sent
+nothing would be a lie.
 
-### The screen
-
-This screen has two views, easy to mix up if you don't know the
-captions:
-
-- **Picker**, captioned "Pick Remote IRL" - a list of every `.fwir` database file in the `/ir/` folder on the SD card, plus a built-in "roku" entry that is always present even with an empty folder. Selecting an entry opens it and switches to the command view.
-- **Command view**, captioned "Blast Away!" - the saved commands in whichever remote you just opened. Selecting one transmits it right away.
+The title and a status line sit across the top of the right-hand side.
+On the picker the status counts what was found, as `4 remotes, 3 recent`.
+Inside a remote it does **not** count the buttons - the pad and the list
+are both already showing them - and reports only what happened: `sent`
+after each transmission, or a problem. The one count it still gives there
+is `5 ok, 2 skipped`, for entries in the file that this build cannot
+represent and has dropped; a remote written here should never show one.
 
 ### Controls
 
 | Button | Action |
 |---|---|
-| Center (or tap) | Picker: open the highlighted remote. Command view: transmit the highlighted code |
-| Gray | back - one step out: command view to the picker, picker to the IR Hacker screen |
-| Blue | Picker: new - create a database (asks for a name). Command view: save - store the most recently received code under a name |
-| Page | Switch to the IR Hacker screen |
-| Cancel | This help page |
+| Up and Down | move through the list |
+| Center or OK | picker: open the remote. Buttons: transmit |
+| Green | picker: new - create a remote. Buttons: add - add the last capture |
+| Yellow | assign - replace the selected button's code with the last capture |
+| Blue | picker: browse - open any `.ir` file under `\ir\`. Buttons: page - the next sixteen on the pad |
+| Touch | a pad key transmits that button |
+| Gray | remotes - close the open remote and go back to the picker |
+| Page | next IR screen |
+| Cancel | this help page |
 
-Yellow, Green and Red carry no label on either view and do nothing.
-HOME leaves the screen from here, as it does everywhere else in the
-menu.
+Every label follows the view. Blue reads `browse` on the picker and
+`page` inside a remote - and only when there is a second page to go to.
+Yellow and Gray are labeled only inside an open remote; Green changes its
+own label between the two. Over a browsed file Yellow and Green go blank,
+because that file is read-only here. Red carries no label and does
+nothing. HOME leaves the screen.
 
-A code arriving while you are on this screen still pulses the board
-LEDs purple, the same as it does on IR Hacker.
+Every transmission flashes the three board LEDs amber.
 
-### Databases
+### Creating a remote
 
-A database is a plain text file in `/ir/` on the SD card, one command
-per line as `name=code`. Saving writes the code in hex, zero-padded to
-eight digits (`power=0x20DF10EF`); older files saved in plain decimal
-still load, since both are read the same way. Naming a database without
-an extension gives it `.fwir`.
+Green on the picker asks for a name. Use letters, digits, `-` and `_`;
+anything else is refused. The new remote appears in the list right away,
+empty, and the status line says `made it: open it and add`.
 
-A database holds **32 codes**. Loading one stops after the 32nd line,
-and saving into a full database fails rather than growing it - so a
-hand-written file longer than that is quietly truncated when opened.
+`bad name, or it exists` covers both a name the card will not take and a
+remote of that name already being there.
 
-The built-in "roku" database is not a file - it is 17 fixed commands
-built into the firmware, and there is nothing behind it to save into.
+An empty picker reads `none yet: press new` rather than looking broken.
 
-Creating a database from the picker leaves you on the picker
-afterward, showing every existing remote plus the new one, so you can
-open it right away and start saving codes.
+### Adding buttons
 
-### Feedback
+Open a remote, capture something on the IR Learn screen, come back, and
+press Green. It asks for a name and appends the last capture under it.
+A decoded capture is stored as its protocol, address and command; an
+undecoded one is stored as raw timings with the carrier that was
+configured when it was captured.
 
-Every dead end here says so instead of leaving you guessing:
+Green refuses with `capture one on IR Learn` when nothing has been
+received yet. There is nothing to add before then.
 
-- Creating a database reports whether it made the file or that a remote by that name already exists.
-- Opening a database with no saved commands says there are no codes yet.
-- Saving while roku is open refuses outright, since roku is built in and has no file to append to.
+### Reassigning a button
 
-### Working with IR Hacker
+Yellow overwrites the code behind the highlighted button with the last
+capture and **keeps the button's name**. That is the difference between
+Yellow and Green: Green adds a new row, Yellow rewrites an existing one.
 
-Blue in the command view saves whatever code was most recently
-received on the IR Hacker screen, even if that was a while ago - it
-does not have to be fresh. The two screens are meant to be used
-together: receive a code there, then come here to name and save it.
-Gray on the picker takes you straight back to IR Hacker, and Page
-switches between the two from either screen.
+It is the fix for a button that was learned wrong or from the wrong
+remote - point the right remote at the device, capture, highlight the
+row, press Yellow. The cursor stays where it was afterwards, so a run of
+corrections does not make you find your place again each time.
+
+`could not rewrite it` means the file could not be rewritten; nothing is
+lost, the old code is still there.
+
+### Transmitting
+
+Selecting a button sends it the number of times set by the Repeat
+setting on the IR Settings screen. That applies to a browsed file too -
+a remote is an ordinary `.ir` file, and both go out through the same
+path.
+
+### Where remotes live
+
+Remotes are files in `\ir\remotes\`. Copy them off the card and they
+open in any text editor; copy someone else's `.ir` file into that folder
+and it shows up here as a remote. A file anywhere else under `\ir\` is
+reachable through blue's browse without moving it.
+
+The `.ir` on the end of the file name is hidden on this screen, and a
+comma in a name is shown as an underscore because the list uses commas
+to separate its columns.
+
+## IR Learn
+
+Point a remote at the FreeWili and this screen tells you what it just
+said: which infrared protocol, which address and command, and what the
+signal looked like. From here you can send it straight back out again,
+or save it to the SD card under a name.
+
+This is the screen the old IR Hacker used to be. It is no longer NEC
+only, and it no longer shows a bare hex number with no way to tell what
+it means.
+
+### The screen
+
+There is no title row and no separate readout for the protocol. What was
+heard is written into the log, one line per capture, and the waveform is
+drawn under it. Top to bottom:
+
+- **the capture log** - the top half of the screen. Each capture adds a line naming the protocol and the two numbers the remote sent, as `NECext  A C7EA  C AD52`. A signal no decoder recognised is logged as `raw  212 edges` instead. The newest line is orange and the ones behind it grey; seven are kept.
+- **Blast Me** - a watermark over the empty log, there until the first line is written. It comes back when Gray clears the log.
+- **the byte labels** - the decoded bytes in upper-case hex, sitting just above the waveform with a bracket under each one showing which pulses carry it. Only protocols that send one bit per pulse pair get them (NEC and its family, Samsung32, RCA, Kaseikyo); RC5 and RC6 are laid out differently, so they get no brackets rather than brackets in the wrong place. A byte whose span is too narrow to hold two digits is left unmarked.
+- **the trace** - the signal itself: a step up for every mark, down for every space, each step as wide as the time it lasted.
+- **the caption** - under the waveform, `got: 34 edges`, with `rpt` on the end when the frame was a hold-down repeat rather than a fresh press. With no decode it reads `no protocol match`, or `truncated at 512` when the signal ran longer than the capture buffer.
+
+The three board LEDs flash purple every time something is received, so
+you can tell the device heard a button without watching the screen.
+
+The capture log starts empty every time you come to this screen, so what
+is on it always belongs to the visit you are in. Gray empties it again
+without leaving. The waveform is not cleared by either - the last thing
+captured stays drawn until something replaces it.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Gray | clear - empty the capture log and bring the watermark back |
+| Yellow | send - transmit the last capture again |
+| Green | save - name the capture and write it to the SD card |
+| Blue | fuzzer - open the Fuzzer on this address |
+| Red | search - find which remote this button came from |
+| Page | next IR screen |
+| Cancel | this help page |
+
+HOME leaves the screen, as it does everywhere else in the menu.
+
+### Search: which remote is this?
+
+Learn a button from a remote you cannot identify, then press **Red**. A
+folder chooser opens, already pointing at `\ir\TVs\` if you have it, so
+the usual answer is just to press OK. Anything else on the card is one
+or two moves away in the same chooser, and the folder you pick is
+searched together with everything under it.
+
+The search matches on **protocol and address**, and ignores the command
+completely. That is the whole trick: every button on one remote carries
+the same address, so protocol and address say *which device this is*
+while the command only says *which key you pressed*. Learning any button
+is enough.
+
+Every file that matches is named in the log along with the button in it
+that matched, as `Samsung_TV.ir: Power`. The line under the log counts
+files searched and files matched as it goes.
+
+When it finishes it says how much ground it covered, as
+`read 118 folders, 2503 files`. If any of it could not be reached, a
+second line says so: `PART ONLY:` and then how many folders were below
+the depth cap, how many would not open, and how many listings ran past
+what one folder can report. That distinction matters - "no match" over a
+tree that was read whole and "no match" over one that was not are
+different answers, and without those lines they look identical.
+
+When the walk finishes, a new remote is built in `\ir\remotes\` from the
+files that matched - every button in them, not just the one that did -
+named after the first matching file. It shows up straight away on the IR
+Remotes screen, ready to use. Search the same remote twice and the second
+one gets a number on the end rather than overwriting the first.
+
+The search runs a few files at a time between screen updates, so the
+screen keeps drawing and the buttons keep working while it does. **Red**
+becomes `cancel` while it runs, and leaving the screen stops it too.
+Searching a category of the Flipper database means reading a few thousand
+files, which takes a while - the counter moving is how you know it is
+still working.
+
+Two things it will not do: a capture with no decode (`raw`) has no
+address to look for, so Red says `no decoded code to find`; and folders
+more than four levels below the one you picked are not walked.
+
+### An unknown protocol is a result, not a failure
+
+The decoders know ten protocols. Anything else still gets captured, and
+the trace still draws, and Green still saves it - it is stored as the
+raw list of edge timings rather than as a protocol, address and command.
+Resending a raw capture works exactly as well as resending a decoded
+one, because the raw timings are what the receiver actually heard.
+
+Two things are worth reading on the status line when there is no decode:
+
+- **no protocol match** - a real signal, just not one of the ten. Save it and it will still replay.
+- **truncated at 512** - the signal was longer than the capture buffer. What was kept is still usable but is not the whole thing; air conditioner remotes, which send very long frames, are the usual cause.
+
+### Resend
+
+Yellow puts the last capture back on the air as raw timings - not a
+re-encode of the decoded numbers. That is deliberate: it means resend
+works for the protocols the decoders do not know as well as the ones
+they do.
+
+The carrier frequency is the one set on the IR Settings screen. A
+receiver strips the carrier off before the signal ever reaches us, so
+there is no way to recover the original from a capture; if a resend does
+not work on a device that the real remote does work on, the carrier is
+the first thing to change.
+
+Capture stays running while you transmit, so the board hears its own
+emitter and logs that as a fresh capture. A resend therefore adds a line
+to the log just as a real remote would, and the two are not
+distinguished. If you need to be sure what you are looking at, clear the
+log with Gray before pressing Send.
+
+### Save
+
+Green asks for a name and appends the capture to `\ir\learned.ir` on the
+SD card, creating the file and the `\ir\` folder if they are not there
+yet. A decoded capture is stored as its protocol, address and command; an
+undecoded one is stored as raw timings plus the carrier that was
+configured at the time.
+
+Saved codes land in `\ir\learned.ir`. To send one, open it with the
+browse button on the IR Remotes screen. To put one on a remote of your
+own instead, use the Add or Assign buttons there.
+
+If the status line says `could not write card` the card is missing,
+full, or write protected.
+
+### The receiver never stops
+
+Capture runs no matter which screen is showing. Open this one after
+pressing a remote somewhere else and the last thing received is already
+on the glass rather than an empty screen.
+
+## IR Settings
+
+Two transmit settings and a self test. Both settings are remembered
+across a power cycle and are shared with everything else that transmits
+infrared on this device: the Remotes, Learn and Fuzzer screens and the
+host API all use them.
+
+### The screen
+
+Four lines:
+
+- **carrier** - the transmit carrier frequency in kHz.
+- **repeat** - how many times each transmission is sent.
+- **duty fixed 33 pct** - a reminder, not a setting. The duty cycle of the carrier is fixed in hardware at one third and cannot be changed.
+- **status** - blank until the self test is run, then its result.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Yellow | carrier - step to the next frequency |
+| Green | repeat - step the repeat count |
+| Blue | self test - transmit and receive every protocol and report |
+| Page | next IR screen |
+| Cancel | this help page |
+
+Gray and Red carry no label and do nothing. HOME leaves the screen.
+
+Both settings wrap around rather than stopping at the end, so one button
+each is enough to reach every value.
+
+### Carrier
+
+Four frequencies are offered: 36, 38, 40 and 56 kHz. These are the only
+ones the transmitter is specified for, so the list is fixed rather than
+a free number - an arbitrary value would be accepted by the screen and
+then quietly refused by the hardware.
+
+38 kHz is the default and is what the large majority of consumer remotes
+use. 36 kHz is common on older European equipment and 56 kHz turns up on
+some Sony and industrial gear.
+
+The carrier applies to anything sent as a protocol, address and command:
+a decoded capture resent from IR Learn, or a button stored in decoded
+form in a `.ir` file. It does **not** apply to a raw entry in a `.ir`
+file, because a raw entry carries its own frequency and that wins.
+
+A receiver removes the carrier before the signal reaches the decoder, so
+the original frequency cannot be recovered from something you captured.
+If a code that was learned correctly does not work when sent back, the
+carrier is the first thing to change.
+
+### Repeat
+
+How many times each transmission is sent, from 1 to 5, with a 40 ms gap
+between repeats.
+
+Real remotes hold a button down and send continuously, and some devices
+will not act on a single frame at all. If a device responds to its own
+remote but not to the FreeWili, raise this before assuming the code is
+wrong.
+
+The cost is time: at 5 repeats a transmission takes roughly half a
+second, and every send blocks the screen for that long.
+
+### Self test
+
+Blue transmits one frame in each of the ten supported protocols and
+checks that the on-board receiver decodes each one back with the address
+and command it was given. The transmitter and the receiver are on the
+same board and the receiver hears the transmitter, so this is a real end
+to end test of both halves without any other equipment.
+
+It takes a few seconds, during which the screen shows
+`running self test...`. The result is a count: `10 passed, 0 failed`.
+
+The protocols covered are NEC, NEC extended, Samsung32, SIRC, SIRC15,
+SIRC20, RCA, RC5, RC6 and Kaseikyo.
+
+It really does emit infrared, so anything in the room that responds to
+these codes may react. Point the device somewhere harmless first.
+
+A failure means one of three things: the transmitter is not driving the
+LED, the receiver is not hearing it, or that one protocol's encoder and
+decoder disagree. Running the same test from the host console prints a
+line per protocol and names which one failed; this screen has room only
+for the totals.
+
+## IR Fuzzer
+
+Holds one address and sends every command in it, one after another, in
+whichever infrared protocol you pick. It is how you find out what a
+receiver responds to when you know roughly what it is but not which
+button does what.
+
+This replaces the fuzzer that used to be a hidden long-press on the old
+IR Hacker screen. That one only spoke NEC, and it reported the
+*complement* of what it actually put on the air - the number on screen
+was never the number the receiver saw.
+
+### The screen
+
+Five lines, top to bottom:
+
+- **proto** - the protocol and how many commands one full pass sends, for example `proto NEC  256 codes`. The count is shown next to the name so the cost of the choice is visible before you start rather than thirty seconds into it.
+- **addr** - the address every frame carries, and where it came from: `from rx` if it was taken from the last code the device received, `typed` if you entered it, `default` if neither has happened yet.
+- **cmd** - the command last transmitted. Reads `cmd  --` until the first frame goes out. On RC5 it says `RC5X` after the number when the command is one of the extended ones (see below).
+- **delay** - the gap setting and whether looping is on.
+- **status** - `ready`, then `sweep 58/256  ~23s` while running, then `done: 256 sent` when the pass finishes.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| Gray | proto - next protocol |
+| Hold Gray | turn looping on or off |
+| Yellow | addr - type the address in hex; the range offered is whatever that protocol can actually transmit |
+| Green | start, and stop - the label follows the state |
+| Blue | delay - cycles 25, 50, 100, 250 and 500 ms |
+| Page | next IR screen |
+| Cancel | this help page |
+
+Red carries no label and does nothing. HOME leaves the screen, as it
+does everywhere else in the menu.
+
+Gray does two things because there are five settings and four buttons.
+Since looping has no button label of its own to read, its state is
+always written on the **delay** line.
+
+Protocol, address and looping can only be changed while the sweep is
+stopped. The delay can be changed while it runs.
+
+### Where the address comes from
+
+The first time you open the screen, it takes the protocol, address and
+command from the last code the device decoded - whatever you last
+pointed at the receiver on the Learn screen. After that it keeps what
+you chose. The screen never reads the SD card, so it cannot stall
+waiting on it.
+
+The address is trimmed to what the protocol will really transmit. That
+is not the same width everywhere: RCA carries four bits of address, RC5
+and 12-bit SIRC five, NEC and RC6 and Samsung32 eight, SIRC20 thirteen,
+NECext sixteen, Kaseikyo twenty-four. Type `0xFF` as an RCA address and
+it becomes `0xF`, because `0xF` is what would go out.
+
+### How many commands a pass sends
+
+The command field is a different width in every protocol, so a pass is
+not always 256 frames:
+
+| Protocol | Commands in one pass |
+|---|---|
+| NEC, Samsung32, RC6, RCA | 256 |
+| RC5, SIRC, SIRC15, SIRC20 | 128 |
+| NECext, Kaseikyo | 256 (the low byte only) |
+
+NECext really has a 16-bit command and Kaseikyo a 24-bit one. Sending
+all of either is not a thing you can wait for - about two hours and
+about twenty-two days respectively - so the low byte is swept and the
+bits above it are held at whatever the seeded command had. That is what
+"try every button on this remote" means in practice.
+
+RC5's seventh command bit is not a value bit; it is the flag that turns
+an RC5 command into its RC5X counterpart. Sweeping 0 to 127 therefore
+covers the 64 RC5 commands and the 64 RC5X ones, which is what you
+want, and the screen labels the second half `RC5X` so the number
+matches what a receiver will report.
+
+### The delay is a gap, not a period
+
+The delay is the pause **after** a frame finishes, not the interval
+between the starts of two frames. The time a frame itself takes is set
+by the protocol and is not adjustable: a NEC frame is about 67 ms of air
+time, an RC5 frame far less, a Kaseikyo frame more. There is also about
+20 ms of settling after each one before the next can be armed.
+
+So a NEC pass at the default 50 ms delay runs at roughly 137 ms per
+frame, and 256 of them take a little over half a minute.
+
+The screen does not guess at this. It measures the interval between
+frames as they go out and estimates from that, which is why no time
+estimate appears until a couple of frames have actually been sent.
+
+### Looping
+
+With looping off, one pass runs and stops, and the status line says how
+many frames went out. With it on, the sweep wraps back to command 0 and
+keeps going until you press Green again.
+
+Leaving the screen stops the sweep either way. A transmitter running
+behind a screen you cannot see is one you cannot stop.
+
+### What it does to the Learn screen
+
+Nothing. The receiver hears the on-board transmitter - that is what the
+self test on the Settings screen relies on - so a sweep is heard back a
+few hundred times. Those are thrown away rather than being allowed to
+overwrite the code you learned, so whatever the Learn screen was showing
+before the sweep is still there afterwards.
