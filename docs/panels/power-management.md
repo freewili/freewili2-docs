@@ -96,12 +96,16 @@ number and what it powers:
 | 17 | CM0 | Compute module and its microSD |
 
 All seventeen default to on. Switching a zone off can disable whole
-features - a panel that needs a zone you turned off will refuse to open
-and name the zone it is missing. Turning one off here only changes what
-stays powered while the device is awake; what stays powered during sleep
-is set separately on the Sleep Config tab. Zone 9 is the exception - it
-is not a power rail, so switching it only turns the board-manager LED on
-or off and has no effect on power in either mode.
+features. When you open a screen that requires a managed peripheral, the
+device switches that zone back on automatically and keeps it on while the
+screen is open. The peripheral may need a moment to start, so leave and
+reopen the screen if it was entered while its rail was still coming up.
+
+Turning a zone off here only changes what stays powered while the device is
+awake; what stays powered during sleep is set separately on the Sleep Config
+tab. Zone 9 is the exception - it is not a power rail, so switching it only
+turns the board-manager LED on or off and has no effect on power in either
+mode.
 
 ## Sleep Config
 

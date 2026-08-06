@@ -30,3 +30,17 @@ Save currently detected card to .nfc file
 **How to use it** — press `s`. At the prompt, enter: filename to save.
 
 **What you enter** — `path`.
+
+## Play (Emulate) Card
+
+Transmit (emulate) a saved card's NFC-A UID/ATQA/SAK
+
+**How to use it** — press `e`. At the prompt, enter: filename to emulate.
+
+**What you enter** — `path`.
+
+## Stop Emulation
+
+Stop NFC card emulation
+
+**How to use it** — press `t`.

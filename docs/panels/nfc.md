@@ -42,12 +42,23 @@ Yellow. Re-reading the same tag leaves them as they are.
 |---|---|
 | Green | Turn the reader field on or off; the label shows which way it will go |
 | Yellow | Clear the log and the latched tag lines, and rescan, so a tag still on the reader is reported again |
+| Blue | Save the last-read card under a name you type |
+| Gray | Open the list of saved cards |
 | Red | Leave the screen |
 | Cancel | This help page |
 
-Gray and Blue are unbound on this screen and draw no label. Each button fires
-once per press. HOME leaves the screen from here, as it does everywhere else in
-the menu, and Red is labeled with the same home glyph.
+Each button fires once per press. HOME leaves the screen from here, as it does
+everywhere else in the menu, and Red is labeled with the same home glyph.
+
+### Saved cards and emulate
+
+Blue saves the last card read on this screen: type a name and its identity is
+kept for later. Gray opens the saved-cards list; pick a card there to open it.
+
+Opening a saved card shows its UID next to a state line. Green starts or stops
+playing that identity back — the FreeWili presents the saved card to a nearby
+reader, as if the original card were held up to it. Blue returns to the
+saved-cards list; leaving the screen also stops playback if it is running.
 
 ### Power
 
@@ -71,8 +82,8 @@ a tag is picked up within a few passes of being placed rather than instantly.
 ### What this version does
 
 This screen detects and identifies NFC-A tags only. It does not authenticate,
-read or write MIFARE Classic sectors, and it does not save tags; those live in
-the console NFC commands. Nothing on this screen is saved, and the field is
-turned off when you leave.
+read or write MIFARE Classic sectors; that stays in the console NFC commands.
+Saving a card here keeps only its identity — UID, ATQA, and SAK — not sector
+data, and the field is turned off when you leave.
 
 **See also:** [NFC](../features/nfc.md) — the console/GUI commands for this panel.

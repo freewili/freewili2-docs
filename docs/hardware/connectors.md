@@ -14,7 +14,11 @@ The numbers in each table match the numbered callouts in the picture above it.
 
 ## Top edge
 
+<div className="hw-diagram">
+
 ![Connectors on the top edge of FREE-WILi 2](/img/ConnectorsTop.png)
+
+</div>
 
 | # | Connector | What it's for |
 |---|---|---|
@@ -26,7 +30,11 @@ The numbers in each table match the numbered callouts in the picture above it.
 
 ## Bottom edge
 
+<div className="hw-diagram">
+
 ![Connectors on the bottom edge of FREE-WILi 2](/img/ConnectorsBottom.png)
+
+</div>
 
 | # | Connector | What it's for |
 |---|---|---|
@@ -48,7 +56,11 @@ whatever is plugged into it.
 
 ## Left edge
 
+<div className="hw-diagram">
+
 ![Connectors on the left edge of FREE-WILi 2](/img/ConnectionsLeft.png)
+
+</div>
 
 | # | Connector | What it's for |
 |---|---|---|
@@ -69,7 +81,11 @@ whatever is plugged into it.
 
 ## Right edge
 
+<div className="hw-diagram">
+
 ![Connectors on the right edge of FREE-WILi 2](/img/ConnectorsRight.png)
+
+</div>
 
 | # | Connector | What it's for |
 |---|---|---|
