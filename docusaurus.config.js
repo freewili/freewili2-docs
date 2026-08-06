@@ -6,8 +6,11 @@ const config = {
   tagline: 'Documentation',
   favicon: 'img/favicon.ico',
 
-  url: 'https://freewili.github.io',
-  baseUrl: '/freewili2-docs/',
+  // Served at the root of its own domain. static/CNAME claims it on GitHub
+  // Pages; organizationName/projectName still name the repo the deploy
+  // workflow publishes from.
+  url: 'https://docs.freewili.com',
+  baseUrl: '/',
   organizationName: 'freewili',
   projectName: 'freewili2-docs',
   trailingSlash: true,

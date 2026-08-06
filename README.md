@@ -3,7 +3,7 @@
 Public user documentation for the FREE-WILi 2 handheld electronics
 multitool, built with [Docusaurus 3](https://docusaurus.io/).
 
-Live site: **https://freewili.github.io/freewili2-docs/**
+Live site: **https://docs.freewili.com/**
 
 This is user documentation — how to use the device — not developer or
 firmware documentation. It does not cover wire formats, API signatures, or
