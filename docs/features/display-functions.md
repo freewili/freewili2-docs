@@ -55,4 +55,12 @@ Runs /apps/<filename> on the display processor from PSRAM (0x11000000 window, up
 
 **What you enter** — `filename`.
 
+## Load PSRAM Data
+
+Stages /apps/<filename> verbatim into the display's PSRAM at <offset> bytes from 0x11000000, and leaves the loader stub running instead of launching anything. For bulk assets that would otherwise have to travel inside the app's own UF2. The file is taken as raw bytes: no UF2 decode. Repeat for as many blobs as needed, then Run PSRAM App -- the stub stays resident between calls, so only the first pays the two-hop entry, and the launch overwrites only what the app image itself covers. Staged data does NOT survive a display reset.
+
+**How to use it** — press `s`. At the prompt, enter: Filename in /apps and a hex PSRAM offset.
+
+**What you enter** — `filename`, `offset`.
+
 **See also:** [Display Apps panel](../panels/display-apps.md) — the on-screen panel for this.

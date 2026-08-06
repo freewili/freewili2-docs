@@ -7,7 +7,7 @@ sidebar_position: 1
 
 FREE-WILi 2 is a handheld, open-hardware electronics multitool: a pocket lab
 for GPIO, analog I/O, wireless protocols, and retro gaming, built around two
-RP2350 microcontrollers plus a Raspberry Pi CM0 running Linux.
+RP2350 microcontrollers plus a Raspberry Pi CM0 running Linux. COOL!
 <!-- VERIFY: "electronics multitool" / "pocket lab" framing is site marketing copy; confirm this is the description the docs owner wants to lead with -->
 
 ## Two brains, and a few more
