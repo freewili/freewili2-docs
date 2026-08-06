@@ -140,10 +140,19 @@ h1, h2, h3, h4 {
 
 /* Connector diagrams - docs/hardware/connectors.md.
  *
- * 900x900 line drawings whose whole job is to be read, so they take the full
- * column width. They are also transparent PNGs with dark grey artwork, so on a
- * dark page the device body all but disappears - hence their own light surface
- * in both themes.
+ * Wide, short line drawings whose whole job is to be read, so they take the
+ * full column width. They are also transparent PNGs with dark grey artwork, so
+ * on a dark page the device body all but disappears - hence their own light
+ * surface in both themes.
+ *
+ * These used to be 900x900 squares with the artwork in a band across the lower
+ * half: 320-389px of every canvas was fully transparent. width:100% scales that
+ * emptiness up along with the picture, so the connectors still drew at about
+ * half the size the column allows and the rule below looked like it was not
+ * working. Fixed by cropping the PNGs to their alpha bounding box plus an 8px
+ * margin, which no stylesheet could have done - the waste was inside the image.
+ * Content coverage went from ~50% of the canvas to 95%. If a diagram is ever
+ * re-exported, trim it the same way before committing it.
  *
  * Matched on the file name, because there is no per-page hook to hang this on:
  * `wrapperClassName` is *pages* front matter and is ignored on a doc, and
