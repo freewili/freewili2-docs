@@ -19,20 +19,13 @@ Plugging in USB powers it on too.
 Hold the red button for 6 seconds and the device begins a safe 10-second
 shutdown, then settles into a 60 µA sleep called ship mode.
 
-Holding red *at* power-up is a different thing entirely — it forces the main
-processor into its recovery bootloader instead of affecting power at all.
-See [Recovery mode](../help/recovery-mode.md) if that's what you're after.
-
 ## The main menu
 
-Once it's up, you land on the main menu: a scrolling list of **panels** —
-the screens the firmware itself draws and hands the buttons and touchscreen
-to (see [Screen and buttons](screen-and-buttons.md) for the full layout and
-how this differs from a real, SD-card-launched app). Some panels are grouped
+Once it's up, you land on the main menu: a scrolling list of **panels**. Some panels are grouped
 into folders (IO, Wireless, GUI, System, and others). Use **up** and
-**down** on the D-pad to move through the list, and **center** (or **ok**)
+**down** on the D-pad to move through the list, and **right** (or **ok**)
 to open whatever's highlighted — including opening a folder to reveal the
-panels inside it. **Cancel** backs out one level.
+panels inside it. 
 
 ## On-device help
 
@@ -40,7 +33,7 @@ panels inside it. **Cancel** backs out one level.
 
 Press **Cancel** on any panel to read that panel's own help page. On a panel
 that already uses Cancel for something of its own, hold it for 6 seconds
-instead.
+instead. Press the **Red** button on the main screen for help.
 
 ## The buttons
 
@@ -49,7 +42,7 @@ Four buttons beside the screen mean the same thing on every panel:
 |                                                | Button     | What it does                                                             |
 | ---------------------------------------------- | ---------- | ------------------------------------------------------------------------ |
 | ![Ok button](../../static/img/bok.png)         | **Ok**     | Opens or confirms whatever is selected                                   |
-| ![Cancel button](../../static/img/bcancel.png) | **Cancel** | Backs out one level — or opens that screen's help page, where it has one |
+| ![Cancel button](../../static/img/bcancel.png) | **Cancel** | Exits a dialog without action — or opens that screen's help page, where it has one |
 | ![Home button](../../static/img/bhome.png)     | **Home**   | Straight back to the main menu, from anywhere                            |
 | ![Page button](../../static/img/bpage.png)     | **Page**   | Switches to another screen within the same panel, where there is one     |
 
@@ -71,10 +64,8 @@ including the long-press shortcuts.
 ## Something to try right now
 
 No wiring, no setup: open the **GUI** folder and select **Sensors**. It
-reads the onboard IMU, magnetometer, ambient light, and temperature/humidity
+reads the onboard microphone, IMU, magnetometer, ambient light, and temperature/humidity
 sensors directly — nothing to connect, nothing to configure.
-
-<!-- VERIFY: the Sensors panel's on-screen layout and interaction (whether readings appear immediately on open, or need a button press to start) has not been confirmed from source; only the underlying sensor hardware (BMI323, BMM350, OPT4001, SHT40) and the panel's presence in the GUI folder are confirmed -->
 
 From there, [Screen and buttons](screen-and-buttons.md) covers the rest of
 the navigation model, and [Connecting](connecting.md) covers the other two

@@ -12,4 +12,3 @@ RP2350 microcontrollers plus a Raspberry Pi CM0 running Linux.
 The best source of information on what Free Wili 2 is - is the main website.
 
 [FreeWili Info](http://www.freewili.com)
-
