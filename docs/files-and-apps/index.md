@@ -6,9 +6,8 @@ sidebar_position: 1
 # Files & Apps
 
 How storage works on FREE-WILi 2, how to move files between the device and a
-host computer, what a real **app** is (a `.uf2` file the SD-card bootloader
-launches — distinct from a **panel**, one of the firmware's own on-screen
-views), and where scripts and add-on apps come from.
+host computer, what a real **app** is compared to onboard screen
+views, and where scripts and add-on apps come from.
 
 - [Transferring files](transferring-files.md) covers the device's storage
   layout and the ways to get files on and off it.

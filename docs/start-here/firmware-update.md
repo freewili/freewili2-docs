@@ -17,6 +17,8 @@ If for any reason the main firmware is erases or destroyed you must use the boot
 
 if you hold the red button on power up you enter the USB bootloader. This bootloader provides a mass storage (thumb drive) for you to drag and drop the main.uf2 file.
 
+The USB bootloader and the SDCard bootloader setup the USB SDCard reader to connect to the host by default.
+
 After you do this the SDCard bootloader will be functional. You must copy the new firmware to the sdcard firmware directory and repower.
 
 # What firmware do you have?
