@@ -17,7 +17,7 @@ Lists the firmware images available in the SD card /apps/ directory.
 
 ## Restore Display Firmware
 
-Reflashes /apps/FW2Display.uf2 to restore the standard display GUI.
+Reflashes /firmware/FW2Display.uf2 to restore the standard display GUI.
 
 **How to use it** — press `r`. At the prompt, enter: Reflash the stock display firmware.
 
@@ -46,6 +46,14 @@ Arms up to 128 bytes for the NEXT Run RAM App, placed at a fixed address near th
 **How to use it** — press `g`. At the prompt, enter: Text handed to the next RAM app (blank clears).
 
 **What you enter** — `text`.
+
+## Run App On Display
+
+Asks the display processor to load and run /apps/<filename> itself: it reads the UF2 over the SD link, shows a progress bar on its own screen, and jumps to the image. Works for UF2s targeting the PSRAM window (0x11000000, up to ~4 MB) or the RAM window (0x20000000, up to 448 KB) -- the display copies the image to its run address at the moment of launch. Flash is untouched; Reset Display CPU restores the stock firmware. Progress and errors appear on the display, not here.
+
+**How to use it** — press `a`. At the prompt, enter: the UF2 filename in /apps.
+
+**What you enter** — `filename`.
 
 ## Run PSRAM App
 
