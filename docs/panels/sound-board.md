@@ -14,25 +14,36 @@ sound effects, simple tones, and spoken phrases.
 
 ### The screen
 
-A single scrolling list fills the screen, captioned in character:
-"Sounds like a bad idea, I'm in". It shows one page of content at a
-time. Selecting an item plays it right away.
+A file selector, button pad, list, or grid appears according to the current
+screen. Selecting an item plays it right away, including the preset phrases
+on the SAM page. On the ROM page the first column shows the asset name and the second column shows its numeric asset ID.
+The complete installed sound catalog is available in 60-row grid pages; the
+explicit-content "HolyShit" asset is intentionally hidden. The green
+**Speak** soft button opens a text box for entering a custom phrase and reads
+the submitted text aloud.
 
 ### Controls
 
 | Button | Action |
 |---|---|
 | Center (or tap) | Play the highlighted sound |
-| Page | Next page: User, ROM, Tones, SAM |
+| Page | Next page: ROM, Tones, SAM, User |
+| Gray / Voice | On the SAM page, cycle Robot, Woman, Man, and Weird voices |
+| Gray / Pg Up | On the ROM page, move up one visible page of assets |
+| Yellow / Pg Down | On the ROM page, move down one visible page of assets |
+| Green / Speak | On the SAM page, enter custom text and speak it |
+| Blue / Replay | On SAM, repeat the last custom text entered with Speak |
 | Hold Green | On the ROM page, start or stop auto-cycling through every ROM sound about every 3 seconds; does nothing on the other pages |
 | Home | Return to the main menu |
 | Cancel | This help page |
 
-Gray and Yellow carry no label here and do nothing.
-
 ### The four pages
 
-- **User** - your own sound files: whatever `.wav` files are in the `/sounds/` folder on the SD card. If that folder is empty, the screen opens on the ROM page instead.
-- **ROM** - 20 sound effects built into the firmware, with names like "Dominating", "GoodJob" and "WickedSick".
-- **Tones** - 12 short synthesized tones: three notes (low C, E, G) in four waveforms (sine, square, triangle, sawtooth).
-- **SAM** - five short phrases read aloud by the built-in text-to-speech voice.
+- **ROM** - every sound in the installed asset pack except the hidden explicit-content entry. Its left-half grid shows the sound name and asset ID. Up and Down move continuously through the complete catalog, automatically loading more rows at either cache boundary; **Pg Up** and **Pg Down** move one visible page at a time.
+- **Tones** - a 4-by-4 multicolor button pad containing C, E, G, and high C in sine, square, triangle, and sawtooth waveforms. Its four soft buttons play the original DEF CON 30 Countdown, Darth, Rickroll, and Jeopardy buzzer songs through the built-in tone generator.
+- **SAM** - a left-half list of eight preset phrases followed by the ten most recent phrases entered with **Speak**. Recents persist in `/sounds/samrecent.txt` on the SD card and can be selected to speak them again. **Replay** repeats the last custom text, and **Voice** cycles Robot, Woman, Man, and Weird voices.
+- **User** - the final view, with a file selector rooted at `/sounds/` on the SD card and filtered to `.wav` files.
+
+The Asset and SAM views show the Sound Board icon in their right half. The SAM
+caption displays **Software Automated Mouth** on two lines. Sound assets play
+at the level stored in their source wave files.

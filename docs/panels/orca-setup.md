@@ -7,8 +7,6 @@ sidebar_position: 20
 
 > **Note:** This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. It's a guided setup wizard for pairing with an Orca accessory over UART. It configures the same underlying setting as **Orca Settings** in the console Settings menu, with presets for known Orca variants (including flashing companion firmware for the Bottlenose variant).
 
-Found under **System** on the device's panel list.
-
 ## Choose your ORCA!
 
 Chooses which external module is wired to the Orca UART connector: which

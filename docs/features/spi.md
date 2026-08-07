@@ -43,6 +43,10 @@ Toggles this device into SPI slave mode on the breakout bus (MISO 12 / CS 13 / S
 
 The master here holds Chip Select low for the whole duration of a **Write and Read** (`w`), not just one byte. The PL022 SPI peripheral behind this slave mode only supports that when **CPHA is 1**: at the default CPHA=0, the hardware requires Chip Select to pulse between every single byte, so only the first byte of a multi-byte transfer is valid and every byte after it reads back as idle (0xFF) on both sides. Set CPHA (SPI Settings `a`) to 1 on BOTH the master and the slave board before exchanging more than one byte; a single-byte transfer works at either CPHA setting.
 
+### Direction apply while slave is active
+
+An FPGA/direction operation while slave mode is active may steal the SPI pins; re-enable slave mode if that happens.
+
 **How to use it** — press `e`.
 
 ## Set SPI Slave Response Data
