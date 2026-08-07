@@ -35,4 +35,28 @@ Response bytes 2–4 contain the manufacturer / device ID.
 
 **What you enter** — `data_bytes`.
 
+## SPI Slave Enable
+
+Toggles this device into SPI slave mode on the breakout bus (MISO 12 / CS 13 / SCLK 14 / MOSI 15).
+
+### CPHA requirement for multi-byte transfers
+
+The master here holds Chip Select low for the whole duration of a **Write and Read** (`w`), not just one byte. The PL022 SPI peripheral behind this slave mode only supports that when **CPHA is 1**: at the default CPHA=0, the hardware requires Chip Select to pulse between every single byte, so only the first byte of a multi-byte transfer is valid and every byte after it reads back as idle (0xFF) on both sides. Set CPHA (SPI Settings `a`) to 1 on BOTH the master and the slave board before exchanging more than one byte; a single-byte transfer works at either CPHA setting.
+
+**How to use it** — press `e`.
+
+## Set SPI Slave Response Data
+
+Stores the bytes the SPI slave will clock out on MISO when a master transfers. Limited to 8 bytes -- the PL022 transmit FIFO depth.
+
+### Usage
+
+```
+l A1 B2 C3 D4
+```
+
+**How to use it** — press `l`. At the prompt, enter: Up To 8 Data Byte(s) Separated By Spaces.
+
+**What you enter** — `data_bytes`.
+
 **See also:** [SPI panel](../panels/spi.md) — the on-screen panel for this.

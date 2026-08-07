@@ -51,6 +51,7 @@
     "fwMenuAppSignals": { "publish": true, "title": "App Signals", "section": "apps", "order": 40, "panelKey": "APP_SELECTED_APP_DATA" },
     "fwMenuWiliFiles": { "publish": true, "title": "Wili Files", "section": "apps", "order": 50, "panelKey": "APP_SELECTED_WILI_FILES" },
     "fwMenuLogger": { "publish": true, "title": "Logger", "section": "apps", "order": 60, "panelKey": "APP_SELECTED_LOGGER" },
+    "fwMenuNiceUsb": { "publish": true, "title": "USB Gadget", "section": "apps", "order": 70, "panelKey": "APP_SELECTED_NICEUSB_SCRIPTS" },
 
     "fwMenuHardware": { "publish": true, "title": "Hardware", "section": "system", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to Device Settings, System, File System, or Power Management." },
     "fwMenuSystem": { "publish": true, "title": "System", "section": "system", "order": 20 },
@@ -123,6 +124,7 @@
     "APP_SELECTED_APP_DATA": { "publish": true, "title": "App Data", "section": "tools", "order": 50 },
     "APP_SELECTED_WILI_FILES": { "publish": true, "title": "Wili Files", "section": "tools", "order": 60 },
     "APP_SELECTED_LOGGER": { "publish": true, "title": "Logger", "section": "tools", "order": 70 },
+    "APP_SELECTED_NICEUSB_SCRIPTS": { "publish": true, "title": "USB Gadget Scripts", "section": "tools", "order": 80 },
     "APP_SELECTED_EDITOR": { "publish": true, "title": "Editor", "section": "system", "order": 60 },
     "APP_SELECTED_DISPLAYLOADER": { "publish": true, "title": "Display Apps", "section": "system", "order": 70 },
 

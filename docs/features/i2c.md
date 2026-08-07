@@ -29,4 +29,35 @@ Tests all addresses for I2C Response
 
 **How to use it** — press `p`.
 
+## I2C Slave Enable
+
+Turns this device into an I2C slave on the breakout bus (SDA 16 / SCL 17) at the given 7-bit address, backed by a 256-byte register file with auto-incrementing pointer semantics.
+
+### Usage
+
+```
+e 17
+e 0
+```
+`e 17` enables slave mode at address 0x17; `e 0` disables it and returns the bus to master mode using the current I2C settings.
+
+**How to use it** — press `e`. At the prompt, enter: Hex: Address (0 disables).
+
+**What you enter** — `address`.
+
+## Set I2C Slave Data
+
+Seeds the I2C slave register file: the first byte is the starting register index, the rest are data bytes stored from there.
+
+### Usage
+
+```
+l 00 DE AD BE EF
+```
+Stores DE AD BE EF at registers 0x00-0x03.
+
+**How to use it** — press `l`. At the prompt, enter: Hex: Register, Data Byte(s) Separated By Spaces.
+
+**What you enter** — `data_bytes`.
+
 **See also:** [I2C panel](../panels/i2c.md) — the on-screen panel for this.
