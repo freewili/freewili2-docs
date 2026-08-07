@@ -19,16 +19,7 @@ on friction alone.
 
 An EEPROM on each Orca lets FREE-WILi 2 auto-detect what's plugged in and
 configure itself accordingly, rather than requiring manual setup every time
-you swap modules. Practically, this is also why Orcas built for FreeWili 1
-generally keep working here unmodified: the connector kept its pin mapping,
-and the auto-detect step accounts for the rest.
-<!-- VERIFY: the EEPROM auto-detect mechanism is freewili.com's own
-     description of how Orca identification works; the specific protocol
-     (which bus it uses, when the read happens, and exactly what
-     "configure itself accordingly" changes in firmware) is not confirmed
-     against firmware source for this page — no EEPROM-reading /
-     Orca-identification code was found in the fwOrcaSetup* sources
-     examined. -->
+you swap modules.
 
 ## Available Orcas
 
@@ -39,19 +30,11 @@ and the auto-detect step accounts for the rest.
 | [SAN DIEGO Orca](#san-diego-orca) | CAN FD, RS485, and single-pair automotive Ethernet |
 | [Humpback Orca](#humpback-orca) | Focused ISO CAN FD interface |
 
-<!-- VERIFY: this list reflects what freewili.com's own explore-orcas page
-     currently shows as FREE-WILi 2 Orcas. FreeWili 1's docs additionally
-     describe a Bottlenose WiFi Orca (ESP32-C6 dev board) and a WILEYE Camera
-     Orca, neither of which appears on the current site's Orca lineup — they
-     may be discontinued, FreeWili-1-only, or simply not yet migrated to the
-     new site. Confirm current availability before promising either one. -->
 
 ### Maestro Debug Orca
 
-A troubleshooting and development board built around a Raspberry Pi Debug
-Probe and IO test points. It gives you:
+A troubleshooting and development the gives you Probe and IO test points. It gives you:
 
-- An integrated Raspberry Pi Debug Probe for flashing and debugging
 - A Pico-scope-compatible logic analyzer connector
 - Status LEDs plus 6 programmable serial RGB LEDs
 - Switches for exercising GPIO inputs
@@ -59,14 +42,7 @@ Probe and IO test points. It gives you:
 - A jumper for selecting or injecting IO voltage
 - A pass-through connector for stacking another Orca underneath it
 
-<!-- VERIFY: FreeWili 1's Maestro documentation describes the debug probe as
-     debugging "the RP2040 main controller." FREE-WILi 2's main and display
-     processors are both RP2350, and the device now has its own onboard
-     debug probe built in (see Connectors, "onboard debug probe"). Whether
-     Maestro's copy is simply unrevised FreeWili-1-era text, or whether
-     Maestro still serves a distinct purpose (e.g. debugging an Orca's own
-     MCU, or serving as an external probe when the onboard one isn't
-     enough), is unconfirmed. -->
+There is also an integrated Raspberry Pi Debug Probe for flashing and debugging but this is only useful for FreeWili 1 OG. The FreeWili 2 includes its own debuggers inside the device.
 
 ### Jambu Serial LED Control Orca
 
@@ -77,8 +53,7 @@ rather than drawing from FREE-WILi 2 itself.
 
 ### SAN DIEGO Orca
 
-Puts FREE-WILi 2 on vehicle and industrial networks: one ISO CAN FD channel
-with selectable termination, one RS485 channel, and both 10BASE-T1S
+Puts FREE-WILi 2 on vehicle and industrial networks: exposes the internal ISO CAN FD channel, one RS485 channel, and both 10BASE-T1S
 (multidrop) and 10BASE-T1L (long-reach, up to 1 km) single-pair Ethernet.
 Everything routes through a single rugged DB-15 connector, and the module can
 be powered directly from vehicle battery voltage (VBATT) rather than relying
@@ -86,17 +61,13 @@ on FREE-WILi 2's own supply.
 
 ### Humpback Orca
 
-A smaller, CAN-FD-only counterpart to SAN DIEGO: one ISO CAN FD channel with
-selectable on-board 120 ohm termination, VBATT power input, and a DB-15
-connector. If you only need CAN FD and not RS485 or Ethernet, this is the
-lighter option — you can move up to SAN DIEGO Orca later without changing
-your workflow.
+A smaller, CAN-FD-only counterpart to SAN DIEGO:  it exposes internal ISO CAN FD channel, VBATT power input, and a DB-15
+connector. 
 
 ## Making your own
 
 FREE-WILi publishes example Orca projects for both KiCad and Altium
 Designer, so you can design a custom module against the same connector and
 mounting system the official Orcas use.
-<!-- VERIFY: where the current KiCad/Altium example project files live for
-     FreeWili 2 specifically — FreeWili 1's docs point at project files that
-     have not been confirmed to be FreeWili-2-compatible. -->
+
+Contact Discord for these files.

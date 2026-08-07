@@ -19,7 +19,7 @@ The bsp also has an FWApp contract that the app must follow to work in a friendl
 
 ## Getting a UF2 onto the card
 
-All you do is copy the uf2 to the /apps/ subdirectory on the SDCard. See the transferring files topic for this.
+All you do is copy the uf2 to the /apps/ subdirectory on the SDCard. See the [Transferring files](transferring-files.md) topic for this.
 
 ## Launching an app
 

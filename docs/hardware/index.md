@@ -15,7 +15,4 @@ physical connectors around the case, and the Orca expansion module system.
 - [Orca modules](orca-modules.md) — the expansion module concept and the
   modules currently available.
 
-For the chips and subsystems that make up the device as a whole — the two
-RP2350 processors, the FPGA, the radios, the sensors — see
-[What FREE-WILi 2 is](../start-here/what-is-freewili2.md) in Start Here; this
-section goes one level deeper, into the pins and ports themselves.
+
