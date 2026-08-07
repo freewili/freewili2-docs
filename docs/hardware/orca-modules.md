@@ -53,7 +53,7 @@ rather than drawing from FREE-WILi 2 itself.
 
 ### SAN DIEGO Orca
 
-Puts FREE-WILi 2 on vehicle and industrial networks: exposes the internal ISO CAN FD channel, one RS485 channel, and both 10BASE-T1S
+Puts FREE-WILi 2 on vehicle and industrial networks: exposes the internal ISO CAN FD channel and adds one RS485 channel, and both 10BASE-T1S
 (multidrop) and 10BASE-T1L (long-reach, up to 1 km) single-pair Ethernet.
 Everything routes through a single rugged DB-15 connector, and the module can
 be powered directly from vehicle battery voltage (VBATT) rather than relying
@@ -61,7 +61,7 @@ on FREE-WILi 2's own supply.
 
 ### Humpback Orca
 
-A smaller, CAN-FD-only counterpart to SAN DIEGO:  it exposes internal ISO CAN FD channel, VBATT power input, and a DB-15
+A smaller, CAN-FD-only counterpart to SAN DIEGO:  it exposes internal ISO CAN FD channel and adds VBATT power input, and a DB-15
 connector. 
 
 ## Making your own
