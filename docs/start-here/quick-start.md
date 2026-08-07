@@ -25,7 +25,7 @@ Once it's up, you land on the main menu: a scrolling list of **panels**. Some pa
 into folders (IO, Wireless, GUI, System, and others). Use **up** and
 **down** on the D-pad to move through the list, and **right** (or **ok**)
 to open whatever's highlighted — including opening a folder to reveal the
-panels inside it. 
+panels inside it.  
 
 ## On-device help
 
