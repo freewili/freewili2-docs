@@ -28,6 +28,6 @@ When unmount from the Free Wili the SDCard will connect to the USB Card reader. 
 
 ### The Slowest: Over the default USB channel
 
-Availible in the OneWili API and the Free Wili Gui app. You can transfer files using the direct USB Connection.
+Available in the OneWili API and the Free Wili Gui app. You can transfer files using the direct USB Connection.
 
 

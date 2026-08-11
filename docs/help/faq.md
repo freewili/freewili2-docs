@@ -21,7 +21,7 @@ RISC-V bit-banging on the main processor's second core), and WiliBLOCKS
 (point-and-click block automation).
 
 **Is FreeWili 1 software/firmware compatible with FREE-WILi 2?**
-FreeWili 1 OG is the new fimrware for Free Wili 1. It supports the new menu system for FreeWili2. This is compatiblile and works with OneWili API. Also, C++ wasm and rthon are supported (one script at a time). 
+FreeWili 1 OG is the new firmware for Free Wili 1. It supports the new menu system for FreeWili2. This is compatible and works with OneWili API. Also, C++ wasm and rthon are supported (one script at a time). 
 
 **Where do I get the developer API / SDK docs?**
 [freewili.com/onewili](https://freewili.com/onewili/) — this site covers

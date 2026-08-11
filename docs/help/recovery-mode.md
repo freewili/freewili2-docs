@@ -9,7 +9,7 @@ Most issues can be solved with power up and down sequence. Or a [Firmware update
 
 ## Some Tricks
 
-Presssing yellow, green, and blue buttons at the same time will reset the main and display processors.
+Pressing yellow, green, and blue buttons at the same time will reset the main and display processors.
 
 ## Everyday options
 
