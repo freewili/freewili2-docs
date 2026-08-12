@@ -44,8 +44,9 @@ On the live panel, top to bottom:
 | Cancel | This help page |
 
 Red carries no label here and does nothing. HOME leaves the screen from
-here, as it does everywhere else in the menu. Gray pages to AP Info and
-back; AP Info's own Gray returns here.
+here, as it does everywhere else in the menu. Gray cycles through the
+app's three pages: here to AP Info, AP Info to Wi-Fi Scan, and Wi-Fi
+Scan back here.
 
 ### Connection states
 
@@ -58,11 +59,11 @@ or off:
 - Green "Connected" - has an IP address; the IP, gateway and mask fields are filled in
 - Red "ESP32 radio not responding" (shown as "On - ESP32 not responding" if station mode is set on) - the module has not answered in the last 2 seconds; the MAC address is hidden, the IP, gateway and mask fields are blanked, and nothing on the screen is being refreshed
 
-When the module is silent a second line appears under the addresses,
-naming the likely reason: either that there was simply no reply, or
-that power zone 5, the zone the ESP32 sits on, is switched off. The
-same line reads "Set an SSID to enable." if the module is reachable but
-no SSID has been saved yet.
+When the module is silent a second line appears under the addresses:
+"Starting the radio..." for the moment or two it takes to come up after
+you open the screen, and "No reply from the radio." if it still has not
+answered after that. The same line reads "Set an SSID to enable." if
+the module is reachable but no SSID has been saved yet.
 
 This status line, the MAC address and the IP fields refresh about once
 a second while the screen is open, so a change may take a moment to
@@ -81,19 +82,17 @@ away and sent to the module automatically the moment it answers.
 
 Blue refuses to turn station mode on if no SSID is saved yet: it shows
 "Set an SSID first (yellow)" and leaves the setting off, rather than
-silently doing nothing. With an SSID saved, turning station mode on
-also switches power zone 5 back on if it was off, so the radio has a
-rail to come up on.
+silently doing nothing.
 
 There is nothing else to set for station mode - security type is
 negotiated automatically with the network you join.
 
 ### Power
 
-This app needs power zone 5, the ESP32's rail. Opening Station Info or
-AP Info switches that zone on if it was off, without asking, and holds
-it for as long as either screen stays open. Blue on this screen also
-turns the zone back on once an SSID is saved, per above.
+Opening any of the Wi-Fi screens powers the radio and keeps it powered
+for as long as one of them stays open, so there is nothing to switch on
+first. It takes a second or two to start, which is what the "Starting
+the radio..." line is reporting.
 
 ## AP Info
 
@@ -124,7 +123,7 @@ other peripherals). Top to bottom:
 | Blue | Turn the access point on or off |
 | Yellow | Set the SSID |
 | Green | Set the password |
-| Gray | Go to the Station Info page |
+| Gray | Go to the Wi-Fi Scan page |
 | Red | Retired as the exit control; unlabelled and does nothing here |
 | Cancel | This help page |
 
@@ -138,9 +137,9 @@ HOME leaves the screen from here, as it does everywhere else in the menu.
 - Red "On - ESP32 not responding" - the setting is on but the module has gone silent since; the hint line below explains why
 
 The hint line under the addresses fills in whenever there is something to
-explain: no reply from the ESP32, power zone 5 (the zone the ESP32 sits
-on) switched off, no SSID set yet, or the access point turned on and
-still waiting to come up.
+explain: the radio still starting up, no reply from it after that, no
+SSID set yet, or the access point turned on and still waiting to come
+up.
 
 Unlike Station Info, there is no in-between "connecting" colour here -
 the access point is either running or it is not. This status line, the
@@ -162,8 +161,7 @@ afterward removes the block, and Blue works normally again.
 You can change the SSID or password, or turn the access point on or off,
 even while the status shows the module is not responding - the change is
 saved right away and sent to the module automatically the moment it
-answers. Turning the access point on from here also switches power zone
-5 back on if it was off, so the radio has a rail to come up on.
+answers.
 
 ### The access point itself
 
@@ -179,11 +177,60 @@ The access point's security type and whether its SSID is hidden from
 scans are set in the Wifi Settings menu found elsewhere in the device,
 not here. This screen only shows and sets SSID, password and on/off.
 
-## WiFi Control
+## Wi-Fi Scan
 
-Provides the WiFi control screen.
+Scans for nearby Wi-Fi networks and joins the one you pick. The scan
+starts by itself when the page opens; networks appear in the list as
+they are found, strongest signal first, and keep filling in for a few
+seconds. One scan actually runs twice behind the scenes, once per band,
+so both 2.4 GHz and 5 GHz networks show up.
 
-Use Yellow to select an item and Green to change its mode. Cancel opens this
-help page; Home returns to the main menu.
+### The list
+
+Each row is one network, laid out the way a phone shows them:
+
+- The network name, or "(hidden)" for a network that hides its name
+- Signal bars - four bars is a strong signal, one bar a weak one
+- A padlock on password-protected networks; open networks have none
+
+The network this device is joined to (or joining) is pinned to the top
+of the list: green with a check mark and "Connected" once it has an
+address, amber with "Connecting..." on the way there. The list holds up
+to 32 networks, and the line under it reports progress: which band is
+being scanned, how many networks were found, or that none were.
+
+### Joining a network
+
+Move the highlight with Up and Down and press OK to join (the center
+button does the same thing):
+
+- A protected network asks for its password; the entry is prefilled with the saved password when you rejoin the network the device already knows
+- An open network joins immediately, no questions asked
+
+You stay on this page while it happens - the picked network pins to the
+top and walks from "Connecting..." to a green "Connected", the way a
+phone does. Joining saves the network name and password as the station
+settings and switches station mode on; the choice survives a restart,
+like anything typed on Station Info itself. The Station Info page
+(Gray) has the addresses once the join lands.
+
+### Controls
+
+| Button | Action |
+|---|---|
+| OK | Join the highlighted network |
+| Green | Scan again, clearing the list first |
+| Gray | Go to the Station Info page |
+| Cancel | This help page |
+
+HOME leaves the screen from here, as it does everywhere else in the
+menu.
+
+### Power
+
+Opening the page powers the radio and keeps it powered while you stay
+there, so there is nothing to switch on first. A scan started while it
+is still booting is held and sent the moment it answers, so the first
+list may just take a few extra seconds to appear.
 
 **See also:** [Wifi](../features/wifi.md) — the console/GUI commands for this panel.

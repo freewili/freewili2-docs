@@ -122,4 +122,20 @@ Toggles Terminal API over BLE. Run once to enable, again to disable.
 
 **How to use it** — press `e`.
 
+## Set Attribute
+
+Sets a user attribute slot a connected phone can read and subscribe to. The device publishes eight attribute slots (0–7, up to 64 bytes each) over BLE; a value set here is pushed to the radio immediately and, if a phone is subscribed to that slot, sent on to it as a notification. A peer that writes a slot back raises an `attrwritten` event.
+
+**How to use it** — press `v`. At the prompt, enter: slot value.
+
+**What you enter** — `slot`, `value`.
+
+## Get Attribute
+
+Reads a user attribute slot back from the radio. The value is reported as an `attrvalue` event.
+
+**How to use it** — press `u`. At the prompt, enter: slot.
+
+**What you enter** — `slot`.
+
 **See also:** [Bluetooth panel](../panels/bluetooth.md) — the on-screen panel for this.

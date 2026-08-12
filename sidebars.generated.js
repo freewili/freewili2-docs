@@ -10,7 +10,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Wireless',
-      items: ['features/wireless', 'features/nfc', 'features/nfc-saved-cards', 'features/nfc-mifare-classic', 'features/nfc-raw', 'features/nfc-extra', 'features/esp32-flasher', 'features/wifi', 'features/bluetooth-le', 'features/ir', 'features/lo-ra', 'features/radio'],
+      items: ['features/wireless', 'features/nfc', 'features/nfc-saved-cards', 'features/nfc-mifare-classic', 'features/nfc-raw', 'features/nfc-extra', 'features/esp32-flasher', 'features/wifi', 'features/bluetooth-le', 'features/ir', 'features/lo-ra', 'features/radio', 'features/rfid'],
     },
     {
       type: 'category',
@@ -30,7 +30,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Settings',
-      items: ['features/settings-home', 'features/general-settings', 'features/rtc-settings', 'features/wifi-settings', 'features/ble-settings', 'features/radio-settings', 'features/radio-fa-settings', 'features/i2c-settings', 'features/spi-settings', 'features/uart-settings', 'features/analog-in-settings', 'features/io-direction-settings', 'features/sensor-settings', 'features/neptune-settings', 'features/orca-settings', 'features/websocket-settings', 'features/fpga-clock-settings'],
+      items: ['features/settings-home', 'features/general-settings', 'features/rtc-settings', 'features/wifi-settings', 'features/ble-settings', 'features/radio-settings', 'features/radio-fa-settings', 'features/i2c-settings', 'features/spi-settings', 'features/uart-settings', 'features/analog-in-settings', 'features/io-direction-settings', 'features/sensor-settings', 'features/neptune-settings', 'features/orca-settings', 'features/websocket-settings', 'features/fpga-clock-settings', 'features/sound-settings', 'features/power-settings', 'features/light-show-settings', 'features/interface-settings'],
     }
   ],
   panels: [
@@ -62,7 +62,7 @@ module.exports = {
     {
       type: 'category',
       label: 'System',
-      items: ['panels/home-screen', 'panels/setup-actions', 'panels/files', 'panels/settings-display', 'panels/power-management', 'panels/about', 'panels/editor', 'panels/display-apps'],
+      items: ['panels/home-screen', 'panels/setup-actions', 'panels/files', 'panels/settings-display', 'panels/power-management', 'panels/about', 'panels/editor', 'panels/display-flasher'],
     },
     {
       type: 'category',

@@ -30,7 +30,7 @@
     "fwMenuAudio": { "publish": true, "title": "Audio", "section": "io", "order": 140 },
     "fwMenuSerialLEDs": { "publish": true, "title": "Serial LEDs", "section": "io", "order": 150 },
 
-    "fwMenuWireless": { "publish": true, "title": "Wireless", "section": "wireless", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to NFC, ESP32 Flasher, Wifi, Bluetooth LE, IR, or LoRa." },
+    "fwMenuWireless": { "publish": true, "title": "Wireless", "section": "wireless", "order": 10, "note": "This section is a navigation hub with no commands of its own - use it to jump straight to NFC, ESP32 Flasher, Wifi, Bluetooth LE, IR, LoRa, Radio, or RFID." },
     "fwMenuNFC": { "publish": true, "title": "NFC", "section": "wireless", "order": 20, "panelKey": "APP_SELECTED_NFC" },
     "fwMenuNFCSavedCards": { "publish": true, "title": "NFC Saved Cards", "section": "wireless", "order": 21 },
     "fwMenuNFCMifareClassic": { "publish": true, "title": "NFC MIFARE Classic", "section": "wireless", "order": 22 },
@@ -42,6 +42,7 @@
     "fwMenuIR": { "publish": true, "title": "IR", "section": "wireless", "order": 60 },
     "fwMenuLoRa": { "publish": true, "title": "LoRa", "section": "wireless", "order": 70, "panelKey": "APP_SELECTED_LORA" },
     "fwMenuRadio": { "publish": true, "title": "Radio", "section": "wireless", "order": 80, "panelKey": "APP_SELECTED_RADIOS" },
+    "fwMenuRFID": { "publish": true, "title": "RFID", "section": "wireless", "order": 90 },
 
     "fwMenuLinux": { "publish": true, "title": "Wi-Li-nux", "section": "wilinux", "order": 10 },
 
@@ -57,7 +58,7 @@
     "fwMenuSystem": { "publish": true, "title": "System", "section": "system", "order": 20 },
     "fwMenuPowerManagement": { "publish": true, "title": "Power Management", "section": "system", "order": 30, "panelKey": "APP_SELECTED_POWER_MGMT" },
     "fwMenuFileSystem": { "publish": true, "title": "File System", "section": "system", "order": 40, "panelKey": "APP_SELECTED_FILES" },
-    "fwMenuDisplayFunctions": { "publish": true, "title": "Display Functions", "section": "system", "order": 50, "panelKey": "APP_SELECTED_DISPLAYLOADER" },
+    "fwMenuDisplayFunctions": { "publish": true, "title": "Display Functions", "section": "system", "order": 50, "panelKey": "APP_SELECTED_DISPLAYFLASHER" },
 
     "fwMenuSettingsHome": { "publish": true, "title": "Device Settings", "section": "settings", "order": 10 },
     "fwMenuGeneralSettings": { "publish": true, "title": "General Settings", "section": "settings", "order": 20 },
@@ -76,6 +77,10 @@
     "fwMenuOrcaSettings": { "publish": true, "title": "Orca Settings", "section": "settings", "order": 150 },
     "fwMenuWebsocketSettings": { "publish": true, "title": "Websocket Settings", "section": "settings", "order": 160 },
     "fwMenuFPGAClockSettings": { "publish": true, "title": "FPGA Clock Settings", "section": "settings", "order": 170 },
+    "fwMenuSoundSettings": { "publish": true, "title": "Sound Settings", "section": "settings", "order": 180, "note": "These settings live on the display CPU but are stored and saved by the main processor - the same sound categories the on-screen Settings (Display) panel shows." },
+    "fwMenuPowerSettings": { "publish": true, "title": "Power Settings", "section": "settings", "order": 190, "note": "These settings live on the display CPU but are stored and saved by the main processor. They cover the display backlight, screen timeout and wake triggers - power-zone switching itself is in the Power Management panel." },
+    "fwMenuLightShowSettings": { "publish": true, "title": "Light Show Settings", "section": "settings", "order": 200, "note": "These settings live on the display CPU but are stored and saved by the main processor. They configure the built-in LED show - the show itself runs from the Light Show panel." },
+    "fwMenuInterfaceSettings": { "publish": true, "title": "Interface Settings", "section": "settings", "order": 210, "note": "These settings live on the display CPU but are stored and saved by the main processor." },
 
     "fwMenuGUI": { "publish": false, "note": "A host-side programming interface for driving on-screen panels from a connected computer - developer surface, already covered by the OneWili site." },
     "fwMenuGUIControls": { "publish": false, "note": "A host-side programming interface for driving on-screen panels from a connected computer - developer surface, already covered by the OneWili site." },
@@ -126,7 +131,7 @@
     "APP_SELECTED_LOGGER": { "publish": true, "title": "Logger", "section": "tools", "order": 70 },
     "APP_SELECTED_NICEUSB_SCRIPTS": { "publish": true, "title": "USB Gadget Scripts", "section": "tools", "order": 80 },
     "APP_SELECTED_EDITOR": { "publish": true, "title": "Editor", "section": "system", "order": 60 },
-    "APP_SELECTED_DISPLAYLOADER": { "publish": true, "title": "Display Apps", "section": "system", "order": 70 },
+    "APP_SELECTED_DISPLAYFLASHER": { "publish": true, "title": "Display Flasher", "section": "system", "order": 70, "note": "Replaces the former Display Apps panel: instead of loading apps into display RAM, it commits a firmware image to the display processor's flash." },
 
     "APP_SELECTED_MSETTINGS": { "publish": true, "title": "Settings", "section": "settings", "order": 10, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. The device's on-screen Settings home - pick a category to jump straight to its settings. It's a hand-maintained subset of what's in the console's Settings menu; RTC, Analog In, and Orca settings aren't listed here yet (Orca has its own **Orca Setup** panel)." },
     "APP_SELECTED_ORCASETUP": { "publish": true, "title": "Orca Setup", "section": "settings", "order": 20, "note": "This panel currently can't be opened from the on-screen panel list - its menu entry is commented out in firmware. It's a guided setup wizard for pairing with an Orca accessory over UART. It configures the same underlying setting as **Orca Settings** in the console Settings menu, with presets for known Orca variants (including flashing companion firmware for the Bottlenose variant)." }

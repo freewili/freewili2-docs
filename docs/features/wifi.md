@@ -61,4 +61,18 @@ Scans for available Wifi networks
 
 **How to use it** — press `p`.
 
+## Download To SDCard
+
+HTTP GET a URL and write it to a file on the SD card
+
+**How to use it** — press `l`. At the prompt, enter: url path.
+
+**What you enter** — `url`, `path`.
+
+## Cancel Download
+
+Stops a download started with Download To SDCard
+
+**How to use it** — press `x`.
+
 **See also:** [Wifi panel](../panels/wifi.md) — the on-screen panel for this.

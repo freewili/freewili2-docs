@@ -71,4 +71,4 @@ Stages /apps/<filename> verbatim into the display's PSRAM at <offset> bytes from
 
 **What you enter** — `filename`, `offset`.
 
-**See also:** [Display Apps panel](../panels/display-apps.md) — the on-screen panel for this.
+**See also:** [Display Flasher panel](../panels/display-flasher.md) — the on-screen panel for this.
