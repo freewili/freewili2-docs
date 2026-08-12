@@ -9,6 +9,12 @@ FREE-WILi 2 processors are updated using the SDCard. You copy new firmware files
 
 When Free-Wili2 starts up it checks this directory and will Flash the firmware to the devices. 
 
+:::warning
+The SDCard update method is not stable yet. If an update doesn't take, this
+short video shows a manual method of updating the firmware:
+[Manually updating FREE-WILi 2 firmware (YouTube)](https://youtube.com/shorts/FVzqWy1WGeI)
+:::
+
 To revert firmware you can force the SDCard bootloader menu from the Menu system.
 
 ## Updating from macOS
