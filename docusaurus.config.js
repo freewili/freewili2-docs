@@ -60,6 +60,16 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
+          // "Edit this page" links to GitHub's inline editor. Generated
+          // pages (docs/features/, docs/panels/ — see README) get no link:
+          // hand edits there are overwritten on every regeneration run, so
+          // inviting them would silently lose contributions.
+          editUrl: ({ docPath }) => {
+            if (docPath.startsWith('features/') || docPath.startsWith('panels/')) {
+              return undefined;
+            }
+            return `https://github.com/freewili/freewili2-docs/edit/main/docs/${docPath}`;
+          },
           // Explicit, not relied-upon-by-default: docs/_pending.md is the
           // generator's internal editorial worklist (menus/panels nobody has
           // classified in productdocs.json yet) and must never be a live
