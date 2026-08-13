@@ -66,8 +66,13 @@ connector.
 
 ## Making your own
 
-FREE-WILi publishes example Orca projects for both KiCad and Altium
-Designer, so you can design a custom module against the same connector and
-mounting system the official Orcas use.
+Example Orca project templates are published at
+[freewili/fw2-orca-templates](https://github.com/freewili/fw2-orca-templates),
+so you can design a custom module against the same connector and mounting
+system the official Orcas use.
 
-Contact Discord for these files.
+The repository currently includes a KiCad starter project (`ORCATemplate`)
+with the two Orca connector symbols (`CN1`/`CN2`), a 3D `.step` model, and
+the footprint for the auto-detect EEPROM. An Altium Designer template isn't
+in the repository yet — ask on
+[Discord](https://discord.com/invite/XJRBUCX62z) if you need one.
