@@ -83,6 +83,6 @@ After you do this the SDCard bootloader will be functional. You must copy the ne
 You can check which firmware version is currently running from the
 **About** screen, in the System folder of the on-device panel list.
 
-Current stable, beta, and archived UF2 builds are
-published from the [firmware repository](https://github.com/freewili/freewili-firmware)
-if you need a specific version.
+The current FREE-WILi 2 UF2 builds (`FW2Main.uf2` and `FW2Display.uf2`)
+are published in the `firmware/` folder of the
+[FREE-WILi 2 firmware repository](https://github.com/freewili/FREE-WILi2-Firmware).
