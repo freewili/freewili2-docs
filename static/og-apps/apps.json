@@ -1,0 +1,82 @@
+{
+  "apps": [
+    {
+      "slug": "ogvegas",
+      "name": "OG Vegas",
+      "tagline": "OG Vegas startup image, ten-second audio replay, and animated red LED comet",
+      "description": "OG Vegas main app carrying the matching display firmware. On the display: OG Vegas startup image, ten-second audio replay, and animated red LED comet. Built from 6c49d12-dirty.",
+      "author": "Intrepid Control Systems",
+      "github": "https://github.com/freewili/wiliOGbsp",
+      "category": "Demos",
+      "tags": [
+        "demo",
+        "audio",
+        "leds",
+        "display"
+      ],
+      "version": "001",
+      "updated": "2026-07-29",
+      "flashScheme": "OgApp",
+      "uf2": [
+        {
+          "cpu": "main",
+          "url": "https://docs.freewili.com/og-apps/uf2/ogvegas_main.uf2",
+          "sha256": "6c5b5d25498f983146f0bbcd71e48111c4c7eed0a1cef8fcaf20aae03e843557",
+          "size": 1049088
+        }
+      ]
+    },
+    {
+      "slug": "wilidoro",
+      "name": "WiLiDoro",
+      "tagline": "Pomodoro timer: themed countdown, LED progress ring, chimes and tilt-to-pause",
+      "description": "Pomodoro timer, main CPU: carries the display image and (from Plan OG-D) the sub-GHz beacon. On the display: Pomodoro timer: themed countdown, LED progress ring, chimes and tilt-to-pause. Built from e400fcc.",
+      "author": "Intrepid Control Systems",
+      "github": "https://github.com/freewili/wiliOGbsp",
+      "category": "Apps",
+      "tags": [
+        "timer",
+        "pomodoro",
+        "productivity",
+        "subghz"
+      ],
+      "version": "001",
+      "updated": "2026-07-29",
+      "flashScheme": "OgApp",
+      "uf2": [
+        {
+          "cpu": "main",
+          "url": "https://docs.freewili.com/og-apps/uf2/wilidoro_main.uf2",
+          "sha256": "4071723653647ac6a0f278a2847b4d0b0da6b05c3891a5efa74fbd09cd196c77",
+          "size": 1161216
+        }
+      ]
+    },
+    {
+      "slug": "orca-catalog",
+      "name": "Orca Field Notes",
+      "tagline": "Orca Field Notes: 72 sourced stories, QR links, and natural-history audio",
+      "description": "Carries the Orca Field Notes display firmware for FreeWili OG. On the display: Orca Field Notes: 72 sourced stories, QR links, and natural-history audio. Built from 39be66b-dirty.",
+      "author": "Intrepid Control Systems",
+      "github": "https://github.com/freewili/freewili2-orca-field-notes",
+      "category": "Apps",
+      "tags": [
+        "reference",
+        "audio",
+        "qr",
+        "nature"
+      ],
+      "version": "001",
+      "updated": "2026-07-29",
+      "flashScheme": "OgApp",
+      "uf2": [
+        {
+          "cpu": "main",
+          "url": "https://docs.freewili.com/og-apps/uf2/orca-catalog_main.uf2",
+          "sha256": "2dd594d83f583a5f95d5d9847b683ff250b21c7527398ed3aaaab63e7231b861",
+          "size": 1146368
+        }
+      ]
+    }
+  ]
+}
