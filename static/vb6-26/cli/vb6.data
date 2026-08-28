@@ -1,0 +1,936 @@
+' A tiny expression-free "RPN calculator" exercising collections, Select Case and Val.
+Option Explicit
+
+Sub Main()
+    Dim stack As New Collection
+    Dim tokens() As String, t As Variant, a As Double, b As Double
+    tokens = Split("3 4 + 2 * 7 /", " ")
+    For Each t In tokens
+        Select Case t
+            Case "+", "-", "*", "/"
+                b = stack(stack.Count): stack.Remove stack.Count
+                a = stack(stack.Count): stack.Remove stack.Count
+                Select Case t
+                    Case "+": stack.Add a + b
+                    Case "-": stack.Add a - b
+                    Case "*": stack.Add a * b
+                    Case "/": stack.Add a / b
+                End Select
+            Case Else
+                stack.Add Val(t)
+        End Select
+    Next
+    Debug.Print "Result: "; stack(1)
+End Sub
+' First target program for Phase 1 (console-only subset).
+Option Explicit
+
+Sub Main()
+    Dim i As Integer
+    Dim name As String
+    name = "World"
+    Debug.Print "Hello, " & name & "!"
+    For i = 1 To 3
+        Debug.Print "i = " & i
+    Next i
+End Sub
+Type=Exe
+Form=frmMain.frm
+Module=modUtil; modUtil.bas
+Startup="frmMain"
+Title="Sample Two"
+Name="Sample2"
+HelpContextID="0"
+CompatibleMode="0"
+MajorVer=1
+MinorVer=0
+RevisionVer=0
+AutoIncrementVer=0
+ServerSupportFiles=0
+CompilationType=0
+OptimizationType=0
+FavorPentiumPro(tm)=0
+CodeViewDebugInfo=0
+NoAliasing=0
+BoundsCheck=0
+OverflowCheck=0
+FlPointCheck=0
+FDIVCheck=0
+UnroundedFP=0
+StartMode=0
+Unattended=0
+Retained=0
+ThreadPerObject=0
+MaxNumberOfThreads=1
+VERSION 5.00
+Begin VB.Form frmMain 
+   Caption         =   "Sample Two"
+   ClientHeight    =   4200
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   6000
+   StartUpPosition =   3  'Windows Default
+   Begin VB.Timer Timer1 
+      Interval        =   100
+      Left            =   5400
+      Top             =   3600
+      Width           =   480
+      Height          =   480
+   End
+   Begin VB.ComboBox Combo1 
+      Height          =   315
+      Left            =   3240
+      Style           =   2  'Dropdown List
+      TabIndex        =   8
+      Top             =   2400
+      Width           =   2535
+   End
+   Begin VB.ListBox List1 
+      Height          =   1230
+      Left            =   3240
+      TabIndex        =   7
+      Top             =   960
+      Width           =   2535
+   End
+   Begin VB.Frame Frame1 
+      Caption         =   "Size"
+      Height          =   1335
+      Left            =   240
+      TabIndex        =   4
+      Top             =   1680
+      Width           =   2775
+      Begin VB.OptionButton optSize 
+         Caption         =   "Small"
+         Height          =   255
+         Index           =   0
+         Left            =   240
+         TabIndex        =   5
+         Top             =   360
+         Value           =   -1  'True
+         Width           =   1215
+      End
+      Begin VB.OptionButton optSize 
+         Caption         =   "Large"
+         Height          =   255
+         Index           =   1
+         Left            =   240
+         TabIndex        =   6
+         Top             =   720
+         Width           =   1215
+      End
+   End
+   Begin VB.CheckBox Check1 
+      Caption         =   "Enable &greeting"
+      Height          =   255
+      Left            =   240
+      TabIndex        =   3
+      Top             =   1200
+      Value           =   1  'Checked
+      Width           =   2775
+   End
+   Begin VB.CommandButton cmdGo 
+      Caption         =   "&Go"
+      Default         =   -1  'True
+      Height          =   375
+      Left            =   3240
+      TabIndex        =   2
+      Top             =   360
+      Width           =   1095
+   End
+   Begin VB.TextBox txtName 
+      Height          =   315
+      Left            =   240
+      TabIndex        =   1
+      Text            =   "World"
+      Top             =   720
+      Width           =   2775
+   End
+   Begin VB.Label lblOut 
+      Caption         =   "Type a name and press Go"
+      Height          =   255
+      Left            =   240
+      TabIndex        =   0
+      Top             =   240
+      Width           =   2775
+   End
+   Begin VB.Label lblTicks 
+      Caption         =   "0"
+      Height          =   255
+      Left            =   240
+      TabIndex        =   9
+      Top             =   3240
+      Width           =   2775
+   End
+   Begin VB.Shape Shape1 
+      FillColor       =   &H000000FF&
+      FillStyle       =   0  'Solid
+      Height          =   615
+      Left            =   3240
+      Shape           =   3  'Circle
+      Top             =   3000
+      Width           =   615
+   End
+   Begin VB.Line Line1 
+      BorderColor     =   &H00FF0000&
+      X1              =   4080
+      X2              =   5760
+      Y1              =   3120
+      Y2              =   3600
+   End
+   Begin VB.Menu mnuFile 
+      Caption         =   "&File"
+      Begin VB.Menu mnuNew 
+         Caption         =   "&New"
+         Shortcut        =   ^N
+      End
+      Begin VB.Menu mnuSep 
+         Caption         =   "-"
+      End
+      Begin VB.Menu mnuExit 
+         Caption         =   "E&xit"
+      End
+   End
+End
+Attribute VB_Name = "frmMain"
+Attribute VB_Creatable = False
+Attribute VB_Exposed = False
+Attribute VB_GlobalNameSpace = False
+Attribute VB_PredeclaredId = True
+Option Explicit
+
+Private ticks As Long
+
+Private Sub Form_Load()
+    List1.AddItem "Apple"
+    List1.AddItem "Banana"
+    List1.AddItem "Cherry"
+    Combo1.AddItem "One"
+    Combo1.AddItem "Two"
+    Combo1.ListIndex = 0
+    Caption = "Sample Two - " & App.Title
+End Sub
+
+Private Sub cmdGo_Click()
+    gClicks = gClicks + 1
+    If Check1.Value = vbChecked Then
+        lblOut.Caption = "Hello, " & txtName.Text & " (" & gClicks & ")"
+    Else
+        lblOut.Caption = Shout(txtName.Text)
+    End If
+    If optSize(1).Value Then lblOut.FontBold = True Else lblOut.FontBold = False
+End Sub
+
+Private Sub Check1_Click()
+    lblOut.Caption = "check=" & Check1.Value
+End Sub
+
+Private Sub List1_Click()
+    lblOut.Caption = "list: " & List1.List(List1.ListIndex)
+End Sub
+
+Private Sub Combo1_Click()
+    lblOut.Caption = "combo: " & Combo1.Text
+End Sub
+
+Private Sub optSize_Click(Index As Integer)
+    lblOut.Caption = "size " & Index
+End Sub
+
+Private Sub Timer1_Timer()
+    ticks = ticks + 1
+    lblTicks.Caption = CStr(ticks)
+    Circle (5000, 3300), 200 + (ticks Mod 5) * 40, vbBlue
+End Sub
+
+Private Sub txtName_KeyPress(KeyAscii As Integer)
+    If KeyAscii = Asc("!") Then KeyAscii = 0
+End Sub
+
+Private Sub mnuNew_Click()
+    txtName.Text = ""
+    lblOut.Caption = "new"
+End Sub
+
+Private Sub mnuExit_Click()
+    Unload Me
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+    Debug.Print "unloading after"; gClicks; "clicks"
+End Sub
+Attribute VB_Name = "modUtil"
+Option Explicit
+
+Public gClicks As Long
+
+Public Function Shout(s As String) As String
+    Shout = UCase$(s) & "!"
+End Function
+wait 0.5
+expect frmMain.Caption == "Sample Two - Sample Two"
+expect lblOut.Caption == "combo: One"
+expect txtName.Text == "World"
+expect List1.ListCount == 3
+expect Combo1.Text == "One"
+click cmdGo
+wait 0.2
+expect lblOut.Caption == "Hello, World (1)"
+click Check1
+wait 0.2
+expect Check1.Value == 0
+expect lblOut.Caption == "check=0"
+click cmdGo
+wait 0.2
+expect lblOut.Caption == "WORLD!"
+click optSize(1)
+wait 0.2
+expect optSize(1).Value == True
+expect optSize(0).Value == False
+expect lblOut.Caption == "size 1"
+click txtName
+key ctrl+a
+type txtName Bob!
+wait 0.3
+expect txtName.Text == "WorldBob"
+key Enter
+wait 0.3
+expect lblOut.Caption == "WORLDBOB!"
+expect gClicks == 3
+wait 0.6
+expect Val(lblTicks.Caption) > 3
+key ctrl+n
+wait 0.3
+expect lblOut.Caption == "new"
+expect txtName.Text == ""
+wait 0.3
+end
+Type=Exe
+Object={831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0; MSCOMCTL.OCX
+Object={F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0; COMDLG32.OCX
+Form=frmMain.frm
+Startup="frmMain"
+Title="Sample Four"
+Name="Sample4"
+VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
+Begin VB.Form frmMain 
+   Caption         =   "Common Controls"
+   ClientHeight    =   6000
+   ClientWidth     =   8400
+   StartUpPosition =   3  'Windows Default
+   Begin MSComDlg.CommonDialog CommonDialog1 
+      Left            =   7800
+      Top             =   5400
+      _ExtentX        =   847
+      _ExtentY        =   847
+      _Version        =   393216
+   End
+   Begin VB.Timer Timer1 
+      Interval        =   100
+      Left            =   7200
+      Top             =   5400
+   End
+   Begin MSComctlLib.Toolbar Toolbar1 
+      Align           =   1  'Align Top
+      Height          =   420
+      Left            =   0
+      TabIndex        =   0
+      Top             =   0
+      Width           =   8400
+      _ExtentX        =   14817
+      _ExtentY        =   741
+      ButtonWidth     =   1500
+      ButtonHeight    =   600
+      Appearance      =   1
+      _Version        =   393216
+      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+         NumButtons      =   2
+         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "New"
+            Key             =   "new"
+         EndProperty
+         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "Open"
+            Key             =   "open"
+         EndProperty
+      EndProperty
+   End
+   Begin MSComctlLib.StatusBar StatusBar1 
+      Align           =   2  'Align Bottom
+      Height          =   300
+      Left            =   0
+      TabIndex        =   1
+      Top             =   5700
+      Width           =   8400
+      _ExtentX        =   14817
+      _ExtentY        =   529
+      _Version        =   393216
+      BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
+         NumPanels       =   2
+         BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            Text            =   "Ready"
+            TextSave        =   "Ready"
+            Object.Width    =   3000
+         EndProperty
+         BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
+            AutoSize        =   1
+            Text            =   "Panel two"
+            TextSave        =   "Panel two"
+         EndProperty
+      EndProperty
+   End
+   Begin MSComctlLib.ProgressBar ProgressBar1 
+      Height          =   255
+      Left            =   240
+      TabIndex        =   2
+      Top             =   720
+      Width           =   3000
+      _ExtentX        =   5292
+      _ExtentY        =   450
+      _Version        =   393216
+      Appearance      =   1
+   End
+   Begin MSComctlLib.Slider Slider1 
+      Height          =   495
+      Left            =   240
+      TabIndex        =   3
+      Top             =   1080
+      Width           =   3000
+      _ExtentX        =   5292
+      _ExtentY        =   873
+      _Version        =   393216
+      Max             =   100
+   End
+   Begin MSComctlLib.TabStrip TabStrip1 
+      Height          =   1455
+      Left            =   240
+      TabIndex        =   4
+      Top             =   1680
+      Width           =   3000
+      _ExtentX        =   5292
+      _ExtentY        =   2566
+      _Version        =   393216
+      BeginProperty Tabs {1EFB6598-857C-11D1-B16A-00C0F0283628} 
+         NumTabs         =   3
+         BeginProperty Tab1 {1EFB659A-857C-11D1-B16A-00C0F0283628} 
+            Caption         =   "One"
+            Key             =   "one"
+         EndProperty
+         BeginProperty Tab2 {1EFB659A-857C-11D1-B16A-00C0F0283628} 
+            Caption         =   "Two"
+            Key             =   "two"
+         EndProperty
+         BeginProperty Tab3 {1EFB659A-857C-11D1-B16A-00C0F0283628} 
+            Caption         =   "Three"
+            Key             =   "three"
+         EndProperty
+      EndProperty
+   End
+   Begin MSComctlLib.ListView ListView1 
+      Height          =   1695
+      Left            =   3480
+      TabIndex        =   5
+      Top             =   720
+      Width           =   4695
+      _ExtentX        =   8281
+      _ExtentY        =   2990
+      View            =   3
+      LabelEdit       =   1
+      LabelWrap       =   -1  'True
+      HideSelection   =   -1  'True
+      FullRowSelect   =   -1  'True
+      GridLines       =   -1  'True
+      _Version        =   393217
+      ForeColor       =   -2147483640
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Appearance      =   1
+      NumItems        =   2
+      BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         Text            =   "Name"
+         Object.Width    =   2540
+      EndProperty
+      BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   1
+         Text            =   "Size"
+         Object.Width    =   2540
+      EndProperty
+   End
+   Begin MSComctlLib.TreeView TreeView1 
+      Height          =   2295
+      Left            =   3480
+      TabIndex        =   6
+      Top             =   2520
+      Width           =   2295
+      _ExtentX        =   4048
+      _ExtentY        =   4048
+      _Version        =   393217
+      Style           =   7
+      Appearance      =   1
+   End
+   Begin MSComctlLib.UpDown UpDown1 
+      Height          =   375
+      Left            =   6000
+      TabIndex        =   7
+      Top             =   2520
+      Width           =   240
+      _ExtentX        =   423
+      _ExtentY        =   661
+      _Version        =   393216
+      Max             =   10
+      Enabled         =   -1  'True
+   End
+   Begin VB.CommandButton cmdTab 
+      Caption         =   "Tab 2"
+      Height          =   375
+      Left            =   240
+      TabIndex        =   8
+      Top             =   3360
+      Width           =   1215
+   End
+   Begin VB.CommandButton cmdSlide 
+      Caption         =   "Slide 42"
+      Height          =   375
+      Left            =   1560
+      TabIndex        =   9
+      Top             =   3360
+      Width           =   1215
+   End
+   Begin VB.CommandButton cmdItem 
+      Caption         =   "Item 3"
+      Height          =   375
+      Left            =   240
+      TabIndex        =   10
+      Top             =   3840
+      Width           =   1215
+   End
+   Begin VB.CommandButton cmdNode 
+      Caption         =   "Node c2"
+      Height          =   375
+      Left            =   1560
+      TabIndex        =   11
+      Top             =   3840
+      Width           =   1215
+   End
+   Begin VB.CommandButton cmdTool 
+      Caption         =   "Toolbtn 2"
+      Height          =   375
+      Left            =   240
+      TabIndex        =   12
+      Top             =   4320
+      Width           =   1215
+   End
+   Begin VB.CommandButton cmdUp 
+      Caption         =   "UpDown 5"
+      Height          =   375
+      Left            =   1560
+      TabIndex        =   13
+      Top             =   4320
+      Width           =   1215
+   End
+   Begin VB.CommandButton cmdOpen 
+      Caption         =   "Open..."
+      Height          =   375
+      Left            =   240
+      TabIndex        =   14
+      Top             =   4800
+      Width           =   1215
+   End
+   Begin VB.Label lblOut 
+      Caption         =   "ready"
+      Height          =   255
+      Left            =   240
+      TabIndex        =   15
+      Top             =   5280
+      Width           =   5000
+   End
+   Begin VB.Label lblDlg 
+      Caption         =   "-"
+      Height          =   255
+      Left            =   1560
+      TabIndex        =   16
+      Top             =   4800
+      Width           =   3000
+   End
+End
+Attribute VB_Name = "frmMain"
+Option Explicit
+
+' mscomctl constants (not yet in the core constant table)
+Private Const tvwChild = 4
+
+Private Sub Form_Load()
+    Dim li As ListItem, nd As Node
+    Set li = ListView1.ListItems.Add(, "a", "Alpha")
+    li.SubItems(1) = "10"
+    Set li = ListView1.ListItems.Add(, "b", "Beta")
+    li.SubItems(1) = "20"
+    Set li = ListView1.ListItems.Add(, "c", "Gamma")
+    li.SubItems(1) = "30"
+    Set nd = TreeView1.Nodes.Add(, , "root", "Root")
+    nd.Expanded = True
+    TreeView1.Nodes.Add "root", tvwChild, "c1", "Child 1"
+    TreeView1.Nodes.Add "root", tvwChild, "c2", "Child 2"
+    StatusBar1.Panels(1).Text = "Loaded"
+End Sub
+
+Private Sub Timer1_Timer()
+    If ProgressBar1.Value < ProgressBar1.Max Then ProgressBar1.Value = ProgressBar1.Value + 10
+End Sub
+
+Private Sub Slider1_Change()
+    lblOut.Caption = "slider " & Slider1.Value
+End Sub
+
+Private Sub TabStrip1_Click()
+    lblOut.Caption = "tab " & TabStrip1.SelectedItem.Index & " " & TabStrip1.SelectedItem.Caption
+End Sub
+
+Private Sub ListView1_ItemClick(ByVal Item As MSComctlLib.ListItem)
+    lblOut.Caption = "item " & Item.Text & "/" & Item.SubItems(1)
+End Sub
+
+Private Sub TreeView1_NodeClick(ByVal Node As MSComctlLib.Node)
+    lblOut.Caption = "node " & Node.FullPath
+End Sub
+
+Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
+    lblOut.Caption = "tool " & Button.Key
+End Sub
+
+Private Sub UpDown1_Change()
+    lblOut.Caption = "updown " & UpDown1.Value
+End Sub
+
+Private Sub cmdTab_Click()
+    TabStrip1.Tabs(2).Selected = True
+End Sub
+
+Private Sub cmdSlide_Click()
+    Slider1.Value = 42
+End Sub
+
+Private Sub cmdItem_Click()
+    ListView1_ItemClick ListView1.ListItems(3)
+End Sub
+
+Private Sub cmdNode_Click()
+    TreeView1_NodeClick TreeView1.Nodes("c2")
+End Sub
+
+Private Sub cmdTool_Click()
+    Toolbar1_ButtonClick Toolbar1.Buttons(2)
+End Sub
+
+Private Sub cmdUp_Click()
+    UpDown1.Value = 5
+End Sub
+
+Private Sub cmdOpen_Click()
+    On Error Resume Next
+    CommonDialog1.CancelError = True
+    CommonDialog1.Filter = "Text (*.txt)|*.txt|All files (*.*)|*.*"
+    CommonDialog1.ShowOpen
+    lblDlg.Caption = "err=" & Err.Number
+End Sub
+wait 0.5
+expect lblOut.Caption == "ready"
+expect ListView1.ListItems.Count == 3
+expect ListView1.ColumnHeaders.Count == 2
+expect ListView1.ListItems(2).SubItems(1) == "20"
+expect ListView1.ListItems("c").Text == "Gamma"
+expect TreeView1.Nodes.Count == 3
+expect TreeView1.Nodes("root").Children == 2
+expect TreeView1.Nodes("c2").FullPath == "Root\Child 2"
+expect StatusBar1.Panels.Count == 2
+expect StatusBar1.Panels(1).Text == "Loaded"
+expect Toolbar1.Buttons.Count == 2
+expect Toolbar1.Buttons(2).Key == "open"
+expect TabStrip1.Tabs.Count == 3
+expect TabStrip1.SelectedItem.Index == 1
+click cmdTab
+wait 0.2
+expect lblOut.Caption == "tab 2 Two"
+click cmdSlide
+wait 0.2
+expect lblOut.Caption == "slider 42"
+click Slider1
+wait 0.3
+expect Slider1.Value >= 40 And Slider1.Value <= 60
+click cmdItem
+wait 0.2
+expect lblOut.Caption == "item Gamma/30"
+click cmdNode
+wait 0.2
+expect lblOut.Caption == "node Root\Child 2"
+click cmdTool
+wait 0.2
+expect lblOut.Caption == "tool open"
+click cmdUp
+wait 0.2
+expect lblOut.Caption == "updown 5"
+expect ProgressBar1.Value > 0
+click cmdOpen
+wait 0.6
+key Escape
+wait 0.4
+expect lblDlg.Caption == "err=32755"
+end
+Type=Exe
+Object={831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0; MSCOMCTL.OCX
+Object={5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0; MSFLXGRD.OCX
+Form=frmMain.frm
+Startup="frmMain"
+Title="Sample Six"
+Name="Sample6"
+VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "MSFLXGRD.OCX"
+Begin VB.Form frmMain 
+   Caption         =   "GDI Monitor Render"
+   ClientHeight    =   6000
+   ClientWidth     =   8400
+   StartUpPosition =   3  'Windows Default
+   Begin MSComctlLib.Toolbar tbTop 
+      Align           =   1  'Align Top
+      Height          =   420
+      Left            =   0
+      Top             =   0
+      Width           =   8400
+      _ExtentX        =   14817
+      _ExtentY        =   741
+      ButtonWidth     =   1000
+      ButtonHeight    =   540
+      _Version        =   393216
+      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+         NumButtons      =   1
+         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Key             =   "run"
+         EndProperty
+      EndProperty
+   End
+   Begin MSComctlLib.Toolbar tbLeft 
+      Align           =   3  'Align Left
+      Height          =   5385
+      Left            =   0
+      Top             =   0
+      Width           =   540
+      _ExtentX        =   953
+      _ExtentY        =   9499
+      ButtonWidth     =   540
+      ButtonHeight    =   540
+      Style           =   1
+      _Version        =   393216
+      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+         NumButtons      =   3
+         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Key             =   "one"
+         EndProperty
+         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Key             =   "two"
+         EndProperty
+         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Key             =   "three"
+         EndProperty
+      EndProperty
+   End
+   Begin VB.PictureBox pnlBottom 
+      Align           =   2  'Align Bottom
+      Height          =   480
+      Left            =   0
+      Top             =   5520
+      Width           =   8400
+   End
+   Begin VB.PictureBox pctHost 
+      Height          =   1500
+      Left            =   3000
+      ScaleHeight     =   1440
+      ScaleWidth      =   1440
+      Top             =   600
+      Width           =   1500
+      Begin VB.Label lblInner 
+         Caption         =   "inner"
+         Height          =   255
+         Left            =   0
+         Top             =   0
+         Width           =   500
+      End
+   End
+   Begin VB.PictureBox pctSrc 
+      AutoRedraw      =   -1  'True
+      BackColor       =   &H00000000&
+      Height          =   690
+      Left            =   3285
+      ScaleHeight     =   630
+      ScaleWidth      =   450
+      Top             =   765
+      Visible         =   0   'False
+      Width           =   510
+   End
+   Begin VB.PictureBox pctDst 
+      Height          =   1200
+      Left            =   720
+      Top             =   240
+      Width           =   1800
+   End
+   Begin VB.TextBox txtEdit 
+      Height          =   285
+      Left            =   800
+      Top             =   3660
+      Visible         =   0   'False
+      Width           =   1200
+   End
+   Begin VB.Timer tmr1 
+      Interval        =   200
+      Left            =   6000
+      Top             =   600
+   End
+   Begin MSFlexGridLib.MSFlexGrid grd1 
+      Height          =   1500
+      Left            =   720
+      Top             =   3600
+      Width           =   3000
+      _ExtentX        =   5292
+      _ExtentY        =   2646
+      _Version        =   393216
+      Rows            =   6
+      Cols            =   5
+      FixedRows       =   1
+      FixedCols       =   1
+   End
+   Begin VB.Label lblGridKey 
+      Caption         =   ""
+      Height          =   255
+      Left            =   4800
+      Top             =   1560
+      Width           =   2000
+   End
+   Begin VB.Label lblOut 
+      Caption         =   "start"
+      Height          =   255
+      Left            =   720
+      Top             =   1560
+      Width           =   3600
+   End
+End
+Attribute VB_Name = "frmMain"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Private Declare Function TextOut Lib "gdi32" Alias "TextOutA" (ByVal hdc As Long, ByVal X As Long, ByVal Y As Long, ByVal lpString As String, ByVal nCount As Long) As Long
+
+Private Sub tmr1_Timer()
+    tmr1.Enabled = False   '// one-shot
+    txtEdit.Text = ""
+    txtEdit.Move grd1.Left + grd1.CellLeft, grd1.Top + grd1.CellTop, grd1.CellWidth, grd1.CellHeight
+    txtEdit.Visible = True
+    txtEdit.SetFocus
+End Sub
+
+Private Sub grd1_KeyPress(KeyAscii As Integer)
+    '// If the grid steals characters meant for the overlay editor, they land here.
+    lblGridKey.Caption = lblGridKey.Caption & Chr(KeyAscii)
+End Sub
+
+Private Sub pctHost_Resize()
+    '// container Resize handler must fire when the box is sized -> re-flows its child
+    lblInner.Width = pctHost.ScaleWidth
+End Sub
+
+Private Sub Form_Load()
+    Dim h As Long
+    '// 1) GDI-on-surface + PaintPicture double buffer
+    pctSrc.ForeColor = vbWhite
+    pctSrc.Cls
+    h = pctSrc.hdc
+    TextOut h, 5, 5, "HELLO", 5
+    pctDst.PaintPicture pctSrc.Image, 0, 0
+
+    '// 2) resizing a container fires its _Resize (re-flows children)
+    pctHost.Width = 4000   '// ScaleWidth becomes ~3940; pctHost_Resize copies it to lblInner
+
+    '// 3) FlexGrid current-cell geometry for in-place editing
+    grd1.ColWidth(0) = 600
+    grd1.ColWidth(1) = 900
+    grd1.ColWidth(2) = 900
+    grd1.Row = 2
+    grd1.Col = 2
+
+    If h <> 0 Then lblOut.Caption = "ok " & pctSrc.ScaleMode Else lblOut.Caption = "no-hdc"
+End Sub
+wait 0.5
+expect lblOut.Caption == "ok 1"
+expect frmMain.pctSrc.ScaleMode == 1
+expect (frmMain.pctSrc.hdc > 0) == True
+expect (lblInner.Width > 3000) == True
+expect grd1.CellLeft == 1500
+expect grd1.CellWidth == 900
+expect grd1.CellTop == 510
+expect grd1.CellHeight == 255
+expect (frmMain.pnlBottom.Top + frmMain.pnlBottom.Height >= frmMain.ScaleHeight - 20) And (frmMain.pnlBottom.Top + frmMain.pnlBottom.Height <= frmMain.ScaleHeight + 20) == True
+expect tbLeft.Buttons.Count == 3
+wait 0.6
+type txtEdit AB
+wait 0.5
+expect txtEdit.Text == "AB"
+expect lblGridKey.Caption == ""
+end
+Type=Exe
+Form=frmMain.frm
+Startup="frmMain"
+Title="Sample Seven"
+Name="Sample7"
+VERSION 5.00
+Begin VB.Form frmMain 
+   Caption         =   "DblClick"
+   ClientHeight    =   3000
+   ClientWidth     =   4000
+   Begin VB.ListBox List1 
+      Height          =   1500
+      Left            =   120
+      Top             =   120
+      Width           =   2000
+   End
+   Begin VB.Label lblClick 
+      Caption         =   "0"
+      Height          =   255
+      Left            =   2300
+      Top             =   120
+      Width           =   1000
+   End
+   Begin VB.Label lblDbl 
+      Caption         =   "0"
+      Height          =   255
+      Left            =   2300
+      Top             =   480
+      Width           =   1000
+   End
+End
+Attribute VB_Name = "frmMain"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Private mClicks As Integer
+Private mDbl As Integer
+Private Sub Form_Load()
+    List1.AddItem "alpha"
+    List1.AddItem "beta"
+    List1.AddItem "gamma"
+End Sub
+Private Sub List1_Click()
+    mClicks = mClicks + 1
+    lblClick.Caption = CStr(mClicks)
+End Sub
+Private Sub List1_DblClick()
+    mDbl = mDbl + 1
+    lblDbl.Caption = CStr(mDbl)
+End Sub
+wait 0.6
+dblclick list1
+wait 0.4
+expect lblDbl.Caption == "1"
+expect (Val(lblClick.Caption) <= 1) == True
+end
