@@ -1960,7 +1960,1939 @@ wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,
 <td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
 height="35" alt="vpsy"></b></font></td>
 <td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:47:01 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:49:03 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:48:07 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:43:09 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:54:23 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:50:24 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:50:35 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:59:42 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:49:43 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:51:44 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:53:47 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
 &nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 07:14:53 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:05:03 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:02:15 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:17:18 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:09:20 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:31:29 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:23:31 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:11:37 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:12:43 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:29:46 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:27:49 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:31:50 AM)</small></small></strong></font><br>
+<a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Events</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Buffer Statistics</font></a>
+ - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Setup Information</font></a>
+</td></tr>
+</table>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<HEAD><title>Vehicle Spy LogBook</title></HEAD>
+<FRAMESET ROWS="75,*" BORDER=0>
+<FRAME SRC=header.htm NAME=TOP >
+<FRAME SRC=comment.htm NAME=BOTTOM>
+</FRAMESET>
+<NOFRAME>
+<BODY>
+This page requires a browser that supports frames.
+</BODY>
+</NOFRAME>
+</HTML>
+[Options]
+Compatibility = 1.1 Or later
+Compiled file = Test.chm
+Default topic = Index.htm
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=Vehicle Spy Logbook
+
+[Files]
+index.htm
+<HTML>
+<title>Vehicle Spy LogBook Test records</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Test Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Vehicle Spy LogBook Comments</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<FONT FACE="Arial" SIZE=3><b>Vehicle Spy <i>LogBook Comment Log</i></b></FONT><p>
+<script language="JavaScript">
+<!--
+function OpenInNewWindow(sURL)
+{
+wNewWindow = window.open(sURL,"DataFile","toolbar=yes,resizable=yes,menubar=yes,status=yes");
+}
+// -->
+</script>
+</head>
+<FONT FACE="Arial" SIZE=2>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<HTML>
+<title>Intrepid Control Systems Vehicle Spy Log File</title>
+<head>
+<meta name="GENERATOR" content="Intrepid Control Systems Vehicle Spy V10">
+<table border="0" width="100%" height="43">
+<tr>
+<td width="11%" height="39"><font FACE="Arial" SIZE="3"><b><img src="vspy.bmp" width="55"
+height="35" alt="vpsy"></b></font></td>
+<td width="89%" height="39"><font face="Arial"><font SIZE="3"><b>Vehicle Spy <i>LogBook</i></b></font>
+&nbsp; <strong><small><small>(Recorded Friday, August 28, 2026 at 08:24:58 AM)</small></small></strong></font><br>
 <a href="comment.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Comments</font></a>
  - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">Test Results</font></a>
  - <a href="testlog.htm" TARGET="BOTTOM"><font FACE="Arial" SIZE="1">User Buffers</font></a>
@@ -25463,6 +27395,22 @@ End Sub
 Private Sub Class_Initialize()
 MakeNew
 End Sub
+waitdialog 60
+key enter
+wait 1
+menu frmMain.mnuViewChart
+wait 1
+menu frmMain.mnuRunStart
+wait 3
+click cmdTX(1)
+wait 1
+click cwbTest(1)
+wait 1
+click cwbOnOff(1)
+wait 1
+click cmdTX(1)
+wait 2
+expect obApp.MonitorOn == True
 VERSION 1.0 CLASS
 BEGIN
   MultiUse = -1  'True
@@ -45637,7 +47585,16 @@ LB	    °  ¥   ﬂ  Ô      i  LB	    á   K   W  ﬂ    ‰    
    
       in1   in2   in3   in4   in5   in6   in7   in8   in9   in10
    Engine RPM         {B2}*30                                    "   #bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                                                                                                                                                               88   09   10                                                                       Vehicle Speed         {B2}/2                                    "   #bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                                                                                                                                                               8A   EA   40                                                                       Brake Switch         {B2}                                    "   #bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                                                                                                                                                               48   EA   10                                                                       Coolant Temp         {B2}-40                                    "   #bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                                                                                                                                                               AA   EB   60                                                                                                                        "   #bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                                                                                                                                                                                                                                                                                                "   #bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                                                                                                                                                                                                                                                                                                "   #bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                                                                                                                                                                                                                                                                                                "   #bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                                                                                                                                                                                                                                                                                                "   #bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                                                                                                                                                                                                                                                                                                "   #bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                                                                                                                                                                                                                                                                  icsSpyDataFile.csv    ˇˇ   Generic Test                ˇˇ               '                                 ˇˇ                                                                                                                                                                                                                                                                                                 out1                    ˇˇ                                  ˇˇ                          ˇˇ   N  »   ˇˇˇ                                                                      –?      ‡?                                                                 Ä @                                                                   Arial                ˇˇ    Ä       PB1 
-      numberoftxbuttonsD      "@   v201B   v202B   v203B   v204B   v205B   v206B   v207B   v208B   v209B                                                                                                                                                            ˇˇ                          Type=Control
+      numberoftxbuttonsD      "@   v201B   v202B   v203B   v204B   v205B   v206B   v207B   v208B   v209B                                                                                                                                                            ˇˇ                          waitdialog 60
+key enter
+wait 1
+menu frmMain.mnuViewChart
+wait 1
+menu frmMain.mnuRunStart
+wait 3
+exec Debug.Print "cols="; gValues.Cols; " rows="; gValues.Rows; " protocol="; obApp.Protocol
+end
+Type=Control
 UserControl=icsVSI.ctl
 Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\WINDOWS\SYSTEM\StdOle2.tlb#OLE Automation
 Class=cMessageByte; cMessageByte.cls
@@ -46880,7 +48837,12 @@ DebugStartupOption=0
 ActiveX Spy Hardware/icsspyHardware.vbp
 Spy User Dialog DLL/prjTestUserDialog.vbp
 icsJ1850.vbp
-   graphical panel demo.IVS   asdf.IVS        Attribute VB_Name = "basCrypkeyFunctions"
+waitdialog 60
+key enter
+wait 1
+exec Debug.Print "count="; imlTransmit.ListImages.Count
+end
+   demo.ivs   graphical panel demo.IVS   asdf.IVS    Attribute VB_Name = "basCrypkeyFunctions"
 Option Explicit
 Option Base 1
 Option Private Module
@@ -47240,6 +49202,13 @@ End Function
 
 
 
+waitdialog 60
+key enter
+wait 1
+menu frmMain.mnuViewChart
+wait 1
+menu frmMain.mnuRunStart
+wait 2
 Attribute VB_Name = "Module3"
 ' **** SSResAssist TagStart |  DO NOT EDIT BETWEEN TAG LINES
 Public Const IDB_SCROLL = 105
@@ -47494,4 +49463,33 @@ appropiate signitures.</font></p>
  ì  $   G I F   ˇˇe     0	        GIF87ac F ˜       3  f  ô  Ã  ˇ 3  33 3f 3ô 3Ã 3ˇ f  f3 ff fô fÃ fˇ ô  ô3 ôf ôô ôÃ ôˇ Ã  Ã3 Ãf Ãô ÃÃ Ãˇ ˇ  ˇ3 ˇf ˇô ˇÃ ˇˇ3  3 33 f3 ô3 Ã3 ˇ33 33333f33ô33Ã33ˇ3f 3f33ff3fô3fÃ3fˇ3ô 3ô33ôf3ôô3ôÃ3ôˇ3Ã 3Ã33Ãf3Ãô3ÃÃ3Ãˇ3ˇ 3ˇ33ˇf3ˇô3ˇÃ3ˇˇf  f 3f ff ôf Ãf ˇf3 f33f3ff3ôf3Ãf3ˇff ff3fffffôffÃffˇfô fô3fôffôôfôÃfôˇfÃ fÃ3fÃffÃôfÃÃfÃˇfˇ fˇ3fˇffˇôfˇÃfˇˇô  ô 3ô fô ôô Ãô ˇô3 ô33ô3fô3ôô3Ãô3ˇôf ôf3ôffôfôôfÃôfˇôô ôô3ôôfôôôôôÃôôˇôÃ ôÃ3ôÃfôÃôôÃÃôÃˇôˇ ôˇ3ôˇfôˇôôˇÃôˇˇÃ  Ã 3Ã fÃ ôÃ ÃÃ ˇÃ3 Ã33Ã3fÃ3ôÃ3ÃÃ3ˇÃf Ãf3ÃffÃfôÃfÃÃfˇÃô Ãô3ÃôfÃôôÃôÃÃôˇÃÃ ÃÃ3ÃÃfÃÃôÃÃÃÃÃˇÃˇ Ãˇ3ÃˇfÃˇôÃˇÃÃˇˇˇ  ˇ 3ˇ fˇ ôˇ Ãˇ ˇˇ3 ˇ33ˇ3fˇ3ôˇ3Ãˇ3ˇˇf ˇf3ˇffˇfôˇfÃˇfˇˇô ˇô3ˇôfˇôôˇôÃˇôˇˇÃ ˇÃ3ˇÃfˇÃôˇÃÃˇÃˇˇˇ ˇˇ3ˇˇfˇˇôˇˇÃˇˇˇ   (((555CCCPPP]]]kkkxxxÜÜÜììì°°°ÆÆÆªªª………÷÷÷‰‰‰ÒÒÒˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇˇ,    c F ˇ Ø	H∞†¡É(Ä∞°√á#Jú8p!Cä3j‹H–"«è C&\(≤§IåO™y1·HÖ+9ò9—bÀéo^K#Õ5y∫ƒ˘RgOà3ì%ôshG¶G%&∫fŒõFÖFu8•V¢;ØZ› U©W®≠›âñ¨¡©T)⁄t∏∂b[∑·jú€Æ¿ØxıÓl∑.·∑4Kv›»∑o_øàî<rƒ√y·&ﬁHπÚÿåòjÓ,’Ï«∆†-ãÓ™Ÿ'È‘™b|mÙƒ◊ómÍé]¥!ÌÃ∏á∏ª∏\»ø	⁄ˆm⁄sqﬁO?oô˙tñœQ˜õ¸‡ÚÎxèKˇØ=\8ÌÚ·”∂Ì˛–∂ıÙ≤—≤è8z3¸‹cÁó÷_ÏE˛∑Ω◊ﬂcV°7‡_ŸÖ÷Ä"ò‡xt-ƒ`Él=XBH°ÖÄÄ∆Ü∆¢x‚w·â"¶∏ùã,z∏bã1¬cÑ7÷X‘å8Ú®ct9í‰è©ûë:já"ë)Yì*˙$áTV˘ äRfÂñ\*XRó`vâWòdVyüóPäÑföÿ!…¶gonµfút÷iÁù,f	eVcÈ6eá∆©w§PªëËﬂgL%⁄gKÄ˙“†h›†E"Ë‡Svv’§úbz©•ô>:“§äF¯bßEbÖËEëÆ ñßòíx§öì˙™´ûJï¨™
  Îå¥J
 *Æ∑Í¥+´åéìZ9∆¨±∂ÇZÏ®µ-Cœí
-Ì¶“VKÏ´›ÇõÍ¢åV(Ó™ÿíÀ≠π·b’©™Ã:Ó\÷6Ê(µ≈n;.π∂∂≈oJ∫~Ïµ‚ÊÎo¥w{/û*π…D ; 
+Ì¶“VKÏ´›ÇõÍ¢åV(Ó™ÿíÀ≠π·b’©™Ã:Ó\÷6Ê(µ≈n;.π∂∂≈oJ∫~Ïµ‚ÊÎo¥w{/û*π…D ; waitdialog 60
+key enter
+wait 1
+menu frmMain.mnuViewChart
+wait 1
+menu frmMain.mnuRunStart
+wait 3
+exec Debug.Print "count="; obApp.UserDialog.cDigitalEntries.Count
+exec Debug.Print "dataid="; obApp.UserDialog.cDigitalEntries(Str$(1)).DataID
+exec Debug.Print "key="; obApp.OutgoingMessages(obApp.UserDialog.cDigitalEntries(Str$(1)).DataID).Key
+exec Debug.Print "idx="; obApp.OutgoingMessages.ReturnIndexFromKey(obApp.OutgoingMessages(obApp.UserDialog.cDigitalEntries(Str$(1)).DataID).Key)
+exec Debug.Print "hw="; obApp.HardwareID; obApp.Protocol
+exec obApp.Transmit obApp.UserDialog.cDigitalEntries(Str$(1)).DataID
+wait 1
+end
+waitdialog 60
+key enter
+wait 1
+menu frmMain.mnuViewChart
+wait 1
+menu frmMain.mnuRunStart
+wait 3
+click cmdTX(1)
+wait 2
+expect obApp.MonitorOn == True
+click cwbTest(1)
+wait 1
+click cwbOnOff(1)
+wait 1
+end

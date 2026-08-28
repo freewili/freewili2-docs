@@ -34,6 +34,215 @@ Sub Main()
         Debug.Print "i = " & i
     Next i
 End Sub
+# Vehicle Spy 2 graphical-monitor demo scripts
+
+Scripted sessions (`VB6_TEST_SCRIPT`) that build, exercise and reload a graphical monitor
+panel in the Vehicle Spy 2 port. Run them from the Vehicle Spy project directory
+(the one containing `icsVSpy.vbp`), e.g.:
+
+    cd ".../ICS Vehicle Spy"
+    mkdir -p shots
+    VB6_TEST_SCRIPT=/path/to/vb6-26/examples/vspy/panel-build.txt vb6 run icsVSpy.vbp
+    VB6_TEST_SCRIPT=/path/to/vb6-26/examples/vspy/panel-open.txt  vb6 run icsVSpy.vbp
+
+* `panel-build.txt` — starts with `asdf.IVS`, defines four incoming messages that decode the
+  `Example Files/engine rpm demo.csv` replay (Engine RPM, Vehicle Speed, Brake Switch,
+  Coolant Temp), then adds every panel item type through the real right-click menus and
+  property dialogs (strip chart, X-Y chart, meter, knob, LED, Tx / Test / On-Off buttons,
+  static text, numeric entry), lays them out, sets the replay file, starts monitoring,
+  takes screenshots (`shots/*.png`), drags a control, opens the add-item popup and finally
+  saves everything as `graphical panel demo.IVS`.
+* `panel-open.txt` — reopens `graphical panel demo.IVS`, switches to the graphical view,
+  starts the replay and screenshots the live panel.
+
+Script commands are documented at the top of `src/runtime/src/testdriver.cpp`
+(`exec <statement>` runs VB code in the active form's context).
+# Build a Vehicle Spy graphical-monitor panel from scratch (run from the icsVSpy.vbp directory)
+wait 6
+key enter
+wait 2
+dialog_file asdf.IVS
+menu frmMain.mnuFileOpen
+wait 3
+# --- incoming messages that decode the demo replay (Example Files/engine rpm demo.csv)
+exec With obApp.IncomingMessages(1): .Description = "Engine RPM": .DataByteString(1) = "88": .DataByteString(2) = "09": .DataByteString(3) = "10": .ValueSource = 1: .ValueType = 1: .Equation = "{B2}*30": End With
+exec With obApp.IncomingMessages(2): .Description = "Vehicle Speed": .DataByteString(1) = "8A": .DataByteString(2) = "EA": .DataByteString(3) = "40": .ValueSource = 1: .ValueType = 1: .Equation = "{B2}/2": End With
+exec With obApp.IncomingMessages(3): .Description = "Brake Switch": .DataByteString(1) = "48": .DataByteString(2) = "EA": .DataByteString(3) = "10": .ValueSource = 1: .ValueType = 2: .Equation = "{B2}": End With
+exec With obApp.IncomingMessages(4): .Description = "Coolant Temp": .DataByteString(1) = "AA": .DataByteString(2) = "EB": .DataByteString(3) = "60": .ValueSource = 1: .ValueType = 1: .Equation = "{B2}-40": End With
+exec obApp.OutgoingMessages(1).Description = "Request RPM"
+exec obApp.OutgoingMessages(2).Description = "Throttle Cmd"
+menu frmMain.mnuViewChart
+wait 1
+# --- strip chart (Add Chart)
+exec UI.mNewControlInsertX = 200
+exec UI.mNewControlInsertY = 200
+menu frmMain.mnuCustomAddChart
+wait 1.5
+exec txtTitle = "Engine RPM / Vehicle Speed"
+exec lstAnalogInputs(0).ListIndex = 1
+exec lstAnalogInputs(1).ListIndex = 2
+exec lstStripRate.ListIndex = 0
+exec txtChartHistory = "100"
+screenshot shots/01_chart_properties.png frmGraphProperties
+click frmGraphProperties.CmdOk
+wait 1
+# --- X-Y chart
+exec UI.mNewControlInsertX = 7600
+exec UI.mNewControlInsertY = 200
+menu frmMain.mnuCustomAddChart
+wait 1.5
+exec txtTitle = "RPM vs Coolant"
+exec optType(2).Value = True
+exec lstAnalogInputs(0).ListIndex = 1
+exec lstAnalogInputs(1).ListIndex = 4
+exec lstStripRate.ListIndex = 0
+exec txtChartHistory = "200"
+click frmGraphProperties.CmdOk
+wait 1
+# --- meter (incoming: Engine RPM)
+exec UI.mNewControlInsertX = 200
+exec UI.mNewControlInsertY = 4700
+menu frmMain.cmdCustomAddMeter
+wait 1.5
+exec lstItems.ListIndex = 0
+exec txtMinParameter1 = "0"
+exec txtMaxParameter1 = "8000"
+screenshot shots/02_meter_properties.png frmSelectItemAndRange
+click frmSelectItemAndRange.CmdOk
+wait 1
+# --- knob (outgoing: Throttle Cmd)
+exec UI.mNewControlInsertX = 4000
+exec UI.mNewControlInsertY = 4700
+menu frmMain.cmdCustomAddKnob
+wait 1.5
+exec lstItems.ListIndex = 1
+exec txtMinParameter1 = "0"
+exec txtMaxParameter1 = "100"
+click frmSelectItemAndRange.CmdOk
+wait 1
+# --- LED (Brake Switch)
+exec UI.mNewControlInsertX = 7000
+exec UI.mNewControlInsertY = 4800
+menu frmMain.mnuCustomAddLED
+wait 1.5
+exec lstItems.ListIndex = 2
+click frmSelectItem.CmdOk
+wait 1
+# --- Tx button (Request RPM)
+exec UI.mNewControlInsertX = 8000
+exec UI.mNewControlInsertY = 4700
+menu frmMain.mnuCustomAddTxButton
+wait 1.5
+exec lstItems.ListIndex = 0
+click frmSelectItem.CmdOk
+wait 1
+# --- test button (Start)
+exec UI.mNewControlInsertX = 10000
+exec UI.mNewControlInsertY = 4700
+menu frmMain.mnuCustomAddTestButton
+wait 1.5
+exec lstItems.ListIndex = 0
+exec optTest(1).Value = True
+click frmSelectItemAndTest.CmdOk
+wait 1
+# --- on/off button (Brake Switch)
+exec UI.mNewControlInsertX = 12000
+exec UI.mNewControlInsertY = 4700
+menu frmMain.mnuCustonAddOnOffButton
+wait 1.5
+exec lstItems.ListIndex = 2
+click frmSelectItem.CmdOk
+wait 1
+# --- static text (InputBox)
+exec UI.mNewControlInsertX = 7000
+exec UI.mNewControlInsertY = 6200
+menu frmMain.mnuCustomAddText
+wait 1.5
+screenshot shots/03_text_inputbox.png dialog
+text Engine Panel
+key enter
+wait 1
+# --- numeric entry (Throttle Cmd)
+exec UI.mNewControlInsertX = 10000
+exec UI.mNewControlInsertY = 6200
+menu frmMain.mnuCustomAddNumericEntry
+wait 1.5
+exec lstItems.ListIndex = 1
+exec txtMinParameter1 = "0"
+exec txtMaxParameter1 = "100"
+click frmSelectItemAndRange.CmdOk
+wait 1
+expect obApp.UserDialog.Graphs.Count == 2
+expect obApp.UserDialog.cAnalogDisplays.Count == 1
+expect obApp.UserDialog.cAnalogEntries.Count == 1
+expect obApp.UserDialog.cDigitalDisplays.Count == 1
+expect obApp.UserDialog.cDigitalEntries.Count == 1
+expect obApp.UserDialog.TestButtons.Count == 1
+expect obApp.UserDialog.OnOffButtons.Count == 1
+expect obApp.UserDialog.cStaticTexts.Count == 1
+expect obApp.UserDialog.NumericEntries.Count == 1
+expect cwg(1).Axes(2).Caption == "Engine RPM (blue)"
+expect cwkMeter(1).Axis.Maximum == 8000
+# --- layout (twips inside pctDisplay)
+exec cwg(1).Move 200, 200, 7000, 4200
+exec cwg(2).Move 7600, 200, 6000, 4200
+exec cwkMeter(1).Move 200, 4700, 3400, 2200
+exec cwkKnob(1).Move 4000, 4700, 2600, 2600
+exec cwbLight(1).Move 7000, 4800, 500, 500
+exec cmdTX(1).Move 8000, 4700, 1800, 700
+exec cwbTest(1).Move 10000, 4700, 1800, 700
+exec cwbOnOff(1).Move 12000, 4700, 1800, 700
+exec lblStatic(1).Move 7000, 6200, 2500, 300
+exec ineNumericEntry(1).Move 10000, 6100, 1400, 500
+exec SaveDialogSettings
+wait 0.5
+screenshot shots/04_panel_idle.png frmMain
+# --- run the demo replay
+dialog_file Example Files/engine rpm demo.csv
+menu frmMain.mnuSetReplayFile
+wait 1
+menu frmMain.mnuRunStart
+wait 12
+expect obApp.MonitorOn == True
+expect (obApp.IncomingMessages(1).DoubleValue > 0) == True
+screenshot shots/05_panel_live.png frmMain
+click frmMain.cwkMeter(1)
+wait 0.5
+screenshot shots/06_panel_selected.png frmMain
+drag frmMain.cwkMeter(1) 40 60
+wait 0.5
+expect cwkMeter(1).Left == 700
+rclick frmMain.pctDisplay
+wait 0.5
+screenshot shots/07_add_popup.png frmMain
+key escape
+wait 0.5
+menu frmMain.mnuRunStop
+wait 1
+dialog_file graphical panel demo.IVS
+menu frmMain.mnuFileSaveAs
+wait 2
+end
+# Reopen the saved graphical panel and run the replay (run from the icsVSpy.vbp directory)
+wait 6
+key enter
+wait 2
+dialog_file graphical panel demo.IVS
+menu frmMain.mnuFileOpen
+wait 3
+expect obApp.UserDialog.Graphs.Count == 2
+expect obApp.IncomingMessages(1).Description == "Engine RPM"
+expect cwkMeter(1).Axis.Maximum == 8000
+expect lblStatic(1).Caption == "Engine Panel"
+menu frmMain.mnuViewChart
+wait 1
+menu frmMain.mnuRunStart
+wait 12
+expect (obApp.IncomingMessages(1).DoubleValue > 0) == True
+screenshot shots/08_reopened_live.png frmMain
+menu frmMain.mnuRunStop
+wait 1
+end
 Type=Exe
 Form=frmMain.frm
 Module=modUtil; modUtil.bas
