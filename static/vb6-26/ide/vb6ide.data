@@ -34,6 +34,711 @@ Sub Main()
         Debug.Print "i = " & i
     Next i
 End Sub
+Type=Exe
+Form=frmDetector.frm
+Startup="frmDetector"
+Title="Motion Detector"
+Name="ImagingDemo"
+# VB6X.ImageView demo - motion detector
+
+The icsImaging "detector" example rebuilt on the `VB6X.Vision` + `VB6X.ImageView`
+controls: camera frames alternate into two `cicsImage` objects (converted to 8-bit grey,
+optionally thresholded and edge-detected), the mean square error between consecutive
+frames is charted on a `VB6X.Graph`, and a line region drawn on the first viewer reports
+the pixel values along it.
+
+    vb6 run examples/imaging/Project1.vbp
+
+Without a webcam the built-in test-pattern camera is used (its bouncing box produces a
+steady MSE signal). See `docs/manual/controls/imageview.md`.
+VERSION 5.00
+Begin VB.Form frmDetector 
+   Caption         =   "VB6X.ImageView - motion detector"
+   ClientHeight    =   6200
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   12600
+   StartUpPosition =   3  'Windows Default
+   Begin VB6X.Vision Vision1 
+      Height          =   3945
+      Left            =   120
+      Top             =   120
+      Width           =   4800
+   End
+   Begin VB6X.ImageView ImageView1 
+      DefaultROIType  =   2
+      Height          =   4020
+      Left            =   5040
+      Top             =   120
+      Width           =   4800
+   End
+   Begin VB6X.ImageView ImageView2 
+      Height          =   3600
+      Left            =   9960
+      ShowToolbar     =   0   'False
+      Top             =   120
+      Width           =   2400
+   End
+   Begin VB.CommandButton cmdOpen 
+      Caption         =   "Open Camera"
+      Height          =   390
+      Left            =   120
+      TabIndex        =   0
+      Top             =   4200
+      Width           =   2400
+   End
+   Begin VB.CheckBox chkRun 
+      Caption         =   "Detect (4 frames/s)"
+      Height          =   255
+      Left            =   120
+      TabIndex        =   1
+      Top             =   4700
+      Width           =   2400
+   End
+   Begin VB.CheckBox chkThreshold 
+      Caption         =   "Threshold + edges"
+      Height          =   255
+      Left            =   120
+      TabIndex        =   2
+      Top             =   5000
+      Width           =   2400
+   End
+   Begin VB.Timer tmrSnap 
+      Enabled         =   0   'False
+      Interval        =   250
+      Left            =   2160
+      Top             =   4200
+   End
+   Begin VB6X.Graph Graph1 
+      Caption         =   "Mean square error between consecutive frames"
+      ChartLength     =   100
+      Height          =   1500
+      Left            =   5040
+      Top             =   4320
+      Width           =   7320
+      YMaximum        =   2000
+      YMinimum        =   0
+   End
+   Begin VB.Label lblMSE 
+      Caption         =   "MSE: -"
+      Height          =   255
+      Left            =   120
+      TabIndex        =   3
+      Top             =   5300
+      Width           =   2400
+   End
+   Begin VB.Label lblLine 
+      Caption         =   "Draw a line on the image to plot its pixels"
+      Height          =   495
+      Left            =   120
+      TabIndex        =   4
+      Top             =   5600
+      Width           =   4800
+   End
+End
+Attribute VB_Name = "frmDetector"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+' After the icsImaging "detector" example: alternate camera frames into two cicsImage
+' objects, compare them pixel by pixel, and chart the mean square error. A line region
+' drawn on the first viewer reports the pixel values along it.
+
+Private bToggle As Boolean
+
+Private Sub cmdOpen_Click()
+    If Vision1.DriverOpen Then
+        tmrSnap.Enabled = False
+        chkRun.Value = vbUnchecked
+        Vision1.DriverOpen = False
+        cmdOpen.Caption = "Open Camera"
+    Else
+        Vision1.DeviceID = 0
+        Vision1.DriverOpen = True
+        If Not Vision1.DriverOpen Then MsgBox "No camera: " & Vision1.LastError: Exit Sub
+        Vision1.SetImageSize 320, 240
+        cmdOpen.Caption = "Close Camera"
+    End If
+End Sub
+
+Private Sub chkRun_Click()
+    tmrSnap.Enabled = (chkRun.Value = vbChecked) And Vision1.DriverOpen
+End Sub
+
+Private Sub tmrSnap_Timer()
+    Vision1.SnapShot
+End Sub
+
+Private Sub Vision1_AcquiredVideo(ByVal vVideoData As Variant, ByVal lImageHeight As Long, ByVal lImageWidth As Long, lBitsPerPixel As Long, ByVal vPaletteArray As Variant)
+    Dim dMSE As Double
+    Dim img As cicsImage
+    ' alternate the two viewers so we always hold the current frame and the previous one
+    If bToggle Then Set img = ImageView1.Image Else Set img = ImageView2.Image
+    bToggle = Not bToggle
+    If Not img.IntializeFromRawData(vVideoData, lImageHeight, lImageWidth, lBitsPerPixel, vPaletteArray) Then
+        lblMSE.Caption = img.LastErrorString
+        Exit Sub
+    End If
+    img.ConvertTo256Colors icsImgConvertGrayLuminance    ' one grey plane - fast
+    If chkThreshold.Value = vbChecked Then
+        img.ThresholdValue = 110
+        img.ConvolutionMaskType = icsIMGCTEdgeDection3x3Mask
+        img.Convolution True
+    End If
+    If ImageView1.Image.CompareImageByPixelAndReturnMSE(ImageView2.Image, dMSE) Then
+        lblMSE.Caption = "MSE: " & Format(dMSE, "0.0")
+        Graph1.ChartY dMSE
+    End If
+    If ImageView1.Regions.Count > 0 Then
+        With ImageView1.Regions(1)
+            If .ROIType = icsImgROITLine And .IsSet Then
+                Dim v As Variant, i As Long, s As Double
+                v = .DataArray
+                For i = LBound(v) To UBound(v): s = s + v(i): Next
+                lblLine.Caption = "Line " & .X1 & "," & .Y1 & " - " & .X2 & "," & .Y2 & ": " & (UBound(v) - LBound(v) + 1) & " px, mean " & Format(s / (UBound(v) - LBound(v) + 1), "0.0")
+            End If
+        End With
+    End If
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+    Vision1.DriverOpen = False
+End Sub
+Type=Exe
+Form=frmRadio2.frm
+Startup="frmRadio2"
+Title="Radio2 TC Logger"
+Name="Radio2Logger"
+# VB6X.Radio2 demo - thermocouple logger
+
+A temperature logger built on the `VB6X.Radio2` control (Intrepid neoRAD-IO2 chains,
+RAD-IO2-TC to start): pick a chain, Connect, watch all populated banks live on a strip
+chart, and log every poll to a CSV file.
+
+    vb6 run examples/radio2/Project1.vbp
+
+Without a module the list contains only the built-in **VB6X Simulated TC** chain (two
+sine-wave banks plus an open circuit). Set `VB6_RADIO2_NO_DEVICE=1` to hide real chains.
+See `docs/manual/controls/radio2.md` for the full object model.
+
+Linux: the module needs Intrepid's udev rule for `/dev/hidraw*`; the stock
+`99-intrepidcs.rules` uses `KERNEL=="hidraw?"`, which misses `hidraw10` and up - change it
+to `KERNEL=="hidraw*"`. Until then the control falls back to `/dev/bus/usb` (also covered
+by the rule), so it works either way.
+VERSION 5.00
+Begin VB.Form frmRadio2 
+   Caption         =   "VB6X.Radio2 - thermocouple logger"
+   ClientHeight    =   7200
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   11400
+   StartUpPosition =   3  'Windows Default
+   Begin VB6X.Radio2 Radio2_1 
+      Left            =   10800
+      Top             =   120
+      DeviceID        =   0
+      PollRateMs      =   500
+   End
+   Begin VB.ComboBox cboDevice 
+      Height          =   315
+      Left            =   120
+      Style           =   2  'Dropdown List
+      TabIndex        =   0
+      Top             =   120
+      Width           =   3600
+   End
+   Begin VB.CommandButton cmdConnect 
+      Caption         =   "Connect"
+      Height          =   390
+      Left            =   3900
+      TabIndex        =   1
+      Top             =   90
+      Width           =   1300
+   End
+   Begin VB.ComboBox cboRate 
+      Height          =   315
+      Left            =   6600
+      Style           =   2  'Dropdown List
+      TabIndex        =   2
+      Top             =   120
+      Width           =   1200
+   End
+   Begin VB.CheckBox chkF 
+      Caption         =   "Fahrenheit"
+      Height          =   255
+      Left            =   8000
+      TabIndex        =   3
+      Top             =   150
+      Width           =   1300
+   End
+   Begin VB.CommandButton cmdLog 
+      Caption         =   "Start CSV Log"
+      Enabled         =   0   'False
+      Height          =   390
+      Left            =   9420
+      TabIndex        =   4
+      Top             =   90
+      Width           =   1300
+   End
+   Begin VB.Label lblRate 
+      Alignment       =   1  'Right Justify
+      Caption         =   "Poll (ms):"
+      Height          =   255
+      Left            =   5700
+      TabIndex        =   5
+      Top             =   150
+      Width           =   800
+   End
+   Begin VB.Label lblBankHdr 
+      Caption         =   "Bank   Type  Serial       FW      Temperature      Cold Junction"
+      Height          =   255
+      Left            =   120
+      TabIndex        =   6
+      Top             =   630
+      Width           =   5400
+   End
+   Begin VB.Label lblBank 
+      Caption         =   "-"
+      Height          =   255
+      Index           =   0
+      Left            =   120
+      TabIndex        =   7
+      Top             =   930
+      Width           =   5400
+   End
+   Begin VB6X.Graph Graph1 
+      Caption         =   "Thermocouple temperature"
+      Height          =   4600
+      Left            =   5700
+      Plots           =   8
+      ChartLength     =   240
+      ChartStyle      =   0
+      XCaption        =   "Sample"
+      YCaption        =   "Temp"
+      YAutoScale      =   -1  'True
+      Y2Visible       =   0   'False
+      Legend          =   -1  'True
+      Top             =   630
+      Width           =   5580
+   End
+   Begin VB.Label lblStatus 
+      Caption         =   "Pick a chain and press Connect."
+      Height          =   255
+      Left            =   120
+      TabIndex        =   8
+      Top             =   6850
+      Width           =   11200
+   End
+End
+Attribute VB_Name = "frmRadio2"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+' Temperature logger on the VB6X.Radio2 control: live bank table, strip chart of every
+' populated bank, CSV logging (one row per poll, flushed as written).
+
+Private nLogFile As Integer     ' 0 = not logging
+Private sLogPath As String
+Private nRows As Long
+
+Private Sub Form_Load()
+    Dim i As Long
+    For i = 0 To Radio2_1.DeviceCount - 1
+        cboDevice.AddItem i & " : " & Radio2_1.DeviceName(i)
+    Next
+    cboDevice.ListIndex = 0
+    cboRate.AddItem "250": cboRate.AddItem "500": cboRate.AddItem "1000": cboRate.AddItem "2000"
+    cboRate.ListIndex = 1
+    For i = 1 To 7
+        Load lblBank(i)
+        lblBank(i).Top = lblBank(0).Top + i * 300
+        lblBank(i).Visible = True
+    Next
+    For i = 1 To 8
+        Graph1.Plots(i).Name = "Bank " & (i - 1)
+        Set Graph1.Plots(i).YAxis = Graph1.Axes(2)   ' everything on the left axis
+    Next
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+    StopLog
+    Radio2_1.Disconnect
+End Sub
+
+Private Sub cmdConnect_Click()
+    If Radio2_1.Connected Then
+        StopLog
+        Radio2_1.Disconnect
+        lblStatus.Caption = "Disconnected."
+    Else
+        Radio2_1.PollRateMs = CLng(cboRate.Text)
+        If Radio2_1.Connect(cboDevice.ListIndex) Then
+            Dim b As Long, n As Long
+            For b = 0 To Radio2_1.BankCount - 1
+                If Radio2_1.BankPresent(b) Then n = n + 1
+            Next
+            lblStatus.Caption = "Connected to " & Radio2_1.DeviceName() & ": " & n & " bank(s), polling every " & Radio2_1.PollRateMs & " ms"
+            Graph1.ClearData
+        Else
+            lblStatus.Caption = "Connect failed: " & Radio2_1.LastError
+        End If
+    End If
+    UpdateButtons
+End Sub
+
+Private Sub UpdateButtons()
+    cmdConnect.Caption = IIf(Radio2_1.Connected, "Disconnect", "Connect")
+    cmdLog.Enabled = Radio2_1.Connected
+    If Not Radio2_1.Connected Then cmdLog.Caption = "Start CSV Log"
+End Sub
+
+Private Sub cboRate_Click()
+    If Radio2_1.Connected Then Radio2_1.PollRateMs = CLng(cboRate.Text)
+End Sub
+
+Private Sub chkF_Click()
+    Radio2_1.Units = IIf(chkF.Value = vbChecked, 1, 0)
+End Sub
+
+Private Sub cmdLog_Click()
+    If nLogFile <> 0 Then
+        StopLog
+    Else
+        Dim b As Long
+        sLogPath = "radio2_" & Format(Now, "yyyymmdd_hhnnss") & ".csv"
+        nLogFile = FreeFile
+        Open sLogPath For Output As #nLogFile
+        Dim sHdr As String
+        sHdr = "timestamp,elapsed_s"
+        For b = 0 To Radio2_1.BankCount - 1
+            sHdr = sHdr & ",bank" & b & "_tc,bank" & b & "_cj"
+        Next
+        Print #nLogFile, sHdr
+        nRows = 0
+        cmdLog.Caption = "Stop CSV Log"
+        lblStatus.Caption = "Logging to " & sLogPath
+    End If
+End Sub
+
+Private Sub StopLog()
+    If nLogFile <> 0 Then
+        Close #nLogFile
+        nLogFile = 0
+        cmdLog.Caption = "Start CSV Log"
+        lblStatus.Caption = "Logged " & nRows & " rows to " & sLogPath
+    End If
+End Sub
+
+Private Sub Radio2_1_NewData(ByVal SampleIndex As Long, ByVal ElapsedSeconds As Double)
+    Dim b As Long, s As String, sRow As String, sUnit As String
+    sUnit = IIf(Radio2_1.Units = 1, " " & Chr(176) & "F", " " & Chr(176) & "C")
+    For b = 0 To Radio2_1.BankCount - 1
+        If Radio2_1.BankPresent(b) Then
+            s = b & "        " & Radio2_1.BankTypeName(b) & "    " & Radio2_1.BankSerial(b) & "    " & Radio2_1.BankFirmware(b) & "    "
+            If Radio2_1.HasReading(b) Then
+                s = s & Format(Radio2_1.Temperature(b), "0.00") & sUnit
+                If Radio2_1.HasColdJunction(b) Then s = s & "        " & Format(Radio2_1.ColdJunction(b), "0.00") & sUnit
+                Graph1.Plots(b + 1).ChartY Radio2_1.Temperature(b)
+            ElseIf Radio2_1.OpenCircuit(b) Then
+                s = s & "open (no probe)"
+            Else
+                s = s & "-"
+            End If
+        Else
+            s = b & "        -"
+        End If
+        lblBank(b).Caption = s
+    Next
+    lblStatus.Caption = "Sample " & SampleIndex & " at " & Format(ElapsedSeconds, "0.0") & " s" & IIf(nLogFile <> 0, "   logging: " & sLogPath, "")
+    If nLogFile <> 0 Then WriteRow ElapsedSeconds
+End Sub
+
+Private Sub WriteRow(ByVal ElapsedSeconds As Double)
+    Dim b As Long, sRow As String
+    sRow = Format(Now, "yyyy-mm-dd hh:nn:ss") & "," & Format(ElapsedSeconds, "0.000")
+    For b = 0 To Radio2_1.BankCount - 1
+        sRow = sRow & ","
+        If Radio2_1.HasReading(b) Then sRow = sRow & Format(Radio2_1.TemperatureC(b), "0.000")
+        sRow = sRow & ","
+        If Radio2_1.HasColdJunction(b) Then sRow = sRow & Format(Radio2_1.ColdJunctionC(b), "0.000")
+    Next
+    Print #nLogFile, sRow
+    nRows = nRows + 1
+End Sub
+
+Private Sub Radio2_1_Disconnected(ByVal Reason As String)
+    StopLog
+    lblStatus.Caption = "Chain lost: " & Reason
+    UpdateButtons
+End Sub
+Type=Exe
+Form=frmVision.frm
+Startup="frmVision"
+Title="Vision Demo"
+Name="VisionDemo"
+# VB6X.Vision demo
+
+A small webcam panel built on the `VB6X.Vision` control (the cross-platform clone of
+Intrepid's `icsVision.ocx` / `icsQuickVision`): pick a camera, open the driver, preview,
+take snapshots into a PictureBox, change the image size / camera adjustments through the
+control's dialogs, and record a 5-second uncompressed AVI.
+
+    vb6 run examples/vision/Project1.vbp
+
+Without a webcam the list contains only the built-in **VB6X Test Pattern** camera. Set
+`VB6_VISION_NO_CAMERA=1` to hide real cameras. See `docs/manual/controls/vision.md` for the
+full object model.
+VERSION 5.00
+Begin VB.Form frmVision 
+   Caption         =   "VB6X.Vision - webcam demo"
+   ClientHeight    =   6600
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   9600
+   StartUpPosition =   3  'Windows Default
+   Begin VB6X.Vision Vision1 
+      DeviceID        =   0
+      Height          =   2145
+      Left            =   120
+      Top             =   600
+      Width           =   2400
+   End
+   Begin VB.ComboBox cboDevice 
+      Height          =   315
+      Left            =   120
+      Style           =   2  'Dropdown List
+      TabIndex        =   0
+      Top             =   120
+      Width           =   3600
+   End
+   Begin VB.CommandButton cmdOpen 
+      Caption         =   "Open Driver"
+      Height          =   390
+      Left            =   3900
+      TabIndex        =   1
+      Top             =   120
+      Width           =   1500
+   End
+   Begin VB.CommandButton cmdPreview 
+      Caption         =   "Preview On"
+      Enabled         =   0   'False
+      Height          =   390
+      Left            =   5520
+      TabIndex        =   2
+      Top             =   120
+      Width           =   1500
+   End
+   Begin VB.CommandButton cmdSnap 
+      Caption         =   "Snapshot"
+      Enabled         =   0   'False
+      Height          =   390
+      Left            =   7140
+      TabIndex        =   3
+      Top             =   120
+      Width           =   1500
+   End
+   Begin VB.CommandButton cmdSize 
+      Caption         =   "Image Size..."
+      Enabled         =   0   'False
+      Height          =   390
+      Left            =   3900
+      TabIndex        =   4
+      Top             =   600
+      Width           =   1500
+   End
+   Begin VB.CommandButton cmdAdjust 
+      Caption         =   "Adjustments..."
+      Enabled         =   0   'False
+      Height          =   390
+      Left            =   5520
+      TabIndex        =   5
+      Top             =   600
+      Width           =   1500
+   End
+   Begin VB.CommandButton cmdCapture 
+      Caption         =   "Record 5 s AVI"
+      Enabled         =   0   'False
+      Height          =   390
+      Left            =   7140
+      TabIndex        =   6
+      Top             =   600
+      Width           =   1500
+   End
+   Begin VB.CheckBox chkAuto 
+      Caption         =   "Auto snapshot (4/s) -> PictureBox"
+      Height          =   255
+      Left            =   3900
+      TabIndex        =   7
+      Top             =   1140
+      Width           =   3600
+   End
+   Begin VB.PictureBox picLast 
+      Height          =   3000
+      Left            =   3900
+      ScaleHeight     =   2940
+      ScaleWidth      =   5340
+      TabIndex        =   8
+      Top             =   1500
+      Width           =   5400
+   End
+   Begin VB.Timer tmrSnap 
+      Enabled         =   0   'False
+      Interval        =   250
+      Left            =   8880
+      Top             =   1080
+   End
+   Begin VB.Label lblStatus 
+      Caption         =   "Pick a camera and open the driver."
+      Height          =   255
+      Left            =   120
+      TabIndex        =   9
+      Top             =   6240
+      Width           =   9300
+   End
+   Begin VB.Label lblFrame 
+      Caption         =   ""
+      Height          =   255
+      Left            =   3900
+      TabIndex        =   10
+      Top             =   4560
+      Width           =   5400
+   End
+   Begin VB.Label lblLevel 
+      Caption         =   ""
+      Height          =   255
+      Left            =   3900
+      TabIndex        =   11
+      Top             =   4860
+      Width           =   5400
+   End
+End
+Attribute VB_Name = "frmVision"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Option Explicit
+
+' Demo for the VB6X.Vision control - the same object model as icsVision.ocx's
+' icsQuickVision, so this mirrors the OCX's original test form.
+
+Private nFrames As Long
+
+Private Sub Form_Load()
+    Dim i As Long
+    For i = 0 To Vision1.DeviceCount - 1
+        cboDevice.AddItem i & " : " & Vision1.DeviceName(i)
+    Next
+    cboDevice.ListIndex = 0
+End Sub
+
+Private Sub Form_Unload(Cancel As Integer)
+    Vision1.DriverOpen = False
+End Sub
+
+Private Sub cmdOpen_Click()
+    If Vision1.DriverOpen Then
+        Vision1.DriverOpen = False
+    Else
+        Vision1.DeviceID = cboDevice.ListIndex
+        Vision1.DriverOpen = True
+        If Not Vision1.DriverOpen Then
+            lblStatus.Caption = "Open failed: " & Vision1.LastError
+            Exit Sub
+        End If
+        lblStatus.Caption = "Driver: " & Vision1.VideoDriver.DriverName & "  version " & Vision1.VideoDriver.DriverVersion & _
+            "   " & Vision1.CaptureStatus.ImageWidth & "x" & Vision1.CaptureStatus.ImageHeight & " @ " & Vision1.BitsPerPixel & " bpp"
+    End If
+    UpdateButtons
+End Sub
+
+Private Sub UpdateButtons()
+    Dim bOpen As Boolean
+    bOpen = Vision1.DriverOpen
+    cmdOpen.Caption = IIf(bOpen, "Close Driver", "Open Driver")
+    cmdPreview.Enabled = bOpen
+    cmdSnap.Enabled = bOpen
+    cmdSize.Enabled = bOpen
+    cmdAdjust.Enabled = bOpen
+    cmdCapture.Enabled = bOpen
+    cmdPreview.Caption = IIf(Vision1.PreviewMode, "Preview Off", "Preview On")
+    If Not bOpen Then tmrSnap.Enabled = False: chkAuto.Value = vbUnchecked
+End Sub
+
+Private Sub cmdPreview_Click()
+    Vision1.PreviewRateMs = 50
+    Vision1.PreviewMode = Not Vision1.PreviewMode
+    UpdateButtons
+End Sub
+
+Private Sub cmdSnap_Click()
+    If Not Vision1.SnapShot Then lblStatus.Caption = "SnapShot failed: " & Vision1.LastError
+End Sub
+
+Private Sub cmdSize_Click()
+    If Vision1.ShowSizeAndQualityDialog Then
+        lblStatus.Caption = "Image size now " & Vision1.CaptureStatus.ImageWidth & "x" & Vision1.CaptureStatus.ImageHeight
+    End If
+End Sub
+
+Private Sub cmdAdjust_Click()
+    Vision1.ShowAdjustmentsDialog
+End Sub
+
+Private Sub cmdCapture_Click()
+    With Vision1
+        If .CaptureStatus.CapturingNow Then
+            .StopCapture
+            lblStatus.Caption = "Capture stopped after " & .CaptureStatus.CurrentVideoFrame & " frames"
+        Else
+            .CaptureSetup.RequestedMicroSecPerFrame = 100000   ' 10 fps
+            .CaptureSetup.TimeLimitEnabled = True
+            .CaptureSetup.TimeLimitInSeconds = 5
+            .CaptureSetup.AbortWithLeftMouse = True
+            .AVIFilePath = "vision_demo.avi"
+            .SaveToAVIFile = True
+            If .StartCapture Then
+                lblStatus.Caption = "Recording vision_demo.avi (click the image to stop)..."
+            Else
+                lblStatus.Caption = "StartCapture failed: " & .LastError
+            End If
+        End If
+    End With
+End Sub
+
+Private Sub chkAuto_Click()
+    tmrSnap.Enabled = (chkAuto.Value = vbChecked) And Vision1.DriverOpen
+End Sub
+
+Private Sub tmrSnap_Timer()
+    Vision1.SnapShot
+End Sub
+
+' Every acquired frame arrives here as a bottom-up 24-bit DIB in a 1-based Byte array -
+' exactly what icsImaging's cicsImage.IntializeFromRawData consumed.
+Private Sub Vision1_AcquiredVideo(ByVal vVideoData As Variant, ByVal lImageHeight As Long, ByVal lImageWidth As Long, lBitsPerPixel As Long, ByVal vPaletteArray As Variant)
+    Dim b() As Byte, stride As Long, x As Long, y As Long, sum As Double
+    nFrames = nFrames + 1
+    b = vVideoData
+    stride = (lImageWidth * 3 + 3) And &HFFFFFFFC
+    lblFrame.Caption = "Frame " & nFrames & ": " & lImageWidth & "x" & lImageHeight & " x " & lBitsPerPixel & " bpp, " & UBound(b) & " bytes"
+    ' mean of the green channel over the centre row
+    y = lImageHeight \ 2
+    For x = 0 To lImageWidth - 1
+        sum = sum + b(1 + y * stride + x * 3 + 1)
+    Next
+    lblLevel.Caption = "Centre-row green level: " & Format(sum / lImageWidth, "0.0")
+    Set picLast.Picture = Vision1.Picture
+    If Not Vision1.CaptureStatus.CapturingNow And Left(lblStatus.Caption, 9) = "Recording" Then
+        lblStatus.Caption = "Recorded vision_demo.avi: " & Vision1.CaptureStatus.CurrentVideoFrame & " frames"
+    End If
+End Sub
 # Vehicle Spy 2 graphical-monitor demo scripts
 
 Scripted sessions (`VB6_TEST_SCRIPT`) that build, exercise and reload a graphical monitor
