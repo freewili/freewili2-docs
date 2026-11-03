@@ -131,6 +131,7 @@ const config = {
             { label: 'freewili.com', href: 'https://www.freewili.com' },
             { label: 'Shop', href: 'https://shop.freewili.com/products/free-wili-2' },
             { label: 'Orca Modules', href: 'https://www.freewili.com/explore-orcas.html' },
+            { label: 'Porpoise Purpose Module', href: 'https://www.freewili.com/porpoise-purpose-module.html' },
           ],
         },
         {

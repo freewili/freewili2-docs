@@ -47,6 +47,7 @@ const sidebars = {
         'hardware/pinout',
         'hardware/connectors',
         'hardware/orca-modules',
+        'hardware/porpoise-purpose-module',
       ],
     },
     {
