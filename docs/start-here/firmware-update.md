@@ -7,7 +7,7 @@ sidebar_position: 5
 
 FREE-WILi 2 processors are updated using the SDCard. You copy new firmware files to the /firmware/ directory. And power down and re-power the device.
 
-When Free-Wili2 starts up it checks this directory and will Flash the firmware to the devices. 
+When FREE-WILi 2 starts up it checks this directory and will flash the firmware to the devices. 
 
 :::warning
 The SDCard update method is not stable yet. If an update doesn't take, this
@@ -68,15 +68,15 @@ open it in any serial terminal (`screen /dev/cu.usbmodem… 115200`) and press a
 letter to bring up the banner, which reports the running version (e.g.
 `FW2 v07`).
 
-# Emergecy USB Bootloader
+# Emergency USB Bootloader
 
-If for any reason the main firmware is erases or destroyed you must use the bootloader of last resort - the USB bootloader.
+If for any reason the main firmware is erased or destroyed you must use the bootloader of last resort - the USB bootloader.
 
-if you hold the red button on power up you enter the USB bootloader. This bootloader provides a mass storage (thumb drive) for you to drag and drop the main.uf2 file.
+If you hold the red button on power up you enter the USB bootloader. This bootloader provides a mass storage (thumb drive) for you to drag and drop the main.uf2 file.
 
-The USB bootloader and the SDCard bootloader setup the USB SDCard reader to connect to the host by default.
+The USB bootloader and the SDCard bootloader set up the USB SDCard reader to connect to the host by default.
 
-After you do this the SDCard bootloader will be functional. You must copy the new firmware to the sdcard firmware directory and repower.
+After you do this the SDCard bootloader will be functional. You must copy the new firmware to the SDCard firmware directory and repower.
 
 # What firmware do you have?
 
